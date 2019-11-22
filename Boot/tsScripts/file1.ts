@@ -1,4 +1,6 @@
-﻿function welcome(person: string) {
+﻿/// <reference path="../Scripts/typings/jquery/jquery.d.ts" />
+
+function welcome(person: string) {
     return `Hello ${person}, Lets learn TypeScript`;
 }
 
