@@ -1,0 +1,1 @@
+{"version":3,"file":"file1.js","sourceRoot":"","sources":["../tsScripts/file1.ts"],"names":[],"mappings":"AAAA,SAAS,OAAO,CAAC,MAAc;IAC3B,OAAO,eAAa,MAAM,iCAA8B,CAAC;AAC7D,CAAC;AAED,SAAS,aAAa;IAClB,IAAM,IAAI,GAAG,GAAG,CAAC;IACjB,CAAC,CAAC,SAAS,CAAC,CAAC,IAAI,CAAC,OAAO,CAAC,IAAI,CAAC,CAAC,CAAC;AACrC,CAAC"}
