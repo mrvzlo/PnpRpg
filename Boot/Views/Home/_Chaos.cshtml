@@ -6,17 +6,17 @@
         lblExtreme = "All attributes are random and no free points";
 }
 
-<div class="col-12 display-4 my-5">Which level of chaos will you to accept?</div>
+<div class="col-12 display-4 my-5">Which level of chaos will you accept?</div>
 
-<button class="col-3 btn btn-success" data-toggle="tooltip" data-placement="bottom" title="@lblNormal"
-        data-action="@Status.Attributes">
+<button class="col-3 btn btn-success ajax-btn" data-toggle="tooltip" data-placement="bottom" title="@lblNormal"
+        data-action="@Status.Attributes" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.Normal})">
     Normal
 </button>
-<button class="col-3 btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="@lblHigh"
-        data-action="@Status.Attributes">
+<button class="col-3 btn btn-danger ajax-btn" data-toggle="tooltip" data-placement="bottom" title="@lblHigh"
+        data-action="@Status.Attributes" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.High})">
     High
 </button>
-<button class="col-3 btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="@lblExtreme"
-        data-action="@Status.Attributes">
+<button class="col-3 btn btn-dark ajax-btn" data-toggle="tooltip" data-placement="bottom" title="@lblExtreme"
+        data-action="@Status.Attributes" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.Extreme})">
     Extreme
 </button>

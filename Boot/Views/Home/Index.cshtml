@@ -7,6 +7,7 @@
     {
         case Status.Intro: Html.RenderPartial("_Intro"); break;
         case Status.Chaos: Html.RenderPartial("_Chaos"); break;
+        case Status.Attributes: Html.RenderPartial("_Attributes", Model); break;
     }
 }
 

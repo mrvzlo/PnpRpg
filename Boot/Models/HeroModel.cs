@@ -9,6 +9,8 @@ namespace Boot.Models
         public int MinAttr;
         public int Skill1, Skill2, Skill3;
 
+        public HeroModel() { }
+
         public HeroModel(ChaosLevel chaos)
         {
             S = A = P = I = 1;
