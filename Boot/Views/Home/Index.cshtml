@@ -1,9 +1,15 @@
-﻿@{
+﻿@using Boot.Models
+@model HeroModel
+@{
+    var status = (Status)ViewBag.Status;
     ViewBag.Title = "Home Page";
-    Html.RenderPartial("_Intro");
+    switch (status)
+    {
+        case Status.Intro: Html.RenderPartial("_Intro"); break;
+        case Status.Chaos: Html.RenderPartial("_Chaos"); break;
+    }
 }
 
-@section scripts
-{
-    <script>$(function(){MainJs.init();});</script>
+@section scripts{
+    <script>$(function () { MainJs.init(); });</script>
 }

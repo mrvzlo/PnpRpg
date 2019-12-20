@@ -8,7 +8,11 @@ namespace Boot
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/core").Include(
-                        "~/Scripts/jquery-{version}.js", "~/Scripts/jquery.validate*", "~/Scripts/bootstrap.js"));
+                        "~/Scripts/jquery-{version}.js", 
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/umd/popper.js",
+                        "~/Scripts/jquery.validate.unobtrusive.js",
+                        "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/js/main").Include(
                 "~/Scripts/main.js"));

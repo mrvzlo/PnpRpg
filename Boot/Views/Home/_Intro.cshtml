@@ -1,4 +1,6 @@
-﻿<div class="col-12 text-center">
+﻿@using Boot.Models
+<div class="col-12">
     <div class="display-4 my-5">Are you ready for a new life to begin?</div>
-    <button type="submit" class="btn btn-dark ajax-btn" data-url="@Url.Action("GetFormForChaos")">Yes</button>
+    <button type="submit" class="btn btn-dark ajax-btn" data-action="@Status.Chaos" 
+            data-url="@Url.Action("GetFormForChaos")">Yes</button>
 </div>

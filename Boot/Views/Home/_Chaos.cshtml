@@ -1,5 +1,12 @@
-﻿<div class="col-12 display-4 my-5">Which level of chaos will you to accept?</div>
+﻿@{
+    const string 
+        lblNormal = "Base attributes are 8 and 8 free points",
+        lblHigh = "Base attributes are 1 and 36 free points",
+        lblExtreme = "All attributes are random and no free points";
+}
 
-<div class="col-3">Normal</div>
-<div class="col-3">High</div>
-<div class="col-3">Extreme random</div>
+<div class="col-12 display-4 my-5">Which level of chaos will you to accept?</div>
+
+<div class="col-3 btn btn-success" data-toggle="tooltip" data-placement="bottom" title="@lblNormal">Normal</div>
+<div class="col-3 btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="@lblHigh">High</div>
+<div class="col-3 btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="@lblExtreme">Extreme</div>
