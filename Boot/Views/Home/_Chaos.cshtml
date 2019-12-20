@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Boot.Models
+@{
     const string 
         lblNormal = "Base attributes are 8 and 8 free points",
         lblHigh = "Base attributes are 1 and 36 free points",
@@ -7,6 +8,15 @@
 
 <div class="col-12 display-4 my-5">Which level of chaos will you to accept?</div>
 
-<div class="col-3 btn btn-success" data-toggle="tooltip" data-placement="bottom" title="@lblNormal">Normal</div>
-<div class="col-3 btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="@lblHigh">High</div>
-<div class="col-3 btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="@lblExtreme">Extreme</div>
+<button class="col-3 btn btn-success" data-toggle="tooltip" data-placement="bottom" title="@lblNormal"
+        data-action="@Status.Attributes">
+    Normal
+</button>
+<button class="col-3 btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="@lblHigh"
+        data-action="@Status.Attributes">
+    High
+</button>
+<button class="col-3 btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="@lblExtreme"
+        data-action="@Status.Attributes">
+    Extreme
+</button>

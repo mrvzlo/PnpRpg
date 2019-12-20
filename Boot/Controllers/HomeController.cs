@@ -12,7 +12,10 @@ namespace Boot.Controllers
             return View(model);
         }
 
-        public JsonResult GetFormForChaos() =>
+        public JsonResult GetChaosChoice() =>
             Json(this.RenderPartialViewToString("_Chaos"), JsonRequestBehavior.AllowGet);
+
+        public JsonResult GetHeroModel(ChaosLevel level) =>
+            Json(this.RenderPartialViewToString("_Attributes", new HeroModel(level)), JsonRequestBehavior.AllowGet);
     }
 }

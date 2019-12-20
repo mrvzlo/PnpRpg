@@ -328,6 +328,7 @@
     <Content Include="Scripts\README.md" />
     <Content Include="Views\Home\_Chaos.cshtml" />
     <Content Include="Views\Home\_Intro.cshtml" />
+    <Content Include="Views\Home\_Attributes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
