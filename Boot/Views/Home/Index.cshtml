@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Html.RenderPartial("_Intro");
 }
-<button type="button" class="btn btn-primary" onclick="clickMeButton()">Show Message</button>
 
-<div id="divMsg"></div>
+@section scripts
+{
+    <script>$(function(){MainJs.init();});</script>
+}

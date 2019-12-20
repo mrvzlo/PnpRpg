@@ -7,12 +7,14 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="container">
-        @RenderBody()
+    <div class="container mt-2">
+        <div id="main" class="row justify-content-center">
+            @RenderBody()
+        </div>
     </div>
 
     @Scripts.Render("~/js/core")
-    @Scripts.Render("~/ts/core")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/js/main")
+    @RenderSection("scripts", false)
 </body>
 </html>
