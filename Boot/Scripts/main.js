@@ -13,7 +13,8 @@
 
     function call(id, url) {
         $.get(url, function(data) {
-            $(id).html(data);
+            $(id).html(data.partial);
+            window.history.pushState("object or string", "Title", data.url);
             tooltips();
         });
     }

@@ -12,10 +12,22 @@ namespace Boot.Controllers
             return View(model);
         }
 
-        public JsonResult GetChaosChoice() =>
-            Json(this.RenderPartialViewToString("_Chaos"), JsonRequestBehavior.AllowGet);
+        public JsonResult GetChaosChoice()
+        {
+            var partial = this.RenderPartialViewToString("_Chaos");
+            var url = Url.Action("Index", new { status = Status.Chaos });
+            return ReturnJson(partial, url);
+        }
 
-        public JsonResult GetHeroModel(ChaosLevel level) =>
-            Json(this.RenderPartialViewToString("_Attributes", new HeroModel(level)), JsonRequestBehavior.AllowGet);
+        public JsonResult GetHeroModel(ChaosLevel level)
+        {
+            var heroModel = new HeroModel(level);
+            var partial = this.RenderPartialViewToString("_Attributes", heroModel);
+            var url = Url.Action("Index", new {status = Status.Attributes, model = heroModel });
+            return ReturnJson(partial, url);
+        }
+
+        private JsonResult ReturnJson(string partial, string url) =>
+            Json(new { url, partial }, 0);
     }
 }
