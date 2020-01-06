@@ -1,21 +1,18 @@
-﻿@using Boot.Models
-@model string
-@{
-    HeroModel heroModel = null;
-    var status = (Status)ViewBag.Status;
-    if (status >= Status.Attributes && Model != null && Model.Length == 8)
-    {
-        heroModel = new HeroModel(Model);
-    }
-    ViewBag.Title = "Home Page";
-    switch (status)
-    {
-        case Status.Intro: Html.RenderPartial("_Intro"); break;
-        case Status.Chaos: Html.RenderPartial("_Chaos"); break;
-        case Status.Attributes: Html.RenderPartial("_Attributes", heroModel); break;
-    }
+﻿@{
+    ViewBag.Title = "Pnp rpg omg";
+    Layout = "../Shared/_LayoutIntro.cshtml";
 }
-
-@section scripts{
-    <script>$(function () { MainJs.init(); });</script>
-}
+<div class="col-md-5 col-8 card p-0 mt-3">
+    <div class="card-body"></div>
+    <div class="card-footer">
+        <a class="stretched-link" href="@Url.Action("Index","HeroGen")">Hero generator</a>
+    </div>
+</div>
+<div class="col-md-5 col-8 card p-0 mt-3">
+    <div class="card-body"></div>
+    <div class="card-footer">Character sheet</div>
+</div>
+<div class="col-md-5 col-8 card p-0 mt-3">
+    <div class="card-body"></div>
+    <div class="card-footer">Player rulebook</div>
+</div>

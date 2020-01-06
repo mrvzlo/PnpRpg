@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\AttributeType.cs" />
     <Compile Include="Global.asax.cs">
@@ -239,6 +241,7 @@
     <Content Include="Content\bootstrap\bootstrap.scss" />
     <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
     <Content Include="Content\bootstrap\bootstrap-grid.scss" />
+    <Content Include="Content\links.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -313,6 +316,7 @@
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
+    <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -324,12 +328,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\HeroGen\Index.cshtml" />
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\README.md" />
-    <Content Include="Views\Home\_Chaos.cshtml" />
-    <Content Include="Views\Home\_Intro.cshtml" />
-    <Content Include="Views\Home\_Attributes.cshtml" />
+    <Content Include="Views\HeroGen\_Chaos.cshtml" />
+    <Content Include="Views\HeroGen\_Attributes.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
+    <Content Include="Views\Shared\_LayoutIntro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
