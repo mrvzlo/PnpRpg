@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
+using Boot.Enums;
 
 namespace Boot.Models
 {
@@ -10,26 +11,28 @@ namespace Boot.Models
         public int S, A, P, I;
         public int MinAttr;
         public int Skill1, Skill2, Skill3;
+        public int Sum => S + A + P + I;
 
         public HeroModel() { }
 
         public HeroModel(string data)
         {
-            var list = data.ToCharArray().Select(x => Convert.ToInt32(x - 64)).ToList();
+            var list = data.ToCharArray().Select(Decode).ToList();
             S = list[0];
-            A = list[0];
-            P = list[0];
-            I = list[0];
-            MinAttr = list[0];
-            Skill1 = list[0];
-            Skill2 = list[0];
-            Skill3 = list[0];
+            A = list[1];
+            P = list[2];
+            I = list[3];
+            MinAttr = list[4];
+            Skill1 = list[5];
+            Skill2 = list[6];
+            Skill3 = list[7];
         }
 
         public override string ToString()
         {
             var list = new List<int> { S, A, P, I, MinAttr, Skill1, Skill2, Skill3 };
-            return list.Select(x => Convert.ToChar(x + 64)).ToString();
+            var chars = list.Select(Encode).ToArray();
+            return new string(chars);
         }
 
         public HeroModel(ChaosLevel chaos)
@@ -67,5 +70,37 @@ namespace Boot.Models
                 case 3: I += val; break;
             }
         }
+
+        public bool ChangeAttr(AttributeType attr, int val)
+        {
+            switch (attr)
+            {
+                case AttributeType.Strength:
+                    if (S + val < MinAttr)
+                        return false;
+                    S += val;
+                    return true;
+                case AttributeType.Perception:
+                    if (P + val < MinAttr)
+                        return false;
+                    P += val;
+                    return true;
+                case AttributeType.Agility:
+                    if (A + val < MinAttr)
+                        return false;
+                    A += val;
+                    return true;
+                case AttributeType.Intelligence:
+                    if (I + val < MinAttr)
+                        return false;
+                    I += val;
+                    return true;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(attr), attr, null);
+            }
+        }
+
+        private char Encode(int a) => Convert.ToChar(a + 'A');
+        private int Decode(char c) => Convert.ToInt32(c - 'A');
     }
 }

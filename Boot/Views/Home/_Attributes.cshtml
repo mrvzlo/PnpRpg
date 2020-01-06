@@ -1,1 +1,46 @@
-﻿@model Boot.Models.HeroModel
+﻿@using Boot.Enums
+@using Boot.Models
+@model Boot.Models.HeroModel
+@{
+    var enc = Model.ToString();
+    var freePoints = 40 - Model.Sum;
+}
+<div class="col-md-3 col-9 card p-0">
+    <div class="card-header">Strength</div>
+    <div class="card-body">@Model.S</div>
+    <div class="card-footer">@Button(Model.S, AttributeType.Strength, Model.MinAttr, enc, freePoints > 0)</div>
+</div>
+<div class="col-md-3 col-9 card p-0">
+    <div class="card-header">Perception</div>
+    <div class="card-body">@Model.P</div>
+    <div class="card-footer">@Button(Model.P, AttributeType.Perception, Model.MinAttr, enc, freePoints > 0)</div>
+</div>
+<div class="col-md-3 col-9 card p-0">
+    <div class="card-header">Agility</div>
+    <div class="card-body">@Model.A</div>
+    <div class="card-footer">@Button(Model.A, AttributeType.Agility, Model.MinAttr, enc, freePoints > 0)</div>
+</div>
+<div class="col-md-3 col-9 card p-0">
+    <div class="card-header">Intelligence</div>
+    <div class="card-body">@Model.I</div>
+    <div class="card-footer">@Button(Model.I, AttributeType.Intelligence, Model.MinAttr, enc, freePoints > 0)</div>
+</div>
+<div class="col-12 alert alert-info">@freePoints free point(s)</div>
+@helper Button(int param, AttributeType attr, int minValue, string enc, bool hasFreePoints)
+{
+    var canInc = param < 20 && hasFreePoints;
+    var canDec = param > minValue;
+    <button class="btn @GetColor(canDec) ajax-btn" @(canDec ? "" : "disabled") data-action="@Status.Attributes"
+            data-url="@Url.Action("ChangeAttr", new {heroEnc = enc, attr, inc = false})">
+        -1
+    </button>
+    <button class="btn @GetColor(canInc) ajax-btn" @(canInc ? "" : "disabled") data-action="@Status.Attributes"
+            data-url="@Url.Action("ChangeAttr", new {heroEnc = enc, attr, inc = true})">
+        +1
+    </button>
+}
+
+@helper GetColor(bool can)
+{
+    @(can ? "btn-success" : "btn-secondary")
+}

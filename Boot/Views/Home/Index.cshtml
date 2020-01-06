@@ -1,13 +1,18 @@
 ﻿@using Boot.Models
-@model HeroModel
+@model string
 @{
+    HeroModel heroModel = null;
     var status = (Status)ViewBag.Status;
+    if (status >= Status.Attributes && Model != null && Model.Length == 8)
+    {
+        heroModel = new HeroModel(Model);
+    }
     ViewBag.Title = "Home Page";
     switch (status)
     {
         case Status.Intro: Html.RenderPartial("_Intro"); break;
         case Status.Chaos: Html.RenderPartial("_Chaos"); break;
-        case Status.Attributes: Html.RenderPartial("_Attributes", Model); break;
+        case Status.Attributes: Html.RenderPartial("_Attributes", heroModel); break;
     }
 }
 

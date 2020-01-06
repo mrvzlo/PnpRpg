@@ -1,9 +1,21 @@
 ﻿var MainJs = (function() {
 
     function init() {
-        tooltips();
+        updateScripts();
+    }
 
-        $('.ajax-btn').click(function() {
+    function call(id, url) {
+        $.get(url, function (data) {
+            console.log(url);
+            $(id).html(data.partial);
+            window.history.pushState("object or string", "Title", data.url);
+            updateScripts();
+        });
+    }
+
+    function updateScripts() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.ajax-btn').click(function () {
             var id = $(this).data("container");
             if (!id) id = "main";
             var url = $(this).data("url");
@@ -11,19 +23,7 @@
         });
     }
 
-    function call(id, url) {
-        $.get(url, function(data) {
-            $(id).html(data.partial);
-            window.history.pushState("object or string", "Title", data.url);
-            tooltips();
-        });
-    }
-
-    function tooltips() {
-        $('[data-toggle="tooltip"]').tooltip();
-    }
-
     return {
-        init: init,
+        init: init
     };
 })();
