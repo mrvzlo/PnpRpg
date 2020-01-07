@@ -1,0 +1,12 @@
+﻿@model Boot.Models.MagicSchoolPageModel
+
+<div class="col-md-2 col-sm-3 col-6">
+    <a class="btn btn-@Model.Color btn-block" data-toggle="tab" href="#c1">@Model.Header1</a>
+</div>
+<div class="col-md-2 col-sm-3 col-6">
+    <a class="btn btn-@Model.Color btn-block" data-toggle="tab" href="#c2">@Model.Header2</a>
+</div>
+<div class="tab-content col-12">
+    <div class="tab-pane fade" id="c1">@Model.Content1</div>
+    <div class="tab-pane fade" id="c2">@Model.Content2</div>
+</div>

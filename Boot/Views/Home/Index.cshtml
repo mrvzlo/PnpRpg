@@ -2,17 +2,29 @@
     ViewBag.Title = "Pnp rpg omg";
     Layout = "../Shared/_LayoutIntro.cshtml";
 }
-<div class="col-md-5 col-8 card p-0 mt-3">
-    <div class="card-body"></div>
+<div class="col-lg-3 col-md-5 col-8 card p-0 m-2">
+    <div class="card-body">
+    </div>
     <div class="card-footer">
-        <a class="stretched-link" href="@Url.Action("Index","HeroGen")">Hero generator</a>
+        <a class="stretched-link" href="@Url.Action("Index","HeroGen")">Генератор персонажа</a>
     </div>
 </div>
-<div class="col-md-5 col-8 card p-0 mt-3">
-    <div class="card-body"></div>
-    <div class="card-footer">Character sheet</div>
+<div class="col-lg-3 col-md-5 col-8 card p-0 m-2">
+    <div class="card-body">
+    </div>
+    <div class="card-footer">
+        <a class="stretched-link" href="@Url.Action("Magic", "Home")">Школы магии</a>
+    </div>
 </div>
-<div class="col-md-5 col-8 card p-0 mt-3">
-    <div class="card-body"></div>
-    <div class="card-footer">Player rulebook</div>
+<div class="col-lg-3 col-md-5 col-8 card p-0 m-2">
+    <img class="card-img-top" src="~/Content/images/sheet.jpg" alt="rulebook" />
+    <div class="card-footer">
+        <a class="stretched-link" href="@Url.Action("Index", "HeroGen")">Лист персонажа</a>
+    </div>
+</div>
+<div class="col-lg-3 col-md-5 col-8 card p-0 m-2">
+    <img class="card-img-top" src="~/Content/images/rulebook.png" alt="rulebook" />
+    <div class="card-footer">
+        <a class="stretched-link" href="@Url.Action("Index", "HeroGen")">Книга игрока</a>
+    </div>
 </div>

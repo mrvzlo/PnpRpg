@@ -1,0 +1,23 @@
+﻿@using Boot.Enums
+@using Boot.Models
+@{
+    ViewBag.Title = "Magic schools";
+}
+<div class="col-md-2 col-sm-3 col-6">
+    <a class="btn btn-danger btn-block" data-toggle="tab" href="#fire">Огонь</a>
+</div>
+<div class="col-md-2 col-sm-3 col-6">
+    <a class="btn btn-warning btn-block" data-toggle="tab" href="#earth">Земля</a>
+</div>
+<div class="col-md-2 col-sm-3 col-6">
+    <a class="btn btn-info btn-block" data-toggle="tab" href="#wind">Воздух</a>
+</div>
+<div class="col-md-2 col-sm-3 col-6">
+    <a class="btn btn-primary btn-block" data-toggle="tab" href="#water">Вода</a>
+</div>
+<div class="tab-content col-12">
+    <div class="tab-pane fade" id="fire">@Html.Partial("_MagicSchools", new MagicSchoolPageModel(AttributeType.Strength))</div>
+    <div class="tab-pane fade" id="earth">@Html.Partial("_MagicSchools", new MagicSchoolPageModel(AttributeType.Perception))</div>
+    <div class="tab-pane fade" id="wind">@Html.Partial("_MagicSchools", new MagicSchoolPageModel(AttributeType.Agility))</div>
+    <div class="tab-pane fade" id="water">@Html.Partial("_MagicSchools", new MagicSchoolPageModel(AttributeType.Intelligence))</div>
+</div>

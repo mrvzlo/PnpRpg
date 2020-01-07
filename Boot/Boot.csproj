@@ -131,6 +131,7 @@
     <Compile Include="Enums\ChaosLevel.cs" />
     <Compile Include="Models\HeroModel.cs" />
     <Compile Include="Enums\Status.cs" />
+    <Compile Include="Models\MagicSchoolPageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -335,6 +336,8 @@
     <Content Include="Views\HeroGen\_Attributes.cshtml" />
     <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
+    <Content Include="Views\Home\Magic.cshtml" />
+    <Content Include="Views\Home\_MagicSchools.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

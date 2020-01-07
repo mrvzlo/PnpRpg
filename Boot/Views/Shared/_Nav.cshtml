@@ -1,15 +1,18 @@
 ﻿<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="@Url.Action("Index","Home")">Home</a>
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">Домой</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavBar" 
                 aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="mainNavBar">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Hero generator</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active mx-2">
+                    <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Генератор персонажа</a>
+                </li>
+                <li class="nav-item active mx-2">
+                    <a class="nav-link" href="@Url.Action("Magic", "Home")">Школы магии</a>
                 </li>
             </ul>
         </div>

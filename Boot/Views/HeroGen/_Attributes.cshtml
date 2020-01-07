@@ -6,22 +6,22 @@
     var freePoints = 40 - Model.Sum;
 }
 <div class="col-md-3 col-9 card p-0">
-    <div class="card-header">Strength</div>
+    <div class="card-header bg-danger">Strength</div>
     <div class="card-body">@Model.S</div>
     <div class="card-footer">@Button(Model.S, AttributeType.Strength, Model.MinAttr, enc, freePoints > 0)</div>
 </div>
 <div class="col-md-3 col-9 card p-0">
-    <div class="card-header">Perception</div>
+    <div class="card-header bg-warning">Perception</div>
     <div class="card-body">@Model.P</div>
     <div class="card-footer">@Button(Model.P, AttributeType.Perception, Model.MinAttr, enc, freePoints > 0)</div>
 </div>
 <div class="col-md-3 col-9 card p-0">
-    <div class="card-header">Agility</div>
+    <div class="card-header bg-info">Agility</div>
     <div class="card-body">@Model.A</div>
     <div class="card-footer">@Button(Model.A, AttributeType.Agility, Model.MinAttr, enc, freePoints > 0)</div>
 </div>
 <div class="col-md-3 col-9 card p-0">
-    <div class="card-header">Intelligence</div>
+    <div class="card-header bg-primary">Intelligence</div>
     <div class="card-body">@Model.I</div>
     <div class="card-footer">@Button(Model.I, AttributeType.Intelligence, Model.MinAttr, enc, freePoints > 0)</div>
 </div>

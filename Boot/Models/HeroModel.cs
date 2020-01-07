@@ -37,6 +37,7 @@ namespace Boot.Models
 
         public HeroModel(ChaosLevel chaos)
         {
+            var rand = new Random(DateTime.Now.Millisecond);
             S = A = P = I = 1;
             switch (chaos)
             {
@@ -49,14 +50,19 @@ namespace Boot.Models
                 case ChaosLevel.Extreme:
                     MinAttr = 20;
                     S = A = P = I = 10;
+                    for (var i = 0; i < 10; i++)
+                    {
+                        RandomDiverse(-1, rand.Next(4));
+                        RandomDiverse(1, rand.Next(4));
+                    }
                     break;
-            }
-
-            var rand = new Random(DateTime.Now.Millisecond);
-            for (var i = 0; i < 10; i++)
-            {
-                RandomDiverse(-1, rand.Next(4));
-                RandomDiverse(1, rand.Next(4));
+                case ChaosLevel.Random:
+                    MinAttr = 20;
+                    S = rand.Next(20) + 1;
+                    P = rand.Next(20) + 1;
+                    A = rand.Next(20) + 1;
+                    I = rand.Next(20) + 1;
+                    break;
             }
         }
 

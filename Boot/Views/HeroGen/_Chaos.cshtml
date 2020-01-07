@@ -1,22 +1,28 @@
 ﻿@using Boot.Models
 @{
-    const string 
-        lblNormal = "Base attributes are 8 and 8 free points",
-        lblHigh = "Base attributes are 1 and 36 free points",
-        lblExtreme = "All attributes are random and no free points";
+    const string
+        ttNormal = "Базовые атрибуты по 8 и 8 свободных очков",
+        ttHigh = "Базовые атрибуты по 1 и 36 свободных очков",
+        ttExtreme = "Все атрибуты случайно сбалансированы, свободных очков нет",
+        ttRandom = "Все атрибуты случайны и не сбалансированы, свободных очков нет",
+        lblHeader = "Выберите тип генерации";
 }
 
-<div class="col-12 h1 my-5">Which level of chaos will you accept?</div>
+<div class="col-12 h1 my-5">@lblHeader</div>
 
-<button class="col-3 btn btn-success ajax-btn" data-toggle="tooltip" data-placement="bottom" title="@lblNormal"
+<button class="col-md-2 col-5 btn btn-success ajax-btn m-2" data-toggle="tooltip" data-placement="bottom" title="@ttNormal"
         data-action="@Status.Attributes" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.Normal})">
     Normal
 </button>
-<button class="col-3 btn btn-danger ajax-btn" data-toggle="tooltip" data-placement="bottom" title="@lblHigh"
+<button class="col-md-2 col-5 btn btn-warning ajax-btn m-2" data-toggle="tooltip" data-placement="bottom" title="@ttHigh"
         data-action="@Status.Attributes" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.High})">
     High
 </button>
-<button class="col-3 btn btn-dark ajax-btn" data-toggle="tooltip" data-placement="bottom" title="@lblExtreme"
+<button class="col-md-2 col-5 btn btn-danger ajax-btn m-2" data-toggle="tooltip" data-placement="bottom" title="@ttExtreme"
         data-action="@Status.Attributes" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.Extreme})">
     Extreme
+</button>
+<button class="col-md-2 col-5 btn btn-dark ajax-btn m-2" data-toggle="tooltip" data-placement="bottom" title="@ttRandom"
+        data-action="@Status.Attributes" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.Extreme})">
+    Random
 </button>

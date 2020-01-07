@@ -7,14 +7,15 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="container mt-2">
-        <div id="main" class="row justify-content-around text-center">
-            @RenderBody()
-        </div>
+@Html.Partial("_Nav")
+<div class="container mt-2">
+    <div id="main" class="row justify-content-around text-center">
+        @RenderBody()
     </div>
+</div>
 
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/main")
-    @RenderSection("scripts", false)
+@Scripts.Render("~/js/core")
+@Scripts.Render("~/js/main")
+@RenderSection("scripts", false)
 </body>
 </html>

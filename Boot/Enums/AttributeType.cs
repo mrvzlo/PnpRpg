@@ -1,7 +1,16 @@
-﻿namespace Boot.Enums
+﻿using System.ComponentModel;
+
+namespace Boot.Enums
 {
     public enum AttributeType
     {
-        Strength, Perception, Agility, Intelligence
+        [Description("Сила")]
+        Strength,
+        [Description("Восприятие")]
+        Perception,
+        [Description("Ловкость")]
+        Agility,
+        [Description("Интеллект")]
+        Intelligence
     }
 }
