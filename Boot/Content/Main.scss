@@ -1,4 +1,4 @@
-﻿$warning: #d80;
+﻿@import "colorsPre.scss";
 
 @import "bootstrap/functions";
 @import "bootstrap/variables";
@@ -37,10 +37,6 @@
 @import "bootstrap/spinners";
 @import "bootstrap/utilities";
 @import "bootstrap/print";
-@import "links.scss";
 
-@each $color, $value in $theme-colors {
-    .bg-#{$color} {
-        color: $white;
-    }
-}
+@import "links.scss";
+@import "colorsPost.scss";

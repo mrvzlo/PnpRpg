@@ -1,5 +1,5 @@
-﻿using System;
-using Boot.Enums;
+﻿using Boot.Enums;
+using Boot.Helpers;
 
 namespace Boot.Models
 {
@@ -7,25 +7,9 @@ namespace Boot.Models
     {
         public string Color, Header1, Header2, Content1, Content2;
 
-        public MagicSchoolPageModel(AttributeType attr)
+        public MagicSchoolPageModel(StatType attr)
         {
-            switch (attr)
-            {
-                case AttributeType.Strength:
-                    Color = "danger";
-                    break;
-                case AttributeType.Perception:
-                    Color = "warning";
-                    break;
-                case AttributeType.Agility:
-                    Color = "info";
-                    break;
-                case AttributeType.Intelligence:
-                    Color = "info";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(attr), attr, null);
-            }
+            Color = attr.Color();
         }
     }
 }

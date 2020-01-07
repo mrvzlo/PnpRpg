@@ -29,7 +29,7 @@ namespace Boot.Controllers
             return ReturnJson(partial, url);
         }
 
-        public JsonResult ChangeAttr(string heroEnc, AttributeType attr, bool inc)
+        public JsonResult ChangeAttr(string heroEnc, StatType attr, bool inc)
         {
             var hero = new HeroModel(heroEnc);
             hero.ChangeAttr(attr, inc ? 1 : -1);

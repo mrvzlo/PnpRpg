@@ -123,10 +123,13 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Enums\AttributeType.cs" />
+    <Compile Include="Enums\Attributes\ColorAttribute.cs" />
+    <Compile Include="Enums\Attributes\TranslationAttribute.cs" />
+    <Compile Include="Enums\StatType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumExtension.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Enums\ChaosLevel.cs" />
     <Compile Include="Models\HeroModel.cs" />
@@ -243,6 +246,8 @@
     <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
     <Content Include="Content\bootstrap\bootstrap-grid.scss" />
     <Content Include="Content\links.scss" />
+    <Content Include="Content\colorsPre.scss" />
+    <Content Include="Content\colorsPost.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

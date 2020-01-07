@@ -1,109 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI;
 using Boot.Enums;
+using Boot.Helpers;
 
 namespace Boot.Models
 {
     public class HeroModel
     {
-        public int S, A, P, I;
+        public int[] Stats;
         public int MinAttr;
-        public int Skill1, Skill2, Skill3;
-        public int Sum => S + A + P + I;
+        public int[] Skills = new int[3];
 
         public HeroModel() { }
 
         public HeroModel(string data)
         {
+            var count = EnumExtensions.GetEnumCount(typeof(StatType));
             var list = data.ToCharArray().Select(Decode).ToList();
-            S = list[0];
-            A = list[1];
-            P = list[2];
-            I = list[3];
-            MinAttr = list[4];
-            Skill1 = list[5];
-            Skill2 = list[6];
-            Skill3 = list[7];
+            Stats = new int[count];
+            for (var i = 0; i < Stats.Length; i++)
+                Stats[i] = list[i];
+            MinAttr = list[count];
+            for (var i = 0; i < Skills.Length; i++)
+                Skills[i] = list[Stats.Length + 1 + i];
         }
 
         public override string ToString()
         {
-            var list = new List<int> { S, A, P, I, MinAttr, Skill1, Skill2, Skill3 };
+            var list = Stats.ToList();
+            list.AddRange(new[] { MinAttr });
+            list.AddRange(Skills);
             var chars = list.Select(Encode).ToArray();
             return new string(chars);
         }
 
         public HeroModel(ChaosLevel chaos)
         {
+            var count = EnumExtensions.GetEnumCount(typeof(StatType));
+            Stats = new int[count];
             var rand = new Random(DateTime.Now.Millisecond);
-            S = A = P = I = 1;
+            for (var i = 0; i < Stats.Length; i++)
+                Stats[i] = 1;
             switch (chaos)
             {
                 case ChaosLevel.Normal:
-                    MinAttr = S = A = P = I = 8;
+                    for (var i = 0; i < Stats.Length; i++)
+                        Stats[i] = 8;
                     return;
                 case ChaosLevel.High:
                     MinAttr = 1;
                     return;
                 case ChaosLevel.Extreme:
                     MinAttr = 20;
-                    S = A = P = I = 10;
+                    for (var i = 0; i < Stats.Length; i++)
+                        Stats[i] = 10;
                     for (var i = 0; i < 10; i++)
                     {
                         RandomDiverse(-1, rand.Next(4));
                         RandomDiverse(1, rand.Next(4));
                     }
-                    break;
+                    return;
                 case ChaosLevel.Random:
                     MinAttr = 20;
-                    S = rand.Next(20) + 1;
-                    P = rand.Next(20) + 1;
-                    A = rand.Next(20) + 1;
-                    I = rand.Next(20) + 1;
-                    break;
+                    for (var i = 0; i < Stats.Length; i++)
+                        Stats[i] = rand.Next(20) + 1;
+                    return;
             }
         }
 
         private void RandomDiverse(int val, int attr)
         {
-            switch (attr)
-            {
-                case 0: S += val; break;
-                case 1: A += val; break;
-                case 2: P += val; break;
-                case 3: I += val; break;
-            }
+            Stats[attr] += val;
         }
 
-        public bool ChangeAttr(AttributeType attr, int val)
+        public bool ChangeAttr(StatType attr, int val)
         {
-            switch (attr)
-            {
-                case AttributeType.Strength:
-                    if (S + val < MinAttr)
-                        return false;
-                    S += val;
-                    return true;
-                case AttributeType.Perception:
-                    if (P + val < MinAttr)
-                        return false;
-                    P += val;
-                    return true;
-                case AttributeType.Agility:
-                    if (A + val < MinAttr)
-                        return false;
-                    A += val;
-                    return true;
-                case AttributeType.Intelligence:
-                    if (I + val < MinAttr)
-                        return false;
-                    I += val;
-                    return true;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(attr), attr, null);
-            }
+            if (Stats[(int) attr] + val < MinAttr || Stats[(int)attr] + val > 20)
+                return false;
+            Stats[(int) attr] += val;
+            return true;
         }
 
         private char Encode(int a) => Convert.ToChar(a + 'A');
