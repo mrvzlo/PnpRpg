@@ -1,0 +1,20 @@
+﻿@using Boot.Enums
+@using Boot.Helpers
+@model Boot.Models.HeroModel
+
+<div class="col-md-3 col-6 card p-0">
+    <div class="card-header bg-dark">Уровень</div>
+    <div class="card-body">@Model.Level</div>
+</div>
+<div class="col-md-3 col-6 card p-0">
+    <div class="card-header bg-@StatType.S.Color()">Здоровье</div>
+    <div class="card-body">@Model.MaxHp()</div>
+</div>
+<div class="col-md-3 col-6 card p-0">
+    <div class="card-header bg-@StatType.S.Color()">Вместимость</div>
+    <div class="card-body">@Model.MaxCarry()</div>
+</div>
+<div class="col-md-3 col-6 card p-0">
+    <div class="card-header bg-@StatType.I.Color()">Запас маны</div>
+    <div class="card-body">@Model.MaxEp()</div>
+</div>

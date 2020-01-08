@@ -125,6 +125,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\Attributes\ColorAttribute.cs" />
     <Compile Include="Enums\Attributes\TranslationAttribute.cs" />
+    <Compile Include="Enums\CookieType.cs" />
     <Compile Include="Enums\StatType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -322,6 +323,7 @@
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Views\HeroGen\_SecondStats.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

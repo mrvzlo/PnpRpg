@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Boot.Enums;
 using Boot.Helpers;
@@ -9,34 +8,41 @@ namespace Boot.Models
     public class HeroModel
     {
         public int[] Stats;
-        public int MinAttr;
+        public int MinAttr, Level;
         public int[] Skills = new int[3];
+
+        public int MaxHp() => Stats[(int)StatType.S] + Level * 2 - 2;
+        public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
+        public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.S] / 10;
 
         public HeroModel() { }
 
         public HeroModel(string data)
         {
+            if (string.IsNullOrEmpty(data)) return;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
-            var list = data.ToCharArray().Select(Decode).ToList();
+            var list = data.Split('.').Select(int.Parse).ToList();
             Stats = new int[count];
             for (var i = 0; i < Stats.Length; i++)
                 Stats[i] = list[i];
-            MinAttr = list[count];
             for (var i = 0; i < Skills.Length; i++)
-                Skills[i] = list[Stats.Length + 1 + i];
+                Skills[i] = list[Stats.Length + i];
+
+            MinAttr = list[Stats.Length + Skills.Length];
+            Level = list[Stats.Length + Skills.Length + 1];
         }
 
         public override string ToString()
         {
             var list = Stats.ToList();
-            list.AddRange(new[] { MinAttr });
             list.AddRange(Skills);
-            var chars = list.Select(Encode).ToArray();
-            return new string(chars);
+            list.AddRange(new[] { MinAttr, Level });
+            return string.Join(".", list);
         }
 
         public HeroModel(ChaosLevel chaos)
         {
+            Level = 1;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             Stats = new int[count];
             var rand = new Random(DateTime.Now.Millisecond);
@@ -76,13 +82,10 @@ namespace Boot.Models
 
         public bool ChangeAttr(StatType attr, int val)
         {
-            if (Stats[(int) attr] + val < MinAttr || Stats[(int)attr] + val > 20)
+            if (Stats[(int)attr] + val < MinAttr || Stats[(int)attr] + val > 20)
                 return false;
-            Stats[(int) attr] += val;
+            Stats[(int)attr] += val;
             return true;
         }
-
-        private char Encode(int a) => Convert.ToChar(a + 'A');
-        private int Decode(char c) => Convert.ToInt32(c - 'A');
     }
 }

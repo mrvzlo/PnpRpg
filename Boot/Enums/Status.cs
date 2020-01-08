@@ -1,4 +1,4 @@
-﻿namespace Boot.Models
+﻿namespace Boot.Enums
 {
     public enum Status
     {

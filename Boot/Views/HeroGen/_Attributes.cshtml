@@ -1,35 +1,38 @@
 ﻿@using Boot.Enums
 @using Boot.Helpers
-@using Boot.Models
 @model Boot.Models.HeroModel
 @{
-    var enc = Model.ToString();
     var freePoints = Model.Stats.Length * 10 - Model.Stats.Sum();
     for (var i = 0; i < Model.Stats.Length; i++)
     {
-        var a = (StatType) i;
-        <div class="col-md-3 col-9 card p-0">
+        var a = (StatType)i;
+        <div class="col-md-3 col-6 card p-0">
             <div class="card-header bg-@a.Color()">@a.Translation()</div>
             <div class="card-body">@Model.Stats[i]</div>
-            <div class="card-footer">@Button(Model.Stats[i], a, Model.MinAttr, enc, freePoints > 0)</div>
+            <div class="card-footer">@Button(Model.Stats[i], a, Model.MinAttr, freePoints > 0)</div>
         </div>
     }
+    @Html.Partial("_SecondStats", Model)
     if (freePoints > 0)
     {
-        <div class="col-12 alert alert-info">@freePoints free point(s)</div>
+        <div class="col-md-4 col-12 alert alert-info">@freePoints свободных очков</div>
+    }
+    else
+    {
+        <div class="col-md-4 col-12 btn btn-success">Ок</div>
     }
 }
 
-@helper Button(int param, StatType attr, int minValue, string enc, bool hasFreePoints)
+@helper Button(int param, StatType attr, int minValue, bool hasFreePoints)
 {
     var canInc = param < 20 && hasFreePoints;
     var canDec = param > minValue;
     <button class="btn @GetColor(canDec) ajax-btn" @(canDec ? "" : "disabled") data-action="@Status.Attributes"
-            data-url="@Url.Action("ChangeAttr", new {heroEnc = enc, attr, inc = false})">
+            data-url="@Url.Action("ChangeAttr", new {attr, inc = false})">
         -1
     </button>
     <button class="btn @GetColor(canInc) ajax-btn" @(canInc ? "" : "disabled") data-action="@Status.Attributes"
-            data-url="@Url.Action("ChangeAttr", new {heroEnc = enc, attr, inc = true})">
+            data-url="@Url.Action("ChangeAttr", new {attr, inc = true})">
         +1
     </button>
 }

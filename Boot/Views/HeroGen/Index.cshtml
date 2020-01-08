@@ -1,17 +1,13 @@
-﻿@using Boot.Models
-@model string
+﻿@using Boot.Enums
+@using Boot.Models
+@model HeroModel
 @{
-    HeroModel heroModel = null;
-    var status = (Status)ViewBag.Status;
-    if (status >= Status.Attributes && Model != null && Model.Length == 8)
-    {
-        heroModel = new HeroModel(Model);
-    }
     ViewBag.Title = "Home Page";
+    var status = (Status)ViewBag.Status;
     switch (status)
     {
         case Status.Chaos: Html.RenderPartial("_Chaos"); break;
-        case Status.Attributes: Html.RenderPartial("_Attributes", heroModel); break;
+        case Status.Attributes: Html.RenderPartial("_Attributes", Model); break;
     }
 }
 

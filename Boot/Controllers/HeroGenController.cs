@@ -7,10 +7,10 @@ namespace Boot.Controllers
 {
     public class HeroGenController : BaseController
     {
-        public ActionResult Index(Status status = Status.Chaos, string heroModel = null)
+        public ActionResult Index(Status status = Status.Chaos)
         {
             ViewBag.Status = status;
-            return View(model: heroModel);
+            return View(GetHeroFromCookies());
         }
 
         public JsonResult GetChaosChoice()
@@ -23,20 +23,24 @@ namespace Boot.Controllers
         public JsonResult GetHeroModel(ChaosLevel level)
         {
             var heroModel = new HeroModel(level);
-            var heroModelString = heroModel.ToString();
+            SaveHeroToCookies(heroModel);
             var partial = this.RenderPartialViewToString("_Attributes", heroModel);
-            var url = Url.Action("Index", new { status = Status.Attributes, heroModel = heroModelString });
+            var url = Url.Action("Index", new { status = Status.Attributes });
             return ReturnJson(partial, url);
         }
 
-        public JsonResult ChangeAttr(string heroEnc, StatType attr, bool inc)
+        public JsonResult ChangeAttr(StatType attr, bool inc)
         {
-            var hero = new HeroModel(heroEnc);
+            var hero = GetHeroFromCookies();
             hero.ChangeAttr(attr, inc ? 1 : -1);
-            var heroModelString = hero.ToString();
+            SaveHeroToCookies(hero);
             var partial = this.RenderPartialViewToString("_Attributes", hero);
-            var url = Url.Action("Index", new { status = Status.Attributes, heroModel = heroModelString });
+            var url = Url.Action("Index", new { status = Status.Attributes });
             return ReturnJson(partial, url);
         }
+
+        private HeroModel GetHeroFromCookies() => new HeroModel(GetCookie(CookieType.Hero));
+
+        private void SaveHeroToCookies(HeroModel model) => SaveCookie(CookieType.Hero, model.ToString());
     }
 }
