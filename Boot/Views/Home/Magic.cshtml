@@ -2,20 +2,25 @@
 @using Boot.Helpers
 @using Boot.Models
 @{
+    var path = Server.MapPath($"~/App_Data/{Constants.MagicSchoolsFileName}");
     var count = EnumExtensions.GetEnumCount(typeof(StatType));
     ViewBag.Title = "Magic schools";
-    for (var i = 0; i < count; i++)
+}
+<div class="nav nav-tabs col-12">
+    @for (var i = 0; i < count; i++)
     {
         var a = (StatType)i;
-        <div class="col-md-2 col-sm-3 col-6 my-2">
-            <a class="btn btn-@a.Color() btn-block" data-toggle="tab" href="#@a.Description()">@a.Translation()</a>
-        </div>
+        <a class="btn btn-@a.Color() mx-1" data-toggle="tab" href="#@a.Description()">@a.Translation()</a>
     }
-}
+</div>
 <div class="tab-content col-12">
     @for (var i = 0; i < count; i++)
     {
         var a = (StatType)i;
-        <div class="tab-pane fade" id="@a.Description()">@Html.Partial("_MagicSchools", new MagicSchoolPageModel(a))</div>
+        <div class="tab-pane fade" id="@a.Description()">@Html.Partial("_MagicSchools", new MagicSchoolPageModel(a, path))</div>
     }
 </div>
+
+@section scripts{
+    <script>$(function () { MainJs.init(); });</script>
+}

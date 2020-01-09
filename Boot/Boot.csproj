@@ -139,6 +139,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MagicSchoolsData.txt" />
+    <Content Include="Content\images\generator.jpg" />
+    <Content Include="Content\images\rulebook.jpg" />
+    <Content Include="Content\images\schools.jpg" />
+    <Content Include="Content\images\sheet.jpg" />
     <Content Include="Content\Main.css">
       <DependentUpon>main.scss</DependentUpon>
     </Content>
@@ -349,9 +354,7 @@
     <Content Include="Views\Home\_MagicSchools.cshtml" />
     <Content Include="Views\Shared\_Loading.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
