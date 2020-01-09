@@ -2,6 +2,6 @@
 {
     public enum Status
     {
-        Chaos, Attributes, Skills, Perks, Spells
+        Chaos, Stats, Skills, Perks, Spells
     }
 }

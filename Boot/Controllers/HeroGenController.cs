@@ -24,18 +24,18 @@ namespace Boot.Controllers
         {
             var heroModel = new HeroModel(level);
             SaveHeroToCookies(heroModel);
-            var partial = this.RenderPartialViewToString("_Attributes", heroModel);
-            var url = Url.Action("Index", new { status = Status.Attributes });
+            var partial = this.RenderPartialViewToString("_Stats", heroModel);
+            var url = Url.Action("Index", new { status = Status.Stats });
             return ReturnJson(partial, url);
         }
 
-        public JsonResult ChangeAttr(StatType attr, bool inc)
+        public JsonResult ChangeStat(StatType stat, int value)
         {
             var hero = GetHeroFromCookies();
-            hero.ChangeAttr(attr, inc ? 1 : -1);
+            hero.Stat((int)stat, value);
             SaveHeroToCookies(hero);
-            var partial = this.RenderPartialViewToString("_Attributes", hero);
-            var url = Url.Action("Index", new { status = Status.Attributes });
+            var partial = this.RenderPartialViewToString("_Stats", hero);
+            var url = Url.Action("Index", new { status = Status.Stats });
             return ReturnJson(partial, url);
         }
 

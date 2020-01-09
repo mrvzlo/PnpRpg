@@ -47,44 +47,42 @@ namespace Boot.Models
             Stats = new int[count];
             var rand = new Random(DateTime.Now.Millisecond);
             for (var i = 0; i < Stats.Length; i++)
-                Stats[i] = 1;
+                Stats[i] = Constants.MinStat;
+            MinAttr = Constants.MinStat;
             switch (chaos)
             {
                 case ChaosLevel.Normal:
                     for (var i = 0; i < Stats.Length; i++)
                         Stats[i] = 8;
+                    MinAttr = 8;
                     return;
                 case ChaosLevel.High:
-                    MinAttr = 1;
                     return;
                 case ChaosLevel.Extreme:
-                    MinAttr = 20;
+                    MinAttr = Constants.MaxStat;
                     for (var i = 0; i < Stats.Length; i++)
-                        Stats[i] = 10;
-                    for (var i = 0; i < 10; i++)
+                        Stats[i] = Constants.MaxStat;
+                    for (var i = 0; i < Constants.MaxStat / 2; i++)
                     {
-                        RandomDiverse(-1, rand.Next(4));
-                        RandomDiverse(1, rand.Next(4));
+                        Stat(rand.Next(count), - 1);
+                        Stat(rand.Next(count), 1);
                     }
                     return;
                 case ChaosLevel.Random:
-                    MinAttr = 20;
+                    MinAttr = Constants.MaxStat;
                     for (var i = 0; i < Stats.Length; i++)
-                        Stats[i] = rand.Next(20) + 1;
+                        Stats[i] = rand.Next(Constants.MaxStat) + 1;
                     return;
             }
         }
 
-        private void RandomDiverse(int val, int attr)
+        public bool Stat(int attr, int val)
         {
-            Stats[attr] += val;
-        }
-
-        public bool ChangeAttr(StatType attr, int val)
-        {
-            if (Stats[(int)attr] + val < MinAttr || Stats[(int)attr] + val > 20)
+            if (Stats[attr] + val < MinAttr
+                || Stats[attr] + val > Constants.MaxStat
+                || Stats.Sum() + val > Constants.MaxStatSum)
                 return false;
-            Stats[(int)attr] += val;
+            Stats[attr] += val;
             return true;
         }
     }

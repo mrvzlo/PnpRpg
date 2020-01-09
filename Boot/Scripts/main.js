@@ -5,6 +5,7 @@
     }
 
     function call(id, url) {
+        $("#loading").show();
         $.get(url, function (data) {
             console.log(url);
             dispose();
@@ -19,6 +20,7 @@
     }
 
     function updateScripts() {
+        $("#loading").hide();
         $('[data-toggle="tooltip"]').tooltip();
         $('.ajax-btn').click(function () {
             var id = $(this).data("container");

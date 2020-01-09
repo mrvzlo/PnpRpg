@@ -152,6 +152,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Compile Include="Helpers\Constants.cs" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -249,6 +250,7 @@
     <Content Include="Content\links.scss" />
     <Content Include="Content\colorsPre.scss" />
     <Content Include="Content\colorsPost.scss" />
+    <Content Include="Content\loading.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -340,11 +342,12 @@
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\README.md" />
     <Content Include="Views\HeroGen\_Chaos.cshtml" />
-    <Content Include="Views\HeroGen\_Attributes.cshtml" />
+    <Content Include="Views\HeroGen\_Stats.cshtml" />
     <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
     <Content Include="Views\Home\Magic.cshtml" />
     <Content Include="Views\Home\_MagicSchools.cshtml" />
+    <Content Include="Views\Shared\_Loading.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

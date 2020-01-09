@@ -1,0 +1,57 @@
+﻿@using Boot.Enums
+@using Boot.Helpers
+@model Boot.Models.HeroModel
+@{
+    var freePoints = Model.Stats.Length * 10 - Model.Stats.Sum();
+    for (var i = 0; i < Model.Stats.Length; i++)
+    {
+        var a = (StatType)i;
+        <div class="col-md-3 col-6 card p-0">
+            <div class="card-header bg-@a.Color()">@a.Translation()</div>
+            <div class="card-body">@Model.Stats[i]</div>
+            <div class="card-footer">@ButtonGroup(Model.Stats[i], a, Model.MinAttr, freePoints)</div>
+        </div>
+    }
+    @Html.Partial("_SecondStats", Model)
+    if (freePoints > 0)
+    {
+        <div class="col-md-4 col-12 alert alert-info p-1">@freePoints свободных очков</div>
+    }
+    else
+    {
+        <div class="col-md-4 col-12 btn btn-success p-1">Ок</div>
+    }
+}
+
+@helper ButtonGroup(int param, StatType stat, int minValue, int freePoints)
+{
+    <div class="btn-group">
+        @Button(param, stat, -3, minValue, freePoints, true)
+        @Button(param, stat, -1, minValue, freePoints, false)
+        @Button(param, stat, 1, minValue, freePoints, false)
+        @Button(param, stat, 3, minValue, freePoints, true)
+    </div>
+}
+
+@helper Button(int param, StatType stat, int value, int minValue, int freePoints, bool onlyLg)
+{
+    bool canChange;
+    if (value > 0)
+    {
+        canChange = param + value <= Constants.MaxStat && freePoints - value >= 0;
+    }
+    else
+    {
+        canChange = param + value >= minValue;
+    }
+    var onlyLgClass = onlyLg ? "d-lg-block d-none" : "";
+    <button class="btn @GetColor(canChange) @onlyLgClass ajax-btn" @(canChange ? "" : "disabled") data-action="@Status.Stats"
+            data-url="@Url.Action("ChangeStat", new {stat, value})">
+        @(value > 0 ? $"+{value}" : $"{value}")
+    </button>
+}
+
+@helper GetColor(bool can)
+{
+    @(can ? "btn-success" : "btn-secondary")
+}

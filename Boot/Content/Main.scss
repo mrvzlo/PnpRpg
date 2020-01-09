@@ -40,3 +40,9 @@
 
 @import "links.scss";
 @import "colorsPost.scss";
+@import "loading.scss";
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
