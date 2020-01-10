@@ -256,6 +256,7 @@
     <Content Include="Content\colorsPre.scss" />
     <Content Include="Content\colorsPost.scss" />
     <Content Include="Content\loading.scss" />
+    <None Include="Properties\PublishProfiles\pnprpg - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
