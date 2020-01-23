@@ -1,0 +1,13 @@
+﻿@using Boot.Helpers
+@model Boot.Models.SkillGroupModel
+<table class="m-auto">
+    <tr><th colspan="2">@Model.GroupName</th></tr>
+    @foreach (var skill in Model.Skills)
+    {
+        <tr class="border-top">
+            <td class="px-1">@skill.Name</td>
+            <td class="px-1 alert-@skill.Stat.Color()">@skill.Stat.ToString()-@skill.Difficulty</td>
+            <td><button class="btn btn-success btn-sm">+1</button></td>
+        </tr>
+    }
+</table>

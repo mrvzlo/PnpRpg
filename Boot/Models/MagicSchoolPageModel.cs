@@ -6,8 +6,8 @@ namespace Boot.Models
 {
     public class MagicSchoolPageModel
     {
-        public string Common, Header1, Header2, Content1, Content2;
-        public StatType Stat;
+        public readonly string Common, Header1, Header2, Content1, Content2;
+        public readonly StatType Stat;
 
         public MagicSchoolPageModel(StatType stat, string path)
         {

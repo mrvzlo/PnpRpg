@@ -39,6 +39,14 @@ namespace Boot.Controllers
             return ReturnJson(partial, url);
         }
 
+        public JsonResult Skills()
+        {
+            var hero = GetHeroFromCookies();
+            var partial = this.RenderPartialViewToString("_Skills", hero);
+            var url = Url.Action("Index", new { status = Status.Skills });
+            return ReturnJson(partial, url);
+        }
+
         private HeroModel GetHeroFromCookies() => new HeroModel(GetCookie(CookieType.Hero));
 
         private void SaveHeroToCookies(HeroModel model) => SaveCookie(CookieType.Hero, model.ToString());

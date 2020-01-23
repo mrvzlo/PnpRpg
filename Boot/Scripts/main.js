@@ -20,6 +20,9 @@
     }
 
     function updateScripts() {
+        $('.carousel').carousel({
+            interval: 0
+        })
         $("#loading").hide();
         $('[data-toggle="tooltip"]').tooltip();
         $('.ajax-btn').click(function () {

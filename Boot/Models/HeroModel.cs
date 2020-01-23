@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Boot.Enums;
 using Boot.Helpers;
@@ -9,7 +10,7 @@ namespace Boot.Models
     {
         public int[] Stats;
         public int MinAttr, Level;
-        public int[] Skills = new int[3];
+        public Dictionary<string, int> Skills;
 
         public int MaxHp() => Stats[(int)StatType.S] + Level * 2 - 2;
         public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
@@ -19,29 +20,34 @@ namespace Boot.Models
 
         public HeroModel(string data)
         {
+            Skills = new Dictionary<string, int>();
             if (string.IsNullOrEmpty(data)) return;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
-            var list = data.Split('.').Select(int.Parse).ToList();
+            var list = data.Split(StringHelper.Separator).ToList();
             Stats = new int[count];
+            var x = 0;
             for (var i = 0; i < Stats.Length; i++)
-                Stats[i] = list[i];
-            for (var i = 0; i < Skills.Length; i++)
-                Skills[i] = list[Stats.Length + i];
-
-            MinAttr = list[Stats.Length + Skills.Length];
-            Level = list[Stats.Length + Skills.Length + 1];
+                Stats[i] = Convert.ToInt32(list[x++]);
+            MinAttr = Convert.ToInt32(list[x++]);
+            Level = Convert.ToInt32(list[x++]);
+            var skillsCount = Convert.ToInt32(list[x++]);
+            for (var i = 0; i < skillsCount; i++)
+                Skills.Add(list[x++], Convert.ToInt32(list[x++]));
         }
 
         public override string ToString()
         {
-            var list = Stats.ToList();
-            list.AddRange(Skills);
-            list.AddRange(new[] { MinAttr, Level });
-            return string.Join(".", list);
+            var list = Stats.Select(x => x.ToString()).ToList();
+            list.AddRange(new[] { MinAttr, Level }.Select(x => x.ToString()));
+            list.Add(Skills.Count.ToString());
+            if (Skills.Any())
+                list.AddRange(Skills.Select(x => $"{x.Key}{StringHelper.Separator}{x.Value}"));
+            return string.Join($"{StringHelper.Separator}", list);
         }
 
         public HeroModel(ChaosLevel chaos)
         {
+            Skills = new Dictionary<string, int>();
             Level = 1;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             Stats = new int[count];
@@ -59,14 +65,14 @@ namespace Boot.Models
                 case ChaosLevel.High:
                     return;
                 case ChaosLevel.Extreme:
-                    MinAttr = Constants.MaxStat;
                     for (var i = 0; i < Stats.Length; i++)
-                        Stats[i] = Constants.MaxStat;
+                        Stats[i] = Constants.MaxStat / 2;
                     for (var i = 0; i < Constants.MaxStat / 2; i++)
                     {
-                        Stat(rand.Next(count), - 1);
+                        Stat(rand.Next(count), -1);
                         Stat(rand.Next(count), 1);
                     }
+                    MinAttr = Constants.MaxStat;
                     return;
                 case ChaosLevel.Random:
                     MinAttr = Constants.MaxStat;

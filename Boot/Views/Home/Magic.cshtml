@@ -2,7 +2,7 @@
 @using Boot.Helpers
 @using Boot.Models
 @{
-    var path = Server.MapPath($"~/App_Data/{Constants.MagicSchoolsFileName}");
+    var path = Server.MapPath($"~/App_Data/{Files.MagicSchools.Description()}");
     var count = EnumExtensions.GetEnumCount(typeof(StatType));
     ViewBag.Title = "Magic schools";
 }

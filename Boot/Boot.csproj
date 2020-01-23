@@ -133,13 +133,16 @@
     <Compile Include="Helpers\EnumExtension.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Enums\ChaosLevel.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Models\HeroModel.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Models\MagicSchoolPageModel.cs" />
+    <Compile Include="Models\SkillModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MagicSchoolsData.txt" />
+    <Content Include="App_Data\Skills.txt" />
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
     <Content Include="Content\images\schools.jpg" />
@@ -150,6 +153,7 @@
     <Content Include="Content\Main.min.css">
       <DependentUpon>Main.css</DependentUpon>
     </Content>
+    <Compile Include="Enums\Files.cs" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\main.scss" />
@@ -158,6 +162,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Models\SkillGroupModel.cs" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -332,6 +337,8 @@
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Views\HeroGen\_SecondStats.cshtml" />
+    <Content Include="Views\HeroGen\_Skills.cshtml" />
+    <Content Include="Views\HeroGen\_SkillGroup.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
