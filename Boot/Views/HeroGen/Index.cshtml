@@ -2,13 +2,13 @@
 @using Boot.Models
 @model HeroModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Генератор персонажа";
     var status = (Status)ViewBag.Status;
     switch (status)
     {
         case Status.Chaos: Html.RenderPartial("_Chaos"); break;
-        case Status.Stats: Html.RenderPartial("_Stats", Model); break;
-        case Status.Skills: Html.RenderPartial("_Skills", Model); break;
+        case Status.Stats: Html.RenderPartial("_StatEdit", Model); break;
+        case Status.Skills: Html.RenderPartial("_SkillEdit", Model); break;
     }
 }
 

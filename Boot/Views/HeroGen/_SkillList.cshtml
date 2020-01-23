@@ -1,0 +1,21 @@
+﻿@model bool
+<div id="skillsCarousel" class="carousel row justify-content-center">
+    <div class="carousel-inner col-6">
+        @for (var i = 0; i < 4; i++)
+        {
+            <div class="carousel-item @(i==0 ? " active" : "" )" id="@(i)group">
+                @{ Html.RenderAction("SkillGroup", new { id = i, editable = Model });}
+            </div>
+        }
+    </div>
+    <div class="col-1 order-first">
+        <a class="carousel-control-prev order-first" href="#skillsCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="col-1">
+        <a class="carousel-control-next" href="#skillsCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+    </div>
+</div>

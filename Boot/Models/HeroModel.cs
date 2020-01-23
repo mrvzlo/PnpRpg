@@ -12,15 +12,15 @@ namespace Boot.Models
         public int MinAttr, Level;
         public Dictionary<string, int> Skills;
 
+        public int FreeSkillPoints => 
+            Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - Skills.Values.Sum();
         public int MaxHp() => Stats[(int)StatType.S] + Level * 2 - 2;
         public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
         public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.S] / 10;
 
-        public HeroModel() { }
-
         public HeroModel(string data)
         {
-            Skills = new Dictionary<string, int>();
+            ResetSkills();
             if (string.IsNullOrEmpty(data)) return;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             var list = data.Split(StringHelper.Separator).ToList();
@@ -47,7 +47,7 @@ namespace Boot.Models
 
         public HeroModel(ChaosLevel chaos)
         {
-            Skills = new Dictionary<string, int>();
+            ResetSkills();
             Level = 1;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             Stats = new int[count];
@@ -69,8 +69,8 @@ namespace Boot.Models
                         Stats[i] = Constants.MaxStat / 2;
                     for (var i = 0; i < Constants.MaxStat / 2; i++)
                     {
-                        Stat(rand.Next(count), -1);
-                        Stat(rand.Next(count), 1);
+                        IncStat(rand.Next(count), -1);
+                        IncStat(rand.Next(count), 1);
                     }
                     MinAttr = Constants.MaxStat;
                     return;
@@ -82,7 +82,12 @@ namespace Boot.Models
             }
         }
 
-        public bool Stat(int attr, int val)
+        public void ResetSkills()
+        {
+            Skills = new Dictionary<string, int>();
+        }
+
+        public bool IncStat(int attr, int val)
         {
             if (Stats[attr] + val < MinAttr
                 || Stats[attr] + val > Constants.MaxStat

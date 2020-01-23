@@ -126,6 +126,7 @@
     <Compile Include="Enums\Attributes\ColorAttribute.cs" />
     <Compile Include="Enums\Attributes\TranslationAttribute.cs" />
     <Compile Include="Enums\CookieType.cs" />
+    <Compile Include="Enums\Difficulty.cs" />
     <Compile Include="Enums\StatType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,7 +142,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MagicSchoolsData.txt" />
     <Content Include="App_Data\Skills.txt" />
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
@@ -157,6 +157,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\main.scss" />
+    <Content Include="App_Data\MagicSchools.json" />
+    <Content Include="App_Data\Skills.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -337,7 +339,9 @@
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Views\HeroGen\_SecondStats.cshtml" />
-    <Content Include="Views\HeroGen\_Skills.cshtml" />
+    <Content Include="Views\HeroGen\Skills.cshtml" />
+    <None Include="Views\HeroGen\_SkillList.cshtml" />
+    <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_SkillGroup.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
@@ -355,7 +359,7 @@
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\README.md" />
     <Content Include="Views\HeroGen\_Chaos.cshtml" />
-    <Content Include="Views\HeroGen\_Stats.cshtml" />
+    <Content Include="Views\HeroGen\_StatEdit.cshtml" />
     <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
     <Content Include="Views\Home\Magic.cshtml" />

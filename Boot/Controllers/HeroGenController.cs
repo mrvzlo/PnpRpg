@@ -12,43 +12,65 @@ namespace Boot.Controllers
             ViewBag.Status = status;
             return View(GetHeroFromCookies());
         }
+        public ActionResult Skills() => View();
 
         public JsonResult GetChaosChoice()
         {
             var partial = this.RenderPartialViewToString("_Chaos");
-            var url = Url.Action("Index", new { status = Status.Chaos });
-            return ReturnJson(partial, url);
+            return ReturnJson(partial, GetUrl(Status.Chaos));
         }
 
         public JsonResult GetHeroModel(ChaosLevel level)
         {
             var heroModel = new HeroModel(level);
             SaveHeroToCookies(heroModel);
-            var partial = this.RenderPartialViewToString("_Stats", heroModel);
-            var url = Url.Action("Index", new { status = Status.Stats });
-            return ReturnJson(partial, url);
+            var partial = this.RenderPartialViewToString("_StatEdit", heroModel);
+            return ReturnJson(partial, GetUrl(Status.Stats));
         }
 
         public JsonResult ChangeStat(StatType stat, int value)
         {
             var hero = GetHeroFromCookies();
-            hero.Stat((int)stat, value);
+            hero.IncStat((int)stat, value);
             SaveHeroToCookies(hero);
-            var partial = this.RenderPartialViewToString("_Stats", hero);
-            var url = Url.Action("Index", new { status = Status.Stats });
-            return ReturnJson(partial, url);
+            var partial = this.RenderPartialViewToString("_StatEdit", hero);
+            return ReturnJson(partial, GetUrl(Status.Stats));
         }
 
-        public JsonResult Skills()
+        public JsonResult GetSkills()
         {
             var hero = GetHeroFromCookies();
-            var partial = this.RenderPartialViewToString("_Skills", hero);
-            var url = Url.Action("Index", new { status = Status.Skills });
-            return ReturnJson(partial, url);
+            var partial = this.RenderPartialViewToString("_SkillEdit", hero);
+            return ReturnJson(partial, GetUrl(Status.Skills));
         }
 
         private HeroModel GetHeroFromCookies() => new HeroModel(GetCookie(CookieType.Hero));
 
         private void SaveHeroToCookies(HeroModel model) => SaveCookie(CookieType.Hero, model.ToString());
+
+        public PartialViewResult SkillGroup(int id, bool editable)
+        {
+            var path = Server.MapPath($"~/App_Data/{Files.Skills.Description()}");
+            var hero = editable ? GetHeroFromCookies() : null;
+            var model = new SkillGroupModel(id, path, editable, hero);
+            return PartialView("_SkillGroup", model);
+        }
+
+        public JsonResult AddSkill(string name)
+        {
+            var hero = GetHeroFromCookies();
+            hero.AddSkill();
+        }
+
+        public JsonResult ResetSkills()
+        {
+            var hero = GetHeroFromCookies();
+            hero.ResetSkills();
+            SaveHeroToCookies(hero);
+            var partial = this.RenderPartialViewToString("_SkillList", true);
+            return ReturnJson(partial, GetUrl(Status.Skills));
+        }
+
+        private string GetUrl(Status status) => Url.Action("Index", new {status});
     }
 }

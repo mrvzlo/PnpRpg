@@ -1,0 +1,21 @@
+﻿@using Boot.Enums
+@using Boot.Helpers
+@model Boot.Models.HeroModel
+@{
+    var freePoints = Model.FreeSkillPoints;
+    for (var i = 0; i < Model.Stats.Length; i++)
+    {
+        var a = (StatType)i;
+        <div class="col-md-3 col-6 card p-0">
+            <div class="card-header bg-@a.Color()">@a.Translation()</div>
+            <div class="card-body">@Model.Stats[i]</div>
+        </div>
+    }
+}
+<div class="col-12" id="skillList">
+    @Html.Partial("_SkillList", true)
+</div>
+<div class="col-12 my-2">
+    <div>Свободных очков навыков: @freePoints</div>
+    <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">↺ Перераспределить</button>
+</div>

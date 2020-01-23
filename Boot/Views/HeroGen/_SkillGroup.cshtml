@@ -1,13 +1,24 @@
 ﻿@using Boot.Helpers
 @model Boot.Models.SkillGroupModel
-<table class="m-auto">
-    <tr><th colspan="2">@Model.GroupName</th></tr>
+<table class="m-auto table">
+    <tr>
+        <th>Атрибут</th>
+        <th>@Model.GroupName</th>
+        <th>Цена</th>
+    </tr>
     @foreach (var skill in Model.Skills)
     {
-        <tr class="border-top">
-            <td class="px-1">@skill.Name</td>
-            <td class="px-1 alert-@skill.Stat.Color()">@skill.Stat.ToString()-@skill.Difficulty</td>
-            <td><button class="btn btn-success btn-sm">+1</button></td>
+        <tr>
+            <td class="alert-@skill.Stat.Color()">@skill.Stat</td>
+            <td>@skill.Name</td>
+            <td>@skill.Difficulty</td>
+            @if (Model.Editable)
+            {
+                var color = skill.Increasable ? "success" : "secondary";
+                <td><button class="btn btn-@color btn-sm ajax-btn" data-container="@(Model.Group)group" 
+                            data-url=""
+                            @(skill.Increasable ? "" : "disabled")>+1</button></td>
+            }
         </tr>
     }
 </table>
