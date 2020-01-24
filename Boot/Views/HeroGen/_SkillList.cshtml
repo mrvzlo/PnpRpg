@@ -1,10 +1,37 @@
-﻿@model bool
+﻿@using Boot.Helpers
+@model Boot.Models.JsonModels.SkillGroupList
 <div id="skillsCarousel" class="carousel row justify-content-center">
     <div class="carousel-inner col-6">
-        @for (var i = 0; i < 4; i++)
+        @foreach (var group in Model.Groups)
         {
-            <div class="carousel-item @(i==0 ? " active" : "" )" id="@(i)group">
-                @{ Html.RenderAction("SkillGroup", new { id = i, editable = Model });}
+            <div class="carousel-item @(group.Id == Model.Selected ? "active" : "")">
+                <table class="m-auto table">
+                    <tr>
+                        <th class="px-0">Атрибут</th>
+                        <th>@group.Name</th>
+                        <th>Цена</th>
+                    </tr>
+                    @foreach (var skill in group.Skills)
+                    {
+                        <tr>
+                            <td class="alert-@skill.Stat.Color()">@skill.Stat</td>
+                            <td>@StringHelper.FormatToSentence(skill.Name)</td>
+                            <td>@(skill.Difficulty + 1)</td>
+                            @if (Model.Editable)
+                            {
+                                var color = skill.CanInc ? "success" : "secondary";
+                                <td>
+                                    <button class="btn btn-@color btn-sm ajax-btn" data-container="skillList"
+                                            data-url="@Url.Action("AddSkill", new{ group = group.Id, id = skill.Id})"
+                                            @(skill.CanInc ? "" : "disabled")>
+                                        +1
+                                    </button>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+
             </div>
         }
     </div>
@@ -19,3 +46,5 @@
         </a>
     </div>
 </div>
+<div>Свободных очков навыков: @Model.FreePoints</div>
+<button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">↺ Перераспределить</button>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Boot.Enums;
 using Boot.Helpers;
+using Boot.Models.JsonModels;
 
 namespace Boot.Models
 {
@@ -10,10 +11,12 @@ namespace Boot.Models
     {
         public int[] Stats;
         public int MinAttr, Level;
-        public Dictionary<string, int> Skills;
+        public Dictionary<int, int> Skills;
+        public int UsedSkillPoints;
 
-        public int FreeSkillPoints => 
-            Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - Skills.Values.Sum();
+        public int FreeSkillPoints =>
+            Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - UsedSkillPoints;
+
         public int MaxHp() => Stats[(int)StatType.S] + Level * 2 - 2;
         public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
         public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.S] / 10;
@@ -23,16 +26,16 @@ namespace Boot.Models
             ResetSkills();
             if (string.IsNullOrEmpty(data)) return;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
-            var list = data.Split(StringHelper.Separator).ToList();
+            var list = data.Split(StringHelper.Separator).Select(int.Parse).ToList();
             Stats = new int[count];
             var x = 0;
             for (var i = 0; i < Stats.Length; i++)
-                Stats[i] = Convert.ToInt32(list[x++]);
-            MinAttr = Convert.ToInt32(list[x++]);
-            Level = Convert.ToInt32(list[x++]);
-            var skillsCount = Convert.ToInt32(list[x++]);
+                Stats[i] = list[x++];
+            MinAttr = list[x++];
+            Level = list[x++];
+            var skillsCount = list[x++];
             for (var i = 0; i < skillsCount; i++)
-                Skills.Add(list[x++], Convert.ToInt32(list[x++]));
+                Skills.Add(list[x++], list[x++]);
         }
 
         public override string ToString()
@@ -41,7 +44,11 @@ namespace Boot.Models
             list.AddRange(new[] { MinAttr, Level }.Select(x => x.ToString()));
             list.Add(Skills.Count.ToString());
             if (Skills.Any())
-                list.AddRange(Skills.Select(x => $"{x.Key}{StringHelper.Separator}{x.Value}"));
+            {
+                var skillsInfo = Skills.Where(x => x.Value > 0)
+                    .Select(x => $"{x.Key}{StringHelper.Separator}{x.Value}");
+                list.AddRange(skillsInfo);
+            }
             return string.Join($"{StringHelper.Separator}", list);
         }
 
@@ -84,7 +91,8 @@ namespace Boot.Models
 
         public void ResetSkills()
         {
-            Skills = new Dictionary<string, int>();
+            UsedSkillPoints = 0;
+            Skills = new Dictionary<int, int>();
         }
 
         public bool IncStat(int attr, int val)
@@ -95,6 +103,28 @@ namespace Boot.Models
                 return false;
             Stats[attr] += val;
             return true;
+        }
+
+        public bool AddSkill(SkillInfo skillInfo)
+        {
+            if (!CanIncSkill(skillInfo)) return false;
+            Skills[skillInfo.Id]++;
+            UsedSkillPoints += skillInfo.Difficulty + 1;
+            return true;
+        }
+
+        public bool CanIncSkill(SkillInfo skillInfo)
+        {
+            var skillPoints = GetOrCreateSkillPoints(skillInfo.Id);
+            return skillInfo.Difficulty + 1 <= FreeSkillPoints && Level > skillPoints;
+        }
+
+        private int GetOrCreateSkillPoints(int skillId)
+        {
+            if (Skills.ContainsKey(skillId))
+                return Skills[skillId];
+            Skills.Add(skillId, 0);
+            return 0;
         }
     }
 }

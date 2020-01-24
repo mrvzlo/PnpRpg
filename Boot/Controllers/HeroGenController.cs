@@ -1,7 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Boot.Enums;
 using Boot.Helpers;
 using Boot.Models;
+using Boot.Models.JsonModels;
+using Newtonsoft.Json;
 
 namespace Boot.Controllers
 {
@@ -44,33 +48,64 @@ namespace Boot.Controllers
             return ReturnJson(partial, GetUrl(Status.Skills));
         }
 
-        private HeroModel GetHeroFromCookies() => new HeroModel(GetCookie(CookieType.Hero));
+        private HeroModel GetHeroFromCookies()
+        {
+            var cookie = GetCookie(CookieType.Hero);
+            if (string.IsNullOrEmpty(cookie)) return null;
+            var hero = new HeroModel(cookie);
+            var list = GetSkillGroups();
+            hero.UsedSkillPoints = CoreLogic.CalculateSkillPoints(hero, list);
+            return hero;
+        }
 
         private void SaveHeroToCookies(HeroModel model) => SaveCookie(CookieType.Hero, model.ToString());
 
-        public PartialViewResult SkillGroup(int id, bool editable)
+        public PartialViewResult SkillGroupList(bool editable)
         {
-            var path = Server.MapPath($"~/App_Data/{Files.Skills.Description()}");
+            var list = GetSkillGroups();
             var hero = editable ? GetHeroFromCookies() : null;
-            var model = new SkillGroupModel(id, path, editable, hero);
-            return PartialView("_SkillGroup", model);
+
+            if (hero != null)
+                UpdateSkillsForHero(hero, ref list);
+
+            return PartialView("_SkillList", list);
         }
 
-        public JsonResult AddSkill(string name)
+        public JsonResult AddSkill(int group, int id)
         {
             var hero = GetHeroFromCookies();
-            hero.AddSkill();
+            var list = GetSkillGroups();
+            var skill = list.Groups[group].Skills[id % 10];
+            hero.AddSkill(skill);
+            SaveHeroToCookies(hero);
+            UpdateSkillsForHero(hero, ref list);
+            list.Selected = group;
+            var partial = this.RenderPartialViewToString("_SkillList", list);
+            return ReturnJson(partial, GetUrl(Status.Skills));
         }
 
         public JsonResult ResetSkills()
         {
             var hero = GetHeroFromCookies();
+            var list = GetSkillGroups();
             hero.ResetSkills();
             SaveHeroToCookies(hero);
-            var partial = this.RenderPartialViewToString("_SkillList", true);
+            UpdateSkillsForHero(hero, ref list);
+            var partial = this.RenderPartialViewToString("_SkillList", list);
             return ReturnJson(partial, GetUrl(Status.Skills));
         }
 
-        private string GetUrl(Status status) => Url.Action("Index", new {status});
+        private string GetUrl(Status status) => Url.Action("Index", new { status });
+
+        private SkillGroupList GetSkillGroups() =>
+            JsonConvert.DeserializeObject<SkillGroupList>(GetJsonFromFile(FileType.Skills));
+
+        private void UpdateSkillsForHero(HeroModel hero, ref SkillGroupList list)
+        {
+            list.Editable = true;
+            list.FreePoints = hero.FreeSkillPoints;
+            foreach (var skill in list.Groups.SelectMany(group => group.Skills))
+                skill.CanInc = hero.CanIncSkill(skill);
+        }
     }
 }

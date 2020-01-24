@@ -7,5 +7,6 @@
         public static int MaxStatSum = MaxStat * 2;
         public static int BaseSkillPoints = 2;
         public static int SkillPointsPerLvl = 2;
+        public static int BaseDifficult = 3;
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Boot.Enums
 {
-    public enum Files
+    public enum FileType
     {
-        [Description("MagicSchoolsData.txt")]
+        [Description("MagicSchools.json")]
         MagicSchools,
-        [Description("Skills.txt")]
+        [Description("Skills.json")]
         Skills,
     }
 }

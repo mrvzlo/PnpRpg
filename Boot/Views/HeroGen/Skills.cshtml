@@ -4,7 +4,7 @@
     ViewBag.Title = "Навыки";
 }
 <div class="col-12">
-    @Html.Partial("_SkillList", false)
+    @{ Html.RenderAction("SkillGroupList", new {editable = false});}
 </div>
 @section scripts{
     <script>$(function () { MainJs.init(); });</script>

@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using Boot.Enums;
+using Boot.Helpers;
 
 namespace Boot.Controllers
 {
@@ -17,5 +18,8 @@ namespace Boot.Controllers
 
         protected JsonResult ReturnJson(string partial, string url) =>
             Json(new { url, partial }, 0);
+
+        protected string GetJsonFromFile(FileType fileType) => 
+            FileHelper.ReadFile(Server.MapPath($"~/App_Data/{fileType.Description()}"));
     }
 }

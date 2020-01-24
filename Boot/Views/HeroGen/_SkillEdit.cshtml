@@ -13,9 +13,5 @@
     }
 }
 <div class="col-12" id="skillList">
-    @Html.Partial("_SkillList", true)
-</div>
-<div class="col-12 my-2">
-    <div>Свободных очков навыков: @freePoints</div>
-    <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">↺ Перераспределить</button>
+    @{ Html.RenderAction("SkillGroupList", new {editable = true});}
 </div>
