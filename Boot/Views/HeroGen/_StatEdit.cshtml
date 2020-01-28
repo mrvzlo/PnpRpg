@@ -13,15 +13,16 @@
         </div>
     }
     @Html.Partial("_SecondStats", Model)
-    if (freePoints > 0)
-    {
-        <div class="col-md-4 col-12 alert alert-info p-1">@freePoints свободных очков</div>
-    }
-    else
-    {
-        <div class="col-md-4 col-12 btn btn-success p-1 ajax-btn" data-action="@Status.Skills"
-             data-url="@Url.Action("GetSkills")">Ок</div>
-    }
+    <div class="col-md-4 col-12 input-group">
+        <div class="alert alert-info m-0 input-group-prepend">Cвободных очков: @freePoints</div>
+        <div class="input-group-append">
+            <button class="btn @(freePoints == 0 ? "btn-success" : "btn-secondary") ajax-btn" data-action="@Status.Skills"
+                    data-url="@Url.Action("GetSkills")" @(freePoints == 0 ? "" : "disabled")>
+                Ок
+            </button>
+        </div>
+    </div>
+
 }
 
 @helper ButtonGroup(int param, StatType stat, int minValue, int freePoints)

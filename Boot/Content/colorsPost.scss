@@ -1,5 +1,0 @@
-﻿@each $color, $value in $theme-colors {
-    .bg-#{$color} {
-        color: $white;
-    }
-}

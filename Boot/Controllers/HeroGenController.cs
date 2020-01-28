@@ -105,7 +105,16 @@ namespace Boot.Controllers
             list.Editable = true;
             list.FreePoints = hero.FreeSkillPoints;
             foreach (var skill in list.Groups.SelectMany(group => group.Skills))
+            {
                 skill.CanInc = hero.CanIncSkill(skill);
+                skill.Level = hero.Skills[skill.Id];
+            }
+        }
+
+        public JsonResult Traits()
+        {
+            var partial = this.RenderPartialViewToString("_Traits");
+            return ReturnJson(partial, GetUrl(Status.Traits));
         }
     }
 }

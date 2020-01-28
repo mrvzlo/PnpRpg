@@ -4623,7 +4623,7 @@ a.close.disabled {
     margin-left: 3px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: #fff;
+    background-color: #000;
     background-clip: padding-box;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
@@ -7171,13 +7171,6 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-a {
-  color: black; }
-  a:hover {
-    color: black;
-    font-weight: bold;
-    text-decoration: none; }
-
 .bg-primary {
   color: #fff; }
 
@@ -7202,6 +7195,26 @@ a {
 .bg-dark {
   color: #fff; }
 
+a {
+  color: black; }
+  a:hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: none; }
+
+footer {
+  position: fixed;
+  bottom: 0; }
+
+td {
+  vertical-align: middle !important; }
+
+.mono-font {
+  font-family: monospace; }
+
+.carousel-indicators {
+  position: relative; }
+
 .lds-dual-ring {
   display: inline-block;
   width: 40px;
@@ -7223,10 +7236,3 @@ a {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
-
-footer {
-  position: fixed;
-  bottom: 0; }
-
-.mono-font {
-  font-family: monospace; }

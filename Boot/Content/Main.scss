@@ -1,8 +1,4 @@
-﻿@import "colorsPre.scss";
-
-$carousel-control-icon-width: 2rem;
-$carousel-control-opacity: .7;
-
+﻿@import "settingsOverride.scss";
 @import "bootstrap/functions";
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
@@ -41,15 +37,5 @@ $carousel-control-opacity: .7;
 @import "bootstrap/utilities";
 @import "bootstrap/print";
 
-@import "links.scss";
-@import "colorsPost.scss";
+@import "settingsPost.scss";
 @import "loading.scss";
-
-footer {
-    position: fixed;
-    bottom: 0;
-}
-
-.mono-font {
-    font-family: monospace;
-}

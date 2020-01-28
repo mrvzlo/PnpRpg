@@ -1,0 +1,35 @@
+﻿//bootstrap
+@each $color, $value in $theme-colors {
+    .bg-#{$color} {
+        color: $white;
+    }
+}
+
+// default elements
+a {
+    color: black;
+
+    &:hover {
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+td {
+    vertical-align: middle !important;
+}
+
+//classes
+.mono-font {
+    font-family: monospace;
+}
+
+.carousel-indicators {
+    position: relative;
+}

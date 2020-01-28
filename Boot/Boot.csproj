@@ -148,10 +148,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap\bootstrap.css">
+      <DependentUpon>bootstrap.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
     <Content Include="Content\images\schools.jpg" />
     <Content Include="Content\images\sheet.jpg" />
+    <Content Include="Content\images\skills.png" />
     <Content Include="Content\Main.css">
       <DependentUpon>main.scss</DependentUpon>
     </Content>
@@ -263,9 +270,8 @@
     <Content Include="Content\bootstrap\bootstrap.scss" />
     <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
     <Content Include="Content\bootstrap\bootstrap-grid.scss" />
-    <Content Include="Content\links.scss" />
-    <Content Include="Content\colorsPre.scss" />
-    <Content Include="Content\colorsPost.scss" />
+    <Content Include="Content\settingsOverride.scss" />
+    <Content Include="Content\settingsPost.scss" />
     <Content Include="Content\loading.scss" />
     <None Include="Properties\PublishProfiles\pnprpg - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -346,6 +352,7 @@
     <Content Include="Views\HeroGen\Skills.cshtml" />
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
+    <Content Include="Views\HeroGen\_Traits.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

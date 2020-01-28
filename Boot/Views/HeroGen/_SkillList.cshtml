@@ -1,11 +1,11 @@
 ﻿@using Boot.Helpers
 @model Boot.Models.JsonModels.SkillGroupList
 <div id="skillsCarousel" class="carousel row justify-content-center">
-    <div class="carousel-inner col-6">
+    <div class="carousel-inner col-lg-6 col-md-8 col-12 p-0">
         @foreach (var group in Model.Groups)
         {
             <div class="carousel-item @(group.Id == Model.Selected ? "active" : "")">
-                <table class="m-auto table">
+                <table class="m-auto table table-sm">
                     <tr>
                         <th class="px-0">Атрибут</th>
                         <th>@group.Name</th>
@@ -15,8 +15,8 @@
                     {
                         <tr>
                             <td class="alert-@skill.Stat.Color()">@skill.Stat</td>
-                            <td>@StringHelper.FormatToSentence(skill.Name)</td>
-                            <td>@(skill.Difficulty + 1)</td>
+                            <td>@StringHelper.FormatToSentence(skill.Name) @(skill.Level > 0 ? $"({skill.Level})" : "")</td>
+                            <td class="p-0">@(skill.Difficulty + 1)</td>
                             @if (Model.Editable)
                             {
                                 var color = skill.CanInc ? "success" : "secondary";
@@ -35,16 +35,35 @@
             </div>
         }
     </div>
-    <div class="col-1 order-first">
+    <div class="col-1 order-first d-none d-md-flex">
         <a class="carousel-control-prev order-first" href="#skillsCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         </a>
     </div>
-    <div class="col-1">
+    <div class="col-1 d-none d-md-flex">
         <a class="carousel-control-next" href="#skillsCarousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </a>
     </div>
+    <div class="col-12">
+        <ol class="carousel-indicators">
+            @foreach (var group in Model.Groups)
+            {
+                <li data-target="#skillsCarousel" data-slide-to="@group.Id" class="@(group.Id == Model.Selected ? "active" : "")"></li>
+            }
+        </ol>
+    </div>
 </div>
-<div>Свободных очков навыков: @Model.FreePoints</div>
-<button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">↺ Перераспределить</button>
+@if (Model.Editable)
+{
+    <div>Свободных очков навыков: @Model.FreePoints</div>
+    <div class="btn-group">
+        <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">
+            ↺ Перераспределить
+        </button>
+        <button class="btn btn-@(Model.FreePoints == 0 ? "success" : "secondary") btn-sm ajax-btn"
+                data-url="@Url.Action("Traits")" data-container="skillList" @(Model.FreePoints == 0 ? "success" : "secondary")>
+            ✓ Сохранить
+        </button>
+    </div>
+}
