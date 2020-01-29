@@ -12,6 +12,7 @@ namespace Boot
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/umd/popper.js",
                         "~/Scripts/jquery.validate.unobtrusive.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.js",
                         "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/js/main").Include(

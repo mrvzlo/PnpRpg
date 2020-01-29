@@ -97,8 +97,7 @@ namespace Boot.Controllers
 
         private string GetUrl(Status status) => Url.Action("Index", new { status });
 
-        private SkillGroupList GetSkillGroups() =>
-            JsonConvert.DeserializeObject<SkillGroupList>(GetJsonFromFile(FileType.Skills));
+        private SkillGroupList GetSkillGroups() => GetJsonFromFile<SkillGroupList>(FileType.Skills);
 
         private void UpdateSkillsForHero(HeroModel hero, ref SkillGroupList list)
         {

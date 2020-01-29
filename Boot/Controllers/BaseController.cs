@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Boot.Enums;
 using Boot.Helpers;
+using Boot.Models.JsonModels;
+using Newtonsoft.Json;
 
 namespace Boot.Controllers
 {
@@ -19,7 +23,11 @@ namespace Boot.Controllers
         protected JsonResult ReturnJson(string partial, string url) =>
             Json(new { url, partial }, 0);
 
-        protected string GetJsonFromFile(FileType fileType) => 
-            FileHelper.ReadFile(Server.MapPath($"~/App_Data/{fileType.Description()}"));
+        protected T GetJsonFromFile<T>(FileType fileType)
+        {
+            var path = Server.MapPath($"~/App_Data/{fileType.Description()}");
+            var json = System.IO.File.ReadAllText(path, Encoding.UTF8);
+            return JsonConvert.DeserializeObject<T>(json);
+        }
     }
 }

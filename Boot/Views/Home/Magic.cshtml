@@ -1,10 +1,10 @@
 ﻿@using Boot.Enums
 @using Boot.Helpers
 @using Boot.Models.JsonModels
-@model MagicSchoolGroupList
+@model List<MagicSchoolGroup>
 @{
     var count = EnumExtensions.GetEnumCount(typeof(StatType));
-    ViewBag.Title = "Magic schools";
+    ViewBag.Title = "Школы магии";
 }
 <div class="nav nav-tabs col-12">
     @for (var i = 0; i < count; i++)
@@ -14,7 +14,7 @@
     }
 </div>
 <div class="tab-content col-12">
-    @foreach (var group in Model.Groups)
+    @foreach (var group in Model)
     {
         <div class="tab-pane fade" id="@group.Stat.Description()">
             <div class="row justify-content-around">
@@ -40,7 +40,3 @@
         </div>
     }
 </div>
-
-@section scripts{
-    <script>$(function () { MainJs.init(); });</script>
-}

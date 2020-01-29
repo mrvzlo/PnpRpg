@@ -1,0 +1,264 @@
+﻿[
+  {
+    "reagent": 10,
+    "process": 0,
+    "result": "Зелье лечения травм"
+  },
+  {
+    "reagent": 10,
+    "process": 1,
+    "result": "Зелье регенерации"
+  },
+  {
+    "reagent": 10,
+    "process": 2,
+    "transmute": true,
+    "transmuteTo": 0
+  },
+  {
+    "reagent": 10,
+    "process": 3,
+    "result": "Зелье лечения болезней"
+  },
+  {
+    "reagent": 0,
+    "process": 0,
+    "transmute": true,
+    "transmuteTo": 10
+  },
+  {
+    "reagent": 0,
+    "process": 1,
+    "result": "Зелье меткости"
+  },
+  {
+    "reagent": 0,
+    "process": 2,
+    "result": "Зелье невидимости"
+  },
+  {
+    "reagent": 0,
+    "process": 3,
+    "transmute": true,
+    "transmuteTo": 1
+  },
+  {
+    "reagent": 1,
+    "process": 0,
+    "result": "Зелье регенерации маны"
+  },
+  {
+    "reagent": 1,
+    "process": 1,
+    "transmute": true,
+    "transmuteTo": 0
+  },
+  {
+    "reagent": 1,
+    "process": 2,
+    "transmute": true,
+    "transmuteTo": 9
+  },
+  {
+    "reagent": 1,
+    "process": 3,
+    "result": "Зелье лечения маны"
+  },
+  {
+    "reagent": 9,
+    "process": 0,
+    "transmute": true,
+    "transmuteTo": 1
+  },
+  {
+    "reagent": 9,
+    "process": 1,
+    "result": "Зелье уклонения"
+  },
+  {
+    "reagent": 9,
+    "process": 2,
+    "result": "Зелье защиты"
+  },
+  {
+    "reagent": 9,
+    "process": 3,
+    "transmute": true,
+    "transmuteTo": 8
+  },
+  {
+    "reagent": 8,
+    "process": 0,
+    "transmute": true,
+    "transmuteTo": 2
+  },
+  {
+    "reagent": 8,
+    "process": 1,
+    "transmute": true,
+    "transmuteTo": 9
+  },
+  {
+    "reagent": 8,
+    "process": 2,
+    "result": "Зелье концентрации"
+  },
+  {
+    "reagent": 8,
+    "process": 3,
+    "result": "Зелье бережливости"
+  },
+  {
+    "reagent": 2,
+    "process": 0,
+    "result": "Зелье реакции"
+  },
+  {
+    "reagent": 2,
+    "process": 1,
+    "transmute": true,
+    "transmuteTo": 4
+  },
+  {
+    "reagent": 2,
+    "process": 2,
+    "transmute": true,
+    "transmuteTo": 8
+  },
+  {
+    "reagent": 2,
+    "process": 3,
+    "result": "Зелье скорости"
+  },
+  {
+    "reagent": 4,
+    "process": 0,
+    "transmute": true,
+    "transmuteTo": 6
+  },
+  {
+    "reagent": 4,
+    "process": 1,
+    "result": "Зелье ярости"
+  },
+  {
+    "reagent": 4,
+    "process": 2,
+    "result": "Яд слепоты"
+  },
+  {
+    "reagent": 4,
+    "process": 3,
+    "transmute": true,
+    "transmuteTo": 2
+  },
+  {
+    "reagent": 6,
+    "process": 0,
+    "result": "Керосин"
+  },
+  {
+    "reagent": 6,
+    "process": 1,
+    "transmute": true,
+    "transmuteTo": 2
+  },
+  {
+    "reagent": 6,
+    "process": 2,
+    "transmute": true,
+    "transmuteTo": 5
+  },
+  {
+    "reagent": 6,
+    "process": 3,
+    "result": "Спирт"
+  },
+  {
+    "reagent": 5,
+    "process": 0,
+    "transmute": true,
+    "transmuteTo": 3
+  },
+  {
+    "reagent": 5,
+    "process": 1,
+    "result": "Зелье невесомости"
+  },
+  {
+    "reagent": 5,
+    "process": 2,
+    "result": "Зелье тяжести"
+  },
+  {
+    "reagent": 5,
+    "process": 3,
+    "transmute": true,
+    "transmuteTo": 6
+  },
+  {
+    "reagent": 3,
+    "process": 0,
+    "transmute": true,
+    "transmuteTo": 7
+  },
+  {
+    "reagent": 3,
+    "process": 1,
+    "result": "Успокоительное"
+  },
+  {
+    "reagent": 3,
+    "process": 2,
+    "transmute": true,
+    "transmuteTo": 5
+  },
+  {
+    "reagent": 3,
+    "process": 3,
+    "result": "Кислота"
+  },
+  {
+    "reagent": 7,
+    "process": 0,
+    "transmute": true,
+    "transmuteTo": 11
+  },
+  {
+    "reagent": 7,
+    "process": 1,
+    "result": "Яд слабости"
+  },
+  {
+    "reagent": 7,
+    "process": 2,
+    "transmute": true,
+    "transmuteTo": 3
+  },
+  {
+    "reagent": 7,
+    "process": 3,
+    "result": "Яд глупости"
+  },
+  {
+    "reagent": 11,
+    "process": 0,
+    "result": "Яд высасывания жизни"
+  },
+  {
+    "reagent": 11,
+    "process": 1,
+    "result": "Дымовая бомба"
+  },
+  {
+    "reagent": 11,
+    "process": 2,
+    "transmute": true,
+    "transmuteTo": 7
+  },
+  {
+    "reagent": 11,
+    "process": 3,
+    "result": "Чистый яд"
+  }
+]

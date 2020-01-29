@@ -135,16 +135,16 @@
     <Compile Include="Helpers\EnumExtension.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Enums\ChaosLevel.cs" />
-    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Models\HeroModel.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolGroup.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolInfo.cs" />
-    <Compile Include="Models\JsonModels\MagicSchoolGroupList.cs" />
+    <Compile Include="Models\JsonModels\Reaction.cs" />
     <Compile Include="Models\JsonModels\SkillGroup.cs" />
     <Compile Include="Models\JsonModels\SkillInfo.cs" />
     <Compile Include="Models\JsonModels\SkillGroupList.cs" />
+    <Compile Include="Models\JsonModels\SymbolInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +154,8 @@
     <Content Include="Content\bootstrap\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\AstroGadget.svg" />
+    <Content Include="Content\images\alchemy.jpg" />
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
     <Content Include="Content\images\schools.jpg" />
@@ -171,6 +173,9 @@
     <Content Include="Content\main.scss" />
     <Content Include="App_Data\MagicSchools.json" />
     <Content Include="App_Data\Skills.json" />
+    <Content Include="App_Data\Reactions.json" />
+    <None Include="App_Data\Reagents.json" />
+    <Content Include="App_Data\Processes.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -273,11 +278,17 @@
     <Content Include="Content\settingsOverride.scss" />
     <Content Include="Content\settingsPost.scss" />
     <Content Include="Content\loading.scss" />
+    <Content Include="Content\fonts.scss" />
+    <Content Include="Content\fonts\AstroGadget.eot" />
+    <Content Include="Content\fonts\AstroGadget.ttf" />
+    <Content Include="Content\fonts\AstroGadget.woff" />
+    <Content Include="Content\fonts\AstroGadget.woff2" />
     <None Include="Properties\PublishProfiles\pnprpg - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\main.js" />
@@ -353,6 +364,7 @@
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />
+    <Content Include="Views\Home\Alchemy.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -374,6 +386,7 @@
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
     <Content Include="Views\Home\Magic.cshtml" />
     <Content Include="Views\Shared\_Loading.cshtml" />
+    <Content Include="Views\Home\_ReactionResult.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -409,6 +422,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties app_3data_4reagents_1json__JsonSchema="http://json.schemastore.org/ansible-stable-2.7" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

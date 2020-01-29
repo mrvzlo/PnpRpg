@@ -8,5 +8,11 @@ namespace Boot.Enums
         MagicSchools,
         [Description("Skills.json")]
         Skills,
+        [Description("Reagents.json")]
+        Reagents,
+        [Description("Processes.json")]
+        Processes,
+        [Description("Reactions.json")]
+        Reactions,
     }
 }

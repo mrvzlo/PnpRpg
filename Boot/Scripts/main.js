@@ -5,7 +5,7 @@
     }
 
     function call(id, url) {
-        $("#loading").show();
+        toggleLoading();
         $.get(url, function (data) {
             console.log(url);
             dispose();
@@ -16,16 +16,16 @@
     }
 
     function dispose() {
-        $('[data-toggle="tooltip"]').tooltip('dispose');
+        $('[data-toggle="tooltip"]').tooltip("dispose");
     }
 
     function updateScripts() {
-        $('.carousel').carousel({
+        $(".carousel").carousel({
             interval: 0
-        })
-        $("#loading").hide();
+        });
+        toggleLoading();
         $('[data-toggle="tooltip"]').tooltip();
-        $('.ajax-btn').click(function () {
+        $(".ajax-btn").click(function () {
             var id = $(this).data("container");
             if (!id) id = "main";
             var url = $(this).data("url");
@@ -33,7 +33,13 @@
         });
     }
 
+    // enabled by default
+    function toggleLoading() {
+        $("#loading").toggle();
+    }
+
     return {
-        init: init
+        init: init,
+        toggleLoading: toggleLoading
     };
 })();

@@ -7,15 +7,16 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-@Html.Partial("_Nav")
-<div class="container mt-2">
-    <div id="main" class="row justify-content-around text-center">@RenderBody()</div>
-</div>
-<footer class="fixed-bottom">
-    <div id="loading">@Html.Partial("_Loading")</div>
-</footer>
-@Scripts.Render("~/js/core")
-@Scripts.Render("~/js/main")
-@RenderSection("scripts", false)
+    @Html.Partial("_Nav")
+    <div class="container mt-2">
+        <div id="main" class="row justify-content-around text-center">@RenderBody()</div>
+    </div>
+    <footer class="fixed-bottom">
+        <div id="loading">@Html.Partial("_Loading")</div>
+    </footer>
+    @Scripts.Render("~/js/core")
+    @Scripts.Render("~/js/main")
+    <script>$(function () { MainJs.init(); });</script>
+    @RenderSection("scripts", false)
 </body>
 </html>
