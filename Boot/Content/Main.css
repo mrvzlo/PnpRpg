@@ -7212,8 +7212,9 @@ td {
 .carousel-indicators {
   position: relative; }
 
-.initial-letter {
-  initial-letter: 2; }
+@media (max-width: 540px) {
+  .smallForSmall {
+    font-size: 80%; } }
 
 .lds-dual-ring {
   display: inline-block;

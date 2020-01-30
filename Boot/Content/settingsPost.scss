@@ -30,6 +30,8 @@ td {
     position: relative;
 }
 
-.initial-letter {
-    initial-letter: 2;
+@media (max-width: map-get($container-max-widths, "sm")) {
+    .smallForSmall {
+        font-size: 80%;
+    }
 }
