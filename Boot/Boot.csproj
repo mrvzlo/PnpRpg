@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolGroup.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolInfo.cs" />
+    <Compile Include="Models\JsonModels\Potion.cs" />
     <Compile Include="Models\JsonModels\Reaction.cs" />
     <Compile Include="Models\JsonModels\SkillGroup.cs" />
     <Compile Include="Models\JsonModels\SkillInfo.cs" />
@@ -148,7 +150,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\fonts\AstroGadget.svg" />
     <Content Include="Content\images\alchemy.jpg" />
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
@@ -168,6 +169,7 @@
     <Content Include="App_Data\MagicSchools.json" />
     <Content Include="App_Data\Skills.json" />
     <Content Include="App_Data\Reactions.json" />
+    <Content Include="App_Data\Potions.json" />
     <None Include="App_Data\Reagents.json" />
     <Content Include="App_Data\Processes.json" />
     <None Include="compilerconfig.json" />
@@ -272,11 +274,6 @@
     <Content Include="Content\settingsOverride.scss" />
     <Content Include="Content\settingsPost.scss" />
     <Content Include="Content\loading.scss" />
-    <Content Include="Content\fonts.scss" />
-    <Content Include="Content\fonts\AstroGadget.eot" />
-    <Content Include="Content\fonts\AstroGadget.ttf" />
-    <Content Include="Content\fonts\AstroGadget.woff" />
-    <Content Include="Content\fonts\AstroGadget.woff2" />
     <None Include="Properties\PublishProfiles\pnprpg - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -358,7 +355,7 @@
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />
-    <Content Include="Views\Home\Alchemy.cshtml" />
+    <Content Include="Views\Alchemy\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -380,7 +377,7 @@
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
     <Content Include="Views\Home\Magic.cshtml" />
     <Content Include="Views\Shared\_Loading.cshtml" />
-    <Content Include="Views\Home\_ReactionResult.cshtml" />
+    <Content Include="Views\Alchemy\_ReactionResult.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

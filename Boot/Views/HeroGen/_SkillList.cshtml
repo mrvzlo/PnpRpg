@@ -57,13 +57,11 @@
 @if (Model.Editable)
 {
     <div>Свободных очков навыков: @Model.FreePoints</div>
-    <div class="btn-group">
         <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">
             ↺ Перераспределить
         </button>
         <button class="btn btn-@(Model.FreePoints == 0 ? "success" : "secondary") btn-sm ajax-btn"
-                data-url="@Url.Action("Traits")" data-container="skillList" @(Model.FreePoints == 0 ? "success" : "secondary")>
+                data-url="@Url.Action("Traits")" @(Model.FreePoints == 0 ? "success" : "secondary")>
             ✓ Сохранить
         </button>
-    </div>
 }

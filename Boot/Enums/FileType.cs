@@ -14,5 +14,7 @@ namespace Boot.Enums
         Processes,
         [Description("Reactions.json")]
         Reactions,
+        [Description("Potions.json")]
+        Potions,
     }
 }

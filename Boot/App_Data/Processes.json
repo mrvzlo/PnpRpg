@@ -1,62 +1,62 @@
 ﻿[
   {
     "id": 0,
-    "symbol": "a",
+    "symbol": "♈",
     "name": "Нагревание"
   },
   {
     "id": 1,
-    "symbol": "b",
+    "symbol": "♉",
     "name": "Осушение"
   },
   {
     "id": 2,
-    "symbol": "c",
+    "symbol": "♊",
     "name": "Остывание"
   },
   {
     "id": 3,
-    "symbol": "d",
+    "symbol": "♋",
     "name": "Растворение"
   },
   {
     "id": 4,
-    "symbol": "e",
+    "symbol": "♌",
     "name": "Нагревание"
   },
   {
     "id": 5,
-    "symbol": "f",
+    "symbol": "♍",
     "name": "Осушение"
   },
   {
     "id": 6,
-    "symbol": "g",
+    "symbol": "♎",
     "name": "Остывание"
   },
   {
     "id": 7,
-    "symbol": "h",
+    "symbol": "♏",
     "name": "Растворение"
   },
   {
     "id": 8,
-    "symbol": "i",
+    "symbol": "♐",
     "name": "Нагревание"
   },
   {
     "id": 9,
-    "symbol": "j",
+    "symbol": "♑",
     "name": "Осушение"
   },
   {
     "id": 10,
-    "symbol": "k",
+    "symbol": "♒",
     "name": "Остывание"
   },
   {
     "id": 11,
-    "symbol": "l",
+    "symbol": "♓",
     "name": "Растворение"
   }
 ]

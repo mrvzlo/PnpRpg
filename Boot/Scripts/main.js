@@ -1,4 +1,4 @@
-﻿var MainJs = (function() {
+﻿var MainJs = (function () {
 
     function init() {
         updateScripts();

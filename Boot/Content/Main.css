@@ -7212,6 +7212,9 @@ td {
 .carousel-indicators {
   position: relative; }
 
+.initial-letter {
+  initial-letter: 2; }
+
 .lds-dual-ring {
   display: inline-block;
   width: 40px;
@@ -7233,14 +7236,3 @@ td {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
-
-@font-face {
-  font-family: 'AstroGadget';
-  src: url("fonts/AstroGadget.eot");
-  src: url("fonts/AstroGadget.eot") format("embedded-opentype"), url("fonts/AstroGadget.woff2") format("woff2"), url("fonts/AstroGadget.woff") format("woff"), url("fonts/AstroGadget.ttf") format("truetype"), url("fonts/AstroGadget.svg#AstroGadget") format("svg"); }
-
-.mono-font {
-  font-family: monospace; }
-
-.alchemy {
-  font-family: 'AstroGadget'; }

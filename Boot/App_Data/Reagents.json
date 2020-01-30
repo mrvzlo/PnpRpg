@@ -1,62 +1,62 @@
 ﻿[
   {
     "id": 0,
-    "symbol": "A",
+    "symbol": "☉",
     "name": "Золото"
   },
   {
     "id": 1,
-    "symbol": "B",
+    "symbol": "☾",
     "name": "Серебро"
   },
   {
     "id": 2,
-    "symbol": "C",
+    "symbol": "☿",
     "name": "Ртуть"
   },
   {
     "id": 3,
-    "symbol": "D",
+    "symbol": "♀",
     "name": "Медь"
   },
   {
     "id": 4,
-    "symbol": "E",
+    "symbol": "♂",
     "name": "Железо"
   },
   {
     "id": 5,
-    "symbol": "F",
+    "symbol": "♃",
     "name": "Олово"
   },
   {
     "id": 6,
-    "symbol": "G",
+    "symbol": "♄",
     "name": "Свинец"
   },
   {
     "id": 7,
-    "symbol": "H",
+    "symbol": "♅",
     "name": "Орихалк"
   },
   {
     "id": 8,
-    "symbol": "I",
+    "symbol": "♆",
     "name": "Чёрный лёд"
   },
   {
     "id": 9,
-    "symbol": "K",
+    "symbol": "🜝",
     "name": "Мифрил"
   },
   {
     "id": 10,
-    "symbol": "L",
+    "symbol": "☊",
     "name": "Уголь"
   },
   {
     "id": 11,
-    "symbol": "M",
+    "symbol": "☋",
     "name": "Демонит"
   }
 ]

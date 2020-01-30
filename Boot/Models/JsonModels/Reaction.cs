@@ -4,7 +4,6 @@
     {
         public int reagent, process;
         public bool transmute;
-        public int transmuteTo;
-        public string result;
+        public int result;
     }
 }

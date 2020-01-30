@@ -2,263 +2,289 @@
   {
     "reagent": 10,
     "process": 0,
-    "result": "Зелье лечения травм"
+    "transmute": false,
+    "result": 0
   },
   {
     "reagent": 10,
     "process": 1,
-    "result": "Зелье регенерации"
+    "transmute": false,
+    "result": 1
   },
   {
     "reagent": 10,
     "process": 2,
     "transmute": true,
-    "transmuteTo": 0
+    "result": 0
   },
   {
     "reagent": 10,
     "process": 3,
-    "result": "Зелье лечения болезней"
+    "transmute": false,
+    "result": 2
   },
   {
     "reagent": 0,
     "process": 0,
     "transmute": true,
-    "transmuteTo": 10
+    "result": 10
   },
   {
     "reagent": 0,
     "process": 1,
-    "result": "Зелье меткости"
+    "transmute": false,
+    "result": 3
   },
   {
     "reagent": 0,
     "process": 2,
-    "result": "Зелье невидимости"
+    "transmute": false,
+    "result": 4
   },
   {
     "reagent": 0,
     "process": 3,
     "transmute": true,
-    "transmuteTo": 1
+    "result": 1
   },
   {
     "reagent": 1,
     "process": 0,
-    "result": "Зелье регенерации маны"
+    "transmute": false,
+    "result": 5
   },
   {
     "reagent": 1,
     "process": 1,
     "transmute": true,
-    "transmuteTo": 0
+    "result": 0
   },
   {
     "reagent": 1,
     "process": 2,
     "transmute": true,
-    "transmuteTo": 9
+    "result": 9
   },
   {
     "reagent": 1,
     "process": 3,
-    "result": "Зелье лечения маны"
+    "transmute": false,
+    "result": 6
   },
   {
     "reagent": 9,
     "process": 0,
     "transmute": true,
-    "transmuteTo": 1
+    "result": 1
   },
   {
     "reagent": 9,
     "process": 1,
-    "result": "Зелье уклонения"
+    "transmute": false,
+    "result": 7
   },
   {
     "reagent": 9,
     "process": 2,
-    "result": "Зелье защиты"
+    "transmute": false,
+    "result": 8
   },
   {
     "reagent": 9,
     "process": 3,
     "transmute": true,
-    "transmuteTo": 8
+    "result": 8
   },
   {
     "reagent": 8,
     "process": 0,
     "transmute": true,
-    "transmuteTo": 2
+    "result": 2
   },
   {
     "reagent": 8,
     "process": 1,
     "transmute": true,
-    "transmuteTo": 9
+    "result": 9
   },
   {
     "reagent": 8,
     "process": 2,
-    "result": "Зелье концентрации"
+    "transmute": false,
+    "result": 9
   },
   {
     "reagent": 8,
     "process": 3,
-    "result": "Зелье бережливости"
+    "transmute": false,
+    "result": 10
   },
   {
     "reagent": 2,
     "process": 0,
-    "result": "Зелье реакции"
+    "transmute": false,
+    "result": 11
   },
   {
     "reagent": 2,
     "process": 1,
     "transmute": true,
-    "transmuteTo": 4
+    "result": 4
   },
   {
     "reagent": 2,
     "process": 2,
     "transmute": true,
-    "transmuteTo": 8
+    "result": 8
   },
   {
     "reagent": 2,
     "process": 3,
-    "result": "Зелье скорости"
+    "transmute": false,
+    "result": 12
   },
   {
     "reagent": 4,
     "process": 0,
     "transmute": true,
-    "transmuteTo": 6
+    "result": 6
   },
   {
     "reagent": 4,
     "process": 1,
-    "result": "Зелье ярости"
+    "transmute": false,
+    "result": 13
   },
   {
     "reagent": 4,
     "process": 2,
-    "result": "Яд слепоты"
+    "transmute": false,
+    "result": 14
   },
   {
     "reagent": 4,
     "process": 3,
     "transmute": true,
-    "transmuteTo": 2
+    "result": 2
   },
   {
     "reagent": 6,
     "process": 0,
-    "result": "Керосин"
+    "transmute": false,
+    "result": 15
   },
   {
     "reagent": 6,
     "process": 1,
     "transmute": true,
-    "transmuteTo": 2
+    "result": 2
   },
   {
     "reagent": 6,
     "process": 2,
     "transmute": true,
-    "transmuteTo": 5
+    "result": 5
   },
   {
     "reagent": 6,
     "process": 3,
-    "result": "Спирт"
+    "transmute": false,
+    "result": 16
   },
   {
     "reagent": 5,
     "process": 0,
     "transmute": true,
-    "transmuteTo": 3
+    "result": 3
   },
   {
     "reagent": 5,
     "process": 1,
-    "result": "Зелье невесомости"
+    "transmute": false,
+    "result": 17
   },
   {
     "reagent": 5,
     "process": 2,
-    "result": "Зелье тяжести"
+    "transmute": false,
+    "result": 18
   },
   {
     "reagent": 5,
     "process": 3,
     "transmute": true,
-    "transmuteTo": 6
+    "result": 6
   },
   {
     "reagent": 3,
     "process": 0,
     "transmute": true,
-    "transmuteTo": 7
+    "result": 7
   },
   {
     "reagent": 3,
     "process": 1,
-    "result": "Успокоительное"
+    "transmute": false,
+    "result": 19
   },
   {
     "reagent": 3,
     "process": 2,
     "transmute": true,
-    "transmuteTo": 5
+    "result": 5
   },
   {
     "reagent": 3,
     "process": 3,
-    "result": "Кислота"
+    "transmute": false,
+    "result": 20
   },
   {
     "reagent": 7,
     "process": 0,
     "transmute": true,
-    "transmuteTo": 11
+    "result": 11
   },
   {
     "reagent": 7,
     "process": 1,
-    "result": "Яд слабости"
+    "transmute": false,
+    "result": 21
   },
   {
     "reagent": 7,
     "process": 2,
     "transmute": true,
-    "transmuteTo": 3
+    "result": 3
   },
   {
     "reagent": 7,
     "process": 3,
-    "result": "Яд глупости"
+    "transmute": false,
+    "result": 22
   },
   {
     "reagent": 11,
     "process": 0,
-    "result": "Яд высасывания жизни"
+    "transmute": false,
+    "result": 23
   },
   {
     "reagent": 11,
     "process": 1,
-    "result": "Дымовая бомба"
+    "transmute": false,
+    "result": 24
   },
   {
     "reagent": 11,
     "process": 2,
     "transmute": true,
-    "transmuteTo": 7
+    "result": 7
   },
   {
     "reagent": 11,
     "process": 3,
-    "result": "Чистый яд"
+    "transmute": false,
+    "result": 25
   }
 ]

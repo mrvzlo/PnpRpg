@@ -11,11 +11,11 @@
     <div class="row">
         <label class="col-sm-2 col-form-label">Реагент</label>
         <div class="col">
-            @Html.DropDownList("reagent", reagents, new { @class = "form-control alchemy" })
+            @Html.DropDownList("reagent", reagents, new { @class = "form-control initial-letter" })
         </div>
         <label class="col-sm-2 col-form-label">Процесс</label>
         <div class="col">
-            @Html.DropDownList("process", processes, new { @class = "form-control alchemy" })
+            @Html.DropDownList("process", processes, new { @class = "form-control initial-letter" })
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-success my-3">Сотворить</button>

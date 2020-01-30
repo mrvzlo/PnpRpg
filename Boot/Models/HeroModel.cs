@@ -13,6 +13,7 @@ namespace Boot.Models
         public int MinAttr, Level;
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
+        public int FreeStatPoints;
 
         public int FreeSkillPoints =>
             Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - UsedSkillPoints;
@@ -68,8 +69,10 @@ namespace Boot.Models
                     for (var i = 0; i < Stats.Length; i++)
                         Stats[i] = 8;
                     MinAttr = 8;
+                    FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
                     return;
                 case ChaosLevel.High:
+                    FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
                     return;
                 case ChaosLevel.Extreme:
                     for (var i = 0; i < Stats.Length; i++)
@@ -80,11 +83,13 @@ namespace Boot.Models
                         IncStat(rand.Next(count), 1);
                     }
                     MinAttr = Constants.MaxStat;
+                    FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
                     return;
                 case ChaosLevel.Random:
                     MinAttr = Constants.MaxStat;
                     for (var i = 0; i < Stats.Length; i++)
                         Stats[i] = rand.Next(Constants.MaxStat) + 1;
+                    FreeStatPoints = 0;
                     return;
             }
         }
@@ -102,8 +107,11 @@ namespace Boot.Models
                 || Stats.Sum() + val > Constants.MaxStatSum)
                 return false;
             Stats[attr] += val;
+            FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
             return true;
         }
+
+        #region Skills 
 
         public bool AddSkill(SkillInfo skillInfo)
         {
@@ -126,5 +134,7 @@ namespace Boot.Models
             Skills.Add(skillId, 0);
             return 0;
         }
+
+        #endregion
     }
 }

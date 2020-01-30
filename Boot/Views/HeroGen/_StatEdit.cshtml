@@ -2,25 +2,23 @@
 @using Boot.Helpers
 @model Boot.Models.HeroModel
 @{
-    var freePoints = Model.Stats.Length * 10 - Model.Stats.Sum();
     for (var i = 0; i < Model.Stats.Length; i++)
     {
         var a = (StatType)i;
-        <div class="col-md-3 col-6 card p-0">
-            <div class="card-header bg-@a.Color()">@a.Translation()</div>
-            <div class="card-body">@Model.Stats[i]</div>
-            <div class="card-footer">@ButtonGroup(Model.Stats[i], a, Model.MinAttr, freePoints)</div>
+        <div class="col-md-3 col-6">
+            <div class="row border">
+                <div class="col bg-@a.Color() py-2 px-4">@a.Translation()<span class="float-right font-weight-bold">@Model.Stats[i]</span></div>
+                <div class="col-12 my-2">@ButtonGroup(Model.Stats[i], a, Model.MinAttr, Model.FreeStatPoints)</div>
+            </div>
         </div>
     }
     @Html.Partial("_SecondStats", Model)
-    <div class="col-md-4 col-12 input-group">
-        <div class="alert alert-info m-0 input-group-prepend">Cвободных очков: @freePoints</div>
-        <div class="input-group-append">
-            <button class="btn @(freePoints == 0 ? "btn-success" : "btn-secondary") ajax-btn" data-action="@Status.Skills"
-                    data-url="@Url.Action("GetSkills")" @(freePoints == 0 ? "" : "disabled")>
-                Ок
-            </button>
-        </div>
+    <div class="col-md-4 col-12">
+        <div class="alert alert-info m-0">Cвободных очков: @Model.FreeStatPoints</div>
+        <button class="btn @(Model.FreeStatPoints == 0 ? "btn-success" : "btn-secondary") ajax-btn" data-action="@Status.Skills"
+                data-url="@Url.Action("GetSkills")" @(Model.FreeStatPoints == 0 ? "" : "disabled")>
+            Ок
+        </button>
     </div>
 
 }

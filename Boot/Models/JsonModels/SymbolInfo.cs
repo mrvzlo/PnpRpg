@@ -5,7 +5,7 @@ namespace Boot.Models.JsonModels
     public class SymbolInfo
     {
         public int id;
-        public char symbol;
+        public string symbol;
         public string name;
 
         public SelectListItem ToSelectListItem()
