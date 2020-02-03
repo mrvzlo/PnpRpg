@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Boot.Enums;
 using Boot.Helpers;
 using Boot.Models;
 using Boot.Models.JsonModels;
-using Newtonsoft.Json;
 
 namespace Boot.Controllers
 {

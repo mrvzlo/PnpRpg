@@ -30,6 +30,7 @@
                     @foreach (var school in group.Schools)
                     {
                         <div class="tab-pane fade @(school.Id % 10 == 0 ? "show active":"")" id="@group.Stat.ToString()@school.Id">
+                            <div>@Html.Raw(school.Desc)</div>
                             <div>@Html.Raw(school.Novice)</div>
                             <div>@Html.Raw(school.Adept)</div>
                             <div>@Html.Raw(school.Master)</div>

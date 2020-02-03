@@ -128,6 +128,8 @@
     <Compile Include="Enums\Attributes\TranslationAttribute.cs" />
     <Compile Include="Enums\CookieType.cs" />
     <Compile Include="Enums\Difficulty.cs" />
+    <Compile Include="Enums\Race.cs" />
+    <Compile Include="Enums\RequirementType.cs" />
     <Compile Include="Enums\StatType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,8 +143,10 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolGroup.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolInfo.cs" />
+    <Compile Include="Models\JsonModels\Perk.cs" />
     <Compile Include="Models\JsonModels\Potion.cs" />
     <Compile Include="Models\JsonModels\Reaction.cs" />
+    <Compile Include="Models\JsonModels\Requirement.cs" />
     <Compile Include="Models\JsonModels\SkillGroup.cs" />
     <Compile Include="Models\JsonModels\SkillInfo.cs" />
     <Compile Include="Models\JsonModels\SkillGroupList.cs" />
@@ -150,6 +154,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Data\Perks.json" />
     <Content Include="Content\images\alchemy.jpg" />
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
@@ -378,6 +383,7 @@
     <Content Include="Views\Home\Magic.cshtml" />
     <Content Include="Views\Shared\_Loading.cshtml" />
     <Content Include="Views\Alchemy\_ReactionResult.cshtml" />
+    <Content Include="Views\Home\Perks.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
