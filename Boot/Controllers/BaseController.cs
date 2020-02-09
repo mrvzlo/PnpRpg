@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Boot.Enums;
 using Boot.Helpers;
+using Boot.Models;
 using Newtonsoft.Json;
 
 namespace Boot.Controllers
@@ -27,5 +29,20 @@ namespace Boot.Controllers
             var json = System.IO.File.ReadAllText(path, Encoding.UTF8);
             return JsonConvert.DeserializeObject<T>(json);
         }
+
+        protected void SaveJsonToFile<T>(T obj, FileType fileType)
+        {
+            var path = Server.MapPath($"~/App_Data/{fileType.Description()}");
+            var content = JsonConvert.SerializeObject(obj);
+            System.IO.File.WriteAllText(path, content, Encoding.UTF8);
+        }
+
+        protected void AddModelStateErrors(ServiceResponse response)
+        {
+            if (response.Successful()) return;
+            foreach (var error in response.Errors)
+                ModelState.AddModelError(error.Key, error.Error);
+        }
+
     }
 }

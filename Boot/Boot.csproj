@@ -120,10 +120,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Enums\Attributes\ColorAttribute.cs" />
     <Compile Include="Enums\Attributes\TranslationAttribute.cs" />
     <Compile Include="Enums\CookieType.cs" />
@@ -131,6 +133,7 @@
     <Compile Include="Enums\Race.cs" />
     <Compile Include="Enums\RequirementType.cs" />
     <Compile Include="Enums\StatType.cs" />
+    <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,7 +156,14 @@
     <Compile Include="Models\JsonModels\SkillGroupList.cs" />
     <Compile Include="Models\JsonModels\SymbolInfo.cs" />
     <Compile Include="Models\JsonModels\Trait.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ModelStateError.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\ServiceResponse.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Views\Account\_SignIn.cshtml" />
+    <Content Include="Views\Room\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Perks.json" />
@@ -181,6 +191,7 @@
     <None Include="App_Data\Reagents.json" />
     <Content Include="App_Data\Processes.json" />
     <Content Include="App_Data\Traits.json" />
+    <Content Include="App_Data\Users.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -364,6 +375,8 @@
     <Content Include="Views\HeroGen\_Result.cshtml" />
     <Content Include="Views\HeroGen\_FirstStats.cshtml" />
     <Content Include="Views\HeroGen\_List.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\_SignUp.cshtml" />
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />

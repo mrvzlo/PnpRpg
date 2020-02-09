@@ -1,0 +1,25 @@
+﻿@model Boot.Models.LoginModel
+@using (Ajax.BeginForm("SignIn", "Account", null,
+    new AjaxOptions { UpdateTargetId = "_SignIn", HttpMethod = "POST" },
+    new { id = "formSignIn", @class = "needs-validation" }))
+{
+    @Html.AntiForgeryToken()
+    <h4 class="text-center mb-3">Registered user</h4>
+
+    <div class="row">
+        <div class="text-danger col-12">@Html.ValidationSummary(true)</div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(x => x.Username, new { @class = "col-sm-3 col-md-4 col-form-label" })
+        @Html.TextBoxFor(x => x.Username, new { @class = "col form-control" })
+        <div class="text-danger col-12">@Html.ValidationMessageFor(x => x.Username)</div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(x => x.Password, new { @class = "col-sm-3 col-md-4 col-form-label" })
+        @Html.PasswordFor(x => x.Password, new { @class = "col form-control" })
+        <div class="text-danger col-12">@Html.ValidationMessageFor(x => x.Password)</div>
+    </div>
+    @Html.HiddenFor(x => x.ReturnUrl)
+    <div class="row justify-content-center"><button type="submit" class="col-md-3 col-6 btn btn-primary py-2 mt-3">Sign in</button></div>
+}
