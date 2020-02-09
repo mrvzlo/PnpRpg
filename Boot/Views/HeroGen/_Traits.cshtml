@@ -1,1 +1,67 @@
-﻿
+﻿@using Boot.Enums
+@using Boot.Helpers
+@model List<Boot.Models.Trait>
+@{
+    var limit = Model.Count(x => x.Chosen) == Constants.TraitCount;
+}
+<div class="h2 col-12">Выберите до @Constants.TraitCount особенностей</div>
+@foreach (var trait in Model)
+{
+    <div class="card col-6 col-md-4 smallForSmall">
+        <div class="card-header">
+            @trait.name
+            @if (trait.Chosen)
+            {
+                <div class="badge badge-success">✓</div>
+            }
+        </div>
+        <div class="card-body">
+            @foreach (var effect in trait.effects.OrderBy(x => x.type))
+            {
+                <div>
+                    @{
+                        var span = "";
+                        switch (effect.type)
+                        {
+                            case EffectType.Positive:
+                                span = $"<span class='badge badge-success'>+{effect.value}</span>";
+                                break;
+                            case EffectType.Negative:
+                                span = $"<span class='badge badge-danger'>-{effect.value}</span>";
+                                break;
+                            case EffectType.Neutral:
+                                span = $"<span class='badge badge-info'>{effect.value}</span>";
+                                break;
+                        }
+                        if (effect.stat == null)
+                        {
+                            @Html.Raw(string.Format(effect.desc, span))
+                        }
+                        else
+                        {
+                            @Html.Raw(string.Format(effect.desc, span, effect.stat.Translation()))
+                        }
+                    }
+                </div>
+            }
+        </div>
+        @if (!limit && !trait.Chosen)
+        {
+            <div class="card-footer">
+                <button class="btn btn-success ajax-btn"
+                        data-url="@Url.Action("ChooseTrait", new {id = trait.id})">
+                    Выбрать
+                </button>
+            </div>
+        }
+    </div>
+}
+<div class="col-12">
+
+    <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetTraits")">
+        ↺ Перераспределить
+    </button>
+    <button class="btn btn-success btn-sm ajax-btn" data-url="@Url.Action("GetSkills")">
+        ✓ Сохранить
+    </button>
+</div>

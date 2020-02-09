@@ -10,6 +10,7 @@ namespace Boot.Models
     public class HeroModel
     {
         public int[] Stats;
+        public int[] Traits;
         public int MinAttr, Level;
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
@@ -22,9 +23,12 @@ namespace Boot.Models
         public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
         public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.S] / 10;
 
+        #region SaveLoad
+        
         public HeroModel(string data)
         {
             ResetSkills();
+            ResetTraits();
             if (string.IsNullOrEmpty(data)) return;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             var list = data.Split(StringHelper.Separator).Select(int.Parse).ToList();
@@ -37,6 +41,8 @@ namespace Boot.Models
             var skillsCount = list[x++];
             for (var i = 0; i < skillsCount; i++)
                 Skills.Add(list[x++], list[x++]);
+            for (var i = 0; i < Constants.TraitCount; i++)
+                Traits[i] = list[x++];
         }
 
         public override string ToString()
@@ -50,12 +56,14 @@ namespace Boot.Models
                     .Select(x => $"{x.Key}{StringHelper.Separator}{x.Value}");
                 list.AddRange(skillsInfo);
             }
+            list.AddRange(Traits.Select(x => x.ToString()));
             return string.Join($"{StringHelper.Separator}", list);
         }
 
         public HeroModel(ChaosLevel chaos)
         {
             ResetSkills();
+            ResetTraits();
             Level = 1;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             Stats = new int[count];
@@ -93,11 +101,26 @@ namespace Boot.Models
                     return;
             }
         }
+        
+        #endregion
 
-        public void ResetSkills()
+        public void ResetTraits()
         {
-            UsedSkillPoints = 0;
-            Skills = new Dictionary<int, int>();
+            Traits = new int[Constants.TraitCount];
+            for (var i = 0; i < Constants.TraitCount; i++)
+                Traits[i] = -1;
+        }
+
+        public bool AddTrait(int id)
+        {
+            for (var i = 0; i < Traits.Length; i++)
+            {
+                if (Traits[i] >= 0) continue;
+                Traits[i] = id;
+                return true;
+            }
+
+            return false;
         }
 
         public bool IncStat(int attr, int val)
@@ -112,6 +135,12 @@ namespace Boot.Models
         }
 
         #region Skills 
+
+        public void ResetSkills()
+        {
+            UsedSkillPoints = 0;
+            Skills = new Dictionary<int, int>();
+        }
 
         public bool AddSkill(SkillInfo skillInfo)
         {

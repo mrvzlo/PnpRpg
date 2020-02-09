@@ -4,25 +4,25 @@
     <div class="carousel-inner col-lg-6 col-md-8 col-12 p-0">
         @foreach (var group in Model.Groups)
         {
-            <div class="carousel-item @(group.Id == Model.Selected ? "active" : "")">
+            <div class="carousel-item @(group.id == Model.Selected ? "active" : "")">
                 <table class="m-auto table table-sm">
                     <tr>
                         <th class="px-0">Атрибут</th>
-                        <th>@group.Name</th>
+                        <th>@group.name</th>
                         <th>Цена</th>
                     </tr>
-                    @foreach (var skill in group.Skills)
+                    @foreach (var skill in group.skills)
                     {
                         <tr>
                             <td class="alert-@skill.Stat.Color()">@skill.Stat</td>
-                            <td>@StringHelper.FormatToSentence(skill.Name) @(skill.Level > 0 ? $"({skill.Level})" : "")</td>
+                            <td>@skill.ToString()</td>
                             <td class="p-0">@(skill.Difficulty + 1)</td>
                             @if (Model.Editable)
                             {
                                 var color = skill.CanInc ? "success" : "secondary";
                                 <td>
                                     <button class="btn btn-@color btn-sm ajax-btn" data-container="skillList"
-                                            data-url="@Url.Action("AddSkill", new{ group = group.Id, id = skill.Id})"
+                                            data-url="@Url.Action("AddSkill", new{ group = group.id, id = skill.Id})"
                                             @(skill.CanInc ? "" : "disabled")>
                                         +1
                                     </button>
@@ -49,7 +49,7 @@
         <ol class="carousel-indicators">
             @foreach (var group in Model.Groups)
             {
-                <li data-target="#skillsCarousel" data-slide-to="@group.Id" class="@(group.Id == Model.Selected ? "active" : "")"></li>
+                <li data-target="#skillsCarousel" data-slide-to="@group.id" class="@(group.id == Model.Selected ? "active" : "")"></li>
             }
         </ol>
     </div>
@@ -61,7 +61,7 @@
             ↺ Перераспределить
         </button>
         <button class="btn btn-@(Model.FreePoints == 0 ? "success" : "secondary") btn-sm ajax-btn"
-                data-url="@Url.Action("Traits")" @(Model.FreePoints == 0 ? "success" : "secondary")>
+                data-url="@Url.Action("Result")" @(Model.FreePoints == 0 ? "" : "disabled")>
             ✓ Сохранить
         </button>
 }

@@ -15,8 +15,8 @@
     @Html.Partial("_SecondStats", Model)
     <div class="col-md-4 col-12">
         <div class="alert alert-info m-0">Cвободных очков: @Model.FreeStatPoints</div>
-        <button class="btn @(Model.FreeStatPoints == 0 ? "btn-success" : "btn-secondary") ajax-btn" data-action="@Status.Skills"
-                data-url="@Url.Action("GetSkills")" @(Model.FreeStatPoints == 0 ? "" : "disabled")>
+        <button class="btn @(Model.FreeStatPoints == 0 ? "btn-success" : "btn-secondary") ajax-btn"
+                data-url="@Url.Action("Traits")" @(Model.FreeStatPoints == 0 ? "" : "disabled")>
             Ок
         </button>
     </div>

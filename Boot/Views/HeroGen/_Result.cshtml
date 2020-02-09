@@ -1,0 +1,26 @@
+﻿@model Boot.Models.HeroModel
+@{
+    Html.RenderPartial("_FirstStats", Model.Stats.ToList());
+    Html.RenderPartial("_SecondStats", Model);
+}
+<div class="col-md-6 col-12">
+    <div class="h4 my-2">Особенности</div>
+    @{
+        Html.RenderAction("GetTraitsNames", new {ids = Model.Traits});
+    }
+</div>
+<div class="col-md-6 col-12">
+    <div class="h4 my-2">Навыки</div>
+    @{
+        Html.RenderAction("GetSkillsNames", new { ids = Model.Skills });
+    }
+</div>
+
+<div class="col-md-6 col-12 mt-2 input-group d-none">
+    <div class="input-group-prepend">
+        <div class="input-group-text">
+            Код персонажа
+        </div>
+    </div>
+    @Html.TextBox("code", Model.ToString(), new { @class = "form-control" })
+</div>

@@ -4,8 +4,8 @@ namespace Boot.Models.JsonModels
 {
     public class SkillGroup
     {
-        public int Id;
-        public string Name;
-        public List<SkillInfo> Skills;
+        public int id;
+        public string name;
+        public List<SkillInfo> skills;
     }
 }

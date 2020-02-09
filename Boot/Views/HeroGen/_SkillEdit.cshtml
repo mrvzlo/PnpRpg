@@ -1,16 +1,6 @@
-﻿@using Boot.Enums
-@using Boot.Helpers
-@model Boot.Models.HeroModel
+﻿@model Boot.Models.HeroModel
 @{
-    for (var i = 0; i < Model.Stats.Length; i++)
-    {
-        var a = (StatType)i;
-        <div class="col-md-3 col-6">
-            <div class="row border">
-                <div class="col bg-@a.Color() py-2 px-4">@a.Translation()<span class="float-right font-weight-bold">@Model.Stats[i]</span></div>
-            </div>
-        </div>
-    }
+    Html.RenderPartial("_FirstStats", Model.Stats.ToList());
 }
 <div class="col-12" id="skillList">
     @{ Html.RenderAction("SkillGroupList", new { editable = true });}

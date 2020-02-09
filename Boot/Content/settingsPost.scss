@@ -5,6 +5,14 @@
     }
 }
 
+.card{
+    padding: 0;
+    .card-body{
+        padding-left: .1rem;
+        padding-right: .1rem;
+    }
+}
+
 // default elements
 a {
     color: black;

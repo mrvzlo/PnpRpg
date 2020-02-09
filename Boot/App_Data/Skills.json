@@ -1,220 +1,218 @@
-﻿{
-  "groups": [
-    {
-      "id": 0,
-      "name": "Боевой навык",
-      "skills": [
-        {
-          "id": 0,
-          "name": "Короткие клинки",
-          "stat": 2,
-          "difficulty": 0
-        },
-        {
-          "id": 1,
-          "name": "Длинные клинки",
-          "stat": 2,
-          "difficulty": 1
-        },
-        {
-          "id": 2,
-          "name": "малое дробящее оружие",
-          "stat": 0,
-          "difficulty": 1
-        },
-        {
-          "id": 3,
-          "name": "крупное дробящее оружие",
-          "stat": 0,
-          "difficulty": 2
-        },
-        {
-          "id": 4,
-          "name": "метательное оружие",
-          "stat": 2,
-          "difficulty": 1
-        },
-        {
-          "id": 5,
-          "name": "безоружный бой",
-          "stat": 0,
-          "difficulty": 0
-        },
-        {
-          "id": 6,
-          "name": "блокирование",
-          "stat": 2,
-          "difficulty": 2
-        },
-        {
-          "id": 7,
-          "name": "стрельба",
-          "stat": 1,
-          "difficulty": 1
-        }
-      ]
-    },
-    {
-      "id": 1,
-      "name": "Магический навык",
-      "skills": [
-        {
-          "id": 10,
-          "name": "Школа пробуждения",
-          "stat": 3,
-          "difficulty": 1
-        },
-        {
-          "id": 11,
-          "name": "Школа изменения",
-          "stat": 3,
-          "difficulty": 1
-        },
-        {
-          "id": 12,
-          "name": "Школа некромантии",
-          "stat": 3,
-          "difficulty": 2
-        },
-        {
-          "id": 13,
-          "name": "Школа призыва",
-          "stat": 3,
-          "difficulty": 2
-        },
-        {
-          "id": 14,
-          "name": "Школа зачарования",
-          "stat": 3,
-          "difficulty": 1
-        },
-        {
-          "id": 15,
-          "name": "Школа иллюзий",
-          "stat": 3,
-          "difficulty": 1
-        },
-        {
-          "id": 16,
-          "name": "Школа познания",
-          "stat": 3,
-          "difficulty": 0
-        },
-        {
-          "id": 17,
-          "name": "Школа ограждения",
-          "stat": 3,
-          "difficulty": 0
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "Ремесло",
-      "skills": [
-        {
-          "id": 20,
-          "name": "кузнечное дело",
-          "stat": 1,
-          "difficulty": 2
-        },
-        {
-          "id": 21,
-          "name": "алхимия",
-          "stat": 1,
-          "difficulty": 1
-        },
-        {
-          "id": 22,
-          "name": "взлом",
-          "stat": 1,
-          "difficulty": 1
-        },
-        {
-          "id": 23,
-          "name": "ловушки",
-          "stat": 1,
-          "difficulty": 0
-        },
-        {
-          "id": 24,
-          "name": "торговля",
-          "stat": 1,
-          "difficulty": 1
-        },
-        {
-          "id": 25,
-          "name": "кулинария",
-          "stat": 1,
-          "difficulty": 0
-        },
-        {
-          "id": 26,
-          "name": "лечение",
-          "stat": 1,
-          "difficulty": 1
-        },
-        {
-          "id": 27,
-          "name": "кожевничество",
-          "stat": 1,
-          "difficulty": 2
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "Плутовской навык",
-      "skills": [
-        {
-          "id": 30,
-          "name": "атлетика",
-          "stat": 2,
-          "difficulty": 0
-        },
-        {
-          "id": 31,
-          "name": "акробатика",
-          "stat": 2,
-          "difficulty": 0
-        },
-        {
-          "id": 32,
-          "name": "скрытность",
-          "stat": 2,
-          "difficulty": 1
-        },
-        {
-          "id": 33,
-          "name": "карманные кражи",
-          "stat": 2,
-          "difficulty": 2
-        },
-        {
-          "id": 34,
-          "name": "уклонение",
-          "stat": 2,
-          "difficulty": 2
-        },
-        {
-          "id": 35,
-          "name": "красноречие",
-          "stat": 3,
-          "difficulty": 1
-        },
-        {
-          "id": 36,
-          "name": "натурализм",
-          "stat": 1,
-          "difficulty": 1
-        },
-        {
-          "id": 37,
-          "name": "плавание",
-          "stat": 2,
-          "difficulty": 1
-        }
-      ]
-    }
-  ] 
-}
+﻿[
+  {
+    "id": 0,
+    "name": "Боевой навык",
+    "skills": [
+      {
+        "id": 0,
+        "name": "Короткие клинки",
+        "stat": 2,
+        "difficulty": 0
+      },
+      {
+        "id": 1,
+        "name": "Длинные клинки",
+        "stat": 2,
+        "difficulty": 1
+      },
+      {
+        "id": 2,
+        "name": "малое дробящее оружие",
+        "stat": 0,
+        "difficulty": 1
+      },
+      {
+        "id": 3,
+        "name": "крупное дробящее оружие",
+        "stat": 0,
+        "difficulty": 2
+      },
+      {
+        "id": 4,
+        "name": "метательное оружие",
+        "stat": 2,
+        "difficulty": 1
+      },
+      {
+        "id": 5,
+        "name": "безоружный бой",
+        "stat": 0,
+        "difficulty": 0
+      },
+      {
+        "id": 6,
+        "name": "блокирование",
+        "stat": 2,
+        "difficulty": 2
+      },
+      {
+        "id": 7,
+        "name": "стрельба",
+        "stat": 1,
+        "difficulty": 1
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Магический навык",
+    "skills": [
+      {
+        "id": 10,
+        "name": "Школа пробуждения",
+        "stat": 3,
+        "difficulty": 1
+      },
+      {
+        "id": 11,
+        "name": "Школа изменения",
+        "stat": 3,
+        "difficulty": 1
+      },
+      {
+        "id": 12,
+        "name": "Школа некромантии",
+        "stat": 3,
+        "difficulty": 2
+      },
+      {
+        "id": 13,
+        "name": "Школа призыва",
+        "stat": 3,
+        "difficulty": 2
+      },
+      {
+        "id": 14,
+        "name": "Школа зачарования",
+        "stat": 3,
+        "difficulty": 1
+      },
+      {
+        "id": 15,
+        "name": "Школа иллюзий",
+        "stat": 3,
+        "difficulty": 1
+      },
+      {
+        "id": 16,
+        "name": "Школа познания",
+        "stat": 3,
+        "difficulty": 0
+      },
+      {
+        "id": 17,
+        "name": "Школа ограждения",
+        "stat": 3,
+        "difficulty": 0
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Ремесло",
+    "skills": [
+      {
+        "id": 20,
+        "name": "кузнечное дело",
+        "stat": 1,
+        "difficulty": 2
+      },
+      {
+        "id": 21,
+        "name": "алхимия",
+        "stat": 1,
+        "difficulty": 1
+      },
+      {
+        "id": 22,
+        "name": "взлом",
+        "stat": 1,
+        "difficulty": 1
+      },
+      {
+        "id": 23,
+        "name": "ловушки",
+        "stat": 1,
+        "difficulty": 0
+      },
+      {
+        "id": 24,
+        "name": "торговля",
+        "stat": 1,
+        "difficulty": 1
+      },
+      {
+        "id": 25,
+        "name": "кулинария",
+        "stat": 1,
+        "difficulty": 0
+      },
+      {
+        "id": 26,
+        "name": "лечение",
+        "stat": 1,
+        "difficulty": 1
+      },
+      {
+        "id": 27,
+        "name": "кожевничество",
+        "stat": 1,
+        "difficulty": 2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Плутовской навык",
+    "skills": [
+      {
+        "id": 30,
+        "name": "атлетика",
+        "stat": 2,
+        "difficulty": 0
+      },
+      {
+        "id": 31,
+        "name": "акробатика",
+        "stat": 2,
+        "difficulty": 0
+      },
+      {
+        "id": 32,
+        "name": "скрытность",
+        "stat": 2,
+        "difficulty": 1
+      },
+      {
+        "id": 33,
+        "name": "карманные кражи",
+        "stat": 2,
+        "difficulty": 2
+      },
+      {
+        "id": 34,
+        "name": "уклонение",
+        "stat": 2,
+        "difficulty": 2
+      },
+      {
+        "id": 35,
+        "name": "красноречие",
+        "stat": 3,
+        "difficulty": 1
+      },
+      {
+        "id": 36,
+        "name": "натурализм",
+        "stat": 1,
+        "difficulty": 1
+      },
+      {
+        "id": 37,
+        "name": "плавание",
+        "stat": 2,
+        "difficulty": 1
+      }
+    ]
+  }
+]

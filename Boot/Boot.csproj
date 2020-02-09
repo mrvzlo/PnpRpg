@@ -141,6 +141,7 @@
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Models\HeroModel.cs" />
     <Compile Include="Enums\Status.cs" />
+    <Compile Include="Models\JsonModels\Effect.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolGroup.cs" />
     <Compile Include="Models\JsonModels\MagicSchoolInfo.cs" />
     <Compile Include="Models\JsonModels\Perk.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Models\JsonModels\SkillInfo.cs" />
     <Compile Include="Models\JsonModels\SkillGroupList.cs" />
     <Compile Include="Models\JsonModels\SymbolInfo.cs" />
+    <Compile Include="Models\JsonModels\Trait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +170,7 @@
       <DependentUpon>Main.css</DependentUpon>
     </Content>
     <Compile Include="Enums\FileType.cs" />
+    <Compile Include="Enums\EffectType.cs" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\main.scss" />
@@ -177,6 +180,7 @@
     <Content Include="App_Data\Potions.json" />
     <None Include="App_Data\Reagents.json" />
     <Content Include="App_Data\Processes.json" />
+    <Content Include="App_Data\Traits.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -357,6 +361,9 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Views\HeroGen\_SecondStats.cshtml" />
     <Content Include="Views\HeroGen\Skills.cshtml" />
+    <Content Include="Views\HeroGen\_Result.cshtml" />
+    <Content Include="Views\HeroGen\_FirstStats.cshtml" />
+    <Content Include="Views\HeroGen\_List.cshtml" />
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />
