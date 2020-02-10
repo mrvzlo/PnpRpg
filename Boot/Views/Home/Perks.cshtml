@@ -6,14 +6,16 @@
     ViewBag.Title = "Способности";
 }
 
-<div class="nav nav-tabs col-12">
+<div class="nav nav-tabs col-12 mt-md-2 px-3">
     @for (var i = 0; i < maxLevel; i++)
     {
-        <a class="btn btn-info mx-1 @(i == 0 ? "active" : "")" data-toggle="tab"
-           href="#group_@i">@($"Уровень {i + 1}")</a>
+        <a class="btn btn-info mx-1 @(i == 0 ? "active" : "")" data-toggle="tab" href="#group_@i">
+            <span class="d-none d-sm-inline">Уровень</span>
+            @(i + 1)
+        </a>
     }
 </div>
-<div class="tab-content col-md-6 col-12 text-left">
+<div class="tab-content col-sm-6 col-12 text-left px-3 order-last">
     @for (var i = 0; i < maxLevel; i++)
     {
         <div class="tab-pane fade @(i == 0 ? "show active" : "")" id="group_@i">
@@ -26,7 +28,7 @@
         </div>
     }
 </div>
-<div class="tab-content col-md-6 col-12 text-left">
+<div class="tab-content col-sm-6 col-12 text-left row">
     @foreach (var perk in Model)
     {
         <div class="tab-pane fade" id="perk_@perk.id">
@@ -59,6 +61,7 @@
                     }
                 </ul>
             </div>
-        </div>
+            <hr />
+    </div>
     }
 </div>

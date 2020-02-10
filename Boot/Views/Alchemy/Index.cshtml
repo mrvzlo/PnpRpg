@@ -6,7 +6,7 @@
 
 @using (Ajax.BeginForm("AlchemyResult", null, 
     new AjaxOptions { UpdateTargetId = "alchemyResult", OnBegin = "MainJs.toggleLoading", OnSuccess = "MainJs.toggleLoading" },
-    new { @class = "col-12" }))
+    new { @class = "col-lg-8 col-12 mt-md-2" }))
 {
     <div class="row">
         <label class="col-sm-2 col-form-label">Реагент</label>

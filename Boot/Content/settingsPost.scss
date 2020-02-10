@@ -16,7 +16,7 @@
 
 .p-default {
     margin-top: -$nav-h !important;
-    padding-top: $nav-h+20 !important;
+    padding-top: $nav-h !important;
 }
 
 .container {
@@ -27,6 +27,7 @@
 .navbar-collapse, .dropdown-menu {
     background-color: $dark;
 }
+
 // default elements
 nav {
     height: $nav-h;

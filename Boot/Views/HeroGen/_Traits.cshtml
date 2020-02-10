@@ -4,11 +4,11 @@
 @{
     var limit = Model.Count(x => x.Chosen) == Constants.TraitCount;
 }
-<div class="h2 col-12">Выберите до @Constants.TraitCount особенностей</div>
+<div class="h3 col-12">Выберите до @Constants.TraitCount особенностей</div>
 @foreach (var trait in Model)
 {
     <div class="card col-6 col-md-4 smallForSmall">
-        <div class="card-header">
+        <div class="card-header font-weight-bold">
             @trait.name
             @if (trait.Chosen)
             {
@@ -48,7 +48,7 @@
         @if (!limit && !trait.Chosen)
         {
             <div class="card-footer">
-                <button class="btn btn-success ajax-btn"
+                <button class="btn btn-sm btn-success ajax-btn"
                         data-url="@Url.Action("ChooseTrait", new {id = trait.id})">
                     Выбрать
                 </button>
@@ -56,8 +56,7 @@
         }
     </div>
 }
-<div class="col-12">
-
+<div class="col-12 py-2">
     <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetTraits")">
         ↺ Перераспределить
     </button>

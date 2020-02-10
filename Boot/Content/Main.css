@@ -2982,11 +2982,11 @@ input[type="button"].btn-block {
     cursor: default; }
 
 .nav-tabs {
-  border-bottom: 1px solid #dee2e6; }
+  border-bottom: 0 solid #dee2e6; }
   .nav-tabs .nav-item {
-    margin-bottom: -1px; }
+    margin-bottom: 0; }
   .nav-tabs .nav-link {
-    border: 1px solid transparent;
+    border: 0 solid transparent;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem; }
     .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
@@ -3001,7 +3001,7 @@ input[type="button"].btn-block {
     background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff; }
   .nav-tabs .dropdown-menu {
-    margin-top: -1px;
+    margin-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
 
@@ -7203,7 +7203,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .p-default {
   margin-top: -60px !important;
-  padding-top: 80px !important; }
+  padding-top: 60px !important; }
 
 .container {
   background-color: #fff;

@@ -9,8 +9,7 @@
         lblHeader = "Выберите тип генерации";
 }
 
-<div class="col-12 h1 my-2">@lblHeader</div>
-
+<div class="col-12 h3 my-2">@lblHeader</div>
 <button class="col-md-2 col-5 btn btn-success ajax-btn m-2" data-toggle="tooltip" data-placement="bottom" title="@ttNormal"
         data-action="@Status.Stats" data-url="@Url.Action("GetHeroModel", new {level = ChaosLevel.Normal})">
     Normal
