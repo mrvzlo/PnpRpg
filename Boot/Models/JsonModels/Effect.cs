@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Boot.Enums;
+﻿using Boot.Enums;
 
 namespace Boot.Models.JsonModels
 {

@@ -38,8 +38,16 @@
         $("#loading").toggle();
     }
 
+    function formRedirect() {
+        var url = $("#redirect").data('redirect');
+        if (!url) return;
+        toggleLoading();
+        window.location = url;
+    }
+
     return {
         init: init,
-        toggleLoading: toggleLoading
+        toggleLoading: toggleLoading,
+        formRedirect: formRedirect
     };
 })();

@@ -7201,6 +7201,26 @@ a.text-dark:hover, a.text-dark:focus {
     padding-left: .1rem;
     padding-right: .1rem; }
 
+.p-default {
+  margin-top: -60px !important;
+  padding-top: 80px !important; }
+
+.container {
+  background-color: #fff;
+  min-height: 100vh; }
+
+.navbar-collapse, .dropdown-menu {
+  background-color: #343a40; }
+
+nav {
+  height: 60px; }
+
+@media (min-width: 960px) {
+  body {
+    background-image: url(images/bg.png);
+    background-repeat: space;
+    background-size: 200px 200px; } }
+
 a {
   color: black; }
   a:hover {

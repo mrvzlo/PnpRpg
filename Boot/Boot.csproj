@@ -164,6 +164,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
+    <Content Include="Views\Shared\_Redirect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Perks.json" />

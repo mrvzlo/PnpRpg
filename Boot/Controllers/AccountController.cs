@@ -22,9 +22,9 @@ namespace Boot.Controllers
         public PartialViewResult SignIn(string returnUrl = null) =>
             PartialView("_SignIn", new LoginModel { ReturnUrl = returnUrl });
 
-        public PartialViewResult SignUp() =>
-            PartialView("_SignUp", new RegistrationModel());
-        
+        public PartialViewResult SignUp(string returnUrl = null) =>
+            PartialView("_SignUp", new RegistrationModel { ReturnUrl = returnUrl });
+
         [HttpPost]
         public JsonResult SignIn(LoginModel model)
         {
@@ -37,13 +37,13 @@ namespace Boot.Controllers
             if (response.Successful())
             {
                 CreateTicket(user);
-                var url = Url.Action("Index", "Home");
-                if (model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl)) 
-                    url = "http://" + Request.Url.Authority + model.ReturnUrl;
-                return Json(new { success = true, url });
+                var url = model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl)
+                    ? model.ReturnUrl
+                    : Url.Action("Index", "Room");
+                return Json(this.RenderPartialViewToString("_Redirect", url));
             }
 
-            AddModelStateErrors(response); 
+            AddModelStateErrors(response);
             partial = this.RenderPartialViewToString("_SignIn", model);
             return Json(partial);
         }
@@ -64,10 +64,10 @@ namespace Boot.Controllers
                 SaveJsonToFile(users, FileType.Users);
 
                 CreateTicket(user);
-                var url = Url.Action("Index", "Home");
-                if (model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl))
-                    url = "http://" + Request.Url.Authority + model.ReturnUrl;
-                return Json(new { success = true, url });
+                var url = model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl)
+                    ? model.ReturnUrl // w/o http
+                    : Url.Action("Index", "Room");
+                return Json(this.RenderPartialViewToString("_Redirect", url));
             }
 
             AddModelStateErrors(response);
@@ -77,7 +77,7 @@ namespace Boot.Controllers
 
         private void CreateTicket(UserModel user)
         {
-            var ticket = new FormsAuthenticationTicket(1, user.Username, DateTime.Now, 
+            var ticket = new FormsAuthenticationTicket(1, user.Username, DateTime.Now,
                 DateTime.Now.AddMonths(1), false, user.Role.Description());
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);

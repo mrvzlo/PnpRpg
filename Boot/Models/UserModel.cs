@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Helpers;
 using Boot.Enums;
@@ -20,7 +21,8 @@ namespace Boot.Models
         public UserModel(LoginModel model, List<UserModel> users, out ServiceResponse response)
         {
             response = new ServiceResponse();
-            var user = users.SingleOrDefault(x => x.Username == model.Username);
+            var user = users.SingleOrDefault(x =>
+                string.Equals(x.Username, model.Username, StringComparison.OrdinalIgnoreCase));
             if (user == null || !Crypto.VerifyHashedPassword(user.Password, model.Password))
             {
                 response.AddError("Неверный логин или пароль");
@@ -33,7 +35,8 @@ namespace Boot.Models
         public UserModel(RegistrationModel model, List<UserModel> users, out ServiceResponse response)
         {
             response = new ServiceResponse();
-            var user = users.SingleOrDefault(x => x.Username == model.Username);
+            var user = users.SingleOrDefault(x => 
+                string.Equals(x.Username, model.Username, StringComparison.OrdinalIgnoreCase));
             if (user != null)
             {
                 response.AddError("Логин уже занят");

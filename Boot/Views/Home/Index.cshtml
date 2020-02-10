@@ -5,20 +5,20 @@
 
 @Card(Url.Action("Index", "HeroGen"), "Создать персонажа", "generator.jpg", "create hero")
 @Card(Url.Action("Index", "Room"), "Играть", "rooms.jpg", "rooms")
-@Card("https://drive.google.com/open?id=18Kov_H0VPz3TDMEUXqxRFk-3COMpMwxa", "Лист персонажа", "sheet.jpg", "hero list")
-@Card("https://drive.google.com/open?id=1YbfG2wNY6nx8kMOfdwkwISG2VxLooKEq", "Книга игрока", "rulebook.jpg", "rule book")
+@Card("https://drive.google.com/open?id=18Kov_H0VPz3TDMEUXqxRFk-3COMpMwxa", "Лист персонажа", "sheet.jpg", "hero list", true)
+@Card("https://drive.google.com/open?id=1YbfG2wNY6nx8kMOfdwkwISG2VxLooKEq", "Книга игрока", "rulebook.jpg", "rule book", true)
 @Card(Url.Action("Skills", "HeroGen"), "Навыки", "skills.png", "skills")
 @Card(Url.Action("Perks", "Home"), "Способности", "perks.jpg", "perks")
 @Card(Url.Action("Magic", "Home"), "Школы магии", "schools.jpg", "schools")
 @Card(Url.Action("Index", "Alchemy"), "Алхимия", "alchemy.jpg", "alchemy")
 
 
-@helper Card(string url, string name, string photo, string alt)
+@helper Card(string url, string name, string photo, string alt, bool blank = false)
 {
     <div class="col-lg-3 col-5 card p-0 m-2">
         <img class="card-img-top" src="~/Content/images/@photo" alt="@alt" />
         <div class="card-footer">
-            <a class="stretched-link smallForSmall" href="@url">@name</a>
+            <a class="stretched-link smallForSmall" href="@url" @(blank ? "_blank" : "")>@name</a>
         </div>
     </div>
 }

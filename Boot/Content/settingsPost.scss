@@ -5,15 +5,41 @@
     }
 }
 
-.card{
+.card {
     padding: 0;
-    .card-body{
+
+    .card-body {
         padding-left: .1rem;
         padding-right: .1rem;
     }
 }
 
+.p-default {
+    margin-top: -$nav-h !important;
+    padding-top: $nav-h+20 !important;
+}
+
+.container {
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.navbar-collapse, .dropdown-menu {
+    background-color: $dark;
+}
 // default elements
+nav {
+    height: $nav-h;
+}
+
+@media (min-width: map-get($container-max-widths, "lg")) {
+    body {
+        background-image: url(images/bg.png);
+        background-repeat: space;
+        background-size: 200px 200px;
+    }
+}
+
 a {
     color: black;
 

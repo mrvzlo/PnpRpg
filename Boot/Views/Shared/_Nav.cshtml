@@ -1,39 +1,46 @@
-﻿<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="@Url.Action("Index","Home")">Домой</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavBar"
-                aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="@Url.Action("Index","Home")">Домой</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavBar"
+            aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="mainNavBar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active mx-2">
-                    <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Генератор персонажа</a>
-                </li>
-                <li class="nav-item active mx-2">
-                    <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
-                </li>
-                <li class="nav-item active mx-2">
-                    <a class="nav-link" href="@Url.Action("Magic", "Home")">Школы магии</a>
-                </li>
-                <li class="nav-item active mx-2">
-                    @if (User.Identity.IsAuthenticated)
+    <div class="collapse navbar-collapse" id="mainNavBar">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active mx-2">
+                <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Генератор персонажа</a>
+            </li>
+            <li class="nav-item active mx-2">
+                <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
+            </li>
+            <li class="nav-item active mx-2">
+                <a class="nav-link" href="@Url.Action("Magic", "Home")">Школы магии</a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item active mx-2 dropdown">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-none" }))
                     {
-                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-none" }))
-                        {
-                            @Html.AntiForgeryToken()
-                        }
+                        @Html.AntiForgeryToken()
+                    }
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        @User.Identity.Name
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()">
                             Выйти
                         </a>
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("Index", "Account")" class="nav-link text-light">Войти</a>
-                    }
+                    </div>
                 </li>
-            </ul>
-        </div>
+            }
+            else
+            {
+                <li class="nav-item active mx-2">
+                    <a href="@Url.Action("Index", "Account")" class="nav-link text-light">Войти</a>
+                </li>
+            }
+        </ul>
     </div>
 </nav>

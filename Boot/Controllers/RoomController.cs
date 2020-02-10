@@ -1,10 +1,11 @@
 ﻿using System.Web.Mvc;
+using Boot.Helpers;
 
 namespace Boot.Controllers
 {
+    [Authorize]
     public class RoomController : BaseController
     {
-        [Authorize]
         public ActionResult Index()
         {
             return View();
