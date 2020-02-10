@@ -7205,10 +7205,6 @@ a.text-dark:hover, a.text-dark:focus {
   margin-top: -60px !important;
   padding-top: 60px !important; }
 
-.container {
-  background-color: #fff;
-  min-height: 100vh; }
-
 .navbar-collapse, .dropdown-menu {
   background-color: #343a40; }
 
@@ -7216,6 +7212,9 @@ nav {
   height: 60px; }
 
 @media (min-width: 960px) {
+  .container {
+    background-color: #fff;
+    min-height: 100vh; }
   body {
     background-image: url(images/bg.png);
     background-repeat: space;

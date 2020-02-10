@@ -12,9 +12,11 @@ namespace Boot.Models
         public int[] Stats;
         public int[] Traits;
         public int MinAttr, Level;
+        public ChaosLevel Chaos;
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
-        public int FreeStatPoints;
+        public int FreeStatPoints => 
+            Chaos == ChaosLevel.Random ? 0 : Constants.MaxStatSum - Stats.Sum();
 
         public int FreeSkillPoints =>
             Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - UsedSkillPoints;
@@ -24,7 +26,7 @@ namespace Boot.Models
         public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.S] / 10;
 
         #region SaveLoad
-        
+
         public HeroModel(string data)
         {
             ResetSkills();
@@ -38,6 +40,7 @@ namespace Boot.Models
                 Stats[i] = list[x++];
             MinAttr = list[x++];
             Level = list[x++];
+            Chaos = (ChaosLevel)list[x++];
             var skillsCount = list[x++];
             for (var i = 0; i < skillsCount; i++)
                 Skills.Add(list[x++], list[x++]);
@@ -48,7 +51,7 @@ namespace Boot.Models
         public override string ToString()
         {
             var list = Stats.Select(x => x.ToString()).ToList();
-            list.AddRange(new[] { MinAttr, Level }.Select(x => x.ToString()));
+            list.AddRange(new[] { MinAttr, Level, (int)Chaos }.Select(x => x.ToString()));
             list.Add(Skills.Count.ToString());
             if (Skills.Any())
             {
@@ -65,6 +68,7 @@ namespace Boot.Models
             ResetSkills();
             ResetTraits();
             Level = 1;
+            Chaos = chaos;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             Stats = new int[count];
             var rand = new Random(DateTime.Now.Millisecond);
@@ -77,10 +81,8 @@ namespace Boot.Models
                     for (var i = 0; i < Stats.Length; i++)
                         Stats[i] = 8;
                     MinAttr = 8;
-                    FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
                     return;
                 case ChaosLevel.High:
-                    FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
                     return;
                 case ChaosLevel.Extreme:
                     for (var i = 0; i < Stats.Length; i++)
@@ -91,17 +93,15 @@ namespace Boot.Models
                         IncStat(rand.Next(count), 1);
                     }
                     MinAttr = Constants.MaxStat;
-                    FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
                     return;
                 case ChaosLevel.Random:
                     MinAttr = Constants.MaxStat;
                     for (var i = 0; i < Stats.Length; i++)
                         Stats[i] = rand.Next(Constants.MaxStat) + 1;
-                    FreeStatPoints = 0;
                     return;
             }
         }
-        
+
         #endregion
 
         public void ResetTraits()
@@ -130,7 +130,6 @@ namespace Boot.Models
                 || Stats.Sum() + val > Constants.MaxStatSum)
                 return false;
             Stats[attr] += val;
-            FreeStatPoints = Constants.MaxStatSum - Stats.Sum();
             return true;
         }
 

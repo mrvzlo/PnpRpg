@@ -7,5 +7,23 @@
     "Room": null,
     "Hero": null,
     "Role": 1
+  },
+  {
+    "Id": 1,
+    "Username": "123",
+    "Password": "AG5+sQnD2ijAXJd1FY/AgyH0ztMLF9Eyo57vyNEmCGCgexcZO9bp5z6zrpzwHoG64g==",
+    "HeroName": null,
+    "Room": null,
+    "Hero": null,
+    "Role": 0
+  },
+  {
+    "Id": 2,
+    "Username": "12",
+    "Password": "AMUQuB5Jfw7OzIVMePRFJOkqEVTdpFynQGGR71PSnxpSfm1zesqX9VAn6lesr7jqcA==",
+    "HeroName": null,
+    "Room": null,
+    "Hero": null,
+    "Role": 0
   }
 ]

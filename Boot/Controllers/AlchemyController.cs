@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Boot.Enums;
+using Boot.Helpers;
 using Boot.Models.JsonModels;
 
 namespace Boot.Controllers
@@ -39,5 +41,13 @@ namespace Boot.Controllers
             return PartialView("_ReactionResult", model);
         }
 
+        public JsonResult Random()
+        {
+            var potions = GetJsonFromFile<List<Potion>>(FileType.Potions);
+            var r = new Random().Next(potions.Count);
+            var potion = potions.Single(x => x.id == r).name;
+            var partial = this.RenderPartialViewToString("_RandomResult", potion);
+            return Json(new { partial }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

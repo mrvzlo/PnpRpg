@@ -159,6 +159,7 @@ namespace Boot.Controllers
             var names = ids.Where(x => x >= 0).Select(x => traits[x].name).ToList();
             return PartialView("_List", names);
         }
+
         public PartialViewResult GetSkillsNames(Dictionary<int, int> ids)
         {
             var skillList = GetJsonFromFile<List<SkillGroup>>(FileType.Skills)

@@ -6,5 +6,6 @@ namespace Boot.Models.JsonModels
     {
         public RequirementType type;
         public int value;
+        public string strValue;
     }
 }

@@ -19,11 +19,6 @@
     padding-top: $nav-h !important;
 }
 
-.container {
-    background-color: #fff;
-    min-height: 100vh;
-}
-
 .navbar-collapse, .dropdown-menu {
     background-color: $dark;
 }
@@ -34,6 +29,10 @@ nav {
 }
 
 @media (min-width: map-get($container-max-widths, "lg")) {
+    .container {
+        background-color: #fff;
+        min-height: 100vh;
+    }
     body {
         background-image: url(images/bg.png);
         background-repeat: space;

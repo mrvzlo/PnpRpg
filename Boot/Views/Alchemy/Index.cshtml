@@ -4,7 +4,7 @@
     var processes = (List<SelectListItem>)ViewBag.Processes;
 }
 
-@using (Ajax.BeginForm("AlchemyResult", null, 
+@using (Ajax.BeginForm("AlchemyResult", null,
     new AjaxOptions { UpdateTargetId = "alchemyResult", OnBegin = "MainJs.toggleLoading", OnSuccess = "MainJs.toggleLoading" },
     new { @class = "col-lg-8 col-12 mt-md-2" }))
 {
@@ -23,3 +23,6 @@
     </div>
 }
 <div class="col-12" id="alchemyResult"></div>
+<div class="col-12" id="randomPotion">
+    @Html.Partial("_RandomResult")
+</div>
