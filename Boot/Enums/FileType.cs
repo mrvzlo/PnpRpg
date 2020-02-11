@@ -20,6 +20,8 @@ namespace Boot.Enums
         Perks,
         [Description("Traits.json")]
         Traits,
+        [Description("Races.json")]
+        Races,
         [Description("Users.json")]
         Users
     }

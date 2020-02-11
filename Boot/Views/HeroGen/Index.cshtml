@@ -8,8 +8,8 @@
     {
         case Status.Chaos: Html.RenderPartial("_Chaos"); break;
         case Status.Stats: Html.RenderPartial("_StatEdit", Model); break;
-        case Status.Skills: Html.RenderPartial("_SkillEdit", Model); break;
         case Status.Traits: Html.RenderAction("TraitsPage"); break;
+        case Status.Skills: Html.RenderPartial("_SkillEdit", Model); break;
         case Status.Result: Html.RenderPartial("_Result", Model); break;
     }
 }

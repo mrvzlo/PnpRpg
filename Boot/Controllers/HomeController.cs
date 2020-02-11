@@ -12,9 +12,14 @@ namespace Boot.Controllers
 
         public ActionResult Perks()
         {
-            var list = GetJsonFromFile<List<Perk>>(FileType.Perks);
-            ViewBag.MaxLevel = list.Max(x => x.requirements.Single(y => y.type == RequirementType.Level).value);
-            return View(list);
+            var perks = GetJsonFromFile<List<Perk>>(FileType.Perks);
+            var races = GetJsonFromFile<List<Race>>(FileType.Races);
+            ViewBag.MaxLevel = perks
+                .Max(x => x.requirements.Single(y => y.type == RequirementType.Level).value);
+            foreach (var req in perks.SelectMany(perk => perk.requirements
+                .Where(req => req.type == RequirementType.Race)))
+                req.strValue = races.Single(x => x.id == req.value).name;
+            return View(perks);
         }
 
         public ActionResult Magic()

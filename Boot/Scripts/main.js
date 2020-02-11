@@ -31,6 +31,12 @@
             var url = $(this).data("url");
             call("#" + id, url);
         });
+        $(".ajax-dropdown").change(function () {
+            var id = $(this).data("container");
+            if (!id) id = "main";
+            var url = $(this).data("url") + "/" + this.value;
+            call("#" + id, url);
+        });
     }
 
     // enabled by default

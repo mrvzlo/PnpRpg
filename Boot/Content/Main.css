@@ -7241,6 +7241,9 @@ td {
   .smallForSmall {
     font-size: 80%; } }
 
+.pointer {
+  cursor: pointer; }
+
 .lds-dual-ring {
   display: inline-block;
   width: 40px;

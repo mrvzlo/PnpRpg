@@ -1,0 +1,15 @@
+﻿@model List<Boot.Models.JsonModels.Race>
+@{
+    var list = Model.Select(x => new SelectListItem
+    {
+        Value = x.id.ToString(),
+        Text = x.name,
+        Selected = x.Chosen
+    });
+}
+
+@Html.DropDownList("id", list, new
+{
+    @class = "ajax-dropdown form-control",
+    data_url = Url.Action("PickRace")
+})

@@ -11,11 +11,11 @@ namespace Boot.Models
     {
         public int[] Stats;
         public int[] Traits;
-        public int MinAttr, Level;
+        public int MinAttr, Level, Race;
         public ChaosLevel Chaos;
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
-        public int FreeStatPoints => 
+        public int FreeStatPoints =>
             Chaos == ChaosLevel.Random ? 0 : Constants.MaxStatSum - Stats.Sum();
 
         public int FreeSkillPoints =>
@@ -40,6 +40,7 @@ namespace Boot.Models
                 Stats[i] = list[x++];
             MinAttr = list[x++];
             Level = list[x++];
+            Race = list[x++];
             Chaos = (ChaosLevel)list[x++];
             var skillsCount = list[x++];
             for (var i = 0; i < skillsCount; i++)
@@ -51,7 +52,7 @@ namespace Boot.Models
         public override string ToString()
         {
             var list = Stats.Select(x => x.ToString()).ToList();
-            list.AddRange(new[] { MinAttr, Level, (int)Chaos }.Select(x => x.ToString()));
+            list.AddRange(new[] { MinAttr, Level, Race, (int)Chaos }.Select(x => x.ToString()));
             list.Add(Skills.Count.ToString());
             if (Skills.Any())
             {
@@ -103,6 +104,21 @@ namespace Boot.Models
         }
 
         #endregion
+
+        public bool ChangeRace(Race oldRace, Race newRace)
+        {
+            if (oldRace.id == newRace.id) 
+                return false;
+            Race = newRace.id;
+            if (oldRace.effects != null)
+                foreach (var eff in oldRace.effects)
+                    ApplyStatEffect(eff, true);
+            if (newRace.effects != null)
+                foreach (var eff in newRace.effects)
+                    ApplyStatEffect(eff);
+
+            return !(Stats.Any(x => x < 1 || x > Constants.MaxStat));
+        }
 
         public void ResetTraits()
         {
@@ -164,5 +180,18 @@ namespace Boot.Models
         }
 
         #endregion
+
+        private void ApplyStatEffect(Effect effect, bool revert = false)
+        {
+            var stat = (int)effect.stat;
+            var value = effect.value;
+            if (revert)
+                value *= -1;
+            switch (effect.type)
+            {
+                case EffectType.Positive: Stats[stat] += value; return;
+                case EffectType.Negative: Stats[stat] -= value; return;
+            }
+        }
     }
 }

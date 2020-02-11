@@ -1,27 +1,28 @@
 ﻿@using Boot.Enums
 @using Boot.Helpers
 @model Boot.Models.HeroModel
-@{
-    for (var i = 0; i < Model.Stats.Length; i++)
-    {
-        var a = (StatType)i;
-        <div class="col-md-3 col-6">
-            <div class="row border">
-                <div class="col bg-@a.Color() py-2 px-sm-4">@a.Translation()<span class="float-right font-weight-bold">@Model.Stats[i]</span></div>
-                <div class="col-12 my-2">@ButtonGroup(Model.Stats[i], a, Model.MinAttr, Model.FreeStatPoints)</div>
-            </div>
-        </div>
-    }
-    @Html.Partial("_SecondStats", Model)
-    <div class="col-md-4 col-12">
-        <div class="alert alert-info m-0">Cвободных очков: @Model.FreeStatPoints</div>
-        <button class="btn @(Model.FreeStatPoints == 0 ? "btn-success" : "btn-secondary") ajax-btn"
-                data-url="@Url.Action("Traits")" @(Model.FreeStatPoints == 0 ? "" : "disabled")>
-            Ок
-        </button>
-    </div>
 
+@for (var i = 0; i < Model.Stats.Length; i++)
+{
+    var a = (StatType)i;
+    <div class="col-md-3 col-6">
+        <div class="row border">
+            <div class="col bg-@a.Color() py-2 px-sm-4">@a.Translation()<span class="float-right font-weight-bold">@Model.Stats[i]</span></div>
+            <div class="col-12 my-2">@ButtonGroup(Model.Stats[i], a, Model.MinAttr, Model.FreeStatPoints)</div>
+        </div>
+    </div>
 }
+
+@Html.Partial("_SecondStats", Model)
+
+<div class="col-md-4 col-12">
+    <div class="my-3">@{Html.RenderAction("RacesDropdown", new { chosen = Model.Race });}</div>
+    <div class="alert alert-info m-0 py-2">Cвободных очков: @Model.FreeStatPoints</div>
+    <button class="mt-3 btn @(Model.FreeStatPoints == 0 ? "btn-success" : "btn-secondary") ajax-btn"
+            data-url="@Url.Action("Traits")" @(Model.FreeStatPoints == 0 ? "" : "disabled")>
+        Ок
+    </button>
+</div>
 
 @helper ButtonGroup(int param, StatType stat, int minValue, int freePoints)
 {
