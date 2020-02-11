@@ -7,7 +7,10 @@
 <div class="h3 col-12">Выберите до @Constants.TraitCount особенностей</div>
 @foreach (var trait in Model)
 {
-    <div class="card col-6 col-md-4 smallForSmall">
+    var available = !trait.Chosen && !limit;
+    <div class="card col-5 col-md-3 smallForSmall m-1 @(available ? "ajax-btn pointer" : "")"
+         @(available ? $"data-url={Url.Action("ChooseTrait", new {trait.id})}" : "")>
+
         <div class="card-header font-weight-bold">
             @trait.name
             @if (trait.Chosen)
@@ -45,15 +48,6 @@
                 </div>
             }
         </div>
-        @if (!limit && !trait.Chosen)
-        {
-            <div class="card-footer">
-                <button class="btn btn-sm btn-success ajax-btn"
-                        data-url="@Url.Action("ChooseTrait", new {id = trait.id})">
-                    Выбрать
-                </button>
-            </div>
-        }
     </div>
 }
 <div class="col-12 py-2">
