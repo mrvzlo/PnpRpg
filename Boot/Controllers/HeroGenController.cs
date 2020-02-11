@@ -185,6 +185,7 @@ namespace Boot.Controllers
             if (string.IsNullOrEmpty(cookie)) return null;
             var hero = new HeroModel(cookie);
             var list = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileType.Skills) };
+            hero.RaceStr = GetJsonFromFile<List<Race>>(FileType.Races).Single(x => x.id == hero.Race).name;
             hero.UsedSkillPoints = CoreLogic.CalculateSkillPoints(hero, list);
             return hero;
         }
@@ -196,7 +197,7 @@ namespace Boot.Controllers
         private void UpdateSkillsForHero(HeroModel hero, ref SkillGroupList list)
         {
             list.Editable = true;
-            list.FreePoints = hero.FreeSkillPoints;
+            list.FreePoints = hero.FreeSkillPoints();
             foreach (var skill in list.Groups.SelectMany(group => group.skills))
             {
                 skill.CanInc = hero.CanIncSkill(skill);

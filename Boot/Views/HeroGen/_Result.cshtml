@@ -1,4 +1,5 @@
 ﻿@model Boot.Models.HeroModel
+<div class="col-12">@Model.RaceStr</div>
 @{
     Html.RenderPartial("_FirstStats", Model.Stats.ToList());
     Html.RenderPartial("_SecondStats", Model);

@@ -8,14 +8,19 @@
 @foreach (var trait in Model)
 {
     var available = !trait.Chosen && !limit;
-    <div class="card col-5 col-md-3 smallForSmall m-1 @(available ? "ajax-btn pointer" : "")"
-         @(available ? $"data-url={Url.Action("ChooseTrait", new {trait.id})}" : "")>
+    <div class="card col-10 col-md-5 col-md-3 smallForSmall m-1">
 
         <div class="card-header font-weight-bold">
             @trait.name
             @if (trait.Chosen)
             {
                 <div class="badge badge-success">✓</div>
+            }
+            else if (!limit)
+            {
+                <div class="badge ajax-btn pointer btn-success" data-url="@Url.Action("ChooseTrait", new {trait.id})">
+                    +
+                </div>
             }
         </div>
         <div class="card-body">
@@ -27,13 +32,13 @@
                         switch (effect.type)
                         {
                             case EffectType.Positive:
-                                span = $"<span class='badge badge-success'>+{effect.value}</span>";
+                                span = $"<span class='badge alert-success'>+{effect.value}</span>";
                                 break;
                             case EffectType.Negative:
-                                span = $"<span class='badge badge-danger'>-{effect.value}</span>";
+                                span = $"<span class='badge alert-danger'>-{effect.value}</span>";
                                 break;
                             case EffectType.Neutral:
-                                span = $"<span class='badge badge-info'>{effect.value}</span>";
+                                span = $"<span class='badge alert-info'>{effect.value}</span>";
                                 break;
                         }
                         if (effect.stat == null)

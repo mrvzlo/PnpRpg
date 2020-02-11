@@ -15,12 +15,13 @@ namespace Boot.Models
         public ChaosLevel Chaos;
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
-        public int FreeStatPoints =>
+
+        public string RaceStr;
+
+        public int FreeStatPoints() =>
             Chaos == ChaosLevel.Random ? 0 : Constants.MaxStatSum - Stats.Sum();
-
-        public int FreeSkillPoints =>
+        public int FreeSkillPoints() =>
             Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - UsedSkillPoints;
-
         public int MaxHp() => Stats[(int)StatType.S] + Level * 2 - 2;
         public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
         public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.S] / 10;
@@ -168,7 +169,7 @@ namespace Boot.Models
         public bool CanIncSkill(SkillInfo skillInfo)
         {
             var skillPoints = GetOrCreateSkillPoints(skillInfo.Id);
-            return skillInfo.Difficulty + 1 <= FreeSkillPoints && Level > skillPoints;
+            return skillInfo.Difficulty + 1 <= FreeSkillPoints() && Level > skillPoints;
         }
 
         private int GetOrCreateSkillPoints(int skillId)

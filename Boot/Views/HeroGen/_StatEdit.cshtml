@@ -8,7 +8,7 @@
     <div class="col-md-3 col-6">
         <div class="row border">
             <div class="col bg-@a.Color() py-2 px-sm-4">@a.Translation()<span class="float-right font-weight-bold">@Model.Stats[i]</span></div>
-            <div class="col-12 my-2">@ButtonGroup(Model.Stats[i], a, Model.MinAttr, Model.FreeStatPoints)</div>
+            <div class="col-12 my-2">@ButtonGroup(Model.Stats[i], a, Model.MinAttr, Model.FreeStatPoints())</div>
         </div>
     </div>
 }
@@ -17,9 +17,9 @@
 
 <div class="col-md-4 col-12">
     <div class="my-3">@{Html.RenderAction("RacesDropdown", new { chosen = Model.Race });}</div>
-    <div class="alert alert-info m-0 py-2">Cвободных очков: @Model.FreeStatPoints</div>
-    <button class="mt-3 btn @(Model.FreeStatPoints == 0 ? "btn-success" : "btn-secondary") ajax-btn"
-            data-url="@Url.Action("Traits")" @(Model.FreeStatPoints == 0 ? "" : "disabled")>
+    <div class="alert alert-info m-0 py-2">Cвободных очков: @Model.FreeStatPoints()</div>
+    <button class="mt-3 btn @(Model.FreeStatPoints() == 0 ? "btn-success" : "btn-secondary") ajax-btn"
+            data-url="@Url.Action("Traits")" @(Model.FreeStatPoints() == 0 ? "" : "disabled")>
         Ок
     </button>
 </div>
