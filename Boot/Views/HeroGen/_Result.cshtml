@@ -1,31 +1,14 @@
 ﻿@using Boot.Enums
 @model Boot.Models.HeroModel
-<div class="col-12 h4 my-2">@Model.RaceStr</div>
-@{
-    Html.RenderPartial("_FirstStats", Model.Stats.ToList());
-    Html.RenderPartial("_SecondStats", Model);
-}
-<div class="col-md-6 col-12 card">
-    <div class="h5 card-header">Особенности</div>
-    <div class="card-body">
-        @{
-            Html.RenderAction("GetTraitsNames", new { ids = Model.Traits });
-        }
-    </div>
-</div>
-<div class="col-md-6 col-12 card">
-    <div class="h5 card-header">Навыки</div>
-    <div class="card-body">
-        @{
-            Html.RenderAction("GetSkillsNames", new { ids = Model.Skills });
-        }
-    </div>
-</div>
+
+@Html.Partial("_HeroInfo")
 
 <div class="col-12 col-md-8 col-lg-6 my-2">
     @if (User.Identity.IsAuthenticated)
     {
-        using (Ajax.BeginForm("Index", null, new AjaxOptions { }, new { @class = "row form-inline" }))
+        using (Ajax.BeginForm("SaveHero", null, 
+            new AjaxOptions { UpdateTargetId = "main", HttpMethod = "POST", OnSuccess = "MainJs.formRedirect"},
+            new { @class = "row form-inline" }))
         {
             @Html.Label("name", "Имя персонажа", new { @class = "col-sm-4 col" })
             @Html.TextBox("name", "", new { @class = "form-control col-sm-8" })

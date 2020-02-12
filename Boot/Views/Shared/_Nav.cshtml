@@ -7,8 +7,18 @@
 
     <div class="collapse navbar-collapse" id="mainNavBar">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active mx-2">
-                <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Персонаж</a>
+            <li class="nav-item active mx-2 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="heroDropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Персонаж
+                </a>
+                <div class="dropdown-menu" aria-labelledby="heroDropdown">
+                    <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Создать</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link" href="@Url.Action("MyHero", "HeroGen")">Мой персонаж</a>
+                    }
+                </div>
             </li>
             <li class="nav-item active mx-2">
                 <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
@@ -23,13 +33,13 @@
                     {
                         @Html.AntiForgeryToken()
                     }
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         @User.Identity.Name
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
                             Выйти
                         </a>
                     </div>

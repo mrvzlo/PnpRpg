@@ -11,7 +11,7 @@ namespace Boot.Models
         public int Id;
         public string Username;
         public string Password;
-        public string HeroName;
+        public string HeroCode;
         public int? Room;
         public HeroModel Hero;
         public UserRole Role;
@@ -54,9 +54,8 @@ namespace Boot.Models
             Username = user.Username;
             Password = user.Password;
             Id = user.Id;
-            HeroName = user.HeroName;
             Room = user.Room;
-            Hero = user.Hero;
+            HeroCode = user.HeroCode;
             Role = user.Role;
         }
     }

@@ -1,0 +1,22 @@
+﻿@model Boot.Models.HeroModel
+<div class="col-12 h4 my-2">@Model.RaceStr @Model.Name</div>
+@{
+    Html.RenderPartial("_FirstStats", Model.Stats.ToList());
+    Html.RenderPartial("_SecondStats", Model);
+}
+<div class="col-md-6 col-12 card">
+    <div class="h5 card-header">Особенности</div>
+    <div class="card-body">
+        @{
+            Html.RenderAction("GetTraitsNames", new { ids = Model.Traits });
+        }
+    </div>
+</div>
+<div class="col-md-6 col-12 card">
+    <div class="h5 card-header">Навыки</div>
+    <div class="card-body">
+        @{
+            Html.RenderAction("GetSkillsNames", new { ids = Model.Skills });
+        }
+    </div>
+</div>

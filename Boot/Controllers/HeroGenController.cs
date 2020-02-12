@@ -6,6 +6,7 @@ using Boot.Enums;
 using Boot.Helpers;
 using Boot.Models;
 using Boot.Models.JsonModels;
+using Microsoft.Ajax.Utilities;
 
 namespace Boot.Controllers
 {
@@ -43,7 +44,7 @@ namespace Boot.Controllers
         public PartialViewResult RacesDropdown(int chosen)
         {
             var races = GetJsonFromFile<List<Race>>(FileType.Races);
-            foreach (var race in races) 
+            foreach (var race in races)
                 race.Chosen = race.id == chosen;
             return PartialView("_RacesDropdown", races);
         }
@@ -63,7 +64,7 @@ namespace Boot.Controllers
                 return ReturnJson(partial, GetUrl(Status.Stats));
             }
 
-            var status = this.RenderPartialViewToString("_Status", 
+            var status = this.RenderPartialViewToString("_Status",
                 new StatusResult(false, "Ошибка, некорректные атрибуты"));
             return ReturnJson(partial, GetUrl(Status.Stats), status);
         }
@@ -86,9 +87,7 @@ namespace Boot.Controllers
         public List<Trait> GetTraits(HeroModel hero)
         {
             var traits = GetJsonFromFile<List<Trait>>(FileType.Traits);
-            foreach (var trait in traits)
-                trait.Chosen = hero.Traits.Contains(trait.id);
-
+            traits.ForEach(x => x.Chosen = hero.Traits.Contains(x.id));
             return traits;
         }
 
@@ -169,8 +168,7 @@ namespace Boot.Controllers
             var skillList = GetJsonFromFile<List<SkillGroup>>(FileType.Skills)
                 .SelectMany(x => x.skills).ToList();
             var skills = skillList.Where(x => ids.ContainsKey(x.Id)).ToList();
-            foreach (var skill in skills)
-                skill.Level = ids[skill.Id];
+            skills.ForEach(x => x.Level = ids[x.Id]);
             return PartialView("_List", skills.Select(x => x.ToString()).ToList());
         }
 
@@ -180,6 +178,33 @@ namespace Boot.Controllers
         {
             var partial = this.RenderPartialViewToString("_Result", GetHeroFromCookies());
             return ReturnJson(partial, GetUrl(Status.Result));
+        }
+
+        [Authorize]
+        [HttpPost]
+        public JsonResult SaveHero(string name)
+        {
+            var hero = GetHeroFromCookies();
+            hero.Name = name;
+            if (name.Contains(StringHelper.Separator))
+                return Json(this.RenderPartialViewToString("_Result", hero));
+
+            var users = GetJsonFromFile<List<UserModel>>(FileType.Users);
+            users.Where(x => x.Username == User.Identity.Name)
+                .ForEach(x => x.HeroCode = hero.ToString());
+            SaveJsonToFile(users, FileType.Users);
+
+            return Json(this.RenderPartialViewToString("_Redirect", Url.Action("MyHero")));
+        }
+
+        [Authorize]
+        public ActionResult MyHero()
+        {
+            var users = GetJsonFromFile<List<UserModel>>(FileType.Users);
+            var heroCode = users.Single(x => x.Username == User.Identity.Name).HeroCode;
+            var hero = new HeroModel(heroCode);
+            hero.RaceStr = GetJsonFromFile<List<Race>>(FileType.Races).Single(x => x.id == hero.Race).name;
+            return View(hero);
         }
 
         #region private

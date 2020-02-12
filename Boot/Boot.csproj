@@ -169,6 +169,7 @@
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
+    <Content Include="Views\HeroGen\_HeroInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Perks.json" />
@@ -384,6 +385,7 @@
     <Content Include="Views\Account\_SignUp.cshtml" />
     <Content Include="Views\Alchemy\_RandomResult.cshtml" />
     <Content Include="Views\HeroGen\_RacesDropdown.cshtml" />
+    <Content Include="Views\HeroGen\MyHero.cshtml" />
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />

@@ -16,7 +16,7 @@ namespace Boot.Models
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
 
-        public string RaceStr;
+        public string RaceStr, Name;
 
         public int FreeStatPoints() =>
             Chaos == ChaosLevel.Random ? 0 : Constants.MaxStatSum - Stats.Sum();
@@ -34,25 +34,28 @@ namespace Boot.Models
             ResetTraits();
             if (string.IsNullOrEmpty(data)) return;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
-            var list = data.Split(StringHelper.Separator).Select(int.Parse).ToList();
+            var list = data.Split(StringHelper.Separator);
+            Name = list.First();
+            var intData = list.Skip(1).Select(int.Parse).ToList();
             Stats = new int[count];
             var x = 0;
             for (var i = 0; i < Stats.Length; i++)
-                Stats[i] = list[x++];
-            MinAttr = list[x++];
-            Level = list[x++];
-            Race = list[x++];
-            Chaos = (ChaosLevel)list[x++];
-            var skillsCount = list[x++];
+                Stats[i] = intData[x++];
+            MinAttr = intData[x++];
+            Level = intData[x++];
+            Race = intData[x++];
+            Chaos = (ChaosLevel)intData[x++];
+            var skillsCount = intData[x++];
             for (var i = 0; i < skillsCount; i++)
-                Skills.Add(list[x++], list[x++]);
+                Skills.Add(intData[x++], intData[x++]);
             for (var i = 0; i < Constants.TraitCount; i++)
-                Traits[i] = list[x++];
+                Traits[i] = intData[x++];
         }
 
         public override string ToString()
         {
-            var list = Stats.Select(x => x.ToString()).ToList();
+            var list = new List<string> { Name };
+            list.AddRange(Stats.Select(x => x.ToString()));
             list.AddRange(new[] { MinAttr, Level, Race, (int)Chaos }.Select(x => x.ToString()));
             list.Add(Skills.Count.ToString());
             if (Skills.Any())
@@ -67,6 +70,7 @@ namespace Boot.Models
 
         public HeroModel(ChaosLevel chaos)
         {
+            Name = "";
             ResetSkills();
             ResetTraits();
             Level = 1;
@@ -108,7 +112,7 @@ namespace Boot.Models
 
         public bool ChangeRace(Race oldRace, Race newRace)
         {
-            if (oldRace.id == newRace.id) 
+            if (oldRace.id == newRace.id)
                 return false;
             Race = newRace.id;
             if (oldRace.effects != null)
