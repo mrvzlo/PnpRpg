@@ -10,6 +10,8 @@
             console.log(url);
             dispose();
             $(id).html(data.partial);
+            if (data.status)
+                $("#status").html(data.status);
             window.history.pushState("object or string", "Title", data.url);
             updateScripts();
         });

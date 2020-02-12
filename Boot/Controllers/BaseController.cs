@@ -19,8 +19,8 @@ namespace Boot.Controllers
         private HttpCookie CreateCookie(string name, string data, int hours = 24) =>
             new HttpCookie(name) { Value = data, Expires = DateTime.Now.AddHours(hours) };
 
-        protected JsonResult ReturnJson(string partial, string url) =>
-            Json(new { url, partial }, 0);
+        protected JsonResult ReturnJson(string partial, string url, string status = null) =>
+            Json(new { url, partial, status }, 0);
 
         protected T GetJsonFromFile<T>(FileType fileType)
         {

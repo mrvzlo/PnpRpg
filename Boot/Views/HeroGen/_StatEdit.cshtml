@@ -16,7 +16,10 @@
 @Html.Partial("_SecondStats", Model)
 
 <div class="col-md-4 col-12">
-    <div class="my-3">@{Html.RenderAction("RacesDropdown", new { chosen = Model.Race });}</div>
+    <div class="my-3">
+        <div id="status"></div>
+        @{Html.RenderAction("RacesDropdown", new { chosen = Model.Race });}
+    </div>
     <div class="alert alert-info m-0 py-2">Cвободных очков: @Model.FreeStatPoints()</div>
     <button class="mt-3 btn @(Model.FreeStatPoints() == 0 ? "btn-success" : "btn-secondary") ajax-btn"
             data-url="@Url.Action("Traits")" @(Model.FreeStatPoints() == 0 ? "" : "disabled")>

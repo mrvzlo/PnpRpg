@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.WebSockets;
 using Boot.Enums;
 using Boot.Helpers;
 using Boot.Models;
@@ -59,8 +60,12 @@ namespace Boot.Controllers
             {
                 partial = this.RenderPartialViewToString("_StatEdit", hero);
                 SaveHeroToCookies(hero);
+                return ReturnJson(partial, GetUrl(Status.Stats));
             }
-            return ReturnJson(partial, GetUrl(Status.Stats));
+
+            var status = this.RenderPartialViewToString("_Status", 
+                new StatusResult(false, "Ошибка, некорректные атрибуты"));
+            return ReturnJson(partial, GetUrl(Status.Stats), status);
         }
 
         #region Traits

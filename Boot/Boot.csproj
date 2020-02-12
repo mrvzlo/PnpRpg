@@ -161,12 +161,14 @@
     <Compile Include="Models\RacePickModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\ServiceResponse.cs" />
+    <Compile Include="Models\StatusResult.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Races.json" />
     <None Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
+    <Content Include="Views\Shared\_Status.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Perks.json" />
@@ -381,7 +383,6 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\_SignUp.cshtml" />
     <Content Include="Views\Alchemy\_RandomResult.cshtml" />
-    <Content Include="Views\HeroGen\_Races.cshtml" />
     <Content Include="Views\HeroGen\_RacesDropdown.cshtml" />
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
