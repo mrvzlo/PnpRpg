@@ -151,6 +151,7 @@
     <Compile Include="Models\JsonModels\Race.cs" />
     <Compile Include="Models\JsonModels\Reaction.cs" />
     <Compile Include="Models\JsonModels\Requirement.cs" />
+    <Compile Include="Models\JsonModels\Room.cs" />
     <Compile Include="Models\JsonModels\SkillGroup.cs" />
     <Compile Include="Models\JsonModels\SkillInfo.cs" />
     <Compile Include="Models\JsonModels\SkillGroupList.cs" />
@@ -165,11 +166,13 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Races.json" />
+    <Content Include="App_Data\Rooms.json" />
     <None Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
     <Content Include="Views\HeroGen\_HeroInfo.cshtml" />
+    <Content Include="Views\Room\Room.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Perks.json" />

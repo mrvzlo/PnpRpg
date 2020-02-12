@@ -23,6 +23,8 @@ namespace Boot.Enums
         [Description("Races.json")]
         Races,
         [Description("Users.json")]
-        Users
+        Users,
+        [Description("Rooms.json")]
+        Rooms
     }
 }

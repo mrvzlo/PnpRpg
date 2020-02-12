@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.WebSockets;
 using Boot.Enums;
 using Boot.Helpers;
 using Boot.Models;
@@ -41,11 +40,12 @@ namespace Boot.Controllers
             return ReturnJson(partial, GetUrl(Status.Stats));
         }
 
+        #region Races
+
         public PartialViewResult RacesDropdown(int chosen)
         {
             var races = GetJsonFromFile<List<Race>>(FileType.Races);
-            foreach (var race in races)
-                race.Chosen = race.id == chosen;
+            races.ForEach(x => x.Chosen = x.id == chosen);
             return PartialView("_RacesDropdown", races);
         }
 
@@ -68,6 +68,14 @@ namespace Boot.Controllers
                 new StatusResult(false, "Ошибка, некорректные атрибуты"));
             return ReturnJson(partial, GetUrl(Status.Stats), status);
         }
+
+        public string GetRaceName(int id)
+        {
+            var races = GetJsonFromFile<List<Race>>(FileType.Races);
+            return races.Single(x => x.id == id).name;
+        }
+
+        #endregion
 
         #region Traits
 
@@ -203,7 +211,6 @@ namespace Boot.Controllers
             var users = GetJsonFromFile<List<UserModel>>(FileType.Users);
             var heroCode = users.Single(x => x.Username == User.Identity.Name).HeroCode;
             var hero = new HeroModel(heroCode);
-            hero.RaceStr = GetJsonFromFile<List<Race>>(FileType.Races).Single(x => x.id == hero.Race).name;
             return View(hero);
         }
 
@@ -215,7 +222,6 @@ namespace Boot.Controllers
             if (string.IsNullOrEmpty(cookie)) return null;
             var hero = new HeroModel(cookie);
             var list = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileType.Skills) };
-            hero.RaceStr = GetJsonFromFile<List<Race>>(FileType.Races).Single(x => x.id == hero.Race).name;
             hero.UsedSkillPoints = CoreLogic.CalculateSkillPoints(hero, list);
             return hero;
         }

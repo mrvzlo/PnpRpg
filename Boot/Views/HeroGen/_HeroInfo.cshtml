@@ -1,5 +1,8 @@
 ﻿@model Boot.Models.HeroModel
-<div class="col-12 h4 my-2">@Model.RaceStr @Model.Name</div>
+<div class="col-12 h4 my-2">
+    @{ Html.RenderAction("GetRaceName", new { id = Model.Race });}
+    @Model.Name
+</div>
 @{
     Html.RenderPartial("_FirstStats", Model.Stats.ToList());
     Html.RenderPartial("_SecondStats", Model);

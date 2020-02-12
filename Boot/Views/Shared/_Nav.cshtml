@@ -14,17 +14,18 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="heroDropdown">
                     <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Создать</a>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a class="nav-link" href="@Url.Action("MyHero", "HeroGen")">Мой персонаж</a>
-                    }
+                    <a class="nav-link" href="@Url.Action("MyHero", "HeroGen")">Мой персонаж</a>
                 </div>
             </li>
-            <li class="nav-item active mx-2">
-                <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
-            </li>
-            <li class="nav-item active mx-2">
-                <a class="nav-link" href="@Url.Action("Magic", "Home")">Школы магии</a>
+            <li class="nav-item active mx-2 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="rulesDropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Правила
+                </a>
+                <div class="dropdown-menu" aria-labelledby="rulesDropdown">
+                    <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
+                    <a class="nav-link" href="@Url.Action("Magic", "Home")">Школы магии</a>
+                </div>
             </li>
             @if (User.Identity.IsAuthenticated)
             {

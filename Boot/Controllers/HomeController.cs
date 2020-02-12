@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Boot.Enums;
 using Boot.Models.JsonModels;
+using WebGrease.Css.Extensions;
 
 namespace Boot.Controllers
 {
@@ -15,10 +16,12 @@ namespace Boot.Controllers
             var perks = GetJsonFromFile<List<Perk>>(FileType.Perks);
             var races = GetJsonFromFile<List<Race>>(FileType.Races);
             ViewBag.MaxLevel = perks
-                .Max(x => x.requirements.Single(y => y.type == RequirementType.Level).value);
-            foreach (var req in perks.SelectMany(perk => perk.requirements
-                .Where(req => req.type == RequirementType.Race)))
-                req.strValue = races.Single(x => x.id == req.value).name;
+                .Max(x => x.requirements.Single(y => y.type == RequirementType.Level)
+                .value);
+
+            perks.SelectMany(perk => perk.requirements)
+                .Where(req => req.type == RequirementType.Race)
+                    .ForEach(req => req.strValue = races.Single(x => x.id == req.value).name);
             return View(perks);
         }
 

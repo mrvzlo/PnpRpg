@@ -1,4 +1,22 @@
-﻿@{
+﻿@model List<Boot.Models.JsonModels.Room>
+@{
     ViewBag.Title = "Комнаты";
 }
-Молодец
+<div class="h5 m-2 col-12">Свободные столы</div>
+@if (!Model.Any())
+{
+    <div class="font-italic col-12">Нет</div>
+}
+@foreach (var room in Model)
+{
+    <div class="card col-6 col-md-4">
+        <div class="card-header">@room.name</div>
+        <div class="card-body">
+            <div>@(room.date.ToLongDateString())</div>
+            <div>Игроков: @room.players</div>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-success" href="@Url.Action("Join", new{id = room.id})">Записаться</a>
+        </div>
+    </div>
+}

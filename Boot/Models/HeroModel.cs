@@ -16,7 +16,7 @@ namespace Boot.Models
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
 
-        public string RaceStr, Name;
+        public string Name;
 
         public int FreeStatPoints() =>
             Chaos == ChaosLevel.Random ? 0 : Constants.MaxStatSum - Stats.Sum();
@@ -115,12 +115,8 @@ namespace Boot.Models
             if (oldRace.id == newRace.id)
                 return false;
             Race = newRace.id;
-            if (oldRace.effects != null)
-                foreach (var eff in oldRace.effects)
-                    ApplyStatEffect(eff, true);
-            if (newRace.effects != null)
-                foreach (var eff in newRace.effects)
-                    ApplyStatEffect(eff);
+            oldRace.effects?.ForEach(x => ApplyStatEffect(x, true));
+            newRace.effects?.ForEach(x => ApplyStatEffect(x));
 
             return !(Stats.Any(x => x < 1 || x > Constants.MaxStat));
         }

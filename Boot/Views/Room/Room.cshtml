@@ -1,0 +1,31 @@
+﻿@using Boot.Enums
+@using Boot.Helpers
+@using Boot.Models
+@model Boot.Models.JsonModels.Room
+@{
+    ViewBag.Title = Model.name;
+}
+
+<div class="h5 col-12 m-2">@Model.name</div>
+
+@foreach (var player in Model.PlayerModels)
+{
+    var hero = new HeroModel(player.HeroCode);
+    <div class="card col-6 col-md-4">
+        <div class="card-header">
+            @{ Html.RenderAction("GetRaceName", "HeroGen", new { id = hero.Race });}
+            @hero.Name
+        </div>
+        <div class="card-body">
+            <span class="badge badge-dark">Lvl @hero.Level</span>
+            @for (var i = 0; i < hero.Stats.Length; i++)
+            {
+                var stat = (StatType)i;
+                <span class="badge badge-@stat.Color()">@stat @hero.Stats[i]</span>
+            }
+            <span class="badge badge-danger">HP @hero.MaxHp()</span>
+            <span class="badge badge-primary">MP @hero.MaxEp()</span>
+            @{Html.RenderAction("GetTraitsNames", "HeroGen", new { ids = hero.Traits });}
+        </div>
+    </div>
+}
