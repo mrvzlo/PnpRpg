@@ -9,10 +9,10 @@ namespace Boot.Enums
         [Translation("Сила")]
         [Color("danger")]
         S,
-        [Description("Perception")]
-        [Translation("Восприятие")]
+        [Description("Endurance")]
+        [Translation("Выносливость")]
         [Color("warning")]
-        P,
+        E,
         [Description("Agility")]
         [Translation("Ловкость")]
         [Color("success")]

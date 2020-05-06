@@ -10,8 +10,9 @@ namespace Boot.Models
     public class HeroModel
     {
         public int[] Stats;
+        public int[] MinStats;
         public int[] Traits;
-        public int MinAttr, Level, Race;
+        public int Level, Race;
         public ChaosLevel Chaos;
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
@@ -22,9 +23,12 @@ namespace Boot.Models
             Chaos == ChaosLevel.Random ? 0 : Constants.MaxStatSum - Stats.Sum();
         public int FreeSkillPoints() =>
             Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - UsedSkillPoints;
-        public int MaxHp() => Stats[(int)StatType.S] + Level * 2 - 2;
+
+        public int BaseArmor() => (Stats[(int)StatType.E] + 5) / 10;
+        public int BaseDmg() => (Stats[(int)StatType.S] + 5) / 10;
+        public int MaxHp() => Stats[(int)StatType.E] + Level * 2 - 2;
         public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
-        public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.S] / 10;
+        public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.E] / 10;
 
         #region SaveLoad
 
@@ -38,13 +42,14 @@ namespace Boot.Models
             Name = list.First();
             var intData = list.Skip(1).Select(int.Parse).ToList();
             Stats = new int[count];
+            MinStats = new int[count];
             var x = 0;
             for (var i = 0; i < Stats.Length; i++)
                 Stats[i] = intData[x++];
-            MinAttr = intData[x++];
             Level = intData[x++];
             Race = intData[x++];
             Chaos = (ChaosLevel)intData[x++];
+            SetMinStats();
             var skillsCount = intData[x++];
             for (var i = 0; i < skillsCount; i++)
                 Skills.Add(intData[x++], intData[x++]);
@@ -56,7 +61,7 @@ namespace Boot.Models
         {
             var list = new List<string> { Name };
             list.AddRange(Stats.Select(x => x.ToString()));
-            list.AddRange(new[] { MinAttr, Level, Race, (int)Chaos }.Select(x => x.ToString()));
+            list.AddRange(new[] { Level, Race, (int)Chaos }.Select(x => x.ToString()));
             list.Add(Skills.Count.ToString());
             if (Skills.Any())
             {
@@ -77,16 +82,16 @@ namespace Boot.Models
             Chaos = chaos;
             var count = EnumExtensions.GetEnumCount(typeof(StatType));
             Stats = new int[count];
+            MinStats = new int[count];
             var rand = new Random(DateTime.Now.Millisecond);
             for (var i = 0; i < Stats.Length; i++)
                 Stats[i] = Constants.MinStat;
-            MinAttr = Constants.MinStat;
+            SetMinStats();
             switch (chaos)
             {
                 case ChaosLevel.Normal:
                     for (var i = 0; i < Stats.Length; i++)
                         Stats[i] = 8;
-                    MinAttr = 8;
                     return;
                 case ChaosLevel.High:
                     return;
@@ -98,14 +103,17 @@ namespace Boot.Models
                         IncStat(rand.Next(count), -1);
                         IncStat(rand.Next(count), 1);
                     }
-                    MinAttr = Constants.MaxStat;
                     return;
                 case ChaosLevel.Random:
-                    MinAttr = Constants.MaxStat;
                     for (var i = 0; i < Stats.Length; i++)
                         Stats[i] = rand.Next(Constants.MaxStat) + 1;
                     return;
             }
+        }
+        
+        public void LoadRace(Race race)
+        {
+            race.effects?.ForEach(x => ApplyStatEffect(x, false, true));
         }
 
         #endregion
@@ -142,7 +150,7 @@ namespace Boot.Models
 
         public bool IncStat(int attr, int val)
         {
-            if (Stats[attr] + val < MinAttr
+            if (Stats[attr] + val < MinStats[attr]
                 || Stats[attr] + val > Constants.MaxStat
                 || Stats.Sum() + val > Constants.MaxStatSum)
                 return false;
@@ -182,16 +190,42 @@ namespace Boot.Models
 
         #endregion
 
-        private void ApplyStatEffect(Effect effect, bool revert = false)
+        private void ApplyStatEffect(Effect effect, bool revert = false, bool baseOnly= false)
         {
+            if (effect.type == EffectType.Neutral)
+                return;
             var stat = (int)effect.stat;
             var value = effect.value;
-            if (revert)
+            if (revert ^ effect.type == EffectType.Negative)
                 value *= -1;
-            switch (effect.type)
+
+            if (baseOnly)
+                MinStats[stat] += value;
+            else
+                Stats[stat] += value;
+        }
+
+        private void SetMinStats()
+        {
+            var baseMin = GetMinStat();
+            for (var i = 0; i < Stats.Length; i++)
+                MinStats[i] = baseMin;
+        }
+
+        private int GetMinStat()
+        {
+            switch (Chaos)
             {
-                case EffectType.Positive: Stats[stat] += value; return;
-                case EffectType.Negative: Stats[stat] -= value; return;
+                case ChaosLevel.Normal:
+                    return 8;
+                case ChaosLevel.High:
+                    return Constants.MinStat;
+                case ChaosLevel.Extreme:
+                    return Constants.MaxStat;
+                case ChaosLevel.Random:
+                    return Constants.MaxStat;
+                default:
+                    return Constants.MinStat;
             }
         }
     }

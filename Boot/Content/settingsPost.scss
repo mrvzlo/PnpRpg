@@ -62,6 +62,9 @@ td {
 //classes
 .carousel-indicators {
     position: relative;
+    li{
+        border-radius: 50%;
+    }
 }
 
 @media (max-width: map-get($container-max-widths, "sm")) {

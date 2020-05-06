@@ -25,6 +25,8 @@
                 <div class="dropdown-menu" aria-labelledby="rulesDropdown">
                     <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
                     <a class="nav-link" href="@Url.Action("Magic", "Home")">Школы магии</a>
+                    <a class="nav-link" href="@Url.Action("Perks", "Home")">Способности</a>
+                    <a class="nav-link" href="@Url.Action("Skills", "HeroGen")">Навыки</a>
                 </div>
             </li>
             @if (User.Identity.IsAuthenticated)

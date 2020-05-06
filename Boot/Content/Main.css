@@ -4618,7 +4618,7 @@ a.close.disabled {
     box-sizing: content-box;
     flex: 0 1 auto;
     width: 30px;
-    height: 3px;
+    height: 30px;
     margin-right: 3px;
     margin-left: 3px;
     text-indent: -999px;
@@ -7236,6 +7236,8 @@ td {
 
 .carousel-indicators {
   position: relative; }
+  .carousel-indicators li {
+    border-radius: 50%; }
 
 @media (max-width: 540px) {
   .smallForSmall {

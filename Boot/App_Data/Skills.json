@@ -42,13 +42,13 @@
       {
         "id": 6,
         "name": "блокирование",
-        "stat": 2,
+        "stat": 1,
         "difficulty": 2
       },
       {
         "id": 7,
         "name": "стрельба",
-        "stat": 1,
+        "stat": 2,
         "difficulty": 1
       }
     ]
@@ -114,49 +114,49 @@
       {
         "id": 20,
         "name": "кузнечное дело",
-        "stat": 1,
+        "stat": 0,
         "difficulty": 2
       },
       {
         "id": 21,
         "name": "алхимия",
-        "stat": 1,
+        "stat": 3,
         "difficulty": 1
       },
       {
         "id": 22,
         "name": "взлом",
-        "stat": 1,
+        "stat": 2,
         "difficulty": 1
       },
       {
         "id": 23,
         "name": "ловушки",
-        "stat": 1,
+        "stat": 2,
         "difficulty": 0
       },
       {
         "id": 24,
         "name": "торговля",
-        "stat": 1,
+        "stat": 3,
         "difficulty": 1
       },
       {
         "id": 25,
         "name": "кулинария",
-        "stat": 1,
+        "stat": 3,
         "difficulty": 0
       },
       {
         "id": 26,
         "name": "лечение",
-        "stat": 1,
+        "stat": 3,
         "difficulty": 1
       },
       {
         "id": 27,
         "name": "кожевничество",
-        "stat": 1,
+        "stat": 3,
         "difficulty": 2
       }
     ]
@@ -168,7 +168,7 @@
       {
         "id": 30,
         "name": "атлетика",
-        "stat": 2,
+        "stat": 1,
         "difficulty": 0
       },
       {
@@ -204,13 +204,13 @@
       {
         "id": 36,
         "name": "натурализм",
-        "stat": 1,
+        "stat": 3,
         "difficulty": 1
       },
       {
         "id": 37,
         "name": "плавание",
-        "stat": 2,
+        "stat": 1,
         "difficulty": 1
       }
     ]

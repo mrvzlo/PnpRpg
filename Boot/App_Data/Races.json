@@ -69,21 +69,6 @@
     "effects": [
       {
         "type": 1,
-        "stat": 1,
-        "value": 2
-      },
-      {
-        "stat": 2,
-        "value": 2
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Ворген",
-    "effects": [
-      {
-        "type": 1,
         "stat": 3,
         "value": 2
       },
@@ -94,12 +79,27 @@
     ]
   },
   {
+    "id": 4,
+    "name": "Ворген",
+    "effects": [
+      {
+        "type": 1,
+        "stat": 1,
+        "value": 2
+      },
+      {
+        "stat": 2,
+        "value": 2
+      }
+    ]
+  },
+  {
     "id": 8,
     "name": "Демон",
     "effects": [
       {
         "type": 1,
-        "stat": 1,
+        "stat": 2,
         "value": 2
       },
       {

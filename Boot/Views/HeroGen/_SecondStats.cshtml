@@ -2,23 +2,33 @@
 @using Boot.Helpers
 @model Boot.Models.HeroModel
 
-<div class="col-md-3 col-6">
+<div class="col-xl-2 col-md-4 col-6">
     <div class="row border">
         <div class="col bg-dark py-2 px-sm-4">Уровень<span class="float-right font-weight-bold">@Model.Level</span></div>
     </div>
 </div>
-<div class="col-md-3 col-6">
+<div class="col-xl-2 col-md-4 col-6">
     <div class="row border">
-        <div class="col bg-@StatType.S.Color() py-2 px-sm-4">Здоровье<span class="float-right font-weight-bold">@Model.MaxHp()</span></div>
+        <div class="col bg-@StatType.E.Color() py-2 px-sm-4">Здоровье<span class="float-right font-weight-bold">@Model.MaxHp()</span></div>
     </div>
 </div>
-<div class="col-md-3 col-6">
+<div class="col-xl-2 col-md-4 col-6">
+    <div class="row border">
+        <div class="col bg-@StatType.I.Color() py-2 px-sm-4">Запас маны<span class="float-right font-weight-bold">@Model.MaxEp()</span></div>
+    </div>
+</div>
+<div class="col-xl-2 col-md-4 col-6">
     <div class="row border">
         <div class="col bg-@StatType.S.Color() py-2 px-sm-4">Вместимость<span class="float-right font-weight-bold">@Model.MaxCarry()</span></div>
     </div>
 </div>
-<div class="col-md-3 col-6">
+<div class="col-xl-2 col-md-4 col-6">
     <div class="row border">
-        <div class="col bg-@StatType.I.Color() py-2 px-sm-4">Запас маны<span class="float-right font-weight-bold">@Model.MaxEp()</span></div>
+        <div class="col bg-@StatType.S.Color() py-2 px-sm-4">Урон<span class="float-right font-weight-bold">@Model.BaseDmg()</span></div>
+    </div>
+</div>
+<div class="col-xl-2 col-md-4 col-6">
+    <div class="row border">
+        <div class="col bg-@StatType.E.Color() py-2 px-sm-4">Защита<span class="float-right font-weight-bold">@Model.BaseArmor()</span></div>
     </div>
 </div>

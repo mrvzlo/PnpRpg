@@ -9,13 +9,14 @@ namespace Boot.Enums
         Perk = 1,
         [Description("Раса")]
         Race = 2,
-        [Description("Мин. сила")]
+        //attributes
+        [Description("Мин. {0}")]
         StatS = 10,
-        [Description("Мин. восприятие")]
+        [Description("Мин. {0}")]
         StatP = 11,
-        [Description("Мин. ловкость")]
+        [Description("Мин. {0}")]
         StatA = 12,
-        [Description("Мин. интеллект")]
+        [Description("Мин. {0}")]
         StatI = 13
     }
 }

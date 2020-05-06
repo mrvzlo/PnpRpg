@@ -221,8 +221,10 @@ namespace Boot.Controllers
             var cookie = GetCookie(CookieType.Hero);
             if (string.IsNullOrEmpty(cookie)) return null;
             var hero = new HeroModel(cookie);
-            var list = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileType.Skills) };
-            hero.UsedSkillPoints = CoreLogic.CalculateSkillPoints(hero, list);
+            var skills = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileType.Skills) };
+            var race = GetJsonFromFile<List<Race>>(FileType.Races).First(x => x.id == hero.Race);
+            hero.LoadRace(race);
+            hero.UsedSkillPoints = CoreLogic.CalculateSkillPoints(hero, skills);
             return hero;
         }
 
