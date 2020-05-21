@@ -30,5 +30,13 @@ namespace Boot.Controllers
             var list = GetJsonFromFile<List<MagicSchoolGroup>>(FileType.MagicSchools);
             return View(list);
         }
+
+        public ActionResult Weaponry()
+        {
+            var weapons = GetJsonFromFile<List<Weapon>>(FileType.Weapons);
+            var skills = GetJsonFromFile<List<SkillGroup>>(FileType.Skills).SelectMany(x => x.skills);
+            weapons.ForEach(weapon => weapon.Skill = skills.First(skill => skill.Id == weapon.SkillId));
+            return View(weapons);
+        }
     }
 }

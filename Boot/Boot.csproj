@@ -157,6 +157,7 @@
     <Compile Include="Models\JsonModels\SkillGroupList.cs" />
     <Compile Include="Models\JsonModels\SymbolInfo.cs" />
     <Compile Include="Models\JsonModels\Trait.cs" />
+    <Compile Include="Models\JsonModels\Weapon.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ModelStateError.cs" />
     <Compile Include="Models\RacePickModel.cs" />
@@ -167,12 +168,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Races.json" />
     <Content Include="App_Data\Rooms.json" />
+    <Content Include="App_Data\Weapons.json" />
     <None Include="Views\Account\_SignIn.cshtml" />
+    <Content Include="Content\images\bg.png" />
+    <Content Include="Content\images\perks.jpg" />
+    <Content Include="Content\images\rooms.jpg" />
+    <Content Include="Content\images\weaponry.png" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
     <Content Include="Views\HeroGen\_HeroInfo.cshtml" />
     <Content Include="Views\Room\Room.cshtml" />
+    <Content Include="Views\Home\Weaponry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Perks.json" />

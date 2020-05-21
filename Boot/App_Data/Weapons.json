@@ -1,0 +1,153 @@
+﻿[
+  {
+    "Level": 1,
+    "Name": "Топор",
+    "Weight": 3,
+    "SkillId": 2,
+    "Effects": [ 4 ]
+  },
+  {
+    "Level": 1,
+    "Name": "Простой лук",
+    "Weight": 2,
+    "SkillId": 7,
+    "Effects": []
+  },
+  {
+    "Level": 1,
+    "Name": "Дубина",
+    "Weight": 3,
+    "SkillId": 2,
+    "Effects": [ 2 ]
+  },
+  {
+    "Level": 1,
+    "Name": "Кинжал",
+    "Weight": 1,
+    "SkillId": 0,
+    "Effects": []
+  },
+  {
+    "Level": 1,
+    "Name": "Кирка",
+    "Weight": 4,
+    "SkillId": 2,
+    "Effects": [ 5 ]
+  },
+
+  {
+    "Level": 2,
+    "Name": "Шпага",
+    "Weight": 3,
+    "SkillId": 1,
+    "Effects": []
+  },
+  {
+    "Level": 2,
+    "Name": "Меч",
+    "Weight": 4,
+    "SkillId": 0,
+    "Effects": []
+  },
+  {
+    "Level": 2,
+    "Name": "Стилет",
+    "Weight": 2,
+    "SkillId": 0,
+    "Effects": []
+  },
+  {
+    "Level": 2,
+    "Name": "Посох",
+    "Weight": 3,
+    "SkillId": 3,
+    "Effects": []
+  },
+  {
+    "Level": 2,
+    "Name": "Копьё",
+    "Weight": 5,
+    "SkillId": 1,
+    "Effects": []
+  },
+  {
+    "Level": 2,
+    "Name": "Длинный лук",
+    "Weight": 3,
+    "SkillId": 7,
+    "Effects": []
+  },
+
+  {
+    "Level": 3,
+    "Name": "Сабля",
+    "Weight": 4,
+    "SkillId": 0,
+    "Effects": []
+  },
+  {
+    "Level": 3,
+    "Name": "Мечелом",
+    "Weight": 5,
+    "SkillId": 0,
+    "Effects": [ 3 ]
+  },
+  {
+    "Level": 3,
+    "Name": "Арбалет",
+    "Weight": 4,
+    "SkillId": 7,
+    "Effects": [ 4 ]
+  },
+  {
+    "Level": 3,
+    "Name": "Катана",
+    "Weight": 5,
+    "SkillId": 1,
+    "Effects": []
+  },
+  {
+    "Level": 3,
+    "Name": "Булава",
+    "Weight": 6,
+    "SkillId": 2,
+    "Effects": [ 4 ]
+  },
+
+  {
+    "Level": 4,
+    "Name": "Клеймор",
+    "Weight": 6,
+    "SkillId": 1,
+    "Effects": []
+  },
+  {
+    "Level": 4,
+    "Name": "Молот",
+    "Weight": 9,
+    "SkillId": 3,
+    "Effects": [ 2 ]
+  },
+  {
+    "Level": 4,
+    "Name": "Томагавк",
+    "Weight": 3,
+    "SkillId": 4,
+    "Effects": [ 4 ]
+  },
+  {
+    "Level": 4,
+    "Name": "Секира",
+    "Weight": 8,
+    "SkillId": 3,
+    "Effects": [4]
+  },
+  {
+    "Level": 4,
+    "Name": "Алебарда",
+    "Weight": 8,
+    "SkillId": 3,
+    "Effects": [ 4 ]
+  }
+
+]

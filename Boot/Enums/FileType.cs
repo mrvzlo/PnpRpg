@@ -25,6 +25,8 @@ namespace Boot.Enums
         [Description("Users.json")]
         Users,
         [Description("Rooms.json")]
-        Rooms
+        Rooms,
+        [Description("Weapons.json")]
+        Weapons
     }
 }

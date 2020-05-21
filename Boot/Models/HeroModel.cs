@@ -192,11 +192,11 @@ namespace Boot.Models
 
         private void ApplyStatEffect(Effect effect, bool revert = false, bool baseOnly= false)
         {
-            if (effect.type == EffectType.Neutral)
+            if (effect.type != EffectType.Weaken && effect.type != EffectType.Boost)
                 return;
             var stat = (int)effect.stat;
             var value = effect.value;
-            if (revert ^ effect.type == EffectType.Negative)
+            if (revert ^ effect.type == EffectType.Weaken)
                 value *= -1;
 
             if (baseOnly)

@@ -9,6 +9,7 @@
 <body>
     @Html.Partial("_Nav")
     <div class="container p-default">
+        <h3 class="text-center my-2">@ViewBag.Title</h3>
         <div id="main" class="row justify-content-center text-center">@RenderBody()</div>
     </div>
     <footer class="fixed-bottom">       
