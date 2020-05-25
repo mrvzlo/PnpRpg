@@ -207,7 +207,7 @@
     <None Include="App_Data\Reagents.json" />
     <Content Include="App_Data\Processes.json" />
     <Content Include="App_Data\Traits.json" />
-    <Content Include="App_Data\Users.json" />
+    <None Include="App_Data\Users.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
