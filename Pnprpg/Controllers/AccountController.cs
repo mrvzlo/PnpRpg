@@ -32,7 +32,7 @@ namespace Boot.Controllers
             if (!ModelState.IsValid)
                 return Json(partial);
 
-            var users = GetJsonFromFile<List<UserModel>>(FileType.Users) ?? new List<UserModel>();
+            var users = GetJsonFromFile<List<UserModel>>(FileNames.Users) ?? new List<UserModel>();
             var user = new UserModel(model, users, out var response);
             if (response.Successful())
             {
@@ -56,12 +56,12 @@ namespace Boot.Controllers
             if (!ModelState.IsValid)
                 return Json(partial);
 
-            var users = GetJsonFromFile<List<UserModel>>(FileType.Users);
+            var users = GetJsonFromFile<List<UserModel>>(FileNames.Users);
             var user = new UserModel(model, users, out var response);
             if (response.Successful())
             {
                 users.Add(user);
-                SaveJsonToFile(users, FileType.Users);
+                SaveJsonToFile(users, FileNames.Users);
 
                 CreateTicket(user);
                 var url = model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl)

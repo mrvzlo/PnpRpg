@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Boot.Enums;
+using Boot.Helpers;
 using Boot.Models;
 using Boot.Models.JsonModels;
 
@@ -12,9 +12,9 @@ namespace Boot.Controllers
     {
         public ActionResult Index()
         {
-            var users = GetJsonFromFile<List<UserModel>>(FileType.Users);
+            var users = GetJsonFromFile<List<UserModel>>(FileNames.Users);
             var user = users.Single(x => x.Username == User.Identity.Name);
-            var rooms = GetJsonFromFile<List<Room>>(FileType.Rooms);
+            var rooms = GetJsonFromFile<List<Room>>(FileNames.Rooms);
             if (user.Room == null)
                 return View(rooms);
             var room = rooms.SingleOrDefault(x => x.id == user.Room);
@@ -27,12 +27,12 @@ namespace Boot.Controllers
 
         public ActionResult Join(int id)
         {
-            var users = GetJsonFromFile<List<UserModel>>(FileType.Users);
+            var users = GetJsonFromFile<List<UserModel>>(FileNames.Users);
             var user = users.Single(x => x.Username == User.Identity.Name);
             if (user.Room == null)
             {
                 user.Room = id;
-                SaveJsonToFile(users, FileType.Users);
+                SaveJsonToFile(users, FileNames.Users);
             }
 
             return RedirectToAction("Index");

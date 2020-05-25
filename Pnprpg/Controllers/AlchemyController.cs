@@ -13,8 +13,8 @@ namespace Boot.Controllers
 
         public ActionResult Index()
         {
-            var reagents = GetJsonFromFile<List<SymbolInfo>>(FileType.Reagents);
-            var processes = GetJsonFromFile<List<SymbolInfo>>(FileType.Processes);
+            var reagents = GetJsonFromFile<List<SymbolInfo>>(FileNames.Reagents);
+            var processes = GetJsonFromFile<List<SymbolInfo>>(FileNames.Processes);
             ViewBag.Reagents = reagents.Select(x => x.ToSelectListItem()).ToList();
             ViewBag.Processes = processes.Select(x => x.ToSelectListItem()).ToList();
             return View();
@@ -23,18 +23,18 @@ namespace Boot.Controllers
         public PartialViewResult AlchemyResult(int reagent, int process)
         {
             process %= 4;
-            var reactions = GetJsonFromFile<List<Reaction>>(FileType.Reactions);
+            var reactions = GetJsonFromFile<List<Reaction>>(FileNames.Reactions);
 
             var reaction = reactions.Single(x => x.reagent == reagent && x.process == process);
             string model;
             if (reaction.transmute)
             {
-                var reagents = GetJsonFromFile<List<SymbolInfo>>(FileType.Reagents);
+                var reagents = GetJsonFromFile<List<SymbolInfo>>(FileNames.Reagents);
                 model = reagents.Single(x => x.id == reaction.result).ToString();
             }
             else
             {
-                var potions = GetJsonFromFile<List<Potion>>(FileType.Potions);
+                var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
                 model = potions.Single(x => x.id == reaction.result).name;
             }
 
@@ -43,7 +43,7 @@ namespace Boot.Controllers
 
         public JsonResult Random()
         {
-            var potions = GetJsonFromFile<List<Potion>>(FileType.Potions);
+            var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
             var r = new Random().Next(potions.Count);
             var potion = potions.Single(x => x.id == r).name;
             var partial = this.RenderPartialViewToString("_RandomResult", potion);

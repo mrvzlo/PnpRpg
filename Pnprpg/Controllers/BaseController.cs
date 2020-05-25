@@ -22,16 +22,16 @@ namespace Boot.Controllers
         protected JsonResult ReturnJson(string partial, string url, string status = null) =>
             Json(new { url, partial, status }, 0);
 
-        protected T GetJsonFromFile<T>(FileType fileType)
+        protected T GetJsonFromFile<T>(string fileName)
         {
-            var path = Server.MapPath($"~/App_Data/{fileType.Description()}");
+            var path = Server.MapPath($"~/App_Data/{fileName}");
             var json = System.IO.File.ReadAllText(path, Encoding.UTF8);
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        protected void SaveJsonToFile<T>(T obj, FileType fileType)
+        protected void SaveJsonToFile<T>(T obj, string fileName)
         {
-            var path = Server.MapPath($"~/App_Data/{fileType.Description()}");
+            var path = Server.MapPath($"~/App_Data/{fileName}");
             var content = JsonConvert.SerializeObject(obj);
             System.IO.File.WriteAllText(path, content, Encoding.UTF8);
         }

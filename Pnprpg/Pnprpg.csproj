@@ -140,6 +140,7 @@
     <Compile Include="Helpers\EnumExtension.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Enums\ChaosLevel.cs" />
+    <Compile Include="Helpers\FileNames.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Models\HeroModel.cs" />
     <Compile Include="Enums\Status.cs" />
@@ -195,7 +196,6 @@
     <Content Include="Content\Main.min.css">
       <DependentUpon>Main.css</DependentUpon>
     </Content>
-    <Compile Include="Enums\FileType.cs" />
     <Compile Include="Enums\EffectType.cs" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
