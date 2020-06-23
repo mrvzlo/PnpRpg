@@ -12,12 +12,10 @@
         <h3 class="text-center my-2">@ViewBag.Title</h3>
         <div id="main" class="row justify-content-center text-center">@RenderBody()</div>
     </div>
-    <footer class="fixed-bottom">       
+    <footer class="fixed-bottom">
         <div id="loading">@Html.Partial("_Loading")</div>
     </footer>
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/main")
-    <script>$(function () { MainJs.init(); });</script>
+    @Html.Partial("_Scripts")
     @RenderSection("scripts", false)
 </body>
 </html>

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using Boot.Enums;
 using Boot.Helpers;
@@ -14,6 +16,7 @@ namespace Boot.Controllers
         public ActionResult Index(Status status = Status.Chaos)
         {
             ViewBag.Status = status;
+            //return View("Generation");
             return View(GetHeroFromCookies());
         }
 
@@ -221,12 +224,22 @@ namespace Boot.Controllers
             return View(hero);
         }
 
+        #region Json
+
+        public PartialViewResult GetStats()
+        {
+            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
+            return PartialView(stats);
+        }
+
+        #endregion
+
         #region private
 
         private HeroModel GetHeroFromCookies()
         {
             var cookie = GetCookie(CookieType.Hero);
-            if (string.IsNullOrEmpty(cookie)) return null;
+            if (string.IsNullOrEmpty(cookie) || !cookie.Contains(StringHelper.Separator)) return null;
             var hero = new HeroModel(cookie);
             var skills = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills) };
             var race = GetJsonFromFile<List<Race>>(FileNames.Races).First(x => x.id == hero.Race);

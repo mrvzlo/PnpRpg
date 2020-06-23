@@ -7,6 +7,7 @@ namespace Boot.Models.JsonModels
     {
         public StatType Stat;
         public string Special;
+        public string Element;
         public List<MagicSchoolInfo> Schools;
     }
 }

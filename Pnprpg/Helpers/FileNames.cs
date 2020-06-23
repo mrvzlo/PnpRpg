@@ -14,5 +14,7 @@
         public static string Users = "Users.json";
         public static string Rooms = "Rooms.json";
         public static string Weapons = "Weapons.json";
+        public static string Stats = "Stats.json";
+        public static string Spells = "Spells.json";
     }
 }

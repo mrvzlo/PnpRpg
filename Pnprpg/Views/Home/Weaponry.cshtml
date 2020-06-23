@@ -9,7 +9,7 @@
 <div class="nav nav-tabs col-12 mt-md-2 row justify-content-center">
     @foreach (var level in levels)
     {
-        <a class="btn border mx-1 btn-@colors[level-1]" data-toggle="tab" href="#level_@level">
+        <a class="btn border mx-1 btn-@colors[level-1] @(level == 1 ? "active" : "")" data-toggle="tab" href="#level_@level">
             <span class="d-inline d-sm-none">@level</span>
             <span class="d-none d-sm-inline">@level уровень</span>
         </a>
@@ -20,7 +20,7 @@
     @foreach (var level in levels)
     {
         <div class="tab-pane fade @(level == 1 ? "show active" : "")" id="level_@level">
-            <table class="table">
+            <table class="table smallForSmall">
                 <tr>
                     <th>Название</th>
                     <th>Навык</th>

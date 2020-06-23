@@ -156,6 +156,7 @@
     <Compile Include="Models\JsonModels\SkillGroup.cs" />
     <Compile Include="Models\JsonModels\SkillInfo.cs" />
     <Compile Include="Models\JsonModels\SkillGroupList.cs" />
+    <Compile Include="Models\JsonModels\Spell.cs" />
     <Compile Include="Models\JsonModels\SymbolInfo.cs" />
     <Compile Include="Models\JsonModels\Trait.cs" />
     <Compile Include="Models\JsonModels\Weapon.cs" />
@@ -164,23 +165,31 @@
     <Compile Include="Models\RacePickModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\ServiceResponse.cs" />
+    <Compile Include="Models\Stat.cs" />
     <Compile Include="Models\StatusResult.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\Races.json" />
     <Content Include="App_Data\Rooms.json" />
     <Content Include="App_Data\Weapons.json" />
+    <Content Include="App_Data\Stats.json" />
+    <Content Include="App_Data\Spells.json" />
     <None Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Content\images\bg.png" />
     <Content Include="Content\images\perks.jpg" />
     <Content Include="Content\images\rooms.jpg" />
     <Content Include="Content\images\weaponry.png" />
+    <Content Include="Scripts\axios.js" />
+    <Content Include="Scripts\herogen\HeroGen.js" />
+    <Content Include="Scripts\herogen\Stats.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
     <Content Include="Views\HeroGen\_HeroInfo.cshtml" />
     <Content Include="Views\Room\Room.cshtml" />
     <Content Include="Views\Home\Weaponry.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Perks.json" />
@@ -396,6 +405,8 @@
     <Content Include="Views\Alchemy\_RandomResult.cshtml" />
     <Content Include="Views\HeroGen\_RacesDropdown.cshtml" />
     <Content Include="Views\HeroGen\MyHero.cshtml" />
+    <None Include="Views\HeroGen\Generation.cshtml" />
+    <Content Include="Views\HeroGen\GetStats.cshtml" />
     <None Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />

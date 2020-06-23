@@ -7222,7 +7222,7 @@ nav {
 
 a {
   color: black; }
-  a:hover {
+  a:hover, a:active, a.active {
     color: black;
     font-weight: bold;
     text-decoration: none; }

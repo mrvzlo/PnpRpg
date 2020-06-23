@@ -1,0 +1,33 @@
+﻿@model List<Boot.Models.Stat>
+
+<div id="heroStats" class="row">
+    @foreach (var stat in Model)
+    {
+        <div class="col-md-3 col-6 p-0">
+            <div class="py-2 px-sm-4 text-light" style="background-color: @stat.Color">
+                @stat.Name
+                <span id="stat_@stat.Id" class="float-right font-weight-bold" v-model="hero.Stats[@stat.Id]"></span>
+            </div>
+            <div class="btn-group my-1">
+                @Button(-3, true)
+                @Button(-1, false)
+                @Button(1, false)
+                @Button(3, true)
+            </div>
+        </div>
+    }
+</div>
+
+@helper Button(int value, bool onlyLg)
+{
+    var onlyLgClass = onlyLg ? "d-lg-block d-none" : "";
+    <button class="btn @onlyLgClass btn-primary">
+        @(value > 0 ? $"+{value}" : $"{value}")
+    </button>
+}
+
+@Html.Partial("_Scripts")
+<script>
+    console.log(0);
+    heroStatsInit(@Model.Count)
+</script>

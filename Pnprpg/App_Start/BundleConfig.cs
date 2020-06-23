@@ -15,6 +15,14 @@ namespace Boot
                         "~/Scripts/jquery.unobtrusive-ajax.js",
                         "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/vue/core").Include(
+                "~/Scripts/axios.js",
+                "~/Scripts/vue.js"));
+
+            bundles.Add(new ScriptBundle("~/vue/herogen").Include(
+                "~/Scripts/herogen/stats.js",
+                "~/Scripts/herogen/herogen.js"));
+
             bundles.Add(new ScriptBundle("~/js/main").Include(
                 "~/Scripts/main.js"));
             

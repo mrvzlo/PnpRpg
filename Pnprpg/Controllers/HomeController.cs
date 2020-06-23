@@ -29,6 +29,10 @@ namespace Boot.Controllers
         public ActionResult Magic()
         {
             var list = GetJsonFromFile<List<MagicSchoolGroup>>(FileNames.MagicSchools);
+            var spells = GetJsonFromFile<List<Spell>>(FileNames.Spells);
+            foreach (var ms in list)
+                foreach (var s in ms.Schools)
+                    s.Spells = spells.Where(x => x.School == s.Id).OrderBy(x => x.Level).ToList();
             return View(list);
         }
 
