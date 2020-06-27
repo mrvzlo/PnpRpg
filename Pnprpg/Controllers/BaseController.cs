@@ -12,9 +12,9 @@ namespace Boot.Controllers
     public class BaseController : Controller
     {
         protected void SaveCookie(CookieType t, string data) =>
-            Response.Cookies.Add(CreateCookie(t.Description(), data));
+            Response.Cookies.Add(CreateCookie(t.ToString().ToLower(), data));
 
-        protected string GetCookie(CookieType t) => Request.Cookies[t.Description()]?.Value;
+        protected string GetCookie(CookieType t) => Request.Cookies[t.ToString().ToLower()]?.Value;
 
         private HttpCookie CreateCookie(string name, string data, int hours = 24) =>
             new HttpCookie(name) { Value = data, Expires = DateTime.Now.AddHours(hours) };

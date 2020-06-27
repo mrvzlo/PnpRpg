@@ -41,13 +41,13 @@
                                 span = $"<span class='badge alert-info'>{effect.value}</span>";
                                 break;
                         }
-                        if (effect.stat == null)
+                        if (string.IsNullOrEmpty(effect.statId))
                         {
                             @Html.Raw(string.Format(effect.desc, span))
                         }
                         else
                         {
-                            @Html.Raw(string.Format(effect.desc, span, effect.stat.Translation()))
+                            @Html.Raw(string.Format(effect.desc, span, effect.Stat.Name))
                         }
                     }
                 </div>
@@ -56,7 +56,7 @@
     </div>
 }
 <div class="col-12 py-2">
-    <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetTraits")">
+    <button class="btn btn-primary btn-sm ajax-btn" data-url="@Url.Action("ResetTraits")">
         ↺ Перераспределить
     </button>
     <button class="btn btn-success btn-sm ajax-btn" data-url="@Url.Action("GetSkills")">

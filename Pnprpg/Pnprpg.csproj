@@ -131,7 +131,6 @@
     <Compile Include="Enums\CookieType.cs" />
     <Compile Include="Enums\Difficulty.cs" />
     <Compile Include="Enums\RequirementType.cs" />
-    <Compile Include="Enums\StatType.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -165,7 +164,8 @@
     <Compile Include="Models\RacePickModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\ServiceResponse.cs" />
-    <Compile Include="Models\Stat.cs" />
+    <Compile Include="Models\JsonModels\Stat.cs" />
+    <Compile Include="Models\HeroStat.cs" />
     <Compile Include="Models\StatusResult.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,10 +180,6 @@
     <Content Include="Content\images\perks.jpg" />
     <Content Include="Content\images\rooms.jpg" />
     <Content Include="Content\images\weaponry.png" />
-    <Content Include="Scripts\axios.js" />
-    <Content Include="Scripts\herogen\HeroGen.js" />
-    <Content Include="Scripts\herogen\Stats.js" />
-    <Content Include="Scripts\vue.js" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
@@ -407,8 +403,6 @@
     <Content Include="Views\Alchemy\_RandomResult.cshtml" />
     <Content Include="Views\HeroGen\_RacesDropdown.cshtml" />
     <Content Include="Views\HeroGen\MyHero.cshtml" />
-    <Content Include="Views\HeroGen\Generation.cshtml" />
-    <Content Include="Views\HeroGen\GetStats.cshtml" />
     <Content Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />
@@ -436,6 +430,7 @@
     <Content Include="Views\Shared\_Loading.cshtml" />
     <Content Include="Views\Alchemy\_ReactionResult.cshtml" />
     <Content Include="Views\Home\Perks.cshtml" />
+    <Content Include="Views\HeroGen\_HeroStatPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

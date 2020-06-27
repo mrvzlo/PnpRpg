@@ -7246,6 +7246,9 @@ td {
 .pointer {
   cursor: pointer; }
 
+.big-badge {
+  font-size: 100%; }
+
 .lds-dual-ring {
   display: inline-block;
   width: 40px;

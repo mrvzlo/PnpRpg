@@ -9,47 +9,47 @@ namespace Boot.Models
 {
     public class HeroModel
     {
-        public int[] Stats;
-        public int[] MinStats;
+        public List<HeroStat> Stats;
         public int[] Traits;
         public int Level, Race;
         public ChaosLevel Chaos;
         public Dictionary<int, int> Skills;
         public int UsedSkillPoints;
-
+        
         public string Name;
-
-        public int FreeStatPoints() =>
-            Chaos == ChaosLevel.Random ? 0 : Constants.MaxStatSum - Stats.Sum();
-        public int FreeSkillPoints() =>
-            Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - UsedSkillPoints;
-
-        public int BaseArmor() => (Stats[(int)StatType.E] + 5) / 10;
-        public int BaseDmg() => (Stats[(int)StatType.S] + 5) / 10;
-        public int MaxHp() => Stats[(int)StatType.E] + Level * 2 - 2;
-        public int MaxEp() => Math.Max(Stats[(int)StatType.I] + Level - 4, 0);
-        public int MaxCarry() => Stats[(int)StatType.S] * Stats[(int)StatType.E] / 10;
 
         #region SaveLoad
 
-        public HeroModel(string data)
+        public HeroModel(string data, List<Stat> stats)
         {
+            Stats = new List<HeroStat>();
             ResetSkills();
             ResetTraits();
             if (string.IsNullOrEmpty(data)) return;
-            var count = EnumExtensions.GetEnumCount(typeof(StatType));
             var list = data.Split(StringHelper.Separator);
-            Name = list.First();
-            var intData = list.Skip(1).Select(int.Parse).ToList();
-            Stats = new int[count];
-            MinStats = new int[count];
+            if (list.Length < 2) return;
             var x = 0;
-            for (var i = 0; i < Stats.Length; i++)
-                Stats[i] = intData[x++];
+            Name = list[x++];
+            var count = int.Parse(list[x++]);
+            if (count != stats.Count)
+                return;
+
+            for (int i=0; i<count; i++)
+            {
+                var symbol = list[x++];
+                var stat = new HeroStat(stats.Single(y => y.Id == symbol))
+                {
+                    Value = int.Parse(list[x++])
+                };
+                Stats.Add(stat);
+            }
+
+            var intData = list.Skip(x).Select(int.Parse).ToList();
+            x = 0;
+
             Level = intData[x++];
             Race = intData[x++];
             Chaos = (ChaosLevel)intData[x++];
-            SetMinStats();
             var skillsCount = intData[x++];
             for (var i = 0; i < skillsCount; i++)
                 Skills.Add(intData[x++], intData[x++]);
@@ -59,8 +59,8 @@ namespace Boot.Models
 
         public override string ToString()
         {
-            var list = new List<string> { Name };
-            list.AddRange(Stats.Select(x => x.ToString()));
+            var list = new List<string> { Name, Stats.Count().ToString() };
+            list.AddRange(Stats.Select(x => $"{x.Id}{StringHelper.Separator}{x.Value}"));
             list.AddRange(new[] { Level, Race, (int)Chaos }.Select(x => x.ToString()));
             list.Add(Skills.Count.ToString());
             if (Skills.Any())
@@ -73,41 +73,20 @@ namespace Boot.Models
             return string.Join($"{StringHelper.Separator}", list);
         }
 
-        public HeroModel(ChaosLevel chaos)
+        public HeroModel(ChaosLevel chaos, List<Stat> stats)
         {
             Name = "";
+            Stats = new List<HeroStat>();
             ResetSkills();
             ResetTraits();
             Level = 1;
             Chaos = chaos;
-            var count = EnumExtensions.GetEnumCount(typeof(StatType));
-            Stats = new int[count];
-            MinStats = new int[count];
-            var rand = new Random(DateTime.Now.Millisecond);
-            for (var i = 0; i < Stats.Length; i++)
-                Stats[i] = Constants.MinStat;
-            SetMinStats();
-            switch (chaos)
+            var count = stats.Count;
+            for (int i = 0; i < count; i++)
             {
-                case ChaosLevel.Normal:
-                    for (var i = 0; i < Stats.Length; i++)
-                        Stats[i] = 8;
-                    return;
-                case ChaosLevel.High:
-                    return;
-                case ChaosLevel.Extreme:
-                    for (var i = 0; i < Stats.Length; i++)
-                        Stats[i] = Constants.MaxStat / 2;
-                    for (var i = 0; i < Constants.MaxStat / 2; i++)
-                    {
-                        IncStat(rand.Next(count), -1);
-                        IncStat(rand.Next(count), 1);
-                    }
-                    return;
-                case ChaosLevel.Random:
-                    for (var i = 0; i < Stats.Length; i++)
-                        Stats[i] = rand.Next(Constants.MaxStat) + 1;
-                    return;
+                var stat = new HeroStat(stats[i]);
+                stat.Set(chaos);
+                Stats.Add(stat);
             }
         }
         
@@ -115,6 +94,23 @@ namespace Boot.Models
         {
             race.effects?.ForEach(x => ApplyStatEffect(x, false, true));
         }
+
+        #endregion
+
+        #region SecondStats
+
+        public int GetStat(string symbol) => Stats.Single(x => x.Id == symbol).Value;
+
+        public int FreeStatPoints() =>
+            Chaos == ChaosLevel.Random ? 0 : Constants.ManualStatSum - Stats.Select(x => x.Value).Sum();
+        public int FreeSkillPoints() =>
+            Constants.BaseSkillPoints + Constants.SkillPointsPerLvl * Level - UsedSkillPoints;
+
+        public int BaseArmor() => (GetStat("E") + 5) / 10;
+        public int BaseDmg() => (GetStat("S") + 5) / 10;
+        public int MaxHp() => GetStat("E") + Level * 2 - 2;
+        public int MaxEp() => Math.Max(GetStat("I") + Level - 4, 0);
+        public int MaxCarry() => GetStat("S") * GetStat("E") / 10;
 
         #endregion
 
@@ -126,7 +122,7 @@ namespace Boot.Models
             oldRace.effects?.ForEach(x => ApplyStatEffect(x, true));
             newRace.effects?.ForEach(x => ApplyStatEffect(x));
 
-            return !(Stats.Any(x => x < 1 || x > Constants.MaxStat));
+            return Stats.All(x => x.IsValid());
         }
 
         public void ResetTraits()
@@ -148,14 +144,9 @@ namespace Boot.Models
             return false;
         }
 
-        public bool IncStat(int attr, int val)
+        public bool ManualIncStat(string attr, int val)
         {
-            if (Stats[attr] + val < MinStats[attr]
-                || Stats[attr] + val > Constants.MaxStat
-                || Stats.Sum() + val > Constants.MaxStatSum)
-                return false;
-            Stats[attr] += val;
-            return true;
+            return Stats.Single(x => x.Id == attr).ManualBoost(val);
         }
 
         #region Skills 
@@ -194,39 +185,11 @@ namespace Boot.Models
         {
             if (effect.type != EffectType.Weaken && effect.type != EffectType.Boost)
                 return;
-            var stat = (int)effect.stat;
             var value = effect.value;
             if (revert ^ effect.type == EffectType.Weaken)
                 value *= -1;
 
-            if (baseOnly)
-                MinStats[stat] += value;
-            else
-                Stats[stat] += value;
-        }
-
-        private void SetMinStats()
-        {
-            var baseMin = GetMinStat();
-            for (var i = 0; i < Stats.Length; i++)
-                MinStats[i] = baseMin;
-        }
-
-        private int GetMinStat()
-        {
-            switch (Chaos)
-            {
-                case ChaosLevel.Normal:
-                    return 8;
-                case ChaosLevel.High:
-                    return Constants.MinStat;
-                case ChaosLevel.Extreme:
-                    return Constants.MaxStat;
-                case ChaosLevel.Random:
-                    return Constants.MaxStat;
-                default:
-                    return Constants.MinStat;
-            }
+            Stats.Single(x => x.Id == effect.statId).EffectBoost(value, baseOnly);
         }
     }
 }

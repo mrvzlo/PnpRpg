@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using Boot.Enums;
 using Boot.Helpers;
@@ -15,29 +13,24 @@ namespace Boot.Controllers
     {
         public ActionResult Index(Status status = Status.Chaos)
         {
+            if (status == Status.Chaos && !User.IsInRole(UserRole.Master.ToString()))
+                status = Status.Stats;
             ViewBag.Status = status;
-            //return View("Generation");
             return View(GetHeroFromCookies());
-        }
-
-        public JsonResult GetChaosChoice()
-        {
-            var partial = this.RenderPartialViewToString("_Chaos");
-            return ReturnJson(partial, GetUrl(Status.Chaos));
         }
 
         public JsonResult GetHeroModel(ChaosLevel level)
         {
-            var heroModel = new HeroModel(level);
+            var heroModel = CreateHero(level);
             SaveHeroToCookies(heroModel);
             var partial = this.RenderPartialViewToString("_StatEdit", heroModel);
             return ReturnJson(partial, GetUrl(Status.Stats));
         }
 
-        public JsonResult ChangeStat(StatType stat, int value)
+        public JsonResult ChangeStat(string stat, int value)
         {
             var hero = GetHeroFromCookies();
-            hero.IncStat((int)stat, value);
+            hero.ManualIncStat(stat, value);
             SaveHeroToCookies(hero);
             var partial = this.RenderPartialViewToString("_StatEdit", hero);
             return ReturnJson(partial, GetUrl(Status.Stats));
@@ -98,6 +91,11 @@ namespace Boot.Controllers
         public List<Trait> GetTraits(HeroModel hero)
         {
             var traits = GetJsonFromFile<List<Trait>>(FileNames.Traits);
+            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
+            foreach (var trait in traits)
+                foreach (var effect in trait.effects)
+                    if (!string.IsNullOrEmpty(effect.statId))
+                        effect.Stat = stats.Single(x => x.Id == effect.statId);
             traits.ForEach(x => x.Chosen = hero.Traits.Contains(x.id));
             return traits;
         }
@@ -130,7 +128,8 @@ namespace Boot.Controllers
         public PartialViewResult GetTraitsNames(List<int> ids)
         {
             var traits = GetJsonFromFile<List<Trait>>(FileNames.Traits);
-            var names = ids.Where(x => x >= 0).Select(x => traits[x].name).ToList();
+            var names = ids.Where(x => traits.Any(y => y.id == x))
+                .Select(x => traits.First(y => y.id == x).name).ToList();
             return PartialView("_List", names);
         }
 
@@ -142,7 +141,7 @@ namespace Boot.Controllers
 
         public PartialViewResult SkillGroupList(bool editable)
         {
-            var list = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills) };
+            var list = GetSkillGroupList();
             var hero = editable ? GetHeroFromCookies() : null;
 
             if (hero != null)
@@ -150,6 +149,7 @@ namespace Boot.Controllers
 
             return PartialView("_SkillList", list);
         }
+
         public JsonResult GetSkills()
         {
             var hero = GetHeroFromCookies();
@@ -160,7 +160,7 @@ namespace Boot.Controllers
         public JsonResult AddSkill(int group, int id)
         {
             var hero = GetHeroFromCookies();
-            var list = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills) };
+            var list = GetSkillGroupList();
             var skill = list.Groups[group].skills[id % 10];
             hero.AddSkill(skill);
             SaveHeroToCookies(hero);
@@ -173,7 +173,7 @@ namespace Boot.Controllers
         public JsonResult ResetSkills()
         {
             var hero = GetHeroFromCookies();
-            var list = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills) };
+            var list = GetSkillGroupList();
             hero.ResetSkills();
             SaveHeroToCookies(hero);
             UpdateSkillsForHero(hero, ref list);
@@ -219,29 +219,29 @@ namespace Boot.Controllers
         public ActionResult MyHero()
         {
             var users = GetJsonFromFile<List<UserModel>>(FileNames.Users);
+            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
             var heroCode = users.Single(x => x.Username == User.Identity.Name).HeroCode;
-            var hero = new HeroModel(heroCode);
+            var hero = new HeroModel(heroCode, stats);
             return View(hero);
         }
 
-        #region Json
+        #region private
 
-        public PartialViewResult GetStats()
+        private HeroModel CreateHero(ChaosLevel chaos)
         {
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            return PartialView(stats);
+            return new HeroModel(chaos, stats);
         }
-
-        #endregion
-
-        #region private
 
         private HeroModel GetHeroFromCookies()
         {
             var cookie = GetCookie(CookieType.Hero);
-            if (string.IsNullOrEmpty(cookie) || !cookie.Contains(StringHelper.Separator)) return null;
-            var hero = new HeroModel(cookie);
-            var skills = new SkillGroupList { Groups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills) };
+            if (string.IsNullOrEmpty(cookie) || !cookie.Contains(StringHelper.Separator))
+                return User.IsInRole(UserRole.Master.ToString()) ? null : CreateHero(ChaosLevel.Normal);
+
+            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
+            var hero = new HeroModel(cookie, stats);
+            var skills = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).SelectMany(x => x.skills).ToList();
             var race = GetJsonFromFile<List<Race>>(FileNames.Races).First(x => x.id == hero.Race);
             hero.LoadRace(race);
             hero.UsedSkillPoints = CoreLogic.CalculateSkillPoints(hero, skills);
@@ -261,6 +261,16 @@ namespace Boot.Controllers
                 skill.CanInc = hero.CanIncSkill(skill);
                 skill.Level = hero.Skills[skill.Id];
             }
+        }
+
+        private SkillGroupList GetSkillGroupList()
+        {
+            var skillGroups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills);
+            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
+            foreach (var group in skillGroups)
+                foreach (var skill in group.skills)
+                    skill.Stat = stats.Single(x => x.Id == skill.StatId);
+            return new SkillGroupList { Groups = skillGroups }; ;
         }
 
         #endregion

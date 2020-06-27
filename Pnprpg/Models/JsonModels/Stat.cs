@@ -2,7 +2,6 @@
 {
     public class Stat
     {
-        public int Id;
-        public string Name, Color;
+        public string Id, Name, Color;
     }
 }

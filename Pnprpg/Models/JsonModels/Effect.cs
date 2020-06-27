@@ -5,8 +5,8 @@ namespace Boot.Models.JsonModels
     public class Effect
     {
         public EffectType type;
-        public string desc;
+        public string desc, statId;
         public int value;
-        public StatType? stat;
+        public Stat Stat;
     }
 }

@@ -1,5 +1,4 @@
-﻿using Boot.Enums;
-using Boot.Helpers;
+﻿using Boot.Helpers;
 
 namespace Boot.Models.JsonModels
 {
@@ -7,8 +6,9 @@ namespace Boot.Models.JsonModels
     {
         public int Id, Difficulty, Level;
         public bool CanInc;
-        public string Name;
-        public StatType Stat;
+        public string Name, StatId;
+
+        public Stat Stat;
 
         public override string ToString()
         {

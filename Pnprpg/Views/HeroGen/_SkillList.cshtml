@@ -14,7 +14,7 @@
                     @foreach (var skill in group.skills)
                     {
                         <tr>
-                            <td class="alert-@skill.Stat.Color()">@skill.Stat</td>
+                            <td class="text-light" style="background-color: @skill.Stat.Color">@skill.Stat.Id</td>
                             <td>@skill.ToString()</td>
                             <td class="p-0">@(skill.Difficulty + 1)</td>
                             @if (Model.Editable)
@@ -57,7 +57,7 @@
 @if (Model.Editable)
 {
     <div>Свободных очков навыков: @Model.FreePoints</div>
-        <button class="btn btn-info btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">
+        <button class="btn btn-primary btn-sm ajax-btn" data-url="@Url.Action("ResetSkills")" data-container="skillList">
             ↺ Перераспределить
         </button>
         <button class="btn btn-@(Model.FreePoints == 0 ? "success" : "secondary") btn-sm ajax-btn"
