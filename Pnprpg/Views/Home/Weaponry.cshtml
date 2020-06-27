@@ -22,10 +22,10 @@
         <div class="tab-pane fade @(level == 1 ? "show active" : "")" id="level_@level">
             <table class="table smallForSmall">
                 <tr>
-                    <th>Название</th>
+                    <th class="w-25">Название</th>
                     <th>Навык</th>
                     <th>Вес</th>
-                    <th>Бонусы</th>
+                    <th>Бонус</th>
                 </tr>
                 @foreach (var weapon in Model.Where(x => x.Level == level))
                 {

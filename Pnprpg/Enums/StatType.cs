@@ -19,7 +19,7 @@ namespace Boot.Enums
         A,
         [Description("Intelligence")]
         [Translation("Интеллект")]
-        [Color("primary")]
+        [Color("info")]
         I
     }
 }

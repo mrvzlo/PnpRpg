@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Boot.Enums;
@@ -42,6 +44,22 @@ namespace Boot.Controllers
             var skills = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).SelectMany(x => x.skills);
             weapons.ForEach(weapon => weapon.Skill = skills.First(skill => skill.Id == weapon.SkillId));
             return View(weapons);
+        }
+
+        public JsonResult RandomSpell()
+        {
+            var spells = GetJsonFromFile<List<Spell>>(FileNames.Spells);
+            var r = new Random().Next(spells.Count);
+            var potion = spells[r].Name;
+            var partial = this.RenderPartialViewToString("_RandomSpell", potion);
+            return Json(new { partial }, JsonRequestBehavior.AllowGet);
+        }
+
+        public FileResult CharacterList()
+        {
+            var path = Server.MapPath($"~/App_Data/{FileNames.CharacterSheet}");
+            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
+            return File(file, "application/pdf");
         }
     }
 }

@@ -26,17 +26,9 @@ namespace Boot.Controllers
             var reactions = GetJsonFromFile<List<Reaction>>(FileNames.Reactions);
 
             var reaction = reactions.Single(x => x.reagent == reagent && x.process == process);
-            string model;
-            if (reaction.transmute)
-            {
-                var reagents = GetJsonFromFile<List<SymbolInfo>>(FileNames.Reagents);
-                model = reagents.Single(x => x.id == reaction.result).ToString();
-            }
-            else
-            {
-                var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
-                model = potions.Single(x => x.id == reaction.result).name;
-            }
+
+            var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
+            var model = potions.Single(x => x.id == reaction.result).name;
 
             return PartialView("_ReactionResult", model);
         }
@@ -45,7 +37,7 @@ namespace Boot.Controllers
         {
             var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
             var r = new Random().Next(potions.Count);
-            var potion = potions.Single(x => x.id == r).name;
+            var potion = potions[r].name;
             var partial = this.RenderPartialViewToString("_RandomResult", potion);
             return Json(new { partial }, JsonRequestBehavior.AllowGet);
         }
