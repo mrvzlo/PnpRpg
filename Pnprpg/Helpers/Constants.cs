@@ -2,6 +2,7 @@
 {
     public static class Constants
     {
+        public static string Version = "v2_3_1";
         public static int MaxStat = 20;
         public static int MinStat = 1;
         public static int ManualMaxStat = 12;

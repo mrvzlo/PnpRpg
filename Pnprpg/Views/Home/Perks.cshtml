@@ -40,10 +40,9 @@
                                     @(r.type.Description()): @r.strValue
                                 </li>
                                 break;
-                            default:
-                                var stat = (StatType)((int)r.type - 10);
+                            case RequirementType.Stat:
                                 <li>
-                                    @string.Format(r.type.Description(), stat.Translation()): @r.value
+                                    @r.strValue: @r.value
                                 </li>
                                 break;
 

@@ -20,15 +20,25 @@ namespace Boot.Models
 
         #region SaveLoad
 
-        public HeroModel(string data, List<Stat> stats)
+        public HeroModel(string data, List<Stat> stats, out bool success)
         {
+            success = false;
+            if (string.IsNullOrEmpty(data))
+                return;
+
             Stats = new List<HeroStat>();
             ResetSkills();
             ResetTraits();
-            if (string.IsNullOrEmpty(data)) return;
+            if (string.IsNullOrEmpty(data)) 
+                return;
             var list = data.Split(StringHelper.Separator);
-            if (list.Length < 2) return;
+            if (list.Length < 2) 
+                return;
             var x = 0;
+            var version = list[x++];
+            if (version != Constants.Version) 
+                return;
+
             Name = list[x++];
             var count = int.Parse(list[x++]);
             if (count != stats.Count)
@@ -55,11 +65,13 @@ namespace Boot.Models
                 Skills.Add(intData[x++], intData[x++]);
             for (var i = 0; i < Constants.TraitCount; i++)
                 Traits[i] = intData[x++];
+
+            success = true;
         }
 
         public override string ToString()
         {
-            var list = new List<string> { Name, Stats.Count().ToString() };
+            var list = new List<string> { Constants.Version, Name, Stats.Count().ToString() };
             list.AddRange(Stats.Select(x => $"{x.Id}{StringHelper.Separator}{x.Value}"));
             list.AddRange(new[] { Level, Race, (int)Chaos }.Select(x => x.ToString()));
             list.Add(Skills.Count.ToString());

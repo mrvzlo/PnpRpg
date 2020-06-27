@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "Оружейная";
     var levels = Model.Select(x => x.Level).Distinct();
-    var colors = new[] { "danger", "danger", "danger", "danger" };
 }
 
 <div class="nav nav-tabs col-12 mt-md-2 row justify-content-center">
     @foreach (var level in levels)
     {
-        <a class="btn border mx-1 btn-@colors[level-1] @(level == 1 ? "active" : "")" data-toggle="tab" href="#level_@level">
+        <a class="btn border mx-1 btn-primary @(level == 1 ? "active" : "")" data-toggle="tab" href="#level_@level">
             <span class="d-inline d-sm-none">@level</span>
             <span class="d-none d-sm-inline">@level уровень</span>
         </a>
@@ -31,7 +30,7 @@
                 {
                     <tr>
                         <td class="font-weight-bold">@weapon.Name</td>
-                        <td class="alert-@weapon.Skill.Stat.Color()">@StringHelper.FormatToSentence(weapon.Skill.Name)</td>
+                        <td class="text-light" style="background-color: @weapon.Skill.Stat.Color">@StringHelper.FormatToSentence(weapon.Skill.Name)</td>
                         <td>@weapon.Weight кг</td>
                         <td>
                             @if (weapon.Effects != null)

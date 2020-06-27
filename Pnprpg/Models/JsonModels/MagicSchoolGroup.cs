@@ -4,8 +4,8 @@ namespace Boot.Models.JsonModels
 {
     public class MagicSchoolGroup
     {
-        public string Special;
-        public string Element;
+        public string Special, Element, StatId;
         public List<MagicSchoolInfo> Schools;
+        public Stat Stat;
     }
 }

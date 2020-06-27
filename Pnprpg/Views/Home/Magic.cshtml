@@ -1,31 +1,28 @@
-﻿@using Boot.Enums
-@using Boot.Helpers
+﻿@using Boot.Helpers
 @using Boot.Models.JsonModels
 @model List<MagicSchoolGroup>
 @{
-    var count = EnumExtensions.GetEnumCount(typeof(StatType));
     ViewBag.Title = "Школы магии";
 }
 <div class="nav nav-tabs col-12 mt-md-2 row justify-content-center p-0">
-    @for (var i = 0; i < count; i++)
+    @foreach (var group in Model)
     {
-        var a = (StatType)i;
-        <a class="btn btn-@a.Color() mx-1" data-toggle="tab" href="#@a.Description()">
-            @Model[i].Element
+        <a class="btn mx-1 btn-light border" style="color: @group.Stat.Color" data-toggle="tab" href="#@group.StatId">
+            @group.Element
         </a>
     }
 </div>
 <div class="tab-content col-12">
     @foreach (var group in Model)
     {
-        <div class="tab-pane fade" id="@group.Stat.Description()">
+        <div class="tab-pane fade" id="@group.StatId">
             <div class="row justify-content-around">
                 <div class="col-12 text-center m-2">@group.Special</div>
                 <div class="nav nav-tabs col-12 flex-column flex-sm-row px-2 justify-content-center">
                     @foreach (var school in group.Schools)
                     {
-                        <a class="btn btn-@group.Stat.Color() mx-1 smallForSmall d-sm-block @(school.Id % 2 == 0 ? "active" : "")"
-                           data-toggle="tab" href="#@group.Stat.ToString()@school.Id">@school.Name</a>
+                        <a class="btn mx-1 smallForSmall btn-light border d-sm-block @(school.Id % 2 == 0 ? "active" : "")"
+                           data-toggle="tab" href="#@group.StatId@school.Id" style="color: @group.Stat.Color">@school.Name</a>
                         <br />
                     }
                 </div>
@@ -33,7 +30,7 @@
                     @foreach (var school in group.Schools)
                     {
                         var showDesc = !school.Spells.All(x => string.IsNullOrEmpty(x.Effect));
-                        <div class="tab-pane fade @(school.Id % 2 == 0 ? "show active":"")" id="@group.Stat.ToString()@school.Id">
+                        <div class="tab-pane fade @(school.Id % 2 == 0 ? "show active":"")" id="@group.StatId@school.Id">
                             <p class="m-2">@Html.Raw(school.Desc)</p>
                             <table class="table table-striped">
                                 <tr>

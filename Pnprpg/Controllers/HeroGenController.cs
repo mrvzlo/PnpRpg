@@ -221,7 +221,7 @@ namespace Boot.Controllers
             var users = GetJsonFromFile<List<UserModel>>(FileNames.Users);
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
             var heroCode = users.Single(x => x.Username == User.Identity.Name).HeroCode;
-            var hero = new HeroModel(heroCode, stats);
+            var hero = new HeroModel(heroCode, stats, out var success);
             return View(hero);
         }
 
@@ -236,11 +236,11 @@ namespace Boot.Controllers
         private HeroModel GetHeroFromCookies()
         {
             var cookie = GetCookie(CookieType.Hero);
-            if (string.IsNullOrEmpty(cookie) || !cookie.Contains(StringHelper.Separator))
+            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
+            var hero = new HeroModel(cookie, stats, out var success);
+            if (!success)
                 return User.IsInRole(UserRole.Master.ToString()) ? null : CreateHero(ChaosLevel.Normal);
 
-            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            var hero = new HeroModel(cookie, stats);
             var skills = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).SelectMany(x => x.skills).ToList();
             var race = GetJsonFromFile<List<Race>>(FileNames.Races).First(x => x.id == hero.Race);
             hero.LoadRace(race);
