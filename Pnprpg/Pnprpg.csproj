@@ -175,7 +175,7 @@
     <Content Include="App_Data\Stats.json" />
     <Content Include="App_Data\Spells.json" />
     <Content Include="App_Data\CharacterSheet.pdf" />
-    <None Include="Views\Account\_SignIn.cshtml" />
+    <Content Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Content\images\bg.png" />
     <Content Include="Content\images\perks.jpg" />
     <Content Include="Content\images\rooms.jpg" />
@@ -194,7 +194,7 @@
     <Content Include="Views\Home\_RandomSpell.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\Perks.json" />
+    <Content Include="App_Data\Perks.json" />
     <Content Include="Content\images\alchemy.jpg" />
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
@@ -215,7 +215,7 @@
     <Content Include="App_Data\Skills.json" />
     <Content Include="App_Data\Reactions.json" />
     <Content Include="App_Data\Potions.json" />
-    <None Include="App_Data\Reagents.json" />
+    <Content Include="App_Data\Reagents.json" />
     <Content Include="App_Data\Processes.json" />
     <Content Include="App_Data\Traits.json" />
     <None Include="App_Data\Users.json" />
@@ -407,9 +407,9 @@
     <Content Include="Views\Alchemy\_RandomResult.cshtml" />
     <Content Include="Views\HeroGen\_RacesDropdown.cshtml" />
     <Content Include="Views\HeroGen\MyHero.cshtml" />
-    <None Include="Views\HeroGen\Generation.cshtml" />
+    <Content Include="Views\HeroGen\Generation.cshtml" />
     <Content Include="Views\HeroGen\GetStats.cshtml" />
-    <None Include="Views\HeroGen\_SkillList.cshtml" />
+    <Content Include="Views\HeroGen\_SkillList.cshtml" />
     <Content Include="Views\HeroGen\_SkillEdit.cshtml" />
     <Content Include="Views\HeroGen\_Traits.cshtml" />
     <Content Include="Views\Alchemy\Index.cshtml" />
