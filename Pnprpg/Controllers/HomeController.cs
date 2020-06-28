@@ -7,6 +7,7 @@ using Boot.Enums;
 using Boot.Helpers;
 using Boot.Models;
 using Boot.Models.JsonModels;
+using Rotativa;
 using WebGrease.Css.Extensions;
 
 namespace Boot.Controllers
@@ -17,36 +18,12 @@ namespace Boot.Controllers
 
         public ActionResult Perks()
         {
-            var perks = GetJsonFromFile<List<Perk>>(FileNames.Perks);
-            var races = GetJsonFromFile<List<Race>>(FileNames.Races);
-            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            ViewBag.MaxLevel = perks
-                .Max(x => x.requirements.Single(y => y.type == RequirementType.Level)
-                .value);
-
-            perks.SelectMany(perk => perk.requirements)
-                .Where(req => req.type == RequirementType.Race)
-                    .ForEach(req => req.strValue = races.Single(x => x.id == req.value).name);
-
-            perks.SelectMany(perk => perk.requirements)
-                .Where(req => req.type == RequirementType.Stat)
-                    .ForEach(req => req.strValue = stats.Single(x => x.Id == req.statId).Name);
-
-            return View(perks);
+            return View(GetPerks());
         }
 
         public ActionResult Magic()
         {
-            var list = GetJsonFromFile<List<MagicSchoolGroup>>(FileNames.MagicSchools);
-            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            var spells = GetJsonFromFile<List<Spell>>(FileNames.Spells);
-            foreach (var ms in list)
-            {
-                ms.Stat = stats.Single(x => x.Id == ms.StatId);
-                foreach (var s in ms.Schools)
-                    s.Spells = spells.Where(x => x.School == s.Id).OrderBy(x => x.Level).ToList();
-            }
-            return View(list);
+            return View(GetMagicSchoolGroups());
         }
 
         public ActionResult Weaponry()
@@ -69,7 +46,7 @@ namespace Boot.Controllers
             return Json(new { partial }, JsonRequestBehavior.AllowGet);
         }
 
-        public FileResult CharacterList()
+        public FileResult CharacterSheet()
         {
             var path = Server.MapPath($"~/App_Data/{FileNames.CharacterSheet}");
             var file = new FileStream(path, FileMode.Open, FileAccess.Read);

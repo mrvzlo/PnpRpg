@@ -16,6 +16,9 @@
         public static string Weapons = "Weapons.json";
         public static string Stats = "Stats.json";
         public static string Spells = "Spells.json";
+
         public static string CharacterSheet = "CharacterSheet.pdf";
+        public static string RuleBook = "RuleBook.pdf";
+        public static string SpellList = "SpellList.pdf";
     }
 }

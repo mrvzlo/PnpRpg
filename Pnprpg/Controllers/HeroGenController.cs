@@ -263,16 +263,6 @@ namespace Boot.Controllers
             }
         }
 
-        private SkillGroupList GetSkillGroupList()
-        {
-            var skillGroups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills);
-            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            foreach (var group in skillGroups)
-                foreach (var skill in group.skills)
-                    skill.Stat = stats.Single(x => x.Id == skill.StatId);
-            return new SkillGroupList { Groups = skillGroups }; ;
-        }
-
         #endregion
     }
 }

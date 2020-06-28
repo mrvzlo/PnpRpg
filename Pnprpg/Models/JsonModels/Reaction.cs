@@ -4,5 +4,7 @@
     {
         public int reagent, process;
         public int result;
+
+        public Potion Potion;
     }
 }

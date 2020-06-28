@@ -7,13 +7,13 @@ namespace Boot.Models.JsonModels
         public int id;
         public string symbol;
         public string name;
-        public string value;
+        public int value;
 
         public SelectListItem ToSelectListItem()
         {
             return new SelectListItem
             {
-                Value = value,
+                Value = value.ToString(),
                 Text = ToString()
             };
         }

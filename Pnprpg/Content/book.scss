@@ -1,0 +1,26 @@
+﻿h2, h3, h4, h5, h6{
+    margin: 1rem;
+}
+
+.h1{
+    text-align: center;
+}
+
+.break {
+    page-break-after: always;
+}
+
+.table, table {
+    td, th{
+        padding: 0 .5rem;
+    }
+}
+
+p {
+    text-align: justify;
+    text-indent: 2rem;
+}
+
+.w-10{
+    width:10%;
+}

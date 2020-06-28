@@ -2,6 +2,6 @@
 {
     public class Stat
     {
-        public string Id, Name, Color;
+        public string Id, Name, Color, Desc, Influence;
     }
 }

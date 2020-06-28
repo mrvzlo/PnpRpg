@@ -28,8 +28,6 @@
                     {
                         switch (r.type)
                         {
-                            case RequirementType.Level:
-                                break;
                             case RequirementType.Perk:
                                 <li>
                                     @(r.type.Description()): @Model.Single(x => x.id == r.value).name

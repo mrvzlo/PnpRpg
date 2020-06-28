@@ -51,6 +51,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -123,6 +126,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
@@ -141,6 +145,7 @@
     <Compile Include="Enums\ChaosLevel.cs" />
     <Compile Include="Helpers\FileNames.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Models\AlchemySummary.cs" />
     <Compile Include="Models\HeroModel.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Models\JsonModels\Effect.cs" />
@@ -175,6 +180,18 @@
     <Content Include="App_Data\Stats.json" />
     <Content Include="App_Data\Spells.json" />
     <Content Include="App_Data\CharacterSheet.pdf" />
+    <Content Include="App_Data\RuleBook.pdf" />
+    <None Include="Content\book.scss" />
+    <Content Include="Content\book.css">
+      <DependentUpon>book.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\book.min.css">
+      <DependentUpon>book.css</DependentUpon>
+    </Content>
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Content\images\bg.png" />
     <Content Include="Content\images\perks.jpg" />
@@ -214,6 +231,7 @@
     <Content Include="App_Data\Reagents.json" />
     <Content Include="App_Data\Processes.json" />
     <Content Include="App_Data\Traits.json" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="App_Data\Users.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -431,6 +449,14 @@
     <Content Include="Views\Alchemy\_ReactionResult.cshtml" />
     <Content Include="Views\Home\Perks.cshtml" />
     <Content Include="Views\HeroGen\_HeroStatPartial.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\_Stats.cshtml" />
+    <Content Include="Views\Book\_Races.cshtml" />
+    <Content Include="Views\Book\_Traits.cshtml" />
+    <Content Include="Views\Book\_Skills.cshtml" />
+    <Content Include="Views\Book\_Perks.cshtml" />
+    <Content Include="Views\Book\_Spells.cshtml" />
+    <Content Include="Views\Book\_Alchemy.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

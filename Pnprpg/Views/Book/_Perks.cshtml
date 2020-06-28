@@ -1,0 +1,43 @@
+﻿@using Boot.Enums;
+@using Boot.Helpers;
+@model List<Boot.Models.JsonModels.Perk>
+
+<h4>Способности</h4>
+<table class="table table-bordered">
+    <tr>
+        <th>Уровень</th>
+        <th>Название</th>
+        <th>Требования</th>
+        <th>Эффект</th>
+    </tr>
+    @foreach (var perk in Model)
+    {
+<tr>
+    <td class="text-center">@perk.requirements.Single(x => x.type == RequirementType.Level).value</td>
+    <td>@perk.name</td>
+    <td>
+        @foreach (var r in perk.requirements.Where(x => x.type != RequirementType.Level))
+        {
+            switch (r.type)
+            {
+                case RequirementType.Perk:
+                    @Model.Single(x => x.id == r.value).name
+                    break;
+                case RequirementType.Race:
+                    @:@r.type.Description(): @r.strValue
+                    break;
+                case RequirementType.Stat:
+                    @:@r.strValue: @r.value
+                    break;
+            }
+            <br />
+        }
+        @if (perk.requirements.All(x => x.type == RequirementType.Level))
+        {
+            @:Нет
+        }
+    </td>
+    <td>@perk.desc</td>
+</tr>
+    }
+</table>

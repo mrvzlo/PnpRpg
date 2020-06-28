@@ -1,0 +1,36 @@
+﻿@model List<Boot.Models.JsonModels.Race>
+<h4>Расы</h4>
+<p>Раса персонажа определяется наличием или отсутствием карт крови. 
+    Каждый персонаж по умолчанию без карт является человеком, но может выбрать любую из 8 рас, чтобы получить их преимущества и недостатки. </p>
+<table class="table-bordered">
+    <tr>
+        <th>Название</th>
+        <th>Плюсы</th>
+        <th>Минусы</th>
+    </tr>
+    @foreach(var race in Model)
+    {
+<tr>
+    <td>@race.name</td>
+    @if (race.effects != null)
+    {
+        <td>
+            @foreach (var boost in race.effects.Where(x => x.type == Boot.Enums.EffectType.Boost))
+            {
+                @:+2 @boost.Stat.Name
+            }
+        </td>
+        <td>
+            @foreach (var boost in race.effects.Where(x => x.type == Boot.Enums.EffectType.Weaken))
+            {
+                @:-2 @boost.Stat.Name
+            }
+        </td>
+    }
+    else
+    {
+        <td colspan="2" class="text-center">-</td>
+    }
+</tr>
+    }
+</table>

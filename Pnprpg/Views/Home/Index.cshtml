@@ -2,17 +2,18 @@
     ViewBag.Title = "Pnp rpg omg";
     Layout = "~/Views/Shared/_LayoutIntro.cshtml";
 }
-<h1 class="col-12">PnP RPG 2.3.2</h1>
-@Card(Url.Action("Index", "HeroGen"), "Создать персонажа", "generator.jpg", "create hero")
-@*@Card(Url.Action("Index", "Room"), "Играть", "rooms.jpg", "rooms")*@
-@Card("https://drive.google.com/open?id=1YbfG2wNY6nx8kMOfdwkwISG2VxLooKEq", "Книга игрока", "rulebook.jpg", "rule book", true)
-@Card(Url.Action("CharacterList", "Home"), "Лист персонажа", "sheet.jpg", "hero list", true)
-@Card(Url.Action("Skills", "HeroGen"), "Навыки", "skills.png", "skills")
-@Card(Url.Action("Perks", "Home"), "Способности", "perks.jpg", "perks")
-@Card(Url.Action("Magic", "Home"), "Школы магии", "schools.jpg", "schools")
-@Card(Url.Action("Index", "Alchemy"), "Алхимия", "alchemy.jpg", "alchemy")
-@Card(Url.Action("Weaponry", "Home"), "Оружейная", "weaponry.png", "цуфзщткн")
-
+    <div class="row justify-content-center text-center">
+        <h1 class="col-12">PnP RPG 2.3.2</h1>
+        @Card(Url.Action("Index", "HeroGen"), "Создать персонажа", "generator.jpg", "create hero")
+        @*@Card(Url.Action("Index", "Room"), "Играть", "rooms.jpg", "rooms")*@
+        @Card(Url.Action("Index", "Book"), "Книга игрока", "rulebook.jpg", "rule book", true)
+        @Card(Url.Action("CharacterSheet", "Home"), "Лист персонажа", "sheet.jpg", "hero list", true)
+        @Card(Url.Action("Skills", "HeroGen"), "Навыки", "skills.png", "skills")
+        @Card(Url.Action("Perks", "Home"), "Способности", "perks.jpg", "perks")
+        @Card(Url.Action("Magic", "Home"), "Школы магии", "schools.jpg", "schools")
+        @Card(Url.Action("Index", "Alchemy"), "Алхимия", "alchemy.jpg", "alchemy")
+        @Card(Url.Action("Weaponry", "Home"), "Оружейная", "weaponry.png", "цуфзщткн")
+    </div>
 @helper Card(string url, string name, string photo, string alt, bool blank = false)
 {
     <div class="col-lg-3 col-5 card p-0 m-2">
