@@ -14,11 +14,13 @@ namespace Boot.Controllers
         public ActionResult Index()
         {
             var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
-            if (!System.IO.File.Exists(path))
+            if (HttpContext.Request.IsLocal)
             {
                 var pdf = new ViewAsPdf("Index")
                 {
-                    PageMargins = new Rotativa.Options.Margins(30, 10, 25, 10)
+                    PageMargins = new Rotativa.Options.Margins(30, 10, 25, 10),
+                    PageSize = Rotativa.Options.Size.A4,
+                    PageOrientation = Rotativa.Options.Orientation.Portrait
                 };
                 SaveRotativa(pdf, path);
             }
