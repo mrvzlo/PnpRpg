@@ -1,0 +1,61 @@
+﻿@model List<Boot.Models.Trait>
+<h4>Особенности</h4>
+<p>
+    Это те черты, которые делают персонажа одновременно лучше в одном, но хуже в другом.
+    Умелое комбинирование навыков и особенностей поможет усилить плюсы и нивелировать минусы.
+</p>
+<table class="table-bordered">
+    <tr>
+        <th>Название</th>
+        <th>Плюсы</th>
+        <th>Минусы</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.name</td>
+            @if (item.effects != null)
+            {
+                <td>
+                    @foreach (var boost in item.effects.Where(x => x.type == Boot.Enums.EffectType.Boost))
+                    {
+                        if (string.IsNullOrEmpty(boost.statId))
+                        {
+                            @Html.Raw(string.Format(boost.desc, $"+{boost.value}"))
+                        }
+                        else
+                        {
+                            @Html.Raw(string.Format(boost.desc, $"+{boost.value}", boost.Stat.Name))
+                        }
+                    }
+                    @foreach (var boost in item.effects.Where(x => x.type < 0))
+                    {
+                        @Html.Raw(string.Format(boost.desc, boost.value))
+                    }
+                </td>
+                <td>
+                    @foreach (var weak in item.effects.Where(x => x.type == Boot.Enums.EffectType.Weaken))
+                    {
+                        if (string.IsNullOrEmpty(weak.statId))
+                        {
+                            @Html.Raw(string.Format(weak.desc, $"-{weak.value}"))
+                        }
+                        else
+                        {
+                            @Html.Raw(string.Format(weak.desc, $"-{weak.value}", weak.Stat.Name))
+                        }
+                        <br />
+                    }
+                    @foreach (var boost in item.effects.Where(x => x.type < 0))
+                    {
+                        @Html.Raw(string.Format(boost.desc, boost.value))
+                    }
+                </td>
+            }
+            else
+            {
+                <td colspan="2">-</td>
+            }
+        </tr>
+    }
+</table>

@@ -1,0 +1,67 @@
+﻿@model Boot.Models.AlchemySummary
+
+<h3>Алхимия</h3>
+<h5>Алхимические ингредиенты</h5>
+
+<table class="table text-center">
+    <tr>
+        <td class="border-0">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="text-center">Символ</th>
+                    <th>Эссенция</th>
+                </tr>
+                @foreach (var r in Model.Reagents)
+                {
+                    <tr>
+                        <td>@r.symbol</td>
+                        <td>@r.name</td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td class="border-0 w-10"></td>
+        <td class="border-0">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Символ</th>
+                    <th>Процесс</th>
+                </tr>
+                @foreach (var r in Model.Processes)
+                {
+                    <tr>
+                        <td>@r.symbol</td>
+                        <td>@r.name</td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+</table>
+
+<h5>Продукты реакций</h5>
+
+<table class="table table-bordered">
+    <tr>
+        <td></td>
+        @foreach (var process in Model.Processes.GroupBy(x => x.value).Select(x => x.First()))
+        {
+            <th>@process.name</th>
+        }
+    </tr>
+    @foreach (var r in Model.Reagents.GroupBy(x => x.value).Select(x => x.First()))
+    {
+        <tr>
+            <th>@r.name</th>
+            @foreach (var process in Model.Processes.GroupBy(x => x.value).Select(x => x.First()))
+            {
+                <td>
+                    @{
+                        var res = Model.Reactions.SingleOrDefault(x => x.process == process.value && x.reagent == r.value);
+                        @(res == null ? "-" : res.Potion.name)
+                    }
+                </td>
+            }
+        </tr>
+    }
+</table>

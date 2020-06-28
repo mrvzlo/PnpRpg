@@ -1,21 +1,19 @@
 ﻿@using Boot.Enums
-@using Boot.Helpers
 @model Boot.Models.HeroModel
 
-@for (var i = 0; i < Model.Stats.Length; i++)
+@foreach (var stat in Model.Stats)
 {
-    var a = (StatType)i;
     <div class="col-md-3 col-6">
         <div class="row border">
-            <div class="col bg-@a.Color() py-2 px-sm-4">@a.Translation()<span class="float-right font-weight-bold">@Model.Stats[i]</span></div>
-            <div class="col-12 my-2">@ButtonGroup(Model.Stats[i], a, Model.MinStats[i], Model.FreeStatPoints())</div>
+            @Html.Partial("_HeroStatPartial", stat)
+            <div class="col-12 my-2">@ButtonGroup(stat, Model.FreeStatPoints())</div>
         </div>
     </div>
 }
 
 @Html.Partial("_SecondStats", Model)
 
-<div class="col-md-4 col-12">
+<div class="col-lg-4 col-md-6 col-12">
     <div class="my-3">
         <div id="status"></div>
         @{Html.RenderAction("RacesDropdown", new { chosen = Model.Race });}
@@ -27,31 +25,26 @@
     </button>
 </div>
 
-@helper ButtonGroup(int param, StatType stat, int minValue, int freePoints)
+@helper ButtonGroup(Boot.Models.HeroStat stat, int freePoints)
 {
     <div class="btn-group">
-        @Button(param, stat, -3, minValue, freePoints, true)
-        @Button(param, stat, -1, minValue, freePoints, false)
-        @Button(param, stat, 1, minValue, freePoints, false)
-        @Button(param, stat, 3, minValue, freePoints, true)
+        @Button(stat, -3, freePoints, true)
+        @Button(stat, -1, freePoints, false)
+        @Button(stat, 1, freePoints, false)
+        @Button(stat, 3, freePoints, true)
     </div>
 }
 
-@helper Button(int param, StatType stat, int value, int minValue, int freePoints, bool onlyLg)
+@helper Button(Boot.Models.HeroStat stat, int bonus, int freePoints, bool onlyLg)
 {
-    bool canChange;
-    if (value > 0)
-    {
-        canChange = param + value <= Constants.MaxStat && freePoints - value >= 0;
-    }
-    else
-    {
-        canChange = param + value >= minValue;
-    }
+    var canChange = bonus > 0
+        ? stat.Value + bonus <= stat.Max && freePoints - bonus >= 0
+        : stat.Value + bonus >= stat.Min;
+
     var onlyLgClass = onlyLg ? "d-lg-block d-none" : "";
     <button class="btn @GetColor(canChange) @onlyLgClass ajax-btn" @(canChange ? "" : "disabled") data-action="@Status.Stats"
-            data-url="@Url.Action("ChangeStat", new {stat, value})">
-        @(value > 0 ? $"+{value}" : $"{value}")
+            data-url="@Url.Action("ChangeStat", new {stat = stat.Id, value = bonus})">
+        @(bonus > 0 ? $"+{bonus}" : $"{bonus}")
     </button>
 }
 

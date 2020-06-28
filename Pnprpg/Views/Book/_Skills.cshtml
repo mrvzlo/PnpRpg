@@ -1,0 +1,39 @@
+﻿@model List<Boot.Models.JsonModels.SkillGroup>
+<h4>Навыки</h4>
+<p>
+    Навыки делятся на лёгкие, обычные и сложные.
+    Лёгкие не имеют штрафа, обычные имеют штраф в -1 очко, а сложные – штраф -2. Эти модификаторы могут меняться под другой уровень сложности.
+</p>
+
+@{ 
+    var i = 0;
+}
+
+<table class="table text-center">
+    <tr>
+        @foreach (var group in Model)
+        {
+            i++;
+            <td class="border-0">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Атрибут</th>
+                    <th>@group.name</th>
+                </tr>
+                @foreach (var skill in group.skills)
+                {
+                    <tr>
+                        <td>@( skill.Difficulty == 0 ? skill.StatId : $"{skill.StatId}-{skill.Difficulty}")</td>
+                        <td>@Boot.Helpers.StringHelper.FormatToSentence(skill.Name)</td>
+                    </tr>
+                }
+            </table>
+            <br />
+            </td>
+            if (i % 2 == 0)
+            {
+                @:</tr><tr>
+            }
+        }
+    </tr>
+</table>

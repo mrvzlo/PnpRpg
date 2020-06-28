@@ -1,0 +1,54 @@
+﻿@using Boot.Models.JsonModels
+@model List<MagicSchoolGroup>
+@{
+    int i = 0;
+}
+
+<h3>Магия</h3>
+<div class="mb-3 text-center">Для заклинаний указана изначальная цена, которая меняется при увеличении мастерства </div>
+<div class="text-center">
+    @foreach (var group in Model)
+    {
+        i++;
+        foreach (var school in group.Schools)
+        {
+            <h5>@school.Name</h5>
+            var showDesc = !school.Spells.All(x => string.IsNullOrEmpty(x.Effect));
+            <div>@school.Desc</div>
+            <table class="table">
+                <tr>
+                    <th class="w-10">Уровень</th>
+                    <th>Название</th>
+                    @if (showDesc)
+                    {
+                        <th>Эффект</th>
+                    }
+                    <th class="w-25">Стоимость</th>
+                </tr>
+                @foreach (var spell in school.Spells)
+                {
+                    <tr>
+                        <td>@spell.Level</td>
+                        <td>@spell.Name</td>
+                        @if (showDesc)
+                        {
+                            <td>
+                                @if (spell.Damage > 0)
+                                {
+                                    var separator = string.IsNullOrEmpty(spell.Effect) ? "" : ",";
+                                    @:Урон @(spell.Damage + separator)
+                                }
+                                @spell.Effect
+                            </td>
+                        }
+                        <td>@spell.Cost</td>
+                    </tr>
+                }
+            </table>
+        }
+        if (i == 2)
+        {
+            <p class="break"></p>
+        }
+    }
+</div>

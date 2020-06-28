@@ -78,7 +78,7 @@ namespace Boot.Controllers
         private void CreateTicket(UserModel user)
         {
             var ticket = new FormsAuthenticationTicket(1, user.Username, DateTime.Now,
-                DateTime.Now.AddMonths(1), false, user.Role.Description());
+                DateTime.Now.AddMonths(1), false, user.Role.ToString());
             var encryptedTicket = FormsAuthentication.Encrypt(ticket);
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             HttpContext.Response.Cookies.Add(cookie);

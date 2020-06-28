@@ -20,6 +20,9 @@ namespace Boot
             
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/main.css"));
+
+            bundles.Add(new StyleBundle("~/Content/book").Include(
+                      "~/Content/book.css"));
         }
     }
 }

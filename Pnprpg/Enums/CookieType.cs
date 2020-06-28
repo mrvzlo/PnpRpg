@@ -1,4 +1,6 @@
-﻿namespace Boot.Enums
+﻿using System.ComponentModel;
+
+namespace Boot.Enums
 {
     public enum CookieType
     {
