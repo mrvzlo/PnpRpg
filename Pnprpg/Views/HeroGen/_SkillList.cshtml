@@ -1,5 +1,4 @@
-﻿@using Boot.Helpers
-@model Boot.Models.JsonModels.SkillGroupList
+﻿@model Boot.Models.JsonModels.SkillGroupList
 <div id="skillsCarousel" class="carousel row justify-content-center">
     <div class="carousel-inner col-lg-6 col-md-8 col-12 p-0">
         @foreach (var group in Model.Groups)
@@ -14,7 +13,7 @@
                     @foreach (var skill in group.skills)
                     {
                         <tr>
-                            <td class="text-light" style="background-color: @skill.Stat.Color">@skill.Stat.Id</td>
+                            <td class="font-weight-bold" style="color: @skill.Stat.Color">@skill.Stat.Id</td>
                             <td>@skill.ToString()</td>
                             <td class="p-0">@(skill.Difficulty + 1)</td>
                             @if (Model.Editable)

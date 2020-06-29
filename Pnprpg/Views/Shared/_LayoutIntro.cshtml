@@ -7,10 +7,10 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="container">
-        <div id="main" class="@ViewBag.Padding">
-            @RenderBody()
-        </div>
+    <div class="back d-xl-block d-none"></div>
+    <div class="back d-xl-block d-none right"></div>
+    <div class="container bg-white">
+        @RenderBody()
     </div>
 
     @Scripts.Render("~/js/core")

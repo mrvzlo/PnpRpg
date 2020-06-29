@@ -30,7 +30,7 @@
                 {
                     <tr>
                         <td class="font-weight-bold">@weapon.Name</td>
-                        <td class="text-light" style="background-color: @weapon.Skill.Stat.Color">@StringHelper.FormatToSentence(weapon.Skill.Name)</td>
+                        <td class="font-weight-bold" style="color: @weapon.Skill.Stat.Color">@StringHelper.FormatToSentence(weapon.Skill.Name)</td>
                         <td>@weapon.Weight кг</td>
                         <td>
                             @if (weapon.Effects != null)

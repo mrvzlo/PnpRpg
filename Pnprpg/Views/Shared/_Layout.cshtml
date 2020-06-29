@@ -8,7 +8,9 @@
 </head>
 <body>
     @Html.Partial("_Nav")
-    <div class="container p-default">
+    <div class="back d-xl-block d-none"></div>
+    <div class="back d-xl-block d-none right"></div>
+    <div class="container p-default bg-white">
         <h3 class="text-center my-2">@ViewBag.Title</h3>
         <div id="main" class="row justify-content-center text-center">@RenderBody()</div>
     </div>

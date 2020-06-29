@@ -1,4 +1,4 @@
-﻿<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
+﻿<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark px-lg-5">
     <a class="navbar-brand" href="@Url.Action("Index","Home")">Домой</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavBar"
             aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="heroDropdown">
                     <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Создать</a>
-                    <a class="nav-link" href="@Url.Action("MyHero", "HeroGen")">Мой персонаж</a>
+                    @*<a class="nav-link" href="@Url.Action("MyHero", "HeroGen")">Мой персонаж</a>*@
                 </div>
             </li>
             <li class="nav-item active mx-2 dropdown">
