@@ -1,0 +1,11 @@
+﻿@using Boot.Helpers
+@model List<Boot.Models.JsonModels.SkillInfo>
+@foreach (var skill in Model)
+{
+    <div class="text-right font-weight-normal bb">
+        @StringHelper.FormatToSentence(skill.Name)
+        <p class="font-weight-bold d-inline-block text-center">
+            (@(skill.Difficulty == 0 ? skill.StatId : $"{skill.StatId}-{skill.Difficulty}"))
+        </p>
+    </div>
+}

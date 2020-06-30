@@ -86,5 +86,18 @@ namespace Boot.Controllers
             };
             return PartialView("_Alchemy", model);
         }
+
+        public PartialViewResult ShortSkillList()
+        {
+            var skills = GetSkillGroupList().Groups.SelectMany(x => x.skills).ToList();
+            return PartialView("_ShortSkillList", skills);
+        }
+
+        public ActionResult HeroSheet()
+        {
+            var path = Server.MapPath($"~/App_Data/{FileNames.CharacterSheet}");
+            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
+            return File(file, "application/pdf");
+        }
     }
 }

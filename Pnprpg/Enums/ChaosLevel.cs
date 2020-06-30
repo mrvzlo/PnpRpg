@@ -2,6 +2,6 @@
 {
     public enum ChaosLevel
     {
-        Normal, High, Extreme, Random
+        Normal, High, Extreme, Random, Null
     }
 }

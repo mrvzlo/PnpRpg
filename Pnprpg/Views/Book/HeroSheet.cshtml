@@ -1,0 +1,74 @@
+﻿@model Boot.Models.HeroModel
+@{
+    @Styles.Render("~/Content/sheet")
+    Layout = "~/Views/Shared/_LayoutIntro.cshtml";
+    var brCount = 15;
+    var list = new []{ "heart", "mana", "dmg", "armor" };
+}
+<table class="table table-borderless">
+    <tr>
+        <td><div class="bb">Имя <span class="float-right pr-2">@Model.Name</span></div></td>
+        <td class="w-20"><div class="bb">Возраст</div></td>
+        <td class="w-25"><div class="bb">Кровь <span class="float-right pr-2">@Model.Race</span></div></td>
+        <td class="w-20"><div class="bb">Уровень</div></td>
+    </tr>
+</table>
+<table class="table table-borderless text-center">
+    <tr>
+        <td class="w-33">
+            <table class="w-100">
+                @for(int i = 0; i < Model.Stats.Count; i ++)
+                {
+                    <tr>
+                        <td class="py-1">
+                        <div class="card">@Model.Stats[i].Id</div>
+                        <div class="card footer"></div>
+                        </td>
+                        <td class="py-1">
+                            <div class="icon @list[i]"></div>
+                        </td>    
+                    </tr>
+                }
+            </table>
+        </td>
+        <td class="w-33">
+            @brs(brCount * 2 / 3)
+            <div class="bb">Особенности</div>
+            @brs(brCount / 3)
+            <div class="bb"></div>
+            @brs(2)
+        </td>
+        <td class="w-33" rowspan="2">
+            <div>
+                @{
+                    Html.RenderAction("ShortSkillList");
+                }
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="bb">Заклинания</div>
+            @brs(brCount)
+            <div class="bb"></div>
+        </td>
+        <td>
+            <div class="bb">Способности</div>
+            @brs(brCount)
+            <div class="bb"></div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            @brs(2)
+            <div class="bb">Инвентарь</div>
+        </td>
+    </tr>
+</table>
+
+@helper brs(int count){
+    for(int i=0; i<count; i++)
+    {
+        <br />
+    }
+}

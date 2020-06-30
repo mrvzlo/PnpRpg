@@ -23,6 +23,8 @@ namespace Boot.Models
                 Value = Min;
             else if (chaos == ChaosLevel.High)
                 Value = Constants.MinStat;
+            else if (chaos == ChaosLevel.Null)
+                Value = 0;
         }
 
         public bool ManualBoost(int bonus)
