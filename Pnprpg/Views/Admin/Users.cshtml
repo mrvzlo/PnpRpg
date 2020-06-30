@@ -1,0 +1,14 @@
+﻿@model List<Boot.Models.UserEditModel>
+@{
+    ViewBag.Title = "Настройка ролей";
+}
+
+@using (Html.BeginForm("Users", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table table-striped">
+        @Html.EditorForModel()
+    </table>
+    <input class="btn btn-success" type="submit" value="Сохранить" />
+}

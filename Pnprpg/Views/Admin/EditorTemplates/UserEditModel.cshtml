@@ -1,0 +1,14 @@
+﻿@using Boot.Enums;
+@using Boot.Helpers;
+@model Boot.Models.UserEditModel
+@{ 
+    var roles = new[] { UserRole.Player, UserRole.Master, UserRole.Editor, UserRole.Admin };
+    var items = roles.Select(x => new { Value = (int)x, Text = x.Description() });
+}
+<tr>
+    <td>@Html.DisplayFor(x => x.Username)</td>
+    <td>
+        @Html.HiddenFor(x => x.Id)
+        @Html.DropDownListFor(x => x.Role, new SelectList(items, "Value", "Text", (int)Model.Role), new { @class = "form-control" })
+    </td>
+</tr>

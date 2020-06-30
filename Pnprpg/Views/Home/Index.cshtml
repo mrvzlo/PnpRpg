@@ -1,9 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Pnp rpg omg";
-    Layout = "~/Views/Shared/_LayoutIntro.cshtml";
+    ViewBag.Title = "PnP RPG 2.3.2";
 }
     <div class="row justify-content-center text-center mx-lg-2">
-        <h1 class="col-12">PnP RPG 2.3.2</h1>
         @Card(Url.Action("Index", "HeroGen"), "Создать персонажа", "generator.jpg", "create hero")
         @*@Card(Url.Action("Index", "Room"), "Играть", "rooms.jpg", "rooms")*@
         @Card(Url.Action("Index", "Book"), "Книга правил", "rulebook.jpg", "rule book", true)

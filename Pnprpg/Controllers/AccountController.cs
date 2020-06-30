@@ -37,10 +37,7 @@ namespace Boot.Controllers
             if (response.Successful())
             {
                 CreateTicket(user);
-                var url = model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl)
-                    ? model.ReturnUrl
-                    : Url.Action("Index", "Room");
-                return Json(this.RenderPartialViewToString("_Redirect", url));
+                return Json(this.RenderPartialViewToString("_Redirect", GetRedirectUrl(model.ReturnUrl)));
             }
 
             AddModelStateErrors(response);
@@ -64,10 +61,7 @@ namespace Boot.Controllers
                 SaveJsonToFile(users, FileNames.Users);
 
                 CreateTicket(user);
-                var url = model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl)
-                    ? model.ReturnUrl // w/o http
-                    : Url.Action("Index", "Room");
-                return Json(this.RenderPartialViewToString("_Redirect", url));
+                return Json(this.RenderPartialViewToString("_Redirect", GetRedirectUrl(model.ReturnUrl)));
             }
 
             AddModelStateErrors(response);
@@ -90,6 +84,13 @@ namespace Boot.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        private string GetRedirectUrl(string returnUrl)
+        {
+            return returnUrl != null && Url.IsLocalUrl(returnUrl)
+                ? returnUrl // w/o http
+                : Url.Action("Index", "Home");
         }
     }
 }

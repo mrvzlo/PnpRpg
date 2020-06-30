@@ -63,7 +63,7 @@
             <div class="nav nav-tabs flex-column">
                 @foreach (var perk in Model.Where(x => x.requirements.Single(y => y.type == RequirementType.Level).value == i + 1))
                 {
-                    <a class="btn btn-success m-1 mr-auto" data-toggle="tab" href="#perk_@perk.id">@perk.name</a>
+                    <a class="btn btn-light m-1 mr-auto" data-toggle="tab" href="#perk_@perk.id">@perk.name</a>
                 }
             </div>
         </div>
