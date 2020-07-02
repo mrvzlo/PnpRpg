@@ -5,7 +5,9 @@
     var maxLevel = (int)ViewBag.MaxLevel;
     ViewBag.Title = "Способности";
 }
-
+<div class="col-12">
+    @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class="btn btn-warning float-right" })
+</div>
 <div class="nav nav-tabs col-12 mt-sm-2 px-2 px-sm-3">
     @for (var i = 0; i < maxLevel; i++)
     {
@@ -63,7 +65,7 @@
             <div class="nav nav-tabs flex-column">
                 @foreach (var perk in Model.Where(x => x.requirements.Single(y => y.type == RequirementType.Level).value == i + 1))
                 {
-                    <a class="btn btn-light m-1 mr-auto" data-toggle="tab" href="#perk_@perk.id">@perk.name</a>
+                    <a class="btn btn-light m-1 mr-auto border" data-toggle="tab" href="#perk_@perk.id">@perk.name</a>
                 }
             </div>
         </div>

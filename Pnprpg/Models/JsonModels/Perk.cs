@@ -4,8 +4,9 @@ namespace Boot.Models.JsonModels
 {
     public class Perk
     {
-        public int id;
-        public List<Requirement> requirements;
-        public string name, desc;
+        public int id { get; set; }
+        public List<Requirement> requirements { get; set; }
+        public string name { get; set; }
+        public string desc { get; set; }
     }
 }

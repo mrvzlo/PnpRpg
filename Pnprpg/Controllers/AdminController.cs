@@ -8,7 +8,6 @@ using System.Web.Mvc;
 
 namespace Boot.Controllers
 {
-    [Authorize]
     [Authorize(Roles = "Admin")]
     public class AdminController : BaseController
     {

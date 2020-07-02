@@ -50,6 +50,10 @@
     {
         @Admin()
     }
+    if (User.IsInRole("Admin") || User.IsInRole("Editor"))
+    {
+        @Editor()
+    }
     <li class="nav-item active mx-2 dropdown">
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-none" }))
         {
@@ -70,14 +74,34 @@
 
 @helper Admin()
 {
+    using (Html.BeginForm("DeleteBook", "Book", FormMethod.Post, new { id = "bookUpdate", @class = "d-none" }))
+    {
+        @Html.AntiForgeryToken()
+    }
     <li class="nav-item active mx-2 dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-            Admin
+            Админ
         </a>
 
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminDropdown">
-            <a class="nav-link" href="@Url.Action("Users", "Admin")">Пользователи</a>
+            <a class="nav-link" href="@Url.Action("Users", "Admin")">Настройка ролей</a>
+            <a class="nav-link" href="javascript:document.getElementById('bookUpdate').submit()">
+                Обновить книгу
+            </a>
+        </div>
+    </li>
+}
+@helper Editor()
+{
+    <li class="nav-item active mx-2 dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            Редактор
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminDropdown">
+            <a class="nav-link" href="@Url.Action("Perks", "Editor")">Способности</a>
         </div>
     </li>
 }

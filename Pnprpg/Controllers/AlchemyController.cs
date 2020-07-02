@@ -38,7 +38,7 @@ namespace Boot.Controllers
             var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
             var r = new Random().Next(potions.Count);
             var potion = potions[r].name;
-            var partial = this.RenderPartialViewToString("_RandomResult", potion);
+            var partial = this.RenderPartialViewToString("_ReactionResult", potion);
             return Json(new { partial }, JsonRequestBehavior.AllowGet);
         }
     }

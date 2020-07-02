@@ -16,14 +16,14 @@ namespace Boot.Controllers
     {
         public ActionResult Index() => View();
 
-        public ActionResult Perks()
-        {
-            return View(GetPerks());
-        }
-
         public ActionResult Magic()
         {
             return View(GetMagicSchoolGroups());
+        }
+
+        public ActionResult Perks()
+        {
+            return View(GetPerks());
         }
 
         public ActionResult Weaponry()

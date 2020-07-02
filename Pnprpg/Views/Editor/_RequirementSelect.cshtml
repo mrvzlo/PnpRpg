@@ -1,0 +1,20 @@
+﻿@using Boot.Models;
+@model RequirementSelectModel
+<div class="row" id="req_@Model.Pos">
+    @Html.DropDownList($"Requirements[{Model.Pos}].type", Model.Requirements, null,
+    new { @class = "form-control col-md-5 col-10 my-2 ajax-dropdown", data_url = Url.Action("ReqirementSelectModel", "Editor", new { pos = Model.Pos }), 
+        data_container = $"req_{Model.Pos}", data_style="replace" })
+        <button class="btn float-right btn-danger col-md-1 col-2 my-2 order-md-last clear-btn" data-container="req_@Model.Pos" type="button">X</button>
+    @if (Model.Selected.type == Boot.Enums.RequirementType.Stat)
+    {   
+        @Html.DropDownList($"Requirements[{Model.Pos}].statId", Model.Values, null, 
+       new { @class = "form-control col-md-4 col-7 my-2" })
+        @Html.TextBox($"Requirements[{Model.Pos}].value", Model.Selected.value, 
+       new { @class = "form-control col-md-2 col-5 my-2", @type = "number"})
+    }
+    else
+    { 
+        @Html.DropDownList($"Requirements[{Model.Pos}].value", Model.Values, null, 
+       new { @class = "form-control col-md-6 col-12 my-2" })
+    }
+</div>

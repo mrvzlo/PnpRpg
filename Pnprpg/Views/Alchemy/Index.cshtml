@@ -19,10 +19,10 @@
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-success my-3">Сотворить</button>
+            <button class="btn btn-primary ajax-btn my-3" data-container="alchemyResult" data-url="@Url.Action("Random")" type="button">
+                Случайное зелье
+            </button>
         </div>
     </div>
 }
 <div class="col-12" id="alchemyResult"></div>
-<div class="col-12" id="randomPotion">
-    @Html.Partial("_RandomResult")
-</div>

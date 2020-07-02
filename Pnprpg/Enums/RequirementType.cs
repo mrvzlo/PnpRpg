@@ -9,6 +9,7 @@ namespace Boot.Enums
         Perk = 1,
         [Description("Раса")]
         Race = 2,
+        [Description("Атрибут")]
         Stat = 3,
     }
 }

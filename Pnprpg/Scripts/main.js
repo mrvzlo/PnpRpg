@@ -1,18 +1,58 @@
 ﻿var MainJs = (function () {
 
+    var settings = {};
+
     function init() {
-        updateScripts();
+        $(document).on("click", ".ajax-btn",function () {
+            var id = $(this).data("container");
+            if (!id) id = "main";
+            var url = $(this).data("url");
+            var style = $(this).data("style");
+            var add = $(this).data("add");
+            if (add != null) url += inc(add);
+            call("#" + id, url, style);
+        });
+        $(document).on("click", ".clear-btn", function () {
+            var id = $(this).data("container");
+            $("#"+id).remove();
+        });
+        $(document).on("change", ".ajax-dropdown",function () {
+            var id = $(this).data("container");
+            if (!id) id = "main";
+            var url = $(this).data("url");
+            var style = $(this).data("style");
+            if (url.includes('?'))
+                url += "&id=" + this.value;
+            else
+                url += "/" + this.value;
+            call("#" + id, url, style);
+        });
+        $(document).on('click', '.confirm-btn', function () {
+            var btn = $(this);
+            var form = btn.data('form');
+            var field = btn.data('field');
+            $("#" + field).val(btn.data('value'));
+            if (confirm(btn.data('text')))
+                $('#' + form).submit();
+        });
+        toggleLoading();
     }
 
-    function call(id, url) {
+    function call(id, url, style) {
         toggleLoading();
         $.get(url, function (data) {
-            console.log(url);
             dispose();
-            $(id).html(data.partial);
+            if (style == "append")
+                $(id).after(data.partial);
+            else if (style == "replace")
+                $(id).replaceWith(data.partial);
+            else
+                $(id).html(data.partial);
+
             if (data.status)
                 $("#status").html(data.status);
-            window.history.pushState("object or string", "Title", data.url);
+            if (data.url)
+                window.history.pushState("object or string", "Title", data.url);
             updateScripts();
         });
     }
@@ -27,18 +67,6 @@
         });
         toggleLoading();
         $('[data-toggle="tooltip"]').tooltip();
-        $(".ajax-btn").click(function () {
-            var id = $(this).data("container");
-            if (!id) id = "main";
-            var url = $(this).data("url");
-            call("#" + id, url);
-        });
-        $(".ajax-dropdown").change(function () {
-            var id = $(this).data("container");
-            if (!id) id = "main";
-            var url = $(this).data("url") + "/" + this.value;
-            call("#" + id, url);
-        });
     }
 
     // enabled by default
@@ -75,11 +103,19 @@
         return "";
     }
 
+    function inc(value) {
+        console.log(settings.pos);
+        if (!settings.pos)
+            settings.pos = value;
+        return settings.pos++;
+    }
+
     return {
         init: init,
         toggleLoading: toggleLoading,
         formRedirect: formRedirect,
         setCookie: setCookie,
-        getCookie: getCookie
+        getCookie: getCookie,
+        inc: inc
     };
 })();

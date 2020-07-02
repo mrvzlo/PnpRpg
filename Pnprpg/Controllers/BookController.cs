@@ -14,7 +14,7 @@ namespace Boot.Controllers
         public ActionResult Index()
         {
             var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
-            if (HttpContext.Request.IsLocal)
+            if (!System.IO.File.Exists(path))
             {
                 var pdf = new ViewAsPdf("Index")
                 {
@@ -27,6 +27,15 @@ namespace Boot.Controllers
 
             var file = new FileStream(path, FileMode.Open, FileAccess.Read);
             return File(file, "application/pdf");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteBook()
+        {
+            var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
+            System.IO.File.Delete(path);
+            return RedirectToAction("Index");
         }
 
         public PartialViewResult Stats()

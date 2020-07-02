@@ -128,6 +128,7 @@
     <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
@@ -167,8 +168,10 @@
     <Compile Include="Models\JsonModels\Weapon.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ModelStateError.cs" />
+    <Compile Include="Models\PerkEditModel.cs" />
     <Compile Include="Models\RacePickModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\RequirementSelectModel.cs" />
     <Compile Include="Models\ServiceResponse.cs" />
     <Compile Include="Models\JsonModels\Stat.cs" />
     <Compile Include="Models\HeroStat.cs" />
@@ -176,6 +179,7 @@
     <Compile Include="Models\UserEditModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Views\Editor\EditPerk.cshtml" />
     <Content Include="Content\sheet.css">
       <DependentUpon>sheet.scss</DependentUpon>
     </Content>
@@ -191,7 +195,7 @@
     <Content Include="App_Data\Rooms.json" />
     <Content Include="App_Data\Weapons.json" />
     <Content Include="App_Data\Stats.json" />
-    <Content Include="App_Data\Spells.json" />
+    <None Include="App_Data\Spells.json" />
     <Content Include="App_Data\CharacterSheet.pdf" />
     <Content Include="App_Data\RuleBook.pdf" />
     <None Include="Content\book.scss" />
@@ -221,6 +225,8 @@
     <Content Include="Views\Book\HeroSheet.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\EditorTemplates\UserEditModel.cshtml" />
+    <Content Include="Views\Editor\Perks.cshtml" />
+    <Content Include="Views\Editor\_RequirementSelect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Perks.json" />
@@ -433,7 +439,6 @@
     <Content Include="Views\HeroGen\_List.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\_SignUp.cshtml" />
-    <Content Include="Views\Alchemy\_RandomResult.cshtml" />
     <Content Include="Views\HeroGen\_RacesDropdown.cshtml" />
     <Content Include="Views\HeroGen\MyHero.cshtml" />
     <Content Include="Views\HeroGen\_SkillList.cshtml" />

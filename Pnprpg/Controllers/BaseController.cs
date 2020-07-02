@@ -28,9 +28,11 @@ namespace Boot.Controllers
         protected JsonResult ReturnJson(string partial, string url, string status = null) =>
             Json(new { url, partial, status }, 0);
 
-        protected T GetJsonFromFile<T>(string fileName)
+        protected T GetJsonFromFile<T>(string fileName) where T : new()
         {
             var path = Server.MapPath($"~/App_Data/{fileName}");
+            if (!System.IO.File.Exists(path))
+                SaveJsonToFile(new T(), fileName);
             var json = System.IO.File.ReadAllText(path, Encoding.UTF8);
             return JsonConvert.DeserializeObject<T>(json);
         }
@@ -86,9 +88,9 @@ namespace Boot.Controllers
             var perks = GetJsonFromFile<List<Perk>>(FileNames.Perks);
             var races = GetJsonFromFile<List<Race>>(FileNames.Races);
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            ViewBag.MaxLevel = perks
-                .Max(x => x.requirements.Single(y => y.type == RequirementType.Level)
-                .value);
+            ViewBag.MaxLevel = perks.Any() ? perks.Max(x => x.requirements.Single(y => y.type == RequirementType.Level).value) : 0;
+
+            perks = perks.OrderBy(x => x.requirements.Single(y => y.type == RequirementType.Level).value).ToList();
 
             perks.SelectMany(perk => perk.requirements)
                 .Where(req => req.type == RequirementType.Race)
