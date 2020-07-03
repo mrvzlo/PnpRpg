@@ -5,9 +5,12 @@
     var maxLevel = (int)ViewBag.MaxLevel;
     ViewBag.Title = "Способности";
 }
-<div class="col-12">
-    @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class="btn btn-warning float-right" })
-</div>
+@if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
+{
+    <div class="col-12">
+        @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class = "btn btn-warning float-right" })
+    </div>
+}
 <div class="nav nav-tabs col-12 mt-sm-2 px-2 px-sm-3">
     @for (var i = 0; i < maxLevel; i++)
     {
@@ -55,7 +58,7 @@
                 </ul>
             </div>
             <hr />
-    </div>
+        </div>
     }
 </div>
 <div class="tab-content col-sm-6 col-12 text-left px-2 px-sm-0">

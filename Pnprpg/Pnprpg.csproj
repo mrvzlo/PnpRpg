@@ -141,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AccessHelper.cs" />
     <Compile Include="Helpers\CoreLogic.cs" />
     <Compile Include="Helpers\EnumExtension.cs" />
     <Compile Include="Helpers\Extensions.cs" />
@@ -179,7 +180,7 @@
     <Compile Include="Models\UserEditModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Views\Editor\EditPerk.cshtml" />
+    <Content Include="Views\Editor\EditPerk.cshtml" />
     <Content Include="Content\sheet.css">
       <DependentUpon>sheet.scss</DependentUpon>
     </Content>
@@ -227,6 +228,8 @@
     <Content Include="Views\Admin\EditorTemplates\UserEditModel.cshtml" />
     <Content Include="Views\Editor\Perks.cshtml" />
     <Content Include="Views\Editor\_RequirementSelect.cshtml" />
+    <Content Include="Views\Editor\Weapons.cshtml" />
+    <Content Include="Views\Editor\EditWeapon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Perks.json" />

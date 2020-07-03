@@ -119,5 +119,24 @@ namespace Boot.Controllers
                 Values = selectList
             };
         }
+
+        public ActionResult Weapons()
+        {
+            var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
+            var skillList = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills)
+                .SelectMany(x => x.skills).ToList();
+            weapons.ForEach(x => x.Skill = skillList.Single(y => y.Id == x.SkillId));
+            return View(weapons.OrderBy(x => x.Level).ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteWeapon(int weaponId)
+        {
+            var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
+            weapons.Remove(weapons.FirstOrDefault(x => x.Id == weaponId));
+            SaveJsonToFile(weapons, FileNames.Weapons);
+            return RedirectToAction("Weapons");
+        }
     }
 }

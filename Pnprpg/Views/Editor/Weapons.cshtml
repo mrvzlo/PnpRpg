@@ -1,0 +1,42 @@
+﻿@using Boot.Helpers
+@model List<Boot.Models.JsonModels.Weapon>
+@{
+    ViewBag.Title = "Редакток оружия";
+}
+
+<div class="col-12">@Html.ActionLink("Добавить новое", "EditPerk", null, new { @class = "btn btn-success float-right" })</div>
+
+<table class="table table-striped small col-12">
+    <tr>
+        <th>Уровень</th>
+        <th class="w-25">Название</th>
+        <th class="w-25">Навык</th>
+        <th>Вес</th>
+        <th>Бонус</th>
+        <th>Изменить</th>
+        <th>Удалить</th>
+    </tr>
+    @foreach (var weapon in Model)
+    {
+        <tr>
+            <td class="text-center font-weight-bold">@weapon.Level</td>
+            <td>@weapon.Name</td>
+            <td>@weapon.Skill</td>
+            <td>@weapon.Weight</td>
+            <td>@string.Join(",", weapon.Effects.Select(x => x.Description()))</td>
+            <td><a href="@Url.Action("EditWeapon", new { id = weapon.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a></td>
+            <td>
+                <button class="btn confirm-btn btn-outline-danger" data-form="weaponDeleteForm" data-field="WeaponId" data-value="@weapon.Id"
+                        data-text="Оружие @weapon.Name будет удалено">
+                    ❌
+                </button>
+            </td>
+        </tr>
+    }
+</table>
+
+@using (Html.BeginForm("DeleteWeapon", "Editor", FormMethod.Post, new { id = "weaponDeleteForm" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.Hidden("WeaponId")
+}

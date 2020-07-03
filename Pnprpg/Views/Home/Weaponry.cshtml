@@ -1,10 +1,16 @@
 ﻿@using Boot.Helpers
+@using Boot.Enums
 @model List<Boot.Models.JsonModels.Weapon>
 @{
     ViewBag.Title = "Оружейная";
     var levels = Model.Select(x => x.Level).Distinct();
 }
-
+@if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
+{
+    <div class="col-12">
+        @Html.ActionLink("Редактировать", "Weaponry", "Editor", null, new { @class = "btn btn-warning float-right" })
+    </div>
+}
 <div class="nav nav-tabs col-12 mt-md-2 row justify-content-center">
     @foreach (var level in levels)
     {

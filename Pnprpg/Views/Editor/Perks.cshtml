@@ -5,9 +5,9 @@
 @{
     ViewBag.Title = "Редактор способностей";
 }
-<div class="col-12 p-0">@Html.ActionLink("Добавить новую", "EditPerk", null, new { @class = "btn btn-success float-right" })</div>
+<div class="col-12">@Html.ActionLink("Добавить новую", "EditPerk", null, new { @class = "btn btn-success float-right" })</div>
 
-<table class="table table-striped small table-responsive">
+<table class="table table-striped small table-responsive col-12">
     <tr>
         <th>Уровень</th>
         <th>Название</th>
@@ -44,7 +44,7 @@
                 }
             </td>
             <td>@perk.desc</td>
-            <td><a href="@Url.Action("EditPerk", new { id = perk.id})" class="btn btn-outline-info font-weight-bold">🖉</a></td>
+            <td><a href="@Url.Action("EditPerk", new { id = perk.id})" class="btn btn-outline-info font-weight-bold">🖊️</a></td>
             <td>
                 <button class="btn confirm-btn btn-outline-danger" data-form="perkDeleteForm" data-field="PerkId" data-value="@perk.id"
                         data-text="Способность @perk.name будет удалена">❌</button>
