@@ -4,7 +4,7 @@
     ViewBag.Title = "Редакток оружия";
 }
 
-<div class="col-12">@Html.ActionLink("Добавить новое", "EditPerk", null, new { @class = "btn btn-success float-right" })</div>
+<div class="col-12">@Html.ActionLink("Добавить новое", "EditWeapon", null, new { @class = "btn btn-success float-right" })</div>
 
 <table class="table table-striped small col-12">
     <tr>
@@ -23,7 +23,7 @@
             <td>@weapon.Name</td>
             <td>@weapon.Skill</td>
             <td>@weapon.Weight</td>
-            <td>@string.Join(",", weapon.Effects.Select(x => x.Description()))</td>
+            <td>@(weapon.Effects == null ? "-" : string.Join(",", weapon.Effects.Select(x => x.Description())))</td>
             <td><a href="@Url.Action("EditWeapon", new { id = weapon.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a></td>
             <td>
                 <button class="btn confirm-btn btn-outline-danger" data-form="weaponDeleteForm" data-field="WeaponId" data-value="@weapon.Id"

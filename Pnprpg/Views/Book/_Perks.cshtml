@@ -6,9 +6,9 @@
 <table class="table table-bordered">
     <tr>
         <th>Уровень</th>
-        <th class="w-25">Название</th>
+        <th class="w-20">Название</th>
         <th class="w-25">Требования</th>
-        <th>Эффект</th>
+        <th class="w-50">Эффект</th>
     </tr>
     @foreach (var perk in Model)
     {
@@ -16,21 +16,20 @@
             <td class="text-center">@perk.requirements.Single(x => x.type == RequirementType.Level).value</td>
             <td>@perk.name</td>
             <td>
-                @foreach (var r in perk.requirements.Where(x => x.type != RequirementType.Level))
+                @foreach (var r in perk.requirements.Where(x => x.type != RequirementType.Level).OrderBy(x => x.type))
                 {
                     switch (r.type)
                     {
                         case RequirementType.Perk:
-                            @Model.Single(x => x.id == r.value).name
+                            @Model.Single(x => x.id == r.value).name<br />
                             break;
                         case RequirementType.Race:
-                            @:@r.type.Description(): @r.strValue
+                            @r.strValue <br />
                             break;
                         case RequirementType.Stat:
-                            @:@r.strValue: @r.value
+                            @:@r.statId: @r.value
                             break;
                     }
-                    <br />
                 }
                 @if (perk.requirements.All(x => x.type == RequirementType.Level))
                 {

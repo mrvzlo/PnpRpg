@@ -38,6 +38,9 @@ namespace Boot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditPerk(PerkEditModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             var perks = GetPerks();
             Perk perk = null;
             if (model.Id != null)
@@ -129,6 +132,55 @@ namespace Boot.Controllers
             return View(weapons.OrderBy(x => x.Level).ToList());
         }
 
+        public ActionResult EditWeapon(int? id = null)
+        {
+            var weapon = GetJsonFromFile<List<Weapon>>(FileNames.Weapons).SingleOrDefault(x => x.Id == id);
+            var model = new WeaponEditModel();
+            if (weapon != null)
+            {
+                model.Id = weapon.Id;
+                model.Name = weapon.Name;
+                model.Level = weapon.Level;
+                model.Weight = weapon.Weight;
+                model.SkillId = weapon.SkillId;
+            }
+
+            PrepareWeaponEditViewbags(model.SkillId);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditWeapon(WeaponEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                PrepareWeaponEditViewbags(model.SkillId);
+                return View(model);
+            }
+
+            var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
+            Weapon weapon = null;
+            if (model.Id != null)
+                weapon = weapons.Single(x => x.Id == model.Id);
+
+            if (weapon == null)
+                weapon = new Weapon { Id = weapons.Max(x => x.Id) + 1 };
+            else
+                weapons.Remove(weapon);
+
+            weapon.Name = model.Name;
+            weapon.SkillId = model.SkillId;
+            weapon.Weight = model.Weight;
+            weapon.Level = model.Level;
+
+            weapons.Add(weapon);
+
+            SaveJsonToFile(weapons, FileNames.Weapons);
+
+            return RedirectToAction("Weapons");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteWeapon(int weaponId)
@@ -137,6 +189,13 @@ namespace Boot.Controllers
             weapons.Remove(weapons.FirstOrDefault(x => x.Id == weaponId));
             SaveJsonToFile(weapons, FileNames.Weapons);
             return RedirectToAction("Weapons");
+        }
+
+        private void PrepareWeaponEditViewbags(int skillId)
+        {
+            var skillList = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).First().skills;
+            var values = skillList.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = StringHelper.FormatToSentence(x.Name) }).ToList();
+            ViewBag.SkillList = new SelectList(values, "Value", "Text", skillId);
         }
     }
 }

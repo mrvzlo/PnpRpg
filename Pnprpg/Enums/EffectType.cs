@@ -13,10 +13,10 @@ namespace Boot.Enums
         [Translation("🤕")]
         Stun = 2,
         [Description("Разоружение")]
-        [Translation("🖐️")]
+        [Translation("🖐")]
         Disarm = 3,
         [Description("Пробитие")]
-        [Translation("🛡️")]
+        [Translation("🛡")]
         Crush = 4,
         [Description("Копание")]
         [Translation("⛏️")]

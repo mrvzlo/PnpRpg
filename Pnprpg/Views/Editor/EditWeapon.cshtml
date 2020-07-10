@@ -1,7 +1,36 @@
-﻿
+﻿@model Boot.Models.WeaponEditModel
 @{
-    ViewBag.Title = "EditWeapon";
+    ViewBag.Title = Model.Id == null ? "Новое оружие" : Model.Name;
 }
 
-<h2>EditWeapon</h2>
+@using (Html.BeginForm("EditWeapon", "Editor", FormMethod.Post, new { @class = "col-12" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group row">
+        <label class="col-md-2 col-3 col-form-label">Уровень</label>
+        <div class="col-md-3 col-9">
+            @Html.TextBoxFor(x => x.Level, new { type = "number", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-3 col-form-label">Вес</label>
+        <div class="col-md-3 col-9">
+            @Html.TextBoxFor(x => x.Weight, new { type = "number", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-3 col-form-label">Название</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-3 col-form-label">Навык</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.SkillId, (SelectList)ViewBag.SkillList, new { @class = "form-control" })
+        </div>
+    </div>
 
+    <hr />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+}
