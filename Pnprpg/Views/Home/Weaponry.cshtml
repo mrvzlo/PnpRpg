@@ -30,7 +30,7 @@
                     <th class="w-25">Название</th>
                     <th>Навык</th>
                     <th>Вес</th>
-                    <th>Бонус</th>
+                    <th>Бонусы</th>
                 </tr>
                 @foreach (var weapon in Model.Where(x => x.Level == level))
                 {
@@ -43,7 +43,7 @@
                             {
                                 foreach (var effect in weapon.Effects)
                                 {
-                                    <span data-toggle="tooltip" data-placement="bottom" title="@effect.Description()">
+                                    <span data-toggle="tooltip" data-placement="left" title="@effect.Description()">
                                         @effect.Translation()
                                     </span>
                                 }

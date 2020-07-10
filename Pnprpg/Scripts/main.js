@@ -35,7 +35,7 @@
             if (confirm(btn.data('text')))
                 $('#' + form).submit();
         });
-        toggleLoading();
+        updateScripts();
     }
 
     function call(id, url, style) {
