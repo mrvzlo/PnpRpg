@@ -1,57 +1,9 @@
-﻿@using Boot.Enums;
-@using Boot.Helpers;
-@model List<Boot.Models.JsonModels.Perk>
-
-@{
+﻿@{
     ViewBag.Title = "Редактор способностей";
 }
-<div class="col-12">@Html.ActionLink("Добавить новую", "EditPerk", null, new { @class = "btn btn-success float-right" })</div>
+<div class="col-12 my-2">@Html.ActionLink("Добавить новую", "EditPerk", null, new { @class = "btn btn-success" })</div>
 
-<table class="table table-striped small table-responsive col-12">
-    <tr>
-        <th>Уровень</th>
-        <th>Название</th>
-        <th class="w-25">Требования</th>
-        <th>Эффект</th>
-        <th>Изменить</th>
-        <th>Удалить</th>
-    </tr>
-    @foreach (var perk in Model)
-    {
-        <tr>
-            <td class="text-center font-weight-bold">@perk.requirements.Single(x => x.type == RequirementType.Level).value</td>
-            <td>@perk.name</td>
-            <td>
-                @foreach (var r in perk.requirements.Where(x => x.type != RequirementType.Level))
-                {
-                    switch (r.type)
-                    {
-                        case RequirementType.Perk:
-                            @Model.Single(x => x.id == r.value).name
-                            break;
-                        case RequirementType.Race:
-                            @:@r.type.Description(): @r.strValue
-                            break;
-                        case RequirementType.Stat:
-                            @:@r.strValue: @r.value
-                            break;
-                    }
-                    <br />
-                }
-                @if (perk.requirements.All(x => x.type == RequirementType.Level))
-                {
-                    @:Нет
-                }
-            </td>
-            <td>@perk.desc</td>
-            <td><a href="@Url.Action("EditPerk", new { id = perk.id})" class="btn btn-outline-info font-weight-bold">🖊️</a></td>
-            <td>
-                <button class="btn confirm-btn btn-outline-danger" data-form="perkDeleteForm" data-field="PerkId" data-value="@perk.id"
-                        data-text="Способность @perk.name будет удалена">❌</button>
-            </td>
-        </tr>
-    }
-</table>
+@Html.AjaxGrid(Url.Action("PerksGrid", "Editor"))
 
 @using(Html.BeginForm("DeletePerk", "Editor", FormMethod.Post, new { id = "perkDeleteForm"}))
 {

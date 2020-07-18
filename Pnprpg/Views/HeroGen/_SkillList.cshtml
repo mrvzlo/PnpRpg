@@ -3,14 +3,14 @@
     <div class="carousel-inner col-lg-6 col-md-8 col-12 p-0">
         @foreach (var group in Model.Groups)
         {
-            <div class="carousel-item @(group.id == Model.Selected ? "active" : "")">
+            <div class="carousel-item @(group.Id == Model.Selected ? "active" : "")">
                 <table class="m-auto table table-sm">
                     <tr>
                         <th class="px-0">Атрибут</th>
-                        <th>@group.name</th>
+                        <th>@group.Name</th>
                         <th>Цена</th>
                     </tr>
-                    @foreach (var skill in group.skills)
+                    @foreach (var skill in group.Skills)
                     {
                         <tr>
                             <td class="font-weight-bold" style="color: @skill.Stat.Color">@skill.Stat.Id</td>
@@ -21,7 +21,7 @@
                                 var color = skill.CanInc ? "success" : "secondary";
                                 <td>
                                     <button class="btn btn-@color btn-sm ajax-btn" data-container="skillList"
-                                            data-url="@Url.Action("AddSkill", new{ group = group.id, id = skill.Id})"
+                                            data-url="@Url.Action("AddSkill", new{ group = group.Id, id = skill.Id})"
                                             @(skill.CanInc ? "" : "disabled")>
                                         +1
                                     </button>
@@ -48,7 +48,7 @@
         <ol class="carousel-indicators">
             @foreach (var group in Model.Groups)
             {
-                <li data-target="#skillsCarousel" data-slide-to="@group.id" class="@(group.id == Model.Selected ? "active" : "")"></li>
+                <li data-target="#skillsCarousel" data-slide-to="@group.Id" class="@(group.Id == Model.Selected ? "active" : "")"></li>
             }
         </ol>
     </div>

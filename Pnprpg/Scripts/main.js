@@ -42,12 +42,19 @@
         toggleLoading();
         $.get(url, function (data) {
             dispose();
-            if (style == "append")
-                $(id).after(data.partial);
-            else if (style == "replace")
-                $(id).replaceWith(data.partial);
-            else
-                $(id).html(data.partial);
+            switch (style) {
+                case "append":
+                    $(id).after(data.partial);
+                    break;
+                case "prepend":
+                    $(id).before(data.partial);
+                    break;
+                case "replace":
+                    $(id).replaceWith(data.partial);
+                    break;
+                default:
+                    $(id).html(data.partial);
+            } 
 
             if (data.status)
                 $("#status").html(data.status);
@@ -67,6 +74,7 @@
         });
         toggleLoading();
         $('[data-toggle="tooltip"]').tooltip();
+        initMvcGrids();
     }
 
     // enabled by default
@@ -110,12 +118,19 @@
         return settings.pos++;
     }
 
+    function initMvcGrids() {
+        [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
+            new MvcGrid(element);
+        });
+    }
+
     return {
         init: init,
         toggleLoading: toggleLoading,
         formRedirect: formRedirect,
         setCookie: setCookie,
         getCookie: getCookie,
-        inc: inc
+        inc: inc,
+        initMvcGrids: initMvcGrids
     };
 })();

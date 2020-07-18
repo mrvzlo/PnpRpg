@@ -2,8 +2,8 @@
 {
     public class Reaction
     {
-        public int reagent, process;
-        public int result;
+        public int Reagent, Process;
+        public int Result;
 
         public Potion Potion;
     }

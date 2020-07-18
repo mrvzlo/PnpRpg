@@ -5,11 +5,11 @@
     new { @class = "form-control col-md-5 col-10 my-2 ajax-dropdown", data_url = Url.Action("ReqirementSelectModel", "Editor", new { pos = Model.Pos }), 
         data_container = $"req_{Model.Pos}", data_style="replace" })
         <button class="btn float-right btn-danger col-md-1 col-2 my-2 order-md-last clear-btn" data-container="req_@Model.Pos" type="button">X</button>
-    @if (Model.Selected.type == Boot.Enums.RequirementType.Stat)
+    @if (Model.Selected.Type == Boot.Enums.RequirementType.Stat)
     {   
         @Html.DropDownList($"Requirements[{Model.Pos}].statId", Model.Values, null, 
        new { @class = "form-control col-md-4 col-7 my-2" })
-        @Html.TextBox($"Requirements[{Model.Pos}].value", Model.Selected.value, 
+        @Html.TextBox($"Requirements[{Model.Pos}].value", Model.Selected.Value, 
        new { @class = "form-control col-md-2 col-5 my-2", @type = "number"})
     }
     else

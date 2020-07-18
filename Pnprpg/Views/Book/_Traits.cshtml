@@ -13,42 +13,42 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.name</td>
-            @if (item.effects != null)
+            <td>@item.Name</td>
+            @if (item.Effects != null)
             {
                 <td>
-                    @foreach (var boost in item.effects.Where(x => x.type == Boot.Enums.EffectType.Boost))
+                    @foreach (var boost in item.Effects.Where(x => x.Type == Boot.Enums.EffectType.Boost))
                     {
-                        if (string.IsNullOrEmpty(boost.statId))
+                        if (string.IsNullOrEmpty(boost.StatId))
                         {
-                            @Html.Raw(string.Format(boost.desc, $"+{boost.value}"))
+                            @Html.Raw(string.Format(boost.Desc, $"+{boost.Value}"))
                         }
                         else
                         {
-                            @Html.Raw(string.Format(boost.desc, $"+{boost.value}", boost.Stat.Name))
+                            @Html.Raw(string.Format(boost.Desc, $"+{boost.Value}", boost.Stat.Name))
                         }
                     }
-                    @foreach (var boost in item.effects.Where(x => x.type < 0))
+                    @foreach (var boost in item.Effects.Where(x => x.Type < 0))
                     {
-                        @Html.Raw(string.Format(boost.desc, boost.value))
+                        @Html.Raw(string.Format(boost.Desc, boost.Value))
                     }
                 </td>
                 <td>
-                    @foreach (var weak in item.effects.Where(x => x.type == Boot.Enums.EffectType.Weaken))
+                    @foreach (var weak in item.Effects.Where(x => x.Type == Boot.Enums.EffectType.Weaken))
                     {
-                        if (string.IsNullOrEmpty(weak.statId))
+                        if (string.IsNullOrEmpty(weak.StatId))
                         {
-                            @Html.Raw(string.Format(weak.desc, $"-{weak.value}"))
+                            @Html.Raw(string.Format(weak.Desc, $"-{weak.Value}"))
                         }
                         else
                         {
-                            @Html.Raw(string.Format(weak.desc, $"-{weak.value}", weak.Stat.Name))
+                            @Html.Raw(string.Format(weak.Desc, $"-{weak.Value}", weak.Stat.Name))
                         }
                         <br />
                     }
-                    @foreach (var boost in item.effects.Where(x => x.type < 0))
+                    @foreach (var boost in item.Effects.Where(x => x.Type < 0))
                     {
-                        @Html.Raw(string.Format(boost.desc, boost.value))
+                        @Html.Raw(string.Format(boost.Desc, boost.Value))
                     }
                 </td>
             }

@@ -32,11 +32,11 @@
             </table>
         </td>
         <td class="w-33">
-            @brs(brCount * 2 / 3)
+            @Brs(brCount * 2 / 3)
             <div class="bb">Особенности</div>
-            @brs(brCount / 3)
+            @Brs(brCount / 3)
             <div class="bb"></div>
-            @brs(2)
+            @Brs(2)
         </td>
         <td class="w-33" rowspan="2">
             <div>
@@ -49,24 +49,24 @@
     <tr>
         <td>
             <div class="bb">Заклинания</div>
-            @brs(brCount)
+            @Brs(brCount)
             <div class="bb"></div>
         </td>
         <td>
             <div class="bb">Способности</div>
-            @brs(brCount)
+            @Brs(brCount)
             <div class="bb"></div>
         </td>
     </tr>
     <tr>
         <td colspan="3">
-            @brs(2)
+            @Brs(2)
             <div class="bb">Инвентарь</div>
         </td>
     </tr>
 </table>
 
-@helper brs(int count){
+@helper Brs(int count){
     for(int i=0; i<count; i++)
     {
         <br />

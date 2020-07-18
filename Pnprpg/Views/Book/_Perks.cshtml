@@ -13,30 +13,30 @@
     @foreach (var perk in Model)
     {
         <tr>
-            <td class="text-center">@perk.requirements.Single(x => x.type == RequirementType.Level).value</td>
-            <td>@perk.name</td>
+            <td class="text-center">@perk.Requirements.Single(x => x.Type == RequirementType.Level).Value</td>
+            <td>@perk.Name</td>
             <td>
-                @foreach (var r in perk.requirements.Where(x => x.type != RequirementType.Level).OrderBy(x => x.type))
+                @foreach (var r in perk.Requirements.Where(x => x.Type != RequirementType.Level).OrderBy(x => x.Type))
                 {
-                    switch (r.type)
+                    switch (r.Type)
                     {
                         case RequirementType.Perk:
-                            @Model.Single(x => x.id == r.value).name<br />
+                            @Model.Single(x => x.Id == r.Value).Name<br />
                             break;
                         case RequirementType.Race:
-                            @r.strValue <br />
+                            @r.StrValue <br />
                             break;
                         case RequirementType.Stat:
-                            @:@r.statId: @r.value
+                            @:@r.StatId: @r.Value
                             break;
                     }
                 }
-                @if (perk.requirements.All(x => x.type == RequirementType.Level))
+                @if (perk.Requirements.All(x => x.Type == RequirementType.Level))
                 {
                     @:Нет
                 }
             </td>
-            <td>@perk.desc</td>
+            <td>@perk.Desc</td>
         </tr>
     }
 </table>

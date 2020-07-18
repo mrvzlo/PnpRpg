@@ -5,9 +5,9 @@ namespace Boot.Models
 {
     public class Trait
     {
-        public List<Effect> effects;
-        public int id;
-        public string name;
+        public List<Effect> Effects;
+        public int Id;
+        public string Name;
         public bool Chosen;
     }
 }

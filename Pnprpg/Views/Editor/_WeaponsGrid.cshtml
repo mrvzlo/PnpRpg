@@ -1,0 +1,26 @@
+﻿@using Boot.Helpers
+@using Boot.Models.JsonModels
+@model List<Boot.Models.JsonModels.Weapon>
+
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Level).Titled("Уровень").InitialSort(GridSortOrder.Asc).Sortable(true);
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Skill).Titled("Навык");
+    columns.Add(x => x.Weight).Titled("Вес");
+    columns.Add(x => x.Effects == null || !x.Effects.Any() 
+        ? "-" : string.Join(",", x.Effects.Select(y => y.Description()))).Titled("Бонусы");
+    columns.Add(x => Actions(x));
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 10;
+}).Css("table table-responsive"))
+
+@helper Actions(Weapon weapon)
+{
+    <a href="@Url.Action("EditWeapon", new {id = weapon.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
+    <button class="btn confirm-btn btn-outline-danger" data-form="weaponDeleteForm" data-field="WeaponId" data-value="@weapon.Id"
+            data-text="Оружие @weapon.Name будет удалено">
+        ❌
+    </button>
+}

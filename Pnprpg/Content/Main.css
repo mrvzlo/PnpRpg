@@ -7201,6 +7201,55 @@ a.text-dark:hover, a.text-dark:focus {
     padding-left: .1rem;
     padding-right: .1rem; }
 
+.right {
+  right: 0; }
+
+a {
+  color: black; }
+  a:hover, a:active, a.active {
+    color: black;
+    font-weight: bold;
+    text-decoration: none; }
+
+.carousel-indicators {
+  position: relative;
+  margin: 0; }
+  .carousel-indicators li {
+    border-radius: 50%; }
+
+@media (max-width: 540px) {
+  .smallForSmall {
+    font-size: 80%; } }
+
+.pointer {
+  cursor: pointer; }
+
+.big-badge {
+  font-size: 100%; }
+
+td {
+  vertical-align: middle !important; }
+
+.mvc-grid-pager {
+  font-size: 0; }
+  .mvc-grid-pager button {
+    font-size: 1rem;
+    margin: 5px -1px;
+    padding: 0 5px;
+    color: #50a;
+    background-color: #d5aaff;
+    border: 1px solid gray; }
+    .mvc-grid-pager button.active, .mvc-grid-pager button:not(.disabled):hover, .mvc-grid-pager button.active:hover {
+      color: white;
+      background-color: #50a;
+      border-color: #50a; }
+    .mvc-grid-pager button:first-child {
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px; }
+    .mvc-grid-pager button:nth-last-child(2) {
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px; }
+
 .p-default {
   margin-top: -60px !important;
   padding-top: 60px !important; }
@@ -7220,40 +7269,12 @@ nav {
   position: fixed;
   z-index: -1; }
 
-.right {
-  right: 0; }
-
 .container {
   min-height: 100vh; }
-
-a {
-  color: black; }
-  a:hover, a:active, a.active {
-    color: black;
-    font-weight: bold;
-    text-decoration: none; }
 
 footer {
   position: fixed;
   bottom: 0; }
-
-td {
-  vertical-align: middle !important; }
-
-.carousel-indicators {
-  position: relative; }
-  .carousel-indicators li {
-    border-radius: 50%; }
-
-@media (max-width: 540px) {
-  .smallForSmall {
-    font-size: 80%; } }
-
-.pointer {
-  cursor: pointer; }
-
-.big-badge {
-  font-size: 100%; }
 
 .lds-dual-ring {
   display: inline-block;

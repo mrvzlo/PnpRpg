@@ -11,17 +11,17 @@
     @foreach(var race in Model)
     {
 <tr>
-    <td>@race.name</td>
-    @if (race.effects != null)
+    <td>@race.Name</td>
+    @if (race.Effects != null)
     {
         <td>
-            @foreach (var boost in race.effects.Where(x => x.type == Boot.Enums.EffectType.Boost))
+            @foreach (var boost in race.Effects.Where(x => x.Type == Boot.Enums.EffectType.Boost))
             {
                 @:+2 @boost.Stat.Name
             }
         </td>
         <td>
-            @foreach (var boost in race.effects.Where(x => x.type == Boot.Enums.EffectType.Weaken))
+            @foreach (var boost in race.Effects.Where(x => x.Type == Boot.Enums.EffectType.Weaken))
             {
                 @:-2 @boost.Stat.Name
             }

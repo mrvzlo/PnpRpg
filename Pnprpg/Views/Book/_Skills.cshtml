@@ -18,9 +18,9 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Атрибут</th>
-                    <th>@group.name</th>
+                    <th>@group.Name</th>
                 </tr>
-                @foreach (var skill in group.skills)
+                @foreach (var skill in group.Skills)
                 {
                     <tr>
                         <td>@( skill.Difficulty == 0 ? skill.StatId : $"{skill.StatId}-{skill.Difficulty}")</td>

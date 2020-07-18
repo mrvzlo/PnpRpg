@@ -29,8 +29,6 @@ namespace Boot.Controllers
             return File(file, "application/pdf");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteBook()
         {
             var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
@@ -49,8 +47,8 @@ namespace Boot.Controllers
             var list = GetJsonFromFile<List<Race>>(FileNames.Races);
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
             foreach(var race in list)
-                if (race.effects != null)
-                    race.effects.ForEach(y => y.Stat = stats.Single(z => z.Id == y.statId));
+                if (race.Effects != null)
+                    race.Effects.ForEach(y => y.Stat = stats.Single(z => z.Id == y.StatId));
             return PartialView("_Races", list);
         }
 
@@ -59,9 +57,9 @@ namespace Boot.Controllers
             var list = GetJsonFromFile<List<Trait>>(FileNames.Traits);
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
             foreach (var trait in list)
-                foreach (var effect in trait.effects)
-                    if (!string.IsNullOrEmpty(effect.statId))
-                        effect.Stat = stats.Single(x => x.Id == effect.statId);
+                foreach (var effect in trait.Effects)
+                    if (!string.IsNullOrEmpty(effect.StatId))
+                        effect.Stat = stats.Single(x => x.Id == effect.StatId);
             return PartialView("_Traits", list);
         }
 
@@ -86,7 +84,7 @@ namespace Boot.Controllers
             var processes = GetJsonFromFile<List<SymbolInfo>>(FileNames.Processes);
             var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
             var reacionts = GetJsonFromFile<List<Reaction>>(FileNames.Reactions);
-            reacionts.ForEach(x => x.Potion = potions.Single(y => y.id == x.result));
+            reacionts.ForEach(x => x.Potion = potions.Single(y => y.Id == x.Result));
             var model = new AlchemySummary
             {
                 Reactions = reacionts,
@@ -98,7 +96,7 @@ namespace Boot.Controllers
 
         public PartialViewResult ShortSkillList()
         {
-            var skills = GetSkillGroupList().Groups.SelectMany(x => x.skills).ToList();
+            var skills = GetSkillGroupList().Groups.SelectMany(x => x.Skills).ToList();
             return PartialView("_ShortSkillList", skills);
         }
 

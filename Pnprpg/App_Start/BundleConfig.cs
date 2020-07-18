@@ -10,6 +10,7 @@ namespace Boot
             bundles.Add(new ScriptBundle("~/js/core").Include(
                         "~/Scripts/jquery-{version}.js", 
                         "~/Scripts/jquery.validate*",
+                        "~/Scripts/MvcGrid/mvc-grid.js",
                         "~/Scripts/umd/popper.js",
                         "~/Scripts/jquery.validate.unobtrusive.js",
                         "~/Scripts/jquery.unobtrusive-ajax.js",
@@ -19,7 +20,8 @@ namespace Boot
                 "~/Scripts/main.js"));
             
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/main.css"));
+                        "~/Content/MvcGrid/mvc-grid.css",
+                        "~/Content/main.css"));
 
             bundles.Add(new StyleBundle("~/Content/book").Include(
                       "~/Content/book.css"));

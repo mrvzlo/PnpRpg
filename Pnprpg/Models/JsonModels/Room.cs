@@ -5,9 +5,9 @@ namespace Boot.Models.JsonModels
 {
     public class Room
     {
-        public int id, players;
-        public string name;
-        public DateTime date;
+        public int Id, Players;
+        public string Name;
+        public DateTime Date;
 
         public List<UserModel> PlayerModels;
     }

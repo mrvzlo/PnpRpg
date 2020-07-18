@@ -14,21 +14,26 @@ namespace Boot.Controllers
     {
         public ActionResult Perks()
         {
-            return View(GetPerks());
+            return View();
+        }
+
+        public PartialViewResult PerksGrid()
+        {
+            return PartialView("_PerksGrid", GetPerks());
         }
 
         public ActionResult EditPerk(int? id = null)
         {
-            var perk = GetPerks().SingleOrDefault(x => x.id == id);
+            var perk = GetPerks().SingleOrDefault(x => x.Id == id);
             var model = new PerkEditModel();
 
             if (perk != null)
             {
-                model.Id = perk.id;
-                model.Desc = perk.desc;
-                model.Name = perk.name;
-                model.Level = perk.requirements.Single(x => x.type == RequirementType.Level).value;
-                model.Requirements = perk.requirements.Where(x => x.type != RequirementType.Level).ToList();
+                model.Id = perk.Id;
+                model.Desc = perk.Desc;
+                model.Name = perk.Name;
+                model.Level = perk.Requirements.Single(x => x.Type == RequirementType.Level).Value;
+                model.Requirements = perk.Requirements.Where(x => x.Type != RequirementType.Level).ToList();
             }
 
             return View(model);
@@ -44,19 +49,19 @@ namespace Boot.Controllers
             var perks = GetPerks();
             Perk perk = null;
             if (model.Id != null)
-                perk = perks.Single(x => x.id == model.Id);
+                perk = perks.Single(x => x.Id == model.Id);
 
             if (perk == null)
-                perk = new Perk { id = perks.Max(x => x.id) + 1 };
+                perk = new Perk { Id = perks.Max(x => x.Id) + 1 };
             else
                 perks.Remove(perk);
 
             var reqs = model.Requirements ?? new List<Requirement>();
-            reqs.Add(new Requirement { type = RequirementType.Level, value = model.Level });
+            reqs.Add(new Requirement { Type = RequirementType.Level, Value = model.Level });
 
-            perk.name = model.Name;
-            perk.desc = model.Desc;
-            perk.requirements = reqs;
+            perk.Name = model.Name;
+            perk.Desc = model.Desc;
+            perk.Requirements = reqs;
 
             perks.Add(perk);
 
@@ -70,7 +75,7 @@ namespace Boot.Controllers
         public ActionResult DeletePerk(int perkId)
         {
             var perks = GetPerks();
-            perks.Remove(perks.FirstOrDefault(x => x.id == perkId));
+            perks.Remove(perks.FirstOrDefault(x => x.Id == perkId));
             SaveJsonToFile(perks, FileNames.Perks);
             return RedirectToAction("Perks");
         }
@@ -104,12 +109,12 @@ namespace Boot.Controllers
                     break;
                 case RequirementType.Perk:
                     var perks = GetJsonFromFile<List<Perk>>(FileNames.Perks);
-                    values = perks.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.name }).ToList();
+                    values = perks.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
                     selectList = new SelectList(values, "Value", "Text", value);
                     break;
                 case RequirementType.Race:
                     var races = GetJsonFromFile<List<Race>>(FileNames.Races);
-                    values = races.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.name }).ToList();
+                    values = races.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
                     selectList = new SelectList(values, "Value", "Text", value);
                     break;
             }
@@ -117,7 +122,7 @@ namespace Boot.Controllers
             return new RequirementSelectModel
             {
                 Pos = pos,
-                Selected = new Requirement { statId = statId, type = (RequirementType)reqType, value = value },
+                Selected = new Requirement { StatId = statId, Type = (RequirementType)reqType, Value = value },
                 Requirements = new SelectList(reqSelectList, "Value", "Text", reqType),
                 Values = selectList
             };
@@ -125,11 +130,16 @@ namespace Boot.Controllers
 
         public ActionResult Weapons()
         {
+            return View();
+        }
+
+        public PartialViewResult WeaponsGrid()
+        {
             var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
             var skillList = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills)
-                .SelectMany(x => x.skills).ToList();
+                .SelectMany(x => x.Skills).ToList();
             weapons.ForEach(x => x.Skill = skillList.Single(y => y.Id == x.SkillId));
-            return View(weapons.OrderBy(x => x.Level).ToList());
+            return PartialView("_WeaponsGrid", weapons);
         }
 
         public ActionResult EditWeapon(int? id = null)
@@ -193,7 +203,7 @@ namespace Boot.Controllers
 
         private void PrepareWeaponEditViewbags(int skillId)
         {
-            var skillList = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).First().skills;
+            var skillList = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).First().Skills;
             var values = skillList.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = StringHelper.FormatToSentence(x.Name) }).ToList();
             ViewBag.SkillList = new SelectList(values, "Value", "Text", skillId);
         }

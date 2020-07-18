@@ -14,8 +14,8 @@
                 @foreach (var r in Model.Reagents)
                 {
                     <tr>
-                        <td>@r.symbol</td>
-                        <td>@r.name</td>
+                        <td>@r.Symbol</td>
+                        <td>@r.Name</td>
                     </tr>
                 }
             </table>
@@ -30,8 +30,8 @@
                 @foreach (var r in Model.Processes)
                 {
                     <tr>
-                        <td>@r.symbol</td>
-                        <td>@r.name</td>
+                        <td>@r.Symbol</td>
+                        <td>@r.Name</td>
                     </tr>
                 }
             </table>
@@ -44,21 +44,21 @@
 <table class="table table-bordered">
     <tr>
         <td></td>
-        @foreach (var process in Model.Processes.GroupBy(x => x.value).Select(x => x.First()))
+        @foreach (var process in Model.Processes.GroupBy(x => x.Value).Select(x => x.First()))
         {
-            <th>@process.name</th>
+            <th>@process.Name</th>
         }
     </tr>
-    @foreach (var r in Model.Reagents.GroupBy(x => x.value).Select(x => x.First()))
+    @foreach (var r in Model.Reagents.GroupBy(x => x.Value).Select(x => x.First()))
     {
         <tr>
-            <th>@r.name</th>
-            @foreach (var process in Model.Processes.GroupBy(x => x.value).Select(x => x.First()))
+            <th>@r.Name</th>
+            @foreach (var process in Model.Processes.GroupBy(x => x.Value).Select(x => x.First()))
             {
                 <td>
                     @{
-                        var res = Model.Reactions.SingleOrDefault(x => x.process == process.value && x.reagent == r.value);
-                        @(res == null ? "-" : res.Potion.name)
+                        var res = Model.Reactions.SingleOrDefault(x => x.Process == process.Value && x.Reagent == r.Value);
+                        @(res == null ? "-" : res.Potion.Name)
                     }
                 </td>
             }

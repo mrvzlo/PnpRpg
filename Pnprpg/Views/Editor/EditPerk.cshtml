@@ -17,7 +17,7 @@
         <label class="col-md-2 col-3 col-form-label">Название</label>
         <div class="col-md-10">
             @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-        </div>
+        </div> 
     </div>
     <div class="form-group row">
         <label class="col-md-2 col-3 col-form-label">Эффект</label>
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <button type="button" id="addReqBtn" class="btn btn-success ajax-btn" data-container="addReqBtn" data-style="append"
+    <button type="button" class="btn btn-success ajax-btn" data-container="hr" data-style="prepend"
             data-url="@Url.Action("ReqirementSelectModel","Editor")?pos=" data-add="@(Model.Requirements?.Count ?? 0)">
         Добавить требование
     </button>
@@ -35,10 +35,9 @@
         var i = 0;
         foreach (var req in Model.Requirements)
         {
-            Html.RenderAction("ShowReqirementSelectModel", "Editor", new { pos = i++, value = req.value, statId = req.statId, reqType = req.type });
+            Html.RenderAction("ShowReqirementSelectModel", "Editor", new { pos = i++, value = req.Value, statId = req.StatId, reqType = req.Type });
         }
     }
-
-    <hr />
+    <hr id="hr"/>
     <button type="submit" class="btn btn-success">Сохранить</button>
 }

@@ -3,10 +3,10 @@
 @using Boot.Models
 @model Boot.Models.JsonModels.Room
 @{
-    ViewBag.Title = Model.name;
+    ViewBag.Title = Model.Name;
 }
 
-<div class="h5 col-12 m-2">@Model.name</div>
+<div class="h5 col-12 m-2">@Model.Name</div>
 
 @foreach (var player in Model.PlayerModels)
 {
@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
             <span class="badge badge-dark">Lvl @hero.Level</span>
-            @for (var i = 0; i < hero.Stats.Length; i++)
+            @for (var i = 0; i < hero.Stats.Count; i++)
             {
                 var stat = (StatType)i;
                 <span class="badge badge-@stat.Color()">@stat @hero.Stats[i]</span>

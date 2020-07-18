@@ -17,11 +17,11 @@ namespace Boot.Controllers
             var rooms = GetJsonFromFile<List<Room>>(FileNames.Rooms);
             if (user.Room == null)
                 return View(rooms);
-            var room = rooms.SingleOrDefault(x => x.id == user.Room);
+            var room = rooms.SingleOrDefault(x => x.Id == user.Room);
             if (room == null)
                 return View(rooms);
 
-            room.PlayerModels = users.Where(x => x.Room == room.id).ToList();
+            room.PlayerModels = users.Where(x => x.Room == room.Id).ToList();
             return View("Room", room);
         }
 

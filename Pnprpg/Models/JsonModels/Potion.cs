@@ -2,7 +2,7 @@
 {
     public class Potion
     {
-        public int id;
-        public string name;
+        public int Id;
+        public string Name;
     }
 }

@@ -4,9 +4,9 @@ namespace Boot.Models.JsonModels
 {
     public class Race
     {
-        public int id;
-        public string name;
-        public List<Effect> effects;
+        public int Id;
+        public string Name;
+        public List<Effect> Effects;
 
         public bool Chosen;
     }

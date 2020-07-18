@@ -11,47 +11,47 @@
         @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class = "btn btn-warning float-right" })
     </div>
 }
-<div class="nav nav-tabs col-12 mt-sm-2 px-2 px-sm-3">
+<div class="nav nav-tabs col-12 my-sm-2 px-2 px-sm-3 justify-content-center">
     @for (var i = 0; i < maxLevel; i++)
     {
         <a class="btn btn-primary mx-1 @(i == 0 ? "active" : "")" data-toggle="tab" href="#group_@i">
-            <span class="d-none d-sm-inline">Уровень</span>
+            <span class="d-none d-md-inline">Уровень</span>
             @(i + 1)
         </a>
     }
 </div>
-<div class="tab-content col-sm-6 col-12 text-left row order-sm-last">
+<div class="tab-content col-md-6 col-sm-6 col-12 text-left row order-sm-last">
     @foreach (var perk in Model)
     {
-        <div class="tab-pane fade" id="perk_@perk.id">
-            <div class="h4">@perk.name</div>
-            <div class="mb-2">@perk.desc</div>
+        <div class="tab-pane fade" id="perk_@perk.Id">
+            <div class="h4">@perk.Name</div>
+            <div class="mb-2">@perk.Desc</div>
             <div>
                 Требования:
                 <ul>
-                    @foreach (var r in perk.requirements.Where(x => x.type != RequirementType.Level))
+                    @foreach (var r in perk.Requirements.Where(x => x.Type != RequirementType.Level))
                     {
-                        switch (r.type)
+                        switch (r.Type)
                         {
                             case RequirementType.Perk:
                                 <li>
-                                    @(r.type.Description()): @Model.Single(x => x.id == r.value).name
+                                    @(r.Type.Description()): @r.StrValue
                                 </li>
                                 break;
                             case RequirementType.Race:
                                 <li>
-                                    @(r.type.Description()): @r.strValue
+                                    @(r.Type.Description()): @r.StrValue
                                 </li>
                                 break;
                             case RequirementType.Stat:
                                 <li>
-                                    @r.strValue: @r.value
+                                    @r.StrValue: @r.Value
                                 </li>
                                 break;
 
                         }
                     }
-                    @if (perk.requirements.All(x => x.type == RequirementType.Level))
+                    @if (perk.Requirements.All(x => x.Type == RequirementType.Level))
                     {
                         @:Нет
                     }
@@ -61,16 +61,17 @@
         </div>
     }
 </div>
-<div class="tab-content col-sm-6 col-12 text-left px-2 px-sm-0">
+<div class="tab-content col-md-3 col-sm-5 col-12 text-left px-2 px-sm-0">
     @for (var i = 0; i < maxLevel; i++)
     {
         <div class="tab-pane fade @(i == 0 ? "show active" : "")" id="group_@i">
             <div class="nav nav-tabs flex-column">
-                @foreach (var perk in Model.Where(x => x.requirements.Single(y => y.type == RequirementType.Level).value == i + 1))
+                @foreach (var perk in Model.Where(x => x.Requirements.Single(y => y.Type == RequirementType.Level).Value == i + 1))
                 {
-                    <a class="btn btn-light m-1 mr-auto border" data-toggle="tab" href="#perk_@perk.id">@perk.name</a>
+                    <a class="btn btn-light m-1 border" data-toggle="tab" href="#perk_@perk.Id">@perk.Name</a>
                 }
             </div>
         </div>
     }
 </div>
+<div class="col-md-3 col-sm-1 col-12 order-first order-sm-2"></div>

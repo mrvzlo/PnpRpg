@@ -104,7 +104,7 @@ namespace Boot.Models
         
         public void LoadRace(Race race)
         {
-            race.effects?.ForEach(x => ApplyStatEffect(x, false, true));
+            race.Effects?.ForEach(x => ApplyStatEffect(x, false, true));
         }
 
         #endregion
@@ -128,11 +128,11 @@ namespace Boot.Models
 
         public bool ChangeRace(Race oldRace, Race newRace)
         {
-            if (oldRace.id == newRace.id)
+            if (oldRace.Id == newRace.Id)
                 return false;
-            Race = newRace.id;
-            oldRace.effects?.ForEach(x => ApplyStatEffect(x, true));
-            newRace.effects?.ForEach(x => ApplyStatEffect(x));
+            Race = newRace.Id;
+            oldRace.Effects?.ForEach(x => ApplyStatEffect(x, true));
+            newRace.Effects?.ForEach(x => ApplyStatEffect(x));
 
             return Stats.All(x => x.IsValid());
         }
@@ -195,13 +195,13 @@ namespace Boot.Models
 
         private void ApplyStatEffect(Effect effect, bool revert = false, bool baseOnly= false)
         {
-            if (effect.type != EffectType.Weaken && effect.type != EffectType.Boost)
+            if (effect.Type != EffectType.Weaken && effect.Type != EffectType.Boost)
                 return;
-            var value = effect.value;
-            if (revert ^ effect.type == EffectType.Weaken)
+            var value = effect.Value;
+            if (revert ^ effect.Type == EffectType.Weaken)
                 value *= -1;
 
-            Stats.Single(x => x.Id == effect.statId).EffectBoost(value, baseOnly);
+            Stats.Single(x => x.Id == effect.StatId).EffectBoost(value, baseOnly);
         }
     }
 }

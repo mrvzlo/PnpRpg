@@ -30,7 +30,7 @@ namespace Boot.Controllers
         {
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
             var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
-            var skills = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).SelectMany(x => x.skills);
+            var skills = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).SelectMany(x => x.Skills);
             foreach (var skill in skills)
                 skill.Stat = stats.Single(x => x.Id == skill.StatId);
             weapons.ForEach(weapon => weapon.Skill = skills.First(skill => skill.Id == weapon.SkillId));

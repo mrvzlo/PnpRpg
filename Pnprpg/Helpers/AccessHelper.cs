@@ -7,9 +7,9 @@ namespace Boot.Helpers
 {
     public class AccessHelper
     {
-        public static bool UserInRole(HttpRequestBase requst, IPrincipal user, UserRole minRole)
+        public static bool UserInRole(HttpRequestBase request, IPrincipal user, UserRole minRole)
         {
-            return requst.IsAuthenticated && (user.IsInRole(minRole.ToString()) || user.IsInRole(UserRole.Admin.ToString()));
+            return request.IsAuthenticated && (user.IsInRole(minRole.ToString()) || user.IsInRole(UserRole.Admin.ToString()));
         }
     }
 }

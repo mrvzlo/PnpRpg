@@ -73,12 +73,12 @@ namespace Boot.Controllers
             return list;
         }
 
-        protected SkillGroupList GetSkillGroupList()
+        protected SkillGroupList GetSkillGroupList(string prefix = null)
         {
-            var skillGroups = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills);
+            var skillGroups = GetJsonFromFile<List<SkillGroup>>(prefix + FileNames.Skills);
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
             foreach (var group in skillGroups)
-                foreach (var skill in group.skills)
+                foreach (var skill in group.Skills)
                     skill.Stat = stats.Single(x => x.Id == skill.StatId);
             return new SkillGroupList { Groups = skillGroups }; ;
         }
@@ -88,17 +88,23 @@ namespace Boot.Controllers
             var perks = GetJsonFromFile<List<Perk>>(FileNames.Perks);
             var races = GetJsonFromFile<List<Race>>(FileNames.Races);
             var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            ViewBag.MaxLevel = perks.Any() ? perks.Max(x => x.requirements.Single(y => y.type == RequirementType.Level).value) : 0;
+            ViewBag.MaxLevel = perks.Any() ? perks.Max(x => x.Requirements.Single(y => y.Type == RequirementType.Level).Value) : 0;
 
-            perks = perks.OrderBy(x => x.requirements.Single(y => y.type == RequirementType.Level).value).ToList();
+            perks = perks.OrderBy(x => x.Requirements.Single(y => y.Type == RequirementType.Level).Value).ToList();
 
-            perks.SelectMany(perk => perk.requirements)
-                .Where(req => req.type == RequirementType.Race)
-                    .ForEach(req => req.strValue = races.Single(x => x.id == req.value).name);
-
-            perks.SelectMany(perk => perk.requirements)
-                .Where(req => req.type == RequirementType.Stat)
-                    .ForEach(req => req.strValue = stats.Single(x => x.Id == req.statId).Name);
+            foreach (var r in perks.SelectMany(perk => perk.Requirements))
+                switch (r.Type)
+                {
+                    case RequirementType.Race:
+                        r.StrValue = races.Single(x => x.Id == r.Value).Name;
+                        break;
+                    case RequirementType.Perk:
+                        r.StrValue = perks.Single(x => x.Id == r.Value).Name;
+                        break;
+                    case RequirementType.Stat:
+                        r.StrValue = stats.Single(x => x.Id == r.StatId).Name;
+                        break;
+                }
 
             return perks;
         }
