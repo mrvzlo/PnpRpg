@@ -1,17 +1,38 @@
-﻿using Boot.Models;
-using Boot.Enums;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Boot.Helpers;
-using System.Collections.Generic;
-using Boot.Models.JsonModels;
-using System.Xml.Linq;
+using Pnprpg.Domain.Services;
+using Pnprpg.DomainService.Entities;
+using Pnprpg.DomainService.Enums;
+using Pnprpg.DomainService.Helpers;
+using Pnprpg.DomainService.IServices;
+using Pnprpg.DomainService.Models;
+using Pnprpg.DomainService.Models.Common;
+using Pnprpg.DomainService.Models.Perks;
+using Pnprpg.DomainService.Models.Requirements;
+using Pnprpg.DomainService.Models.Skills;
+using Pnprpg.DomainService.Models.Weapon;
+using Pnprpg.Web.Helpers;
 
-namespace Boot.Controllers
+namespace Pnprpg.Web.Controllers
 {
     [Authorize(Roles = "Admin,Editor")]
     public class EditorController : BaseController
     {
+        private readonly IPerkService _perkService;
+        private readonly IWeaponService _weaponService;
+        private readonly ISkillService _skillService;
+        private readonly IRequirementService _requirementService;
+
+        public EditorController(IPerkService perkService, IWeaponService weaponService, ISkillService skillService, 
+            IRequirementService requirementService)
+        {
+            _perkService = perkService;
+            _weaponService = weaponService;
+            _skillService = skillService;
+            _requirementService = requirementService;
+        }
+
         public ActionResult Perks()
         {
             return View();
@@ -19,24 +40,14 @@ namespace Boot.Controllers
 
         public PartialViewResult PerksGrid()
         {
-            return PartialView("_PerksGrid", GetPerks());
+            var list = _perkService.GetAll();
+            return PartialView("_PerksGrid", list);
         }
 
         public ActionResult EditPerk(int? id = null)
         {
-            var perk = GetPerks().SingleOrDefault(x => x.Id == id);
-            var model = new PerkEditModel();
-
-            if (perk != null)
-            {
-                model.Id = perk.Id;
-                model.Desc = perk.Desc;
-                model.Name = perk.Name;
-                model.Level = perk.Requirements.Single(x => x.Type == RequirementType.Level).Value;
-                model.Requirements = perk.Requirements.Where(x => x.Type != RequirementType.Level).ToList();
-            }
-
-            return View(model);
+            var perk = _perkService.GetForEdit(id);
+            return View(perk);
         }
 
         [HttpPost]
@@ -46,26 +57,7 @@ namespace Boot.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var perks = GetPerks();
-            Perk perk = null;
-            if (model.Id != null)
-                perk = perks.Single(x => x.Id == model.Id);
-
-            if (perk == null)
-                perk = new Perk { Id = perks.Max(x => x.Id) + 1 };
-            else
-                perks.Remove(perk);
-
-            var reqs = model.Requirements ?? new List<Requirement>();
-            reqs.Add(new Requirement { Type = RequirementType.Level, Value = model.Level });
-
-            perk.Name = model.Name;
-            perk.Desc = model.Desc;
-            perk.Requirements = reqs;
-
-            perks.Add(perk);
-
-            SaveJsonToFile(perks, FileNames.Perks);
+            _perkService.SavePerk(model);
 
             return RedirectToAction("Perks");
         }
@@ -74,58 +66,21 @@ namespace Boot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePerk(int perkId)
         {
-            var perks = GetPerks();
-            perks.Remove(perks.FirstOrDefault(x => x.Id == perkId));
-            SaveJsonToFile(perks, FileNames.Perks);
+            _perkService.DeletePerk(perkId);
             return RedirectToAction("Perks");
         }
 
-        public JsonResult ReqirementSelectModel(int pos, int id = (int)RequirementType.Stat)
+        public JsonResult RequirementSelectModel(int position, int id = (int)RequirementType.Ability)
         {
-            var model = GetReqirementSelectModel(pos, 0, null, id);
+            var model = GetRequirementSelectModel(position, 0, 0, id);
             var partial = this.RenderPartialViewToString("_RequirementSelect", model);
-            return ReturnJson(partial, null);
+            return Json(new {partial}, JsonRequestBehavior.AllowGet);
         }
 
-        public PartialViewResult ShowReqirementSelectModel(int pos, int value, string statId, int reqType = (int)RequirementType.Stat)
+        public PartialViewResult ShowRequirementSelectModel(int pos, int value, int abilityId, int reqType = (int)RequirementType.Ability)
         {
-            var model = GetReqirementSelectModel(pos, value, statId, reqType);
+            var model = GetRequirementSelectModel(pos, value, abilityId, reqType);
             return PartialView("_RequirementSelect", model);
-        }
-
-        private RequirementSelectModel GetReqirementSelectModel(int pos, int value, string statId, int reqType)
-        {
-            var requirements = new[] { RequirementType.Stat, RequirementType.Race, RequirementType.Perk };
-            var reqSelectList = requirements.Select(x => new { Value = (int)x, Text = x.Description() });
-            SelectList selectList = null;
-            List<SelectListItem> values;
-
-            switch ((RequirementType)reqType)
-            {
-                case RequirementType.Stat:
-                    var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-                    values = stats.Select(x => new SelectListItem { Value = x.Id, Text = x.Name }).ToList();
-                    selectList = new SelectList(values, "Value", "Text", statId);
-                    break;
-                case RequirementType.Perk:
-                    var perks = GetJsonFromFile<List<Perk>>(FileNames.Perks);
-                    values = perks.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
-                    selectList = new SelectList(values, "Value", "Text", value);
-                    break;
-                case RequirementType.Race:
-                    var races = GetJsonFromFile<List<Race>>(FileNames.Races);
-                    values = races.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name }).ToList();
-                    selectList = new SelectList(values, "Value", "Text", value);
-                    break;
-            }
-
-            return new RequirementSelectModel
-            {
-                Pos = pos,
-                Selected = new Requirement { StatId = statId, Type = (RequirementType)reqType, Value = value },
-                Requirements = new SelectList(reqSelectList, "Value", "Text", reqType),
-                Values = selectList
-            };
         }
 
         public ActionResult Weapons()
@@ -135,27 +90,14 @@ namespace Boot.Controllers
 
         public PartialViewResult WeaponsGrid()
         {
-            var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
-            var skillList = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills)
-                .SelectMany(x => x.Skills).ToList();
-            weapons.ForEach(x => x.Skill = skillList.Single(y => y.Id == x.SkillId));
+            var weapons = _weaponService.GetAll();
             return PartialView("_WeaponsGrid", weapons);
         }
 
         public ActionResult EditWeapon(int? id = null)
         {
-            var weapon = GetJsonFromFile<List<Weapon>>(FileNames.Weapons).SingleOrDefault(x => x.Id == id);
-            var model = new WeaponEditModel();
-            if (weapon != null)
-            {
-                model.Id = weapon.Id;
-                model.Name = weapon.Name;
-                model.Level = weapon.Level;
-                model.Weight = weapon.Weight;
-                model.SkillId = weapon.SkillId;
-            }
-
-            PrepareWeaponEditViewbags(model.SkillId);
+            var model = _weaponService.GetForEdit(id);
+            PrepareWeaponEditViewBags(model.SkillId);
             return View(model);
         }
 
@@ -165,28 +107,11 @@ namespace Boot.Controllers
         {
             if (!ModelState.IsValid)
             {
-                PrepareWeaponEditViewbags(model.SkillId);
+                PrepareWeaponEditViewBags(model.SkillId);
                 return View(model);
             }
 
-            var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
-            Weapon weapon = null;
-            if (model.Id != null)
-                weapon = weapons.Single(x => x.Id == model.Id);
-
-            if (weapon == null)
-                weapon = new Weapon { Id = weapons.Max(x => x.Id) + 1 };
-            else
-                weapons.Remove(weapon);
-
-            weapon.Name = model.Name;
-            weapon.SkillId = model.SkillId;
-            weapon.Weight = model.Weight;
-            weapon.Level = model.Level;
-
-            weapons.Add(weapon);
-
-            SaveJsonToFile(weapons, FileNames.Weapons);
+            _weaponService.SaveWeapon(model);
 
             return RedirectToAction("Weapons");
         }
@@ -195,17 +120,58 @@ namespace Boot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteWeapon(int weaponId)
         {
-            var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
-            weapons.Remove(weapons.FirstOrDefault(x => x.Id == weaponId));
-            SaveJsonToFile(weapons, FileNames.Weapons);
+            _weaponService.DeleteWeapon(weaponId);
             return RedirectToAction("Weapons");
         }
 
-        private void PrepareWeaponEditViewbags(int skillId)
+        public JsonResult BonusSelectModel(int position, int bonusId = 1)
         {
-            var skillList = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).First().Skills;
-            var values = skillList.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = StringHelper.FormatToSentence(x.Name) }).ToList();
-            ViewBag.SkillList = new SelectList(values, "Value", "Text", skillId);
+            var model = GetBonusesSelectModel(position, bonusId);
+            var partial = this.RenderPartialViewToString("_BonusSelect", model);
+            return Json(new { partial }, JsonRequestBehavior.AllowGet);
+        }
+
+        public PartialViewResult ShowBonusSelectModel(int position, int bonusId = 1)
+        {
+            return PartialView("_BonusSelect", GetBonusesSelectModel(position, bonusId));
+        }
+
+        private void PrepareWeaponEditViewBags(int skillId)
+        {
+            var skills = _skillService.GetSkillsByGroup((int)SkillGroupKey.Weapon).ToList();
+            ViewBag.SkillList = new SelectList(skills, nameof(SkillModel.Id), nameof(SkillModel.Name), skillId);
+        }
+
+        private RequirementSelectModel GetRequirementSelectModel(int pos, int value, int abilityId, int reqType)
+        {
+            var requirements = new []{RequirementType.Ability, RequirementType.Perk, RequirementType.Race}
+                .Select(x=> new Selectable((int)x, x.Description())).ToList();
+            var model = RequirementCommonModel.New((RequirementType) reqType);
+            var selectList = _requirementService.GetVariants(model);
+
+            RequirementCommonModel selected = RequirementCommonModel.New((RequirementType) reqType);
+            selected.AbilityId = abilityId;
+            selected.Value = value;
+            return new RequirementSelectModel
+            {
+                Position = pos,
+                Selected = selected,
+                Requirements = SelectableListToSelectList(requirements, reqType),
+                Values = SelectableListToSelectList(selectList)
+            };
+        }
+
+        private SelectList SelectableListToSelectList(List<Selectable> list, int? selected = null) => 
+            new SelectList(list, nameof(Selectable.Value), nameof(Selectable.Text), selected);
+
+        private SelectListPosition GetBonusesSelectModel(int position, int bonusId = 1)
+        {
+            var bonuses = _weaponService.GetAllBonuses();
+            return new SelectListPosition
+            {
+                Values = new SelectList(bonuses, nameof(BonusModel.Id), nameof(BonusModel.Name), bonusId),
+                Position = position
+            };
         }
     }
 }

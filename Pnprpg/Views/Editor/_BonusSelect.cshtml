@@ -1,0 +1,10 @@
+﻿@model Pnprpg.DomainService.Models.Common.SelectListPosition
+
+<div class="input-group mt-2" id="bonus_@Model.Position">
+    @Html.DropDownList($"Bonuses[{Model.Position}].Id", Model.Values, null,
+        new { @class = "form-control" })
+    <div class="input-group-append">
+        <button class="btn btn-danger clear-btn" 
+                data-container="bonus_@Model.Position" type="button">X</button>
+    </div>
+</div>

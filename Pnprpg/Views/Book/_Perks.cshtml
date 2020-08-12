@@ -1,6 +1,4 @@
-﻿@using Boot.Enums;
-@using Boot.Helpers;
-@model List<Boot.Models.JsonModels.Perk>
+﻿ @model IQueryable<Pnprpg.DomainService.Models.Perks.PerkViewModel>
 
 <h5>Способности</h5>
 <table class="table table-bordered">
@@ -13,30 +11,19 @@
     @foreach (var perk in Model)
     {
         <tr>
-            <td class="text-center">@perk.Requirements.Single(x => x.Type == RequirementType.Level).Value</td>
+            <td class="text-center">@perk.Level</td>
             <td>@perk.Name</td>
             <td>
-                @foreach (var r in perk.Requirements.Where(x => x.Type != RequirementType.Level).OrderBy(x => x.Type))
+                @foreach (var r in perk.Requirements.OrderBy(x => x.Type))
                 {
-                    switch (r.Type)
-                    {
-                        case RequirementType.Perk:
-                            @Model.Single(x => x.Id == r.Value).Name<br />
-                            break;
-                        case RequirementType.Race:
-                            @r.StrValue <br />
-                            break;
-                        case RequirementType.Stat:
-                            @:@r.StatId: @r.Value
-                            break;
-                    }
+                    @r.Specify().ToString()
                 }
-                @if (perk.Requirements.All(x => x.Type == RequirementType.Level))
+                @if (!perk.Requirements.Any())
                 {
                     @:Нет
                 }
             </td>
-            <td>@perk.Desc</td>
+            <td>@perk.Description</td>
         </tr>
     }
 </table>

@@ -1,38 +1,26 @@
-﻿@using Boot.Enums
-@using Boot.Helpers
-@using Boot.Models.JsonModels
-@model List<Boot.Models.JsonModels.Perk>
+﻿@using Pnprpg.DomainService.Models.Perks
+@using Pnprpg.DomainService.Models.Requirements
+@model List<Pnprpg.DomainService.Models.Perks.PerkViewModel>
 
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.Requirements.Single(y => y.Type == RequirementType.Level).Value).Titled("Уровень")
+    columns.Add(x => x.Level).Titled("Уровень")
         .InitialSort(GridSortOrder.Asc);
     columns.Add(x => x.Name).Titled("Название");
-    columns.Add(x => Requirements(x.Requirements.Where(y => y.Type != RequirementType.Level).ToList()))
+    columns.Add(x => Requirements(x.Requirements))
         .Titled("Название").Css("w-25");
-    columns.Add(x => x.Desc).Css("w-25").Titled("Эффект");
+    columns.Add(x => x.Description).Css("w-25").Titled("Эффект");
     columns.Add(x => Actions(x));
 }).Empty("No data found").Pageable(pager =>
     {
         pager.RowsPerPage = 7;
     }).Css("table table-responsive"))
 
-@helper Requirements(List<Requirement> reqs)
+@helper Requirements(List<RequirementCommonModel> reqs)
 {
     foreach (var r in reqs)
     {
-        switch (r.Type)
-        {
-            case RequirementType.Perk:
-                @r.StrValue
-                break;
-            case RequirementType.Race:
-                @:@r.Type.Description(): @r.StrValue
-                break;
-            case RequirementType.Stat:
-                @:@r.StrValue: @r.Value
-                break;
-        }
+        @r.Specify().ToString()
         <br />
     }
     if (!reqs.Any())
@@ -41,9 +29,13 @@
     }
 }
 
-@helper Actions(Perk perk)
+@helper Actions(PerkViewModel perk)
 {
-    <a href="@Url.Action("EditPerk", new {id = perk.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
-    <button class="btn confirm-btn btn-outline-danger" data-form="perkDeleteForm" data-field="PerkId" data-value="@perk.Id"
-            data-text="Способность @perk.Name будет удалена">❌</button>
+    <div class="btn-group">
+        <a href="@Url.Action("EditPerk", new {id = perk.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
+        <button class="btn confirm-btn btn-outline-danger" data-form="perkDeleteForm" data-field="PerkId" data-value="@perk.Id"
+                data-text="Способность @perk.Name будет удалена">
+            ❌
+        </button>
+    </div>
 }

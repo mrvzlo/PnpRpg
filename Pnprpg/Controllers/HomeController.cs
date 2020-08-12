@@ -1,49 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Web.Mvc;
-using Boot.Enums;
-using Boot.Helpers;
-using Boot.Models;
-using Boot.Models.JsonModels;
-using Rotativa;
-using WebGrease.Css.Extensions;
+using Pnprpg.DomainService.IServices;
+using Pnprpg.Web.Helpers;
 
-namespace Boot.Controllers
+namespace Pnprpg.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index() => View();
+        private readonly IWeaponService _weaponService;
+        private readonly IPerkService _perkService;
 
-        public ActionResult Magic()
+        public HomeController(IPerkService perkService, IWeaponService weaponService)
         {
-            return View(GetMagicSchoolGroups());
+            _perkService = perkService;
+            _weaponService = weaponService;
         }
+
+        public ActionResult Index() => View();
 
         public ActionResult Perks()
         {
-            return View(GetPerks());
+            var list = _perkService.GetAll();
+            return View(list);
         }
 
         public ActionResult Weaponry()
         {
-            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            var weapons = GetJsonFromFile<List<Weapon>>(FileNames.Weapons);
-            var skills = GetJsonFromFile<List<SkillGroup>>(FileNames.Skills).SelectMany(x => x.Skills);
-            foreach (var skill in skills)
-                skill.Stat = stats.Single(x => x.Id == skill.StatId);
-            weapons.ForEach(weapon => weapon.Skill = skills.First(skill => skill.Id == weapon.SkillId));
-            return View(weapons);
-        }
-
-        public JsonResult RandomSpell()
-        {
-            var spells = GetJsonFromFile<List<Spell>>(FileNames.Spells);
-            var r = new Random().Next(spells.Count);
-            var potion = spells[r].Name;
-            var partial = this.RenderPartialViewToString("_RandomSpell", potion);
-            return Json(new { partial }, JsonRequestBehavior.AllowGet);
+            var list = _weaponService.GetAll();
+            return View(list);
         }
 
         public FileResult CharacterSheet()

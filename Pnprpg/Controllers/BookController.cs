@@ -1,16 +1,36 @@
-﻿using Boot.Helpers;
-using Boot.Models;
-using Boot.Models.JsonModels;
-using Rotativa;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web.Mvc;
+using Pnprpg.DomainService.IServices;
+using Pnprpg.Web.Helpers;
+using Rotativa;
 
-namespace Boot.Controllers
+namespace Pnprpg.Web.Controllers
 {
     public class BookController : BaseController
     {
+        private readonly IWeaponService _weaponService;
+        private readonly IAlchemyService _alchemyService;
+        private readonly IPerkService _perkService;
+        private readonly IRaceService _raceService;
+        private readonly ITraitService _traitService;
+        private readonly ISkillService _skillService;
+        private readonly IMagicService _magicService;
+        private readonly IAbilityService _abilityService;
+
+        public BookController(IWeaponService weaponService, IAlchemyService alchemyService, IPerkService perkService, 
+            IRaceService raceService, ITraitService traitService, ISkillService skillService, IMagicService magicService, IAbilityService abilityService)
+        {
+            _weaponService = weaponService;
+            _alchemyService = alchemyService;
+            _perkService = perkService;
+            _raceService = raceService;
+            _traitService = traitService;
+            _skillService = skillService;
+            _magicService = magicService;
+            _abilityService = abilityService;
+        }
+
         public ActionResult Index()
         {
             var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
@@ -36,68 +56,52 @@ namespace Boot.Controllers
             return RedirectToAction("Index");
         }
 
-        public PartialViewResult Stats()
+        public PartialViewResult Abilities()
         {
-            var list = GetJsonFromFile<List<Stat>>(FileNames.Stats);
+            var list = _abilityService.GetAllWithDescription();
             return PartialView("_Stats", list);
         }
 
         public PartialViewResult Races()
         {
-            var list = GetJsonFromFile<List<Race>>(FileNames.Races);
-            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            foreach(var race in list)
-                if (race.Effects != null)
-                    race.Effects.ForEach(y => y.Stat = stats.Single(z => z.Id == y.StatId));
+            var list = _raceService.GetAll();
             return PartialView("_Races", list);
         }
 
         public PartialViewResult Traits()
         {
-            var list = GetJsonFromFile<List<Trait>>(FileNames.Traits);
-            var stats = GetJsonFromFile<List<Stat>>(FileNames.Stats);
-            foreach (var trait in list)
-                foreach (var effect in trait.Effects)
-                    if (!string.IsNullOrEmpty(effect.StatId))
-                        effect.Stat = stats.Single(x => x.Id == effect.StatId);
+            var list = _traitService.GetAll();
             return PartialView("_Traits", list);
         }
 
         public PartialViewResult Skills()
         {
-            return PartialView("_Skills", GetSkillGroupList().Groups);
+            var list = _skillService.GetAllGroups();
+            return PartialView("_Skills", list);
         }
 
         public PartialViewResult Spells()
         {
-            return PartialView("_Spells", GetMagicSchoolGroups());
+            var list = _magicService.GetAllGroups();
+            return PartialView("_Spells", list);
         }
 
         public PartialViewResult Perks()
         {
-            return PartialView("_Perks", GetPerks());
+            var list = _perkService.GetAll();
+            return PartialView("_Perks", list);
         }
 
         public PartialViewResult Alchemy()
         {
-            var reagents = GetJsonFromFile<List<SymbolInfo>>(FileNames.Reagents);
-            var processes = GetJsonFromFile<List<SymbolInfo>>(FileNames.Processes);
-            var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
-            var reacionts = GetJsonFromFile<List<Reaction>>(FileNames.Reactions);
-            reacionts.ForEach(x => x.Potion = potions.Single(y => y.Id == x.Result));
-            var model = new AlchemySummary
-            {
-                Reactions = reacionts,
-                Reagents = reagents,
-                Processes = processes
-            };
-            return PartialView("_Alchemy", model);
+            var summary = _alchemyService.GetSummary();
+            return PartialView("_Alchemy", summary);
         }
 
         public PartialViewResult ShortSkillList()
         {
-            var skills = GetSkillGroupList().Groups.SelectMany(x => x.Skills).ToList();
-            return PartialView("_ShortSkillList", skills);
+            var list = _skillService.GetSkillsByGroup();
+            return PartialView("_ShortSkillList", list);
         }
 
         public ActionResult HeroSheet()

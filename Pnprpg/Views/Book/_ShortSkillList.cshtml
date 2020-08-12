@@ -1,11 +1,11 @@
-﻿@using Boot.Helpers
-@model List<Boot.Models.JsonModels.SkillInfo>
+﻿@using Pnprpg.DomainService.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.Skills.SkillModel>
 @foreach (var skill in Model)
 {
     <div class="text-right font-weight-normal bb">
         @StringHelper.FormatToSentence(skill.Name)
         <p class="font-weight-bold d-inline-block text-center">
-            (@(skill.Difficulty == 0 ? skill.StatId : $"{skill.StatId}-{skill.Difficulty}"))
+            (@(skill.Difficulty == 0 ? $"{skill.Ability.Id}" : $"{skill.Ability.Id}-{skill.Difficulty}"))
         </p>
     </div>
 }

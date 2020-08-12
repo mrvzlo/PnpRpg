@@ -1,25 +1,39 @@
-﻿@model Boot.Models.HeroModel
+﻿@using System.Web.Mvc.Html
+@model Pnprpg.DomainService.Models.HeroModel
 <div class="col-12 h4 my-2">
-    @{ Html.RenderAction("GetRaceName", new { id = Model.Race });}
-    @Model.Name
+    @($"{Model.Race.Name} {Model.Name}")
 </div>
 @{
-    Html.RenderPartial("_FirstStats", Model.Stats.ToList());
-    Html.RenderPartial("_SecondStats", Model);
+    Html.RenderPartial("HeroInfo/_Abilities", Model.Abilities);
+    Html.RenderPartial("HeroInfo/_Stats", Model);
 }
 <div class="col-md-6 col-12 card">
     <div class="h5 card-header">Особенности</div>
     <div class="card-body">
-        @{
-            Html.RenderAction("GetTraitsNames", new { ids = Model.Traits });
+        <ul>
+            @foreach (var trait in Model.Traits.List)
+            {
+                <li>@trait.Name</li>
+            }
+        </ul>
+        @if (!Model.Traits.List.Any())
+        {
+            <div class="font-italic">Нет</div>
         }
     </div>
 </div>
 <div class="col-md-6 col-12 card">
     <div class="h5 card-header">Навыки</div>
     <div class="card-body">
-        @{
-            Html.RenderAction("GetSkillsNames", new { ids = Model.Skills });
+        <ul>
+            @foreach (var s in Model.Skills.List)
+            {
+                <li>@s</li>
+            }
+        </ul>
+        @if (!Model.Skills.List.Any())
+        {
+            <div class="font-italic">Нет</div>
         }
     </div>
 </div>

@@ -1,5 +1,5 @@
-﻿@using Boot.Enums
-@model Boot.Models.HeroModel
+﻿@using Pnprpg.DomainService.Enums
+@model Pnprpg.DomainService.Models.HeroModel
 
 @Html.Partial("_HeroInfo")
 
@@ -12,15 +12,15 @@
         {
             @Html.Label("name", "Имя персонажа", new { @class = "col-sm-4 col" })
             @Html.TextBox("name", "", new { @class = "form-control col-sm-8" })
-            <div class="col my-2"><button class="btn btn-success">Сохранить</button></div>
+            <div class="col my-2"><button class="btn btn-success mw-160">Сохранить</button></div>
         }
     }
     else
-    {/*
+    {
         <a href="@Url.Action("Index", "Account",
                      new {returnUrl = Url.Action("Index", new {status = Status.Result})})">
             Войдите, чтобы сохранить персонажа
-        </a>*/
+        </a>
     }
 </div>
 

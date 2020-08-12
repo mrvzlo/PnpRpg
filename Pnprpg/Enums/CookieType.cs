@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Boot.Enums
+﻿namespace Pnprpg.Web.Enums
 {
     public enum CookieType
     {

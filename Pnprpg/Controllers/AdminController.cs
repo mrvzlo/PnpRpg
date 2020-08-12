@@ -1,38 +1,35 @@
-﻿using Boot.Enums;
-using Boot.Helpers;
-using Boot.Models;
-using Microsoft.Ajax.Utilities;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Pnprpg.DomainService.IServices;
+using Pnprpg.DomainService.Models;
+using Pnprpg.DomainService.Models.Users;
+using Pnprpg.Web.Helpers;
 
-namespace Boot.Controllers
+namespace Pnprpg.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AdminController : BaseController
     {
+        private readonly IAccountService _accountService;
+
+        public AdminController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
         public ActionResult Users()
         {
-            var users = GetJsonFromFile<List<UserModel>>(FileNames.Users); 
-            return View(GetEditModels(users));
+            var users = _accountService.GetEditModels();
+            return View(users);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Users(List<UserEditModel> list)
         {
-            var currentUsers = GetJsonFromFile<List<UserModel>>(FileNames.Users);
-            
-            foreach(var user in list)
-            {
-                var changed = currentUsers.Single(x => x.Id == user.Id);
-                changed.Role = user.Role;
-            }
-            SaveJsonToFile(currentUsers, FileNames.Users);
-            return View(GetEditModels(currentUsers));
+            _accountService.SaveAllUsers(list);
+            var users = _accountService.GetEditModels();
+            return View(users);
         }
-
-        private List<UserEditModel> GetEditModels(List<UserModel> list)
-            => list.Select(x => new UserEditModel { Id = x.Id, Role = x.Role, Username = x.Username }).ToList();
     }
 }

@@ -1,4 +1,5 @@
-﻿@model List<Boot.Models.JsonModels.SkillGroup>
+﻿@using Pnprpg.DomainService.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.Skills.SkillGroupModel>
 <h5>Навыки</h5>
 <p>
     Навыки делятся на лёгкие, обычные и сложные.
@@ -23,8 +24,8 @@
                 @foreach (var skill in group.Skills)
                 {
                     <tr>
-                        <td>@( skill.Difficulty == 0 ? skill.StatId : $"{skill.StatId}-{skill.Difficulty}")</td>
-                        <td>@Boot.Helpers.StringHelper.FormatToSentence(skill.Name)</td>
+                        <td>@( skill.Difficulty == 0 ? $"{skill.Ability.Symbol}" : $"{skill.Ability.Symbol}-{skill.Difficulty}")</td>
+                        <td>@StringHelper.FormatToSentence(skill.Name)</td>
                     </tr>
                 }
             </table>

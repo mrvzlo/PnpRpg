@@ -1,36 +1,38 @@
-﻿@model List<Boot.Models.JsonModels.Race>
+﻿@model List<Pnprpg.DomainService.Models.Races.RaceModel>
 <h5>Расы</h5>
-<p>Раса персонажа определяется наличием или отсутствием карт крови. 
-    Каждый персонаж по умолчанию без карт является человеком, но может выбрать любую из 8 рас, чтобы получить их преимущества и недостатки. </p>
+<p>
+    Раса персонажа определяется наличием или отсутствием карт крови.
+    Каждый персонаж по умолчанию без карт является человеком, но может выбрать любую из 8 рас, чтобы получить их преимущества и недостатки.
+</p>
 <table class="table-bordered">
     <tr>
         <th>Название</th>
         <th>Плюсы</th>
         <th>Минусы</th>
     </tr>
-    @foreach(var race in Model)
+    @foreach (var race in Model)
     {
-<tr>
-    <td>@race.Name</td>
-    @if (race.Effects != null)
-    {
-        <td>
-            @foreach (var boost in race.Effects.Where(x => x.Type == Boot.Enums.EffectType.Boost))
+        <tr>
+            <td>@race.Name</td>
+            @if (race.Effects?.Any() ?? false)
             {
-                @:+2 @boost.Stat.Name
+                <td>
+                    @foreach (var effect in race.Effects.Where(x => x.Value > 0))
+                    {
+                        @effect.ToString()
+                    }
+                </td>
+                <td>
+                    @foreach (var effect in race.Effects.Where(x => x.Value < 0))
+                    {
+                        @effect.ToString()
+                    }
+                </td>
             }
-        </td>
-        <td>
-            @foreach (var boost in race.Effects.Where(x => x.Type == Boot.Enums.EffectType.Weaken))
+            else
             {
-                @:-2 @boost.Stat.Name
+                <td colspan="2" class="text-center">Нет</td>
             }
-        </td>
-    }
-    else
-    {
-        <td colspan="2" class="text-center">-</td>
-    }
-</tr>
+        </tr>
     }
 </table>

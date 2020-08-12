@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Boot
+namespace Pnprpg.Web
 {
     public class FilterConfig
     {

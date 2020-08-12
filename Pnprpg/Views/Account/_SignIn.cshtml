@@ -1,4 +1,4 @@
-﻿@model Boot.Models.LoginModel
+﻿@model Pnprpg.DomainService.Models.Users.LoginModel
 @using (Ajax.BeginForm("SignIn", "Account", null,
     new AjaxOptions { UpdateTargetId = "_SignIn", HttpMethod = "POST", OnSuccess = "MainJs.formRedirect" },
     new { id = "formSignIn" }))

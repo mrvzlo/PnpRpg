@@ -1,15 +1,14 @@
-﻿@using Boot.Enums
-@using Boot.Models
-@model HeroModel
+﻿@using Pnprpg.DomainService.Enums
+@model Pnprpg.DomainService.Models.HeroModel
 @{
     ViewBag.Title = "Генератор персонажа";
     var status = (Status)ViewBag.Status;
     switch (status)
     {
         case Status.Chaos: Html.RenderPartial("_Chaos"); break;
-        case Status.Stats: Html.RenderPartial("_StatEdit", Model); break;
-        case Status.Traits: Html.RenderAction("TraitsPage"); break;
-        case Status.Skills: Html.RenderPartial("_SkillEdit", Model); break;
+        case Status.Stats: Html.RenderAction("AbilityEdit", "Ability"); break;
+        case Status.Traits: Html.RenderAction("TraitsPage", "Trait"); break;
+        case Status.Skills: Html.RenderAction("SkillEdit", "Skill"); break;
         case Status.Result: Html.RenderPartial("_Result", Model); break;
     }
 }

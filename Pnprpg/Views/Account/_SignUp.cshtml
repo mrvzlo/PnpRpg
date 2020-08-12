@@ -1,4 +1,4 @@
-﻿@model Boot.Models.RegistrationModel
+﻿@model Pnprpg.DomainService.Models.Users.RegistrationModel
 @using (Ajax.BeginForm("SignUp", "Account", null,
     new AjaxOptions { UpdateTargetId = "_SignUp", HttpMethod = "POST", OnSuccess = "MainJs.formRedirect" },
     new { id = "formSignUp" }))

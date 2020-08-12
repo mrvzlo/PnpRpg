@@ -1,7 +1,6 @@
-﻿@using Boot.Models.JsonModels
-@model List<MagicSchoolGroup>
+﻿@model IQueryable<Pnprpg.DomainService.Models.Magic.MagicSchoolGroupModel>
 @{
-    int i = 0;
+    var i = 0;
 }
 
 <h3>Магия</h3>
@@ -14,7 +13,7 @@
         {
             <h5>@school.Name</h5>
             var showDesc = !school.Spells.All(x => string.IsNullOrEmpty(x.Effect));
-            <div>@school.Desc</div>
+            <div>@school.Desctiption</div>
             <table class="table">
                 <tr>
                     <th class="w-10">Уровень</th>

@@ -1,0 +1,11 @@
+﻿@using System.Web.Mvc.Html
+@using Pnprpg.DomainService.Models.Common
+@model UpgradeableGroup<Pnprpg.DomainService.Models.Abilities.AbilityModel>
+@foreach(var ability in Model.List)
+{
+    <div class="col-md-3 col-6">
+        <div class="row border">
+            @Html.DisplayFor(x => ability, "Ability")
+        </div>
+    </div>
+}

@@ -1,16 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Boot.Enums;
-using Boot.Helpers;
-using Boot.Models;
+using Pnprpg.DomainService.IServices;
+using Pnprpg.DomainService.Models;
+using Pnprpg.DomainService.Models.Users;
+using Pnprpg.Web.Helpers;
 
-namespace Boot.Controllers
+namespace Pnprpg.Web.Controllers
 {
     public class AccountController : BaseController
     {
+        private readonly IAccountService _accountService;
+
+        public AccountController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
         public ActionResult Index(string returnUrl = null)
         {
             if (User.Identity.IsAuthenticated)
@@ -32,11 +39,10 @@ namespace Boot.Controllers
             if (!ModelState.IsValid)
                 return Json(partial);
 
-            var users = GetJsonFromFile<List<UserModel>>(FileNames.Users) ?? new List<UserModel>();
-            var user = new UserModel(model, users, out var response);
+            var response = _accountService.Login(model);
             if (response.Successful())
             {
-                CreateTicket(user);
+                CreateTicket(response.Object);
                 return Json(this.RenderPartialViewToString("_Redirect", GetRedirectUrl(model.ReturnUrl)));
             }
 
@@ -53,14 +59,10 @@ namespace Boot.Controllers
             if (!ModelState.IsValid)
                 return Json(partial);
 
-            var users = GetJsonFromFile<List<UserModel>>(FileNames.Users);
-            var user = new UserModel(model, users, out var response);
+            var response = _accountService.Register(model);
             if (response.Successful())
             {
-                users.Add(user);
-                SaveJsonToFile(users, FileNames.Users);
-
-                CreateTicket(user);
+                CreateTicket(response.Object);
                 return Json(this.RenderPartialViewToString("_Redirect", GetRedirectUrl(model.ReturnUrl)));
             }
 

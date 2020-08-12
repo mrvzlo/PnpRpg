@@ -1,0 +1,12 @@
+﻿@model Pnprpg.DomainService.Models.Magic.SpellModel
+
+<button class="btn btn-primary ajax-btn my-3" data-container="randomSpell" data-url="@Url.Action("RandomSpell")">
+    Случайный свиток
+</button>
+<br/>
+@if (!string.IsNullOrEmpty(Model.Name))
+{
+    <div class="h4 d-inline px-2 py-1 rounded" style="color: #@(Model.Color)">
+        @Model.Name
+    </div>
+}

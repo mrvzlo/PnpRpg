@@ -1,0 +1,53 @@
+﻿@using Pnprpg.DomainService.Helpers
+@using Pnprpg.DomainService.Models.Traits
+@model TraitGroup
+<div class="h4 col-12">Выберите до @Constants.MaxTraitCount особенностей</div>
+<div id="status" class="w-100"></div>
+@foreach (var trait in Model.List)
+{
+    <div class="card col-10 col-md-5 col-md-3 smallForSmall m-1">
+
+        <div class="card-header font-weight-bold">
+            @trait.Name
+            @if (Model.IsAssignable(trait))
+            {
+                <div class="badge ajax-btn pointer btn-success"
+                     data-url="@Url.Action("ChooseTrait", "Trait", new {trait.Id})">
+                    +
+                </div>
+            }
+            else if (trait.IsAssigned())
+            {
+                <div class="badge badge-success">✓</div>
+            }
+        </div>
+        <div class="card-body">
+            @foreach (var effect in trait.Effects)
+            {
+                var span = "<span class='badge alert-{0}'>{1}</span>";
+                if (effect.Value > 0)
+                {
+                    span = string.Format(span, "success", $"+{effect.Value}");
+                }
+                else if (effect.Value < 0)
+                {
+                    span = string.Format(span, "danger", effect.Value);
+                }
+                else
+                {
+                    span = string.Format(span, "info", effect.Value);
+                }
+                <div>
+                    @Html.Raw(effect.ToString(span))
+                </div>
+            }
+        </div>
+    </div>
+}
+<div class="col-12">
+    <button class="btn btn-primary mw-260 m-1 ajax-btn" data-url="@Url.Action("ResetTraits", "Trait")">
+        ↺ Перераспределить
+    </button><button class="btn btn-success mw-260 m-1 ajax-btn" data-url="@Url.Action("SkillEditJson", "Skill")">
+        ✓ Сохранить
+    </button>
+</div>

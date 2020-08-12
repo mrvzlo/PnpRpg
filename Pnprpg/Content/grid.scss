@@ -1,5 +1,9 @@
 ﻿td {
     vertical-align: middle !important;
+
+    .btn{
+        padding: .3rem .5rem;
+    }
 }
 
 .mvc-grid-pager {
@@ -29,4 +33,8 @@
             border-bottom-right-radius: 15px;
         }
     }
+}
+
+.no-wrap{
+    white-space: nowrap;
 }

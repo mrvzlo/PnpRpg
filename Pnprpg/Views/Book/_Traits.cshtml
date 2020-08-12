@@ -1,4 +1,4 @@
-﻿@model List<Boot.Models.Trait>
+﻿@model List<Pnprpg.DomainService.Models.Traits.TraitModel>
 <h5>Особенности</h5>
 <p>
     Это те черты, которые делают персонажа одновременно лучше в одном, но хуже в другом.
@@ -17,38 +17,17 @@
             @if (item.Effects != null)
             {
                 <td>
-                    @foreach (var boost in item.Effects.Where(x => x.Type == Boot.Enums.EffectType.Boost))
+                    @foreach (var effect in item.Effects.Where(x => x.Value >= 0))
                     {
-                        if (string.IsNullOrEmpty(boost.StatId))
-                        {
-                            @Html.Raw(string.Format(boost.Desc, $"+{boost.Value}"))
-                        }
-                        else
-                        {
-                            @Html.Raw(string.Format(boost.Desc, $"+{boost.Value}", boost.Stat.Name))
-                        }
-                    }
-                    @foreach (var boost in item.Effects.Where(x => x.Type < 0))
-                    {
-                        @Html.Raw(string.Format(boost.Desc, boost.Value))
+                        @effect.ToString()
+                        <br />
                     }
                 </td>
                 <td>
-                    @foreach (var weak in item.Effects.Where(x => x.Type == Boot.Enums.EffectType.Weaken))
+                    @foreach (var effect in item.Effects.Where(x => x.Value <= 0))
                     {
-                        if (string.IsNullOrEmpty(weak.StatId))
-                        {
-                            @Html.Raw(string.Format(weak.Desc, $"-{weak.Value}"))
-                        }
-                        else
-                        {
-                            @Html.Raw(string.Format(weak.Desc, $"-{weak.Value}", weak.Stat.Name))
-                        }
+                        @effect.ToString()
                         <br />
-                    }
-                    @foreach (var boost in item.Effects.Where(x => x.Type < 0))
-                    {
-                        @Html.Raw(string.Format(boost.Desc, boost.Value))
                     }
                 </td>
             }

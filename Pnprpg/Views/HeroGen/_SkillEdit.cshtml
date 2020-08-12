@@ -1,7 +1,0 @@
-﻿@model Boot.Models.HeroModel
-@{
-    Html.RenderPartial("_FirstStats", Model.Stats);
-}
-<div class="col-12" id="skillList">
-    @{ Html.RenderAction("SkillGroupList", new { editable = true });}
-</div>

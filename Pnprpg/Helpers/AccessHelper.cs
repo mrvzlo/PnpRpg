@@ -1,9 +1,8 @@
-﻿using Boot.Enums;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 using System.Web;
-using System.Web.WebPages;
+using Pnprpg.DomainService.Enums;
 
-namespace Boot.Helpers
+namespace Pnprpg.Web.Helpers
 {
     public class AccessHelper
     {

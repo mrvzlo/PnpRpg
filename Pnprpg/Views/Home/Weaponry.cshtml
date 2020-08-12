@@ -1,9 +1,10 @@
-﻿@using Boot.Helpers
-@using Boot.Enums
-@model List<Boot.Models.JsonModels.Weapon>
+﻿@using Pnprpg.Web.Helpers
+@using Pnprpg.DomainService.Enums
+@using Pnprpg.DomainService.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.Weapon.WeaponViewModel>
 @{
     ViewBag.Title = "Оружейная";
-    var levels = Model.Select(x => x.Level).Distinct();
+    var levels = Model.Select(x => x.Level).Distinct().ToList();
 }
 @if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
 {
@@ -11,7 +12,7 @@
         @Html.ActionLink("Редактировать", "Weapons", "Editor", null, new { @class = "btn btn-warning float-right" })
     </div>
 }
-<div class="nav nav-tabs col-12 mt-md-2 row justify-content-center">
+<div class="nav nav-tabs col-12 mt-md-2 justify-content-center">
     @foreach (var level in levels)
     {
         <a class="btn border mx-1 btn-primary @(level == 1 ? "active" : "")" data-toggle="tab" href="#level_@level">
@@ -36,15 +37,15 @@
                 {
                     <tr>
                         <td class="font-weight-bold">@weapon.Name</td>
-                        <td class="font-weight-bold" style="color: @weapon.Skill.Stat.Color">@StringHelper.FormatToSentence(weapon.Skill.Name)</td>
+                        <td class="font-weight-bold" style="color: #@weapon.Skill.Ability.Color">@StringHelper.FormatToSentence(weapon.Skill.Name)</td>
                         <td>@weapon.Weight кг</td>
                         <td>
-                            @if (weapon.Effects != null)
+                            @if (weapon.Bonuses != null)
                             {
-                                foreach (var effect in weapon.Effects)
+                                foreach (var effect in weapon.Bonuses)
                                 {
-                                    <span data-toggle="tooltip" data-placement="left" title="@effect.Description()">
-                                        @effect.Translation()
+                                    <span data-toggle="tooltip" data-placement="left" title="@effect.Name">
+                                        @effect.Icon
                                     </span>
                                 }
                             }

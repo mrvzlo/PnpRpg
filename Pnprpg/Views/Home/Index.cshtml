@@ -6,9 +6,9 @@
         @*@Card(Url.Action("Index", "Room"), "Играть", "rooms.jpg", "rooms")*@
         @Card(Url.Action("Index", "Book"), "Книга правил", "rulebook.jpg", "Rule book", true)
         @Card(Url.Action("HeroSheet", "Book"), "Лист персонажа", "sheet.jpg", "Hero sheet", true)
-        @Card(Url.Action("Skills", "HeroGen"), "Навыки", "skills.png", "Skills")
+        @Card(Url.Action("Skills", "Skill", "HeroGen"), "Навыки", "skills.png", "Skills")
         @Card(Url.Action("Perks", "Home"), "Способности", "perks.jpg", "Perks")
-        @Card(Url.Action("Magic", "Home"), "Школы магии", "schools.jpg", "Magic")
+        @Card(Url.Action("Index", "Magic"), "Школы магии", "schools.jpg", "Magic")
         @Card(Url.Action("Index", "Alchemy"), "Алхимия", "alchemy.jpg", "Alchemy")
         @Card(Url.Action("Weaponry", "Home"), "Оружейная", "weaponry.png", "Weaponry")
     </div>
@@ -18,7 +18,7 @@
         <div class="card m-2">
             <img class="card-img-top" src="~/Content/images/@photo" alt="@alt" />
             <div class="card-footer px-1">
-                <a class="stretched-link smallForSmall" href="@url" target='@(blank ? "_blank" : "_self")'>@name</a>
+                <a class="stretched-link smallForSmall text-decoration-none" href="@url" target='@(blank ? "_blank" : "_self")'>@name</a>
             </div>
         </div>
     </div>

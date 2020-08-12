@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Boot
+namespace Pnprpg.Web
 {
     public class BundleConfig
     {

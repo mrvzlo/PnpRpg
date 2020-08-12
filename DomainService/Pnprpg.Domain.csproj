@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0A8D919A-03F6-4CA6-91E8-13C9F10522CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pnprpg.DomainService</RootNamespace>
+    <AssemblyName>Pnprpg.DomainService</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\AppUser.cs" />
+    <Compile Include="Entities\Bonus.cs" />
+    <Compile Include="Entities\RequirementForPerk.cs" />
+    <Compile Include="Entities\WeaponBonus.cs" />
+    <Compile Include="Enums\AbilityKey.cs" />
+    <Compile Include="Enums\AlchemySymbolType.cs" />
+    <Compile Include="Enums\AssignableType.cs" />
+    <Compile Include="Enums\GenerationError.cs" />
+    <Compile Include="Enums\SkillGroupKey.cs" />
+    <Compile Include="Helpers\Int32Extension.cs" />
+    <Compile Include="Helpers\SelectableHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="IRepositories\IAbilityRepository.cs" />
+    <Compile Include="IRepositories\IAlchemySymbolRepository.cs" />
+    <Compile Include="IRepositories\IBaseRepository.cs" />
+    <Compile Include="IRepositories\IBonusRepository.cs" />
+    <Compile Include="IRepositories\IEffectRepository.cs" />
+    <Compile Include="IRepositories\ITraitRepository.cs" />
+    <Compile Include="IRepositories\IWeaponBonusRepository.cs" />
+    <Compile Include="IRepositories\IRaceRepository.cs" />
+    <Compile Include="IRepositories\IRequirementRepository.cs" />
+    <Compile Include="IRepositories\IReactionRepository.cs" />
+    <Compile Include="IRepositories\IPotionRepository.cs" />
+    <Compile Include="IRepositories\ISkillGroupRepository.cs" />
+    <Compile Include="IRepositories\ISpellRepository.cs" />
+    <Compile Include="IRepositories\IUserRepository.cs" />
+    <Compile Include="IRepositories\IPerkRepository.cs" />
+    <Compile Include="IRepositories\ISkillRepository.cs" />
+    <Compile Include="IRepositories\IWeaponRepository.cs" />
+    <Compile Include="IServices\IAbilityService.cs" />
+    <Compile Include="IServices\IAccountService.cs" />
+    <Compile Include="IServices\IAlchemyService.cs" />
+    <Compile Include="IServices\ICoreLogic.cs" />
+    <Compile Include="IServices\IEffectService.cs" />
+    <Compile Include="IServices\IRequirementService.cs" />
+    <Compile Include="IServices\ITraitService.cs" />
+    <Compile Include="IServices\IRaceService.cs" />
+    <Compile Include="IServices\ISkillService.cs" />
+    <Compile Include="IServices\IWeaponService.cs" />
+    <Compile Include="IServices\IPerkService.cs" />
+    <Compile Include="Models\Abilities\AbilityDescriptionModel.cs" />
+    <Compile Include="Models\Abilities\AbilityModel.cs" />
+    <Compile Include="Models\Alchemy\ReactionModel.cs" />
+    <Compile Include="Models\Common\AssignableWithEffects.cs" />
+    <Compile Include="Models\Common\Selectable.cs" />
+    <Compile Include="Models\Common\SelectListPosition.cs" />
+    <Compile Include="Models\Abilities\HeroAbilityGroup.cs" />
+    <Compile Include="Models\Skills\HeroSkillGroup.cs" />
+    <Compile Include="Models\Traits\TraitGroup.cs" />
+    <Compile Include="Models\Weapon\BonusModel.cs" />
+    <Compile Include="Models\Common\Assignable.cs" />
+    <Compile Include="Models\Common\Upgradeable.cs" />
+    <Compile Include="Models\Common\EffectDescModel.cs" />
+    <Compile Include="Models\Magic\SpellModel.cs" />
+    <Compile Include="Models\Requirements\RaceRequirement.cs" />
+    <Compile Include="Models\Requirements\PerkRequirement.cs" />
+    <Compile Include="Models\Requirements\AbilityRequirement.cs" />
+    <Compile Include="Models\Requirements\LevelRequirement.cs" />
+    <Compile Include="Models\Alchemy\PotionModel.cs" />
+    <Compile Include="Models\Magic\MagicSchoolGroupModel.cs" />
+    <Compile Include="Models\Magic\MagicSchoolInfoModel.cs" />
+    <Compile Include="IRepositories\IMagicSchoolGroupsRepository.cs" />
+    <Compile Include="IServices\IMagicService.cs" />
+    <Compile Include="Entities\Effect.cs" />
+    <Compile Include="Entities\MagicSchoolGroup.cs" />
+    <Compile Include="Entities\MagicSchool.cs" />
+    <Compile Include="Entities\Perk.cs" />
+    <Compile Include="Entities\Potion.cs" />
+    <Compile Include="Entities\Race.cs" />
+    <Compile Include="Entities\Reaction.cs" />
+    <Compile Include="Entities\Room.cs" />
+    <Compile Include="Entities\SkillGroup.cs" />
+    <Compile Include="Models\Races\RaceModel.cs" />
+    <Compile Include="Models\Common\UpgradeableGroup.cs" />
+    <Compile Include="Models\Skills\SkillGroupModel.cs" />
+    <Compile Include="Entities\SkillInfo.cs" />
+    <Compile Include="Entities\Spell.cs" />
+    <Compile Include="Entities\Ability.cs" />
+    <Compile Include="Entities\AlchemySymbol.cs" />
+    <Compile Include="Entities\Trait.cs" />
+    <Compile Include="Entities\Weapon.cs" />
+    <Compile Include="Enums\ChaosLevel.cs" />
+    <Compile Include="Enums\EffectTarget.cs" />
+    <Compile Include="Enums\RequirementType.cs" />
+    <Compile Include="Enums\Status.cs" />
+    <Compile Include="Enums\UserRole.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\FileNames.cs" />
+    <Compile Include="Models\Perks\PerkViewModel.cs" />
+    <Compile Include="Helpers\EnumExtension.cs" />
+    <Compile Include="Models\Alchemy\AlchemySummary.cs" />
+    <Compile Include="Models\HeroModel.cs" />
+    <Compile Include="Models\Users\LoginModel.cs" />
+    <Compile Include="Models\Processing\ModelStateError.cs" />
+    <Compile Include="Models\Perks\PerkEditModel.cs" />
+    <Compile Include="Models\Users\RegistrationModel.cs" />
+    <Compile Include="Models\Requirements\RequirementSelectModel.cs" />
+    <Compile Include="Models\Processing\ServiceResponse.cs" />
+    <Compile Include="Models\Processing\StatusResult.cs" />
+    <Compile Include="Models\Users\UserEditModel.cs" />
+    <Compile Include="Models\Users\UserModel.cs" />
+    <Compile Include="Models\Weapon\WeaponEditModel.cs" />
+    <Compile Include="Models\Requirements\RequirementCommonModel.cs" />
+    <Compile Include="Models\Skills\SkillModel.cs" />
+    <Compile Include="Models\Alchemy\AlchemySymbolModel.cs" />
+    <Compile Include="Models\Traits\TraitModel.cs" />
+    <Compile Include="Models\Weapon\WeaponViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,45 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Boot.Enums;
-using Boot.Helpers;
-using Boot.Models.JsonModels;
+using Pnprpg.DomainService.IServices;
+using Pnprpg.DomainService.Models.Alchemy;
+using Pnprpg.Web.Helpers;
 
-namespace Boot.Controllers
+namespace Pnprpg.Web.Controllers
 {
     public class AlchemyController : BaseController
     {
+        private readonly IAlchemyService _alchemyService;
+
+        public AlchemyController(IAlchemyService alchemyService)
+        {
+            _alchemyService = alchemyService;
+        }
 
         public ActionResult Index()
         {
-            var reagents = GetJsonFromFile<List<SymbolInfo>>(FileNames.Reagents);
-            var processes = GetJsonFromFile<List<SymbolInfo>>(FileNames.Processes);
-            ViewBag.Reagents = reagents.Select(x => x.ToSelectListItem()).ToList();
-            ViewBag.Processes = processes.Select(x => x.ToSelectListItem()).ToList();
+            ViewBag.Reagents = ToSelectList(_alchemyService.GetAllReagents().ToList());
+            ViewBag.Processes = ToSelectList(_alchemyService.GetAllProcesses().ToList());
+
             return View();
         }
 
-        public PartialViewResult AlchemyResult(int reagent, int process)
+        public PartialViewResult AlchemyResult(ReactionModel reaction)
         {
-            process %= 4;
-            var reactions = GetJsonFromFile<List<Reaction>>(FileNames.Reactions);
-
-            var reaction = reactions.Single(x => x.Reagent == reagent && x.Process == process);
-
-            var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
-            var model = potions.Single(x => x.Id == reaction.Result).Name;
-
-            return PartialView("_ReactionResult", model);
+            var potion = _alchemyService.GetPotionByReaction(reaction);
+            return PartialView("_ReactionResult", potion);
         }
 
         public JsonResult Random()
         {
-            var potions = GetJsonFromFile<List<Potion>>(FileNames.Potions);
-            var r = new Random().Next(potions.Count);
-            var potion = potions[r].Name;
+            var potion = _alchemyService.GetRandomPotion();
             var partial = this.RenderPartialViewToString("_ReactionResult", potion);
-            return Json(new { partial }, JsonRequestBehavior.AllowGet);
+            return Json(new { partial }, 0);
+        }
+
+        private List<SelectListItem> ToSelectList(List<AlchemySymbolModel> list)
+        {
+            return list.Select(x => new SelectListItem
+            {
+                Text = $"{x.Symbol} {x.Name}",
+                Value = x.Value.ToString()
+            }).ToList();
         }
     }
 }

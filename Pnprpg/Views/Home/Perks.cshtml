@@ -1,9 +1,9 @@
-﻿@using Boot.Enums
-@using Boot.Helpers
-@model List<Boot.Models.JsonModels.Perk>
+﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.Web.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.Perks.PerkViewModel>
 @{
-    var maxLevel = (int)ViewBag.MaxLevel;
     ViewBag.Title = "Способности";
+    var maxLevel = !Model.Any() ? 0 : Model.Max(x => x.Level);
 }
 @if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
 {
@@ -25,33 +25,17 @@
     {
         <div class="tab-pane fade" id="perk_@perk.Id">
             <div class="h4">@perk.Name</div>
-            <div class="mb-2">@perk.Desc</div>
+            <div class="mb-2">@perk.Description</div>
             <div>
                 Требования:
                 <ul>
-                    @foreach (var r in perk.Requirements.Where(x => x.Type != RequirementType.Level))
+                    @foreach (var r in perk.Requirements)
                     {
-                        switch (r.Type)
-                        {
-                            case RequirementType.Perk:
-                                <li>
-                                    @(r.Type.Description()): @r.StrValue
-                                </li>
-                                break;
-                            case RequirementType.Race:
-                                <li>
-                                    @(r.Type.Description()): @r.StrValue
-                                </li>
-                                break;
-                            case RequirementType.Stat:
-                                <li>
-                                    @r.StrValue: @r.Value
-                                </li>
-                                break;
-
-                        }
+                        <li>
+                            @r.Specify().ToString()
+                        </li>
                     }
-                    @if (perk.Requirements.All(x => x.Type == RequirementType.Level))
+                    @if (!perk.Requirements.Any())
                     {
                         @:Нет
                     }
@@ -66,7 +50,7 @@
     {
         <div class="tab-pane fade @(i == 0 ? "show active" : "")" id="group_@i">
             <div class="nav nav-tabs flex-column">
-                @foreach (var perk in Model.Where(x => x.Requirements.Single(y => y.Type == RequirementType.Level).Value == i + 1))
+                @foreach (var perk in Model.Where(x => x.Level == i + 1))
                 {
                     <a class="btn btn-light m-1 border" data-toggle="tab" href="#perk_@perk.Id">@perk.Name</a>
                 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Pnprpg.DomainService.Models.Alchemy
+@{
     ViewBag.Title = "Алхимия";
     var reagents = (List<SelectListItem>)ViewBag.Reagents;
     var processes = (List<SelectListItem>)ViewBag.Processes;
@@ -11,15 +12,15 @@
     <div class="row">
         <label class="col-sm-2 col-form-label">Реагент</label>
         <div class="col">
-            @Html.DropDownList("reagent", reagents, new { @class = "form-control initial-letter" })
+            @Html.DropDownList(nameof(ReactionModel.Reagent), reagents, new { @class = "form-control initial-letter" })
         </div>
         <label class="col-sm-2 col-form-label">Процесс</label>
         <div class="col">
-            @Html.DropDownList("process", processes, new { @class = "form-control initial-letter" })
+            @Html.DropDownList(nameof(ReactionModel.Process), processes, new { @class = "form-control initial-letter" })
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-success my-3">Сотворить</button>
-            <button class="btn btn-primary ajax-btn my-3" data-container="alchemyResult" data-url="@Url.Action("Random")" type="button">
+        <div class="col-12 my-2">
+            <button type="submit" class="btn btn-success my-1 mw-160">Сотворить</button>
+            <button class="btn btn-primary ajax-btn my-1 mw-160" data-container="alchemyResult" data-url="@Url.Action("Random")" type="button">
                 Случайное зелье
             </button>
         </div>

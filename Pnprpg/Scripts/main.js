@@ -13,6 +13,7 @@
             call("#" + id, url, style);
         });
         $(document).on("click", ".clear-btn", function () {
+            console.log($(this).data("container"));
             var id = $(this).data("container");
             $("#"+id).remove();
         });
@@ -112,7 +113,6 @@
     }
 
     function inc(value) {
-        console.log(settings.pos);
         if (!settings.pos)
             settings.pos = value;
         return settings.pos++;

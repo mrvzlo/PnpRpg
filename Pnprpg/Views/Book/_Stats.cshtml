@@ -1,4 +1,4 @@
-﻿@model List<Boot.Models.Stat>
+﻿@model IQueryable<Pnprpg.DomainService.Models.Abilities.AbilityDescriptionModel>
 
 <h5>Атрибуты</h5>
 
@@ -16,8 +16,8 @@
     @foreach (var stat in Model)
     {
         <tr>
-            <td>@stat.Id - @stat.Name</td>
-            <td>@stat.Desc</td>
+            <td>@stat.Symbol - @stat.Name</td>
+            <td>@stat.Description</td>
             <td>@stat.Influence</td>
         </tr>
     }

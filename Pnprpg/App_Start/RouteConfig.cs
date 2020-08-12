@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Boot
+namespace Pnprpg.Web
 {
     public class RouteConfig
     {
