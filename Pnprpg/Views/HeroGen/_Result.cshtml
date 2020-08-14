@@ -6,12 +6,14 @@
 <div class="col-12 col-md-8 col-lg-6 my-2">
     @if (User.Identity.IsAuthenticated)
     {
-        using (Ajax.BeginForm("SaveHero", null, 
-            new AjaxOptions { UpdateTargetId = "main", HttpMethod = "POST", OnSuccess = "MainJs.formRedirect"},
-            new { @class = "row form-inline" }))
+        using (Ajax.BeginForm("SaveHero", null,
+            new AjaxOptions { UpdateTargetId = "main", HttpMethod = "POST", OnSuccess = "MainJs.formRedirect" },
+            new { @class = "row" }))
         {
             @Html.Label("name", "Имя персонажа", new { @class = "col-sm-4 col" })
-            @Html.TextBox("name", "", new { @class = "form-control col-sm-8" })
+            <div class="col-sm-8">
+                @Html.TextBox("name", "", new { @class = "form-control" })
+            </div>
             <div class="col my-2"><button class="btn btn-success mw-160">Сохранить</button></div>
         }
     }
@@ -22,13 +24,4 @@
             Войдите, чтобы сохранить персонажа
         </a>
     }
-</div>
-
-<div class="col-md-6 col-12 mt-2 input-group d-none">
-    <div class="input-group-prepend">
-        <div class="input-group-text">
-            Код персонажа
-        </div>
-    </div>
-    @Html.TextBox("code", Model.ToString(), new { @class = "form-control" })
 </div>

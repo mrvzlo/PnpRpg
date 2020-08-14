@@ -9,7 +9,7 @@ namespace Pnprpg.Domain.Profiles
     {
         public RequirementProfile()
         {
-            CreateMap<DomainService.Entities.RequirementForPerk, RequirementCommonModel>();
+            CreateMap<RequirementForPerk, RequirementCommonModel>();
 
             CreateMap<Ability, Selectable>()
                 .ForMember(dest => dest.Value, opts => 

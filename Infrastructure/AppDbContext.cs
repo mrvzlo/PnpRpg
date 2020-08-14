@@ -17,6 +17,7 @@ namespace Pnprpg.Infrastructure
         public DbSet<MagicSchoolGroup> MagicSchoolGroups{ get; set; }
         public DbSet<MagicSchool> MagicSchools { get; set; }
         public DbSet<Perk> Perks{ get; set; }
+        public DbSet<PerkBranch> PerkBranches{ get; set; }
         public DbSet<Potion> Potions{ get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Reaction> Reactions { get; set; }

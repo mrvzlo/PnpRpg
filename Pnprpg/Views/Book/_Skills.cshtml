@@ -1,40 +1,36 @@
 ﻿@using Pnprpg.DomainService.Helpers
-@model IQueryable<Pnprpg.DomainService.Models.Skills.SkillGroupModel>
+@model List<Pnprpg.DomainService.Models.Skills.SkillGroupModel>
 <h5>Навыки</h5>
 <p>
     Навыки делятся на лёгкие, обычные и сложные.
     Лёгкие не имеют штрафа, обычные имеют штраф в -1 очко, а сложные – штраф -2. Эти модификаторы могут меняться под другой уровень сложности.
 </p>
 
-@{ 
-    var i = 0;
-}
-
-<table class="table text-center">
-    <tr>
-        @foreach (var group in Model)
-        {
-            i++;
-            <td class="border-0">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Атрибут</th>
-                    <th>@group.Name</th>
-                </tr>
-                @foreach (var skill in group.Skills)
-                {
-                    <tr>
-                        <td>@( skill.Difficulty == 0 ? $"{skill.Ability.Symbol}" : $"{skill.Ability.Symbol}-{skill.Difficulty}")</td>
-                        <td>@StringHelper.FormatToSentence(skill.Name)</td>
-                    </tr>
-                }
-            </table>
-            <br />
-            </td>
-            if (i % 2 == 0)
+<div class="table text-center">
+    @for (var i = 0; i < Model.Count; i += 2)
+    {
+        <table class="table table-bordered">
+            <tr>
+                <th class="w-10">Атрибут</th>
+                <th class="w-40">@Model[i].Name</th>
+                <th class="w-10">Атрибут</th>
+                <th class="w-40">@Model[i + 1].Name</th>
+            </tr>
+            @for (var j = 0; j < Model[i].Skills.Count; j++)
             {
-                @:</tr><tr>
+                <tr>
+                    <td>@AbilityInfo(Model[i].Skills[j].Ability.Symbol, Model[i].Skills[j].Difficulty)</td>
+                    <td>@StringHelper.FormatToSentence(Model[i].Skills[j].Name)</td>
+                    <td>@AbilityInfo(Model[i + 1].Skills[j].Ability.Symbol, Model[i + 1].Skills[j].Difficulty)</td>
+                    <td>@StringHelper.FormatToSentence(Model[i + 1].Skills[j].Name)</td>
+                </tr>
             }
-        }
-    </tr>
-</table>
+        </table>
+        <br />
+    }
+</div>
+
+@helper AbilityInfo(string symbol, int difficulty)
+{
+    @(difficulty == 0 ? $"{symbol}" : $"{symbol}-{difficulty}")
+}

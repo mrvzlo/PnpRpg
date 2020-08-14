@@ -8,9 +8,10 @@ namespace Pnprpg.DomainService.IRepositories
         T Get(int id);
         T GetRandom();
         IQueryable<T> Select();
-        void InsertOrUpdate(T entity);
+        int InsertOrUpdate(T entity);
         void Delete(T entity);
         void Delete(int id);
         void BatchInsert(IQueryable<T> list);
+        void BatchDelete(IQueryable<T> list);
     }
 }

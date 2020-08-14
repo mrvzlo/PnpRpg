@@ -14,11 +14,11 @@
             <td class="text-center">@perk.Level</td>
             <td>@perk.Name</td>
             <td>
-                @foreach (var r in perk.Requirements.OrderBy(x => x.Type))
+                @foreach (var r in perk.RequirementsForPerks.OrderBy(x => x.Type))
                 {
                     @r.Specify().ToString()
                 }
-                @if (!perk.Requirements.Any())
+                @if (!perk.RequirementsForPerks.Any())
                 {
                     @:Нет
                 }

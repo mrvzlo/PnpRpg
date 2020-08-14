@@ -1,7 +1,12 @@
 ﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.DomainService.Models.Perks
+@using Pnprpg.DomainService.Models.Requirements
 @model Pnprpg.DomainService.Models.Requirements.RequirementSelectModel
+@{
+    var prefix = $"{nameof(PerkEditModel.RequirementsForPerks)}[{Model.Position}].";
+}
 <div class="input-group mt-2" id="req_@Model.Position">
-    @Html.DropDownList($"Requirements[{Model.Position}].type", Model.Requirements, null,
+    @Html.DropDownList($"{prefix}{nameof(RequirementCommonModel.Type)}", Model.Requirements, null,
         new
         {
             @class = "form-control ajax-dropdown",
@@ -11,14 +16,14 @@
         })
     @if (Model.Selected.Type == RequirementType.Ability)
     {
-        @Html.DropDownList($"Requirements[{Model.Position}].statId", Model.Values, null,
+        @Html.DropDownList($"{prefix}{nameof(RequirementCommonModel.AbilityId)}", Model.Values, null,
             new { @class = "form-control" })
-        @Html.TextBox($"Requirements[{Model.Position}].value", Model.Selected.Value,
-            new { @class = "form-control", @type = "number" })
+        @Html.TextBox($"{prefix}{nameof(RequirementCommonModel.Value)}", Model.Selected.Value,
+            new { @class = "form-control", type = "number" })
     }
     else
     {
-        @Html.DropDownList($"Requirements[{Model.Position}].value", Model.Values, null,
+        @Html.DropDownList($"{prefix}{nameof(RequirementCommonModel.Value)}", Model.Values, null,
             new { @class = "form-control" })
     }
     <div class="input-group-append">

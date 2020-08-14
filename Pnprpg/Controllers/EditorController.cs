@@ -47,6 +47,7 @@ namespace Pnprpg.Web.Controllers
         public ActionResult EditPerk(int? id = null)
         {
             var perk = _perkService.GetForEdit(id);
+            PreparePerkEditViewBags(perk.BranchId);
             return View(perk);
         }
 
@@ -55,7 +56,10 @@ namespace Pnprpg.Web.Controllers
         public ActionResult EditPerk(PerkEditModel model)
         {
             if (!ModelState.IsValid)
+            {
+                PreparePerkEditViewBags(model.BranchId);
                 return View(model);
+            }
 
             _perkService.SavePerk(model);
 
@@ -77,7 +81,7 @@ namespace Pnprpg.Web.Controllers
             return Json(new {partial}, JsonRequestBehavior.AllowGet);
         }
 
-        public PartialViewResult ShowRequirementSelectModel(int pos, int value, int abilityId, int reqType = (int)RequirementType.Ability)
+        public PartialViewResult ShowRequirementSelectModel(int pos, int value, int? abilityId, int reqType = (int)RequirementType.Ability)
         {
             var model = GetRequirementSelectModel(pos, value, abilityId, reqType);
             return PartialView("_RequirementSelect", model);
@@ -139,10 +143,18 @@ namespace Pnprpg.Web.Controllers
         private void PrepareWeaponEditViewBags(int skillId)
         {
             var skills = _skillService.GetSkillsByGroup((int)SkillGroupKey.Weapon).ToList();
-            ViewBag.SkillList = new SelectList(skills, nameof(SkillModel.Id), nameof(SkillModel.Name), skillId);
+            ViewBag.SkillList = new SelectList(skills, 
+                nameof(SkillModel.Id), nameof(SkillModel.Name), skillId);
         }
 
-        private RequirementSelectModel GetRequirementSelectModel(int pos, int value, int abilityId, int reqType)
+        private void PreparePerkEditViewBags(int branchId)
+        {
+            var branches = _perkService.GetAllBranches().ToList();
+            ViewBag.Branches = new SelectList(branches,
+                nameof(PerkBranchModel.Id), nameof(PerkBranchModel.Name), branchId);
+        }
+
+        private RequirementSelectModel GetRequirementSelectModel(int pos, int value, int? abilityId, int reqType)
         {
             var requirements = new []{RequirementType.Ability, RequirementType.Perk, RequirementType.Race}
                 .Select(x=> new Selectable((int)x, x.Description())).ToList();

@@ -1,32 +1,22 @@
-﻿@using Pnprpg.DomainService.Models.Perks
-@using Pnprpg.DomainService.Models.Requirements
-@model List<Pnprpg.DomainService.Models.Perks.PerkViewModel>
+﻿@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Models.Perks
+@model IQueryable<Pnprpg.DomainService.Models.Perks.PerkViewModel>
 
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.Level).Titled("Уровень")
-        .InitialSort(GridSortOrder.Asc);
-    columns.Add(x => x.Name).Titled("Название");
-    columns.Add(x => Requirements(x.Requirements))
-        .Titled("Название").Css("w-25");
-    columns.Add(x => x.Description).Css("w-25").Titled("Эффект");
+    columns.Add(x => x.Branch.Name).RenderedAs(x => Branch(x.Branch)).Filterable(GridFilterType.Single).Css("bg-dark").Titled("Класс");
+    columns.Add(x => x.Level).Titled("Уровень").Sortable(true).InitialSort(GridSortOrder.Asc);
+    columns.Add(x => x.Name).Titled("Название").Css("w-25");
+    columns.Add(x => x.Description).Titled("Эффект").Css("w-50");
     columns.Add(x => Actions(x));
 }).Empty("No data found").Pageable(pager =>
-    {
-        pager.RowsPerPage = 7;
-    }).Css("table table-responsive"))
-
-@helper Requirements(List<RequirementCommonModel> reqs)
 {
-    foreach (var r in reqs)
-    {
-        @r.Specify().ToString()
-        <br />
-    }
-    if (!reqs.Any())
-    {
-        @:Нет
-    }
+    pager.RowsPerPage = 10;
+}).Css("table table-responsive"))
+
+@helper Branch(PerkBranchModel branch)
+{
+    <div style="color: #@branch.Color">@branch.Name</div>
 }
 
 @helper Actions(PerkViewModel perk)

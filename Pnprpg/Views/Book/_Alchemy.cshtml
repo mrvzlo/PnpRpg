@@ -5,38 +5,22 @@
 
 <table class="table text-center">
     <tr>
-        <td class="border-0">
-            <table class="table table-bordered">
-                <tr>
-                    <th class="text-center">Символ</th>
-                    <th>Эссенция</th>
-                </tr>
-                @foreach (var r in Model.Reagents)
-                {
-                    <tr>
-                        <td>@r.Symbol</td>
-                        <td>@r.Name</td>
-                    </tr>
-                }
-            </table>
-        </td>
-        <td class="border-0 w-10"></td>
-        <td class="border-0">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Символ</th>
-                    <th>Процесс</th>
-                </tr>
-                @foreach (var r in Model.Processes)
-                {
-                    <tr>
-                        <td>@r.Symbol</td>
-                        <td>@r.Name</td>
-                    </tr>
-                }
-            </table>
-        </td>
+        <th class="text-center">Символ</th>
+        <th>Эссенция</th>
+        <th>Символ</th>
+        <th>Процесс</th>
     </tr>
+    @for (var i = 0; i < Model.Reagents.Count; i++)
+    {
+        var r = Model.Reagents[i];
+        var p = Model.Processes[i];
+        <tr>
+            <td>@r.Symbol</td>
+            <td>@r.Name</td>
+            <td>@p.Symbol</td>
+            <td>@p.Name</td>
+        </tr>
+    }
 </table>
 
 <h5>Продукты реакций</h5>

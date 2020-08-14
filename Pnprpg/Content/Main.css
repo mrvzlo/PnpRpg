@@ -7121,10 +7121,16 @@ a {
 .mw-260 {
   min-width: 260px; }
 
+form .row {
+  margin-bottom: 1rem; }
+
 td {
   vertical-align: middle !important; }
   td .btn {
     padding: .3rem .5rem; }
+
+.bg-dark .mvc-grid-filter {
+  color: white; }
 
 .mvc-grid-pager {
   font-size: 0; }

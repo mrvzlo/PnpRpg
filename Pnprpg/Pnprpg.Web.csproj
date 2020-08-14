@@ -421,20 +421,11 @@
     </Content>
     <Content Include="Content\MvcGrid\mvc-grid.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
-    <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\index.js.flow" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.esm.min.js.map" />
-    <Content Include="Scripts\bootstrap.esm.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Content\bootstrap\_variables.scss" />
     <Content Include="Content\bootstrap\_utilities.scss" />
     <Content Include="Content\bootstrap\_type.scss" />
@@ -600,9 +591,6 @@
     <None Include="Properties\PublishProfiles\GearHost.pubxml" />
     <None Include="Properties\PublishProfiles\pnprpg - FTP.pubxml" />
     <Content Include="Views\Book\_ShortSkillList.cshtml" />
-    <Content Include="App_Data\Races.json" />
-    <Content Include="App_Data\Rooms.json" />
-    <Content Include="App_Data\Weapons.json" />
     <Content Include="App_Data\CharacterSheet.pdf" />
     <Content Include="App_Data\RuleBook.pdf" />
     <None Include="Content\book.scss" />
@@ -643,7 +631,6 @@
     <Content Include="Views\Editor\_BonusSelect.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Perks.json" />
     <Content Include="Content\images\alchemy.jpg" />
     <Content Include="Content\images\generator.jpg" />
     <Content Include="Content\images\rulebook.jpg" />
@@ -659,8 +646,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\main.scss" />
-    <Content Include="App_Data\Traits.json" />
-    <Content Include="App_Browsers\qt.browser" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

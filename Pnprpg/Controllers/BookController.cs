@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.Web.Helpers;
@@ -49,6 +50,11 @@ namespace Pnprpg.Web.Controllers
             return File(file, "application/pdf");
         }
 
+        public ActionResult WebBook()
+        {
+            return View("Index");
+        }
+
         public ActionResult DeleteBook()
         {
             var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
@@ -77,7 +83,7 @@ namespace Pnprpg.Web.Controllers
         public PartialViewResult Skills()
         {
             var list = _skillService.GetAllGroups();
-            return PartialView("_Skills", list);
+            return PartialView("_Skills", list.ToList());
         }
 
         public PartialViewResult Spells()

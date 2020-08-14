@@ -46,12 +46,16 @@ namespace Pnprpg.Domain.Services
                 Weight = model.Weight
             };
             
-            _weaponRepository.InsertOrUpdate(weapon);
+            weapon.Id = _weaponRepository.InsertOrUpdate(weapon);
 
             SaveBonuses(model.Bonuses, weapon.Id);
         }
 
-        public void DeleteWeapon(int id) => _weaponRepository.Delete(id);
+        public void DeleteWeapon(int id)
+        {
+            _weaponBonusRepository.ClearWeaponBonuses(id);
+            _weaponRepository.Delete(id);
+        }
 
         public IQueryable<BonusModel> GetAllBonuses() => 
             _bonusRepository.Select().ProjectTo<BonusModel>(MapperConfig);

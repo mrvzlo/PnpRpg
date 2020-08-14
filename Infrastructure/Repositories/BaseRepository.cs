@@ -38,10 +38,11 @@ namespace Pnprpg.Infrastructure.Repositories
             return DbSet.OrderBy(x => x.Id).Skip(rand).First();
         }
 
-        public virtual void InsertOrUpdate(T entity)
+        public virtual int InsertOrUpdate(T entity)
         {
             DbContext.Entry(entity).State = entity.Id == 0 ? EntityState.Added : EntityState.Modified;
             DbContext.SaveChanges();
+            return entity.Id;
         }
 
         public virtual void Delete(T entity)
@@ -60,6 +61,14 @@ namespace Pnprpg.Infrastructure.Repositories
         {
             foreach (var entity in list)
                 InsertOrUpdate(entity);
+
+            DbContext.SaveChanges();
+        }
+
+        public virtual void BatchDelete(IQueryable<T> list)
+        {
+            foreach (var entity in list)
+                DbContext.Entry(entity).State = EntityState.Deleted;
 
             DbContext.SaveChanges();
         }

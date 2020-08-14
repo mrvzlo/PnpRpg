@@ -11,9 +11,7 @@ namespace Pnprpg.Infrastructure.Repositories
 
         public void ClearWeaponBonuses(int weaponId)
         {
-            foreach (var weapon in DbContext.WeaponsBonuses.Where(x => x.WeaponId == weaponId))
-                    DbContext.Entry(weapon).State = EntityState.Deleted;
-            DbContext.SaveChanges();
+            BatchDelete(DbContext.WeaponsBonuses.Where(x => x.WeaponId == weaponId));
         }
     }
 }

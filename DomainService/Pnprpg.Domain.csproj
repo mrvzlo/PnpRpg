@@ -69,12 +69,14 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\AppUser.cs" />
     <Compile Include="Entities\Bonus.cs" />
+    <Compile Include="Entities\PerkBranch.cs" />
     <Compile Include="Entities\RequirementForPerk.cs" />
     <Compile Include="Entities\WeaponBonus.cs" />
     <Compile Include="Enums\AbilityKey.cs" />
     <Compile Include="Enums\AlchemySymbolType.cs" />
     <Compile Include="Enums\AssignableType.cs" />
     <Compile Include="Enums\GenerationError.cs" />
+    <Compile Include="Enums\PotionType.cs" />
     <Compile Include="Enums\SkillGroupKey.cs" />
     <Compile Include="Helpers\Int32Extension.cs" />
     <Compile Include="Helpers\SelectableHelper.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="IRepositories\IBaseRepository.cs" />
     <Compile Include="IRepositories\IBonusRepository.cs" />
     <Compile Include="IRepositories\IEffectRepository.cs" />
+    <Compile Include="IRepositories\IPerkBranchRepository.cs" />
     <Compile Include="IRepositories\ITraitRepository.cs" />
     <Compile Include="IRepositories\IWeaponBonusRepository.cs" />
     <Compile Include="IRepositories\IRaceRepository.cs" />
@@ -114,6 +117,7 @@
     <Compile Include="Models\Common\Selectable.cs" />
     <Compile Include="Models\Common\SelectListPosition.cs" />
     <Compile Include="Models\Abilities\HeroAbilityGroup.cs" />
+    <Compile Include="Models\Perks\PerkBranchModel.cs" />
     <Compile Include="Models\Skills\HeroSkillGroup.cs" />
     <Compile Include="Models\Traits\TraitGroup.cs" />
     <Compile Include="Models\Weapon\BonusModel.cs" />

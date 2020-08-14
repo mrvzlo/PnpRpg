@@ -3,7 +3,7 @@
 @model IQueryable<Pnprpg.DomainService.Models.Perks.PerkViewModel>
 @{
     ViewBag.Title = "Способности";
-    var maxLevel = !Model.Any() ? 0 : Model.Max(x => x.Level);
+    var branches = Model.Select(x => x.Branch).Distinct().ToList();
 }
 @if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
 {
@@ -12,49 +12,41 @@
     </div>
 }
 <div class="nav nav-tabs col-12 my-sm-2 px-2 px-sm-3 justify-content-center">
-    @for (var i = 0; i < maxLevel; i++)
+    @foreach (var branch in branches)
     {
-        <a class="btn btn-primary mx-1 @(i == 0 ? "active" : "")" data-toggle="tab" href="#group_@i">
-            <span class="d-none d-md-inline">Уровень</span>
-            @(i + 1)
+        <a class="btn btn-primary m-1 mw-160 text-dark col-md-3" data-toggle="tab" href="#group_@branch.Id" style="background-color: #@branch.Color">
+            @branch.Name
         </a>
     }
 </div>
-<div class="tab-content col-md-6 col-sm-6 col-12 text-left row order-sm-last">
-    @foreach (var perk in Model)
+<div class="tab-content text-left">
+    @foreach (var branch in branches)
     {
-        <div class="tab-pane fade" id="perk_@perk.Id">
-            <div class="h4">@perk.Name</div>
-            <div class="mb-2">@perk.Description</div>
-            <div>
-                Требования:
-                <ul>
-                    @foreach (var r in perk.Requirements)
-                    {
-                        <li>
-                            @r.Specify().ToString()
-                        </li>
-                    }
-                    @if (!perk.Requirements.Any())
-                    {
-                        @:Нет
-                    }
-                </ul>
-            </div>
-            <hr />
-        </div>
-    }
-</div>
-<div class="tab-content col-md-3 col-sm-5 col-12 text-left px-2 px-sm-0">
-    @for (var i = 0; i < maxLevel; i++)
-    {
-        <div class="tab-pane fade @(i == 0 ? "show active" : "")" id="group_@i">
-            <div class="nav nav-tabs flex-column">
-                @foreach (var perk in Model.Where(x => x.Level == i + 1))
-                {
-                    <a class="btn btn-light m-1 border" data-toggle="tab" href="#perk_@perk.Id">@perk.Name</a>
-                }
-            </div>
+        <div class="tab-pane fade col-lg-6 mx-auto" id="group_@branch.Id">
+            @foreach (var perk in Model.Where(x => x.Branch.Id == branch.Id).OrderBy(x => x.Level))
+            {
+                <div class="card m-1">
+                    <div class="card-header">
+                        <div class="badge bg-dark big-badge">@perk.Level</div>
+                        @perk.Name
+                        @if (User.IsInRole(UserRole.Editor.ToString()) || User.IsInRole(UserRole.Admin.ToString()))
+                        {
+                            <div class="float-right">
+                                <a href="@Url.Action("EditPerk", "Editor", new {id = perk.Id})" class="link-info">Изменить</a>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-body px-2">
+                        @if (perk.Max > 1)
+                        {
+                            @:Количество улучшений:
+                            <div class="badge bg-warning big-badge">@perk.Max</div>
+                            <br />
+                        }
+                        @perk.Description
+                    </div>
+                </div>
+            }
         </div>
     }
 </div>

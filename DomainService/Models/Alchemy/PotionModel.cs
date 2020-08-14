@@ -1,7 +1,10 @@
-﻿namespace Pnprpg.DomainService.Models.Alchemy
+﻿using Pnprpg.DomainService.Enums;
+
+namespace Pnprpg.DomainService.Models.Alchemy
 {
     public class PotionModel
     {
         public string Name { get; set; }
+        public PotionType PotionType { get; set; }
     }
 }

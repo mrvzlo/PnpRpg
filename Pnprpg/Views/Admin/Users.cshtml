@@ -3,7 +3,7 @@
     ViewBag.Title = "Настройка ролей";
 }
 
-@using (Html.BeginForm("Users", "Admin", FormMethod.Post))
+@using (Html.BeginForm("Users", "Admin", FormMethod.Post, new { @class = "col-md-6" }))
 {
     @Html.AntiForgeryToken()
 

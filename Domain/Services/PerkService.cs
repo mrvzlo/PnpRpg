@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models.Perks;
@@ -12,17 +13,24 @@ namespace Pnprpg.Domain.Services
     public class PerkService : BaseService, IPerkService
     {
         private readonly IPerkRepository _perkRepository;
+        private readonly IPerkBranchRepository _perkBranchRepository;
         private readonly IRequirementRepository _requirementRepository;
         
-        public PerkService(IPerkRepository perkRepository, IRequirementRepository requirementRepository)
+        public PerkService(IPerkRepository perkRepository, IRequirementRepository requirementRepository, IPerkBranchRepository perkBranchRepository)
         {
             _perkRepository = perkRepository;
             _requirementRepository = requirementRepository;
+            _perkBranchRepository = perkBranchRepository;
         }
 
         public IQueryable<PerkViewModel> GetAll()
         {
             return _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig);
+        }
+
+        public IQueryable<PerkBranchModel> GetAllBranches()
+        {
+            return _perkBranchRepository.Select().ProjectTo<PerkBranchModel>(MapperConfig);
         }
         
         public PerkEditModel GetForEdit(int? id)
@@ -39,27 +47,34 @@ namespace Pnprpg.Domain.Services
             {
                 Id = model.Id,
                 Description = model.Description,
-                Name = model.Name
+                Name = model.Name,
+                BranchId = model.BranchId,
+                Max = model.Max
             };
 
-            _perkRepository.InsertOrUpdate(perk);
-            SaveRequirements(model.Requirements, model.Id);
+            model.Id = _perkRepository.InsertOrUpdate(perk);
+            SaveRequirements(model);
         }
 
         public void DeletePerk(int id)
         {
+            _requirementRepository.ClearPerkRequirements(id);
             _perkRepository.Delete(id);
         }
 
-        private void SaveRequirements(List<RequirementCommonModel> list, int perkId)
+        private void SaveRequirements(PerkEditModel model)
         {
-            _requirementRepository.ClearPerkRequirements(perkId);
-            if (list == null)
-                return;
+            _requirementRepository.ClearPerkRequirements(model.Id);
 
-            var requirements = list.Select(x => new RequirementForPerk
+            model.RequirementsForPerks ??= new List<RequirementCommonModel>();
+            model.RequirementsForPerks.Add(new RequirementCommonModel
+            {
+                Type = RequirementType.Level, Value = model.Level
+            });
+
+            var requirements = model.RequirementsForPerks.Select(x => new RequirementForPerk
                 {
-                    PerkId = perkId,
+                    PerkId = model.Id,
                     AbilityId = x.AbilityId,
                     Type = x.Type,
                     Value = x.Value
