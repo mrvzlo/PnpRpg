@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using Pnprpg.DomainService.Models.Magic;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {
     public interface IMagicService
     {
-        IQueryable<MagicSchoolGroupModel> GetAllGroups();
+        IQueryable<MagicSchoolModel> GetAll();
 
         SpellModel GetRandomSpell();
     }

@@ -1,70 +1,53 @@
-﻿@using Pnprpg.DomainService.Models.Alchemy
-@using Pnprpg.DomainService.Models.Magic
-@model IQueryable<Pnprpg.DomainService.Models.Magic.MagicSchoolGroupModel>
+﻿@using Pnprpg.DomainService.Models
+@model IQueryable<Pnprpg.DomainService.Models.MagicSchoolModel>
 @{
     ViewBag.Title = "Школы магии";
 }
-<div class="nav nav-pills col-12 mt-md-2 justify-content-center p-0">
-    @foreach (var group in Model)
+<ul class="nav nav-tabs row justify-content-center">
+    @foreach (var school in Model)
     {
-        <a class="btn m-1 btn-light border mw-160" style="color: #@group.Color" data-toggle="tab" href="#@group.Element">
-            @group.Element
-        </a>
+        <li class="col-6 nav-item">
+            <a class="btn btn-block smallForSmall border d-sm-block my-1 nav-link" data-toggle="tab" 
+               href="#school_@school.Id" style="background-color: #@school.Color">@school.Name</a>
+        </li>
     }
-</div>
-<div class="tab-content col-12">
-    @foreach (var group in Model)
+</ul>
+
+<div class="tab-content col-12 smallForSmall">
+    @foreach (var school in Model)
     {
-        <div class="tab-pane fade" id="@group.Element">
-            <div class="row justify-content-around">
-                <div class="col-12 text-center m-2">@group.Special</div>
-                <div class="nav nav-tabs col-12 flex-column flex-sm-row px-2 justify-content-center">
-                    @foreach (var school in group.Schools)
+        var showDesc = !school.Spells.All(x => string.IsNullOrEmpty(x.Effect));
+        <div class="tab-pane fade" id="school_@school.Id">
+            <p class="m-2">@Html.Raw(school.Desctiption)</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Уровень</th>
+                    <th>Название</th>
+                    @if (showDesc)
                     {
-                        <a class="btn mw-260 m-1 smallForSmall btn-light border d-sm-block @(school.Id % 2 == 0 ? "active" : "")"
-                           data-toggle="tab" href="#@group.Element@school.Id" style="color: #@group.Color">@school.Name</a>
-                        <br />
+                        <th>Эффект</th>
                     }
-                </div>
-                <div class="tab-content col-12 smallForSmall">
-                    @foreach (var school in group.Schools)
-                    {
-                        var showDesc = !school.Spells.All(x => string.IsNullOrEmpty(x.Effect));
-                        <div class="tab-pane fade @(school.Id % 2 == 0 ? "show active":"")" id="@group.Element@school.Id">
-                            <p class="m-2">@Html.Raw(school.Desctiption)</p>
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Уровень</th>
-                                    <th>Название</th>
-                                    @if (showDesc)
-                                    {
-                                        <th>Эффект</th>
-                                    }
-                                    <th>Стоимость</th>
-                                </tr>
-                                @foreach (var spell in school.Spells)
+                    <th>Стоимость</th>
+                </tr>
+                @foreach (var spell in school.Spells)
+                {
+                    <tr>
+                        <td>@spell.Level</td>
+                        <td>@spell.Name</td>
+                        @if (showDesc)
+                        {
+                            <td>
+                                @if (spell.Damage > 0)
                                 {
-                                    <tr>
-                                        <td>@spell.Level</td>
-                                        <td>@spell.Name</td>
-                                        @if (showDesc)
-                                        {
-                                            <td>
-                                                @if (spell.Damage > 0)
-                                                {
-                                                    @:<span class="text-danger">Урон @spell.Damage</span>
-                                                }
-                                                @spell.Effect
-                                            </td>
-                                        }
-                                        <td>@spell.Cost</td>
-                                    </tr>
+                                    @:<span class="text-danger">Урон @spell.Damage</span>
                                 }
-                            </table>
-                        </div>
-                    }
-                </div>
-            </div>
+                                @spell.Effect
+                            </td>
+                        }
+                        <td>@spell.Cost</td>
+                    </tr>
+                }
+            </table>
         </div>
     }
 </div>

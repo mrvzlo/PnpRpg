@@ -3,7 +3,6 @@ using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
-using Pnprpg.DomainService.Models.Races;
 
 namespace Pnprpg.Domain.Services
 {

@@ -2,7 +2,7 @@
 {
     public static class Constants
     {
-        public const string Version = "v2_3_2";
+        public const string Version = "v2.4a";
         public const int AbsoluteMaxAbilityLevel = 20;
         public const int AbsoluteMinAbilityLevel = 1;
         public const int ManualMaxAbilityLevel = 12;

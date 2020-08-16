@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IMagicSchoolGroupsRepository : IBaseRepository<MagicSchoolGroup>
+    public interface IBranchRepository : IBaseRepository<Branch>
     {
     }
 }

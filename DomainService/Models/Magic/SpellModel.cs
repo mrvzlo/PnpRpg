@@ -1,4 +1,4 @@
-﻿namespace Pnprpg.DomainService.Models.Magic
+﻿namespace Pnprpg.DomainService.Models
 {
     public class SpellModel
     {
@@ -10,6 +10,6 @@
         public string Effect { get; set; }
         public string Color { get; set; }
 
-        public MagicSchoolInfoModel MagicSchool { get; set; }
+        public MagicSchoolModel MagicSchool { get; set; }
     }
 }

@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
-using Pnprpg.DomainService.Models.Users;
 using Pnprpg.Web.Helpers;
 
 namespace Pnprpg.Web.Controllers

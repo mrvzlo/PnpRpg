@@ -3,24 +3,24 @@ using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
-using Pnprpg.DomainService.Models.Magic;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Services
 {
     public class MagicService : BaseService, IMagicService
     {
-        private readonly IMagicSchoolGroupsRepository _magicSchoolGroupsRepository;
+        private readonly IMagicSchoolRepository _magicSchoolRepository;
         private readonly ISpellRepository _spellRepository;
 
-        public MagicService(IMagicSchoolGroupsRepository magicSchoolGroupsRepository, ISpellRepository spellRepository)
+        public MagicService(IMagicSchoolRepository magicSchoolRepository, ISpellRepository spellRepository)
         {
-            _magicSchoolGroupsRepository = magicSchoolGroupsRepository;
+            _magicSchoolRepository = magicSchoolRepository;
             _spellRepository = spellRepository;
         }
 
-        public IQueryable<MagicSchoolGroupModel> GetAllGroups()
+        public IQueryable<MagicSchoolModel> GetAll()
         {
-            return _magicSchoolGroupsRepository.Select().ProjectTo<MagicSchoolGroupModel>(MapperConfig);
+            return _magicSchoolRepository.Select().ProjectTo<MagicSchoolModel>(MapperConfig);
         }
 
         public SpellModel GetRandomSpell()

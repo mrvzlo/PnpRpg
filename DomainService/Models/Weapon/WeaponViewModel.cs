@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Pnprpg.DomainService.Models.Skills;
 
-namespace Pnprpg.DomainService.Models.Weapon
+namespace Pnprpg.DomainService.Models
 {
     public class WeaponViewModel
     {
@@ -9,7 +8,7 @@ namespace Pnprpg.DomainService.Models.Weapon
         public int Level { get; set; }
         public int Weight { get; set; }
         public string Name { get; set; }
-        public SkillModel Skill { get; set; }
+        public SkillViewModel Skill { get; set; }
         public List<BonusModel> Bonuses;
     }
 }

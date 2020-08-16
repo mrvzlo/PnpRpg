@@ -1,7 +1,6 @@
-﻿@using Pnprpg.DomainService.Models.Skills
-@model HeroSkillGroup
+﻿@model Pnprpg.DomainService.Models.HeroSkillGroup
 @{
-    var groups = Model.List.Select(x => x.GroupName).Distinct().ToList();
+    var groups = Model.List.Select(x => x.BranchName).Distinct().ToList();
 }
 <div id="skillsCarousel" class="carousel justify-content-center row">
     <div class="col-md-8 col-12">
@@ -15,14 +14,14 @@
                             <th class="w-75">@groups[i]</th>
                             <th>Цена</th>
                         </tr>
-                        @foreach (var skill in Model.List.Where(x => x.GroupName == groups[i]))
+                        @foreach (var skill in Model.List.Where(x => x.BranchName == groups[i]))
                         {
                             <tr>
                                 <td class="font-weight-bold badge text-white big-badge" style="background-color: #@skill.Ability.Color">
                                     @skill.Ability.Symbol
                                 </td>
                                 <td>@skill.ToString()</td>
-                                <td class="p-0">@(skill.Difficulty + 1)</td>
+                                <td class="p-0">@skill.CalcUpgradePoints(1)</td>
                                 @if (Model.Editable)
                                 {
                                     var upgradeable = Model.IsUpdateable(skill);

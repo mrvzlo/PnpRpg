@@ -14,7 +14,6 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="heroDropdown">
                     <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Создать</a>
-                    <a class="nav-link" href="@Url.Action("MyHero", "HeroGen")">Мой персонаж</a>
                 </div>
             </li>
             <li class="nav-item active mx-2 dropdown">
@@ -82,9 +81,6 @@
 
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminDropdown">
             <a class="nav-link" href="@Url.Action("Users", "Admin")">Настройка ролей</a>
-            <a class="nav-link" href="@Url.Action("DeleteBook", "Book")" target="_blank">
-                Обновить книгу
-            </a>
         </div>
     </li>
 }
@@ -97,8 +93,9 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminDropdown">
-            <a class="nav-link" href="@Url.Action("Perks", "Editor")">Способности</a>
-            <a class="nav-link" href="@Url.Action("Weapons", "Editor")">Оружие</a>
+            <a class="nav-link" href="@Url.Action("Skills", "SkillEditor")">Навыки</a>
+            <a class="nav-link" href="@Url.Action("Perks", "PerkEditor")">Способности</a>
+            <a class="nav-link" href="@Url.Action("Weapons", "WeaponEditor")">Оружие</a>
         </div>
     </li>
 }

@@ -8,11 +8,13 @@ namespace Pnprpg.Domain.Services
 {
     public class Encoder
     {
+        private const char Separator = '_';
+
         public string EncodeHero(HeroModel hero)
         {
             hero = Trim(hero);
             var encoded = JsonConvert.SerializeObject(hero);
-            encoded =  $"{Constants.Version}.{encoded}";
+            encoded =  $"{Constants.Version}{Separator}{encoded}";
             var bytes = Encoding.UTF8.GetBytes(encoded);
             return Convert.ToBase64String(bytes);
         }
@@ -27,7 +29,7 @@ namespace Pnprpg.Domain.Services
             if (string.IsNullOrEmpty(encoded))
                 return null;
 
-            var splitted = encoded.Split('.');
+            var splitted = encoded.Split(Separator);
             if (splitted.Length < 2 || splitted[0] != Constants.Version)
                 return null;
             var hero = JsonConvert.DeserializeObject<HeroModel>(splitted[1]);

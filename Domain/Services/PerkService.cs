@@ -5,18 +5,17 @@ using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
-using Pnprpg.DomainService.Models.Perks;
-using Pnprpg.DomainService.Models.Requirements;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Services
 {
     public class PerkService : BaseService, IPerkService
     {
         private readonly IPerkRepository _perkRepository;
-        private readonly IPerkBranchRepository _perkBranchRepository;
+        private readonly IBranchRepository _perkBranchRepository;
         private readonly IRequirementRepository _requirementRepository;
         
-        public PerkService(IPerkRepository perkRepository, IRequirementRepository requirementRepository, IPerkBranchRepository perkBranchRepository)
+        public PerkService(IPerkRepository perkRepository, IRequirementRepository requirementRepository, IBranchRepository perkBranchRepository)
         {
             _perkRepository = perkRepository;
             _requirementRepository = requirementRepository;
@@ -28,9 +27,9 @@ namespace Pnprpg.Domain.Services
             return _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig);
         }
 
-        public IQueryable<PerkBranchModel> GetAllBranches()
+        public IQueryable<BranchModel> GetAllBranches()
         {
-            return _perkBranchRepository.Select().ProjectTo<PerkBranchModel>(MapperConfig);
+            return _perkBranchRepository.Select().ProjectTo<BranchModel>(MapperConfig);
         }
         
         public PerkEditModel GetForEdit(int? id)

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Pnprpg.DomainService.Models.Users
+namespace Pnprpg.DomainService.Models
 {
     public class RegistrationModel : LoginModel
     {

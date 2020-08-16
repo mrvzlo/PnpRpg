@@ -4,9 +4,7 @@ using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
-using Pnprpg.DomainService.Models.Common;
-using Pnprpg.DomainService.Models.Races;
-using Pnprpg.DomainService.Models.Traits;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Services
 {

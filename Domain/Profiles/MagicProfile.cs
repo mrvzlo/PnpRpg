@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Pnprpg.DomainService.Entities;
-using Pnprpg.DomainService.Models.Magic;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Profiles
 {
@@ -10,9 +10,8 @@ namespace Pnprpg.Domain.Profiles
         {
             CreateMap<Spell, SpellModel>()
                 .ForMember(dest => dest.Color, opts =>
-                    { opts.MapFrom(from => from.MagicSchool.Group.Color); });
-            CreateMap<MagicSchool, MagicSchoolInfoModel>();
-            CreateMap<MagicSchoolGroup, MagicSchoolGroupModel>();
+                    { opts.MapFrom(from => from.MagicSchool.Color); });
+            CreateMap<MagicSchool, MagicSchoolModel>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Pnprpg.DomainService.Models.Weapon
+namespace Pnprpg.DomainService.Models
 {
     public class WeaponEditModel
     {

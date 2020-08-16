@@ -1,7 +1,6 @@
 ﻿@using Pnprpg.DomainService.Enums
-@using Pnprpg.DomainService.Models.Perks
-@using Pnprpg.DomainService.Models.Requirements
-@model Pnprpg.DomainService.Models.Requirements.RequirementSelectModel
+@using Pnprpg.DomainService.Models
+@model Pnprpg.DomainService.Models.RequirementSelectModel
 @{
     var prefix = $"{nameof(PerkEditModel.RequirementsForPerks)}[{Model.Position}].";
 }
@@ -10,7 +9,7 @@
         new
         {
             @class = "form-control ajax-dropdown",
-            data_url = Url.Action("RequirementSelectModel", "Editor", new { Model.Position }),
+            data_url = Url.Action("RequirementSelectModel", "PerkEditor", new { Model.Position }),
             data_container = $"req_{Model.Position}",
             data_style = "replace"
         })

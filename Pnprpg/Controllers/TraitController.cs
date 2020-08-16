@@ -2,7 +2,6 @@
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
-using Pnprpg.DomainService.Models.Processing;
 using Pnprpg.Web.Helpers;
 
 namespace Pnprpg.Web.Controllers

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Pnprpg.DomainService.Models.Traits
+namespace Pnprpg.DomainService.Models
 {
     public class TraitGroup
     {

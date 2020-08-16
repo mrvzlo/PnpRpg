@@ -1,6 +1,6 @@
 ﻿@using Pnprpg.DomainService.Enums
 @using Pnprpg.Web.Helpers
-@model IQueryable<Pnprpg.DomainService.Models.Perks.PerkViewModel>
+@model IQueryable<Pnprpg.DomainService.Models.PerkViewModel>
 @{
     ViewBag.Title = "Способности";
     var branches = Model.Select(x => x.Branch).Distinct().ToList();
@@ -8,7 +8,7 @@
 @if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
 {
     <div class="col-12">
-        @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class = "btn btn-warning float-right" })
+        @Html.ActionLink("Редактировать", "Perks", "PerkEditor", null, new { @class = "btn btn-warning float-right" })
     </div>
 }
 <div class="nav nav-tabs col-12 my-sm-2 px-2 px-sm-3 justify-content-center">
@@ -32,7 +32,7 @@
                         @if (User.IsInRole(UserRole.Editor.ToString()) || User.IsInRole(UserRole.Admin.ToString()))
                         {
                             <div class="float-right">
-                                <a href="@Url.Action("EditPerk", "Editor", new {id = perk.Id})" class="link-info">Изменить</a>
+                                <a href="@Url.Action("EditPerk", "PerkEditor", new {id = perk.Id})" class="link-info">Изменить</a>
                             </div>
                         }
                     </div>

@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Редакток навыков";
+}
+
+<div class="col-12 my-2">@Html.ActionLink("Добавить новый", "EditSkill", null, new { @class = "btn btn-success" })</div>
+
+@Html.AjaxGrid(Url.Action("SkillsGrid", "SkillEditor"))
+
+@using (Html.BeginForm("DeleteSkill", "SkillEditor", FormMethod.Post, new { id = "skillDeleteForm" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.Hidden("SkillId")
+}

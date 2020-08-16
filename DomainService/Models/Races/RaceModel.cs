@@ -1,6 +1,4 @@
-﻿using Pnprpg.DomainService.Models.Common;
-
-namespace Pnprpg.DomainService.Models.Races
+﻿namespace Pnprpg.DomainService.Models
 {
     public class RaceModel : AssignableWithEffects
     {

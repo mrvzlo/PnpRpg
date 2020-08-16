@@ -1,9 +1,8 @@
 ﻿using Pnprpg.DomainService.Helpers;
-using Pnprpg.DomainService.Models.Common;
 
-namespace Pnprpg.DomainService.Models.Skills
+namespace Pnprpg.DomainService.Models
 {
-    public class HeroSkillGroup : UpgradeableGroup<SkillModel>
+    public class HeroSkillGroup : UpgradeableGroup<SkillViewModel>
     {
         public int SelectedGroup;
         public bool Editable;
@@ -17,8 +16,8 @@ namespace Pnprpg.DomainService.Models.Skills
                 Limit = Constants.SkillPointsPerLvl * hero.Level + Constants.BaseSkillPoints;
         }
 
-        protected override bool FitsLimit(SkillModel target, int modifier) =>
-            (modifier * (target.Difficulty + 1) + TotalSpentPoints()).Fits(Limit);
+        protected override bool FitsLimit(SkillViewModel target, int modifier) =>
+            (target.CalcUpgradePoints(modifier) + TotalSpentPoints()).Fits(Limit);
 
     }
 }

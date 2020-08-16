@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Pnprpg.DomainService.Models.Common;
-using Pnprpg.DomainService.Models.Requirements;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {

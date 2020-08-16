@@ -1,6 +1,5 @@
 ﻿@using Pnprpg.DomainService.Helpers
-@using Pnprpg.DomainService.Models.Traits
-@model TraitGroup
+@model Pnprpg.DomainService.Models.TraitGroup
 <div class="h4 col-12">Выберите до @Constants.MaxTraitCount особенностей</div>
 <div id="status" class="w-100"></div>
 @foreach (var trait in Model.List)

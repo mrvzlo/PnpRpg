@@ -1,9 +1,9 @@
-﻿@model Pnprpg.DomainService.Models.Perks.PerkEditModel
+﻿@model Pnprpg.DomainService.Models.PerkEditModel
 @{
     ViewBag.Title = Model.Id == 0 ? "Новая способность" : Model.Name;
 }
 
-@using (Html.BeginForm("EditPerk", "Editor", FormMethod.Post, new { @class = "col-md-6 col-12 mx-auto" }))
+@using (Html.BeginForm("EditPerk", "PerkEditor", FormMethod.Post, new { @class = "col-md-6 col-12 mx-auto" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -36,7 +36,7 @@
     </div>
 
     <button type="button" class="btn btn-outline-primary ajax-btn" data-container="hr" data-style="prepend"
-            data-url="@Url.Action("RequirementSelectModel","Editor")?position=" data-add="@(Model.RequirementsForPerks?.Count ?? 0)">
+            data-url="@Url.Action("RequirementSelectModel","PerkEditor")?position=" data-add="@(Model.RequirementsForPerks?.Count ?? 0)">
         Добавить требование
     </button>
     if (Model.RequirementsForPerks != null)
@@ -44,7 +44,7 @@
         var i = 0;
         foreach (var req in Model.RequirementsForPerks)
         {
-            Html.RenderAction("ShowRequirementSelectModel", "Editor", new { pos = i++, value = req.Value, abilityId = req.AbilityId, reqType = req.Type });
+            Html.RenderAction("ShowRequirementSelectModel", "PerkEditor", new { pos = i++, value = req.Value, abilityId = req.AbilityId, reqType = req.Type });
         }
     }
     <hr id="hr" />

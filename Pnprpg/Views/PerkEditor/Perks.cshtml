@@ -3,9 +3,9 @@
 }
 <div class="col-12 my-2">@Html.ActionLink("Добавить новую", "EditPerk", null, new { @class = "btn btn-success" })</div>
 
-@Html.AjaxGrid(Url.Action("PerksGrid", "Editor"))
+@Html.AjaxGrid(Url.Action("PerksGrid", "PerkEditor"))
 
-@using(Html.BeginForm("DeletePerk", "Editor", FormMethod.Post, new { id = "perkDeleteForm"}))
+@using(Html.BeginForm("DeletePerk", "PerkEditor", FormMethod.Post, new { id = "perkDeleteForm"}))
 {
     @Html.AntiForgeryToken();
     @Html.Hidden("PerkId")

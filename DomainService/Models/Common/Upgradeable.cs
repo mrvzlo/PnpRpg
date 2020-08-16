@@ -1,6 +1,6 @@
 ﻿using Pnprpg.DomainService.Helpers;
 
-namespace Pnprpg.DomainService.Models.Common
+namespace Pnprpg.DomainService.Models
 {
     public abstract class Upgradeable : Assignable
     {

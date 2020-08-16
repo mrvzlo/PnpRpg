@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.Web.Helpers;
 using Rotativa;
+using Rotativa.Options;
 
 namespace Pnprpg.Web.Controllers
 {
@@ -35,13 +36,13 @@ namespace Pnprpg.Web.Controllers
         public ActionResult Index()
         {
             var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
-            if (!System.IO.File.Exists(path))
+            if (Request.IsLocal)
             {
                 var pdf = new ViewAsPdf("Index")
                 {
-                    PageMargins = new Rotativa.Options.Margins(30, 10, 25, 10),
-                    PageSize = Rotativa.Options.Size.A4,
-                    PageOrientation = Rotativa.Options.Orientation.Portrait
+                    PageMargins = new Margins(30, 10, 25, 10),
+                    PageSize = Size.A4,
+                    PageOrientation = Orientation.Portrait
                 };
                 SaveRotativa(pdf, path);
             }
@@ -82,13 +83,13 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult Skills()
         {
-            var list = _skillService.GetAllGroups();
+            var list = _skillService.GetAllBranches();
             return PartialView("_Skills", list.ToList());
         }
 
         public PartialViewResult Spells()
         {
-            var list = _magicService.GetAllGroups();
+            var list = _magicService.GetAll();
             return PartialView("_Spells", list);
         }
 
@@ -106,7 +107,7 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult ShortSkillList()
         {
-            var list = _skillService.GetSkillsByGroup();
+            var list = _skillService.GetAllSkills();
             return PartialView("_ShortSkillList", list);
         }
 

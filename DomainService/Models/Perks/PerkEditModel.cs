@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Pnprpg.DomainService.Models.Requirements;
 
-namespace Pnprpg.DomainService.Models.Perks
+namespace Pnprpg.DomainService.Models
 {
     public class PerkEditModel
     {

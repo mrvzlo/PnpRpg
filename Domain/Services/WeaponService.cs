@@ -5,7 +5,6 @@ using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
-using Pnprpg.DomainService.Models.Weapon;
 
 namespace Pnprpg.Domain.Services
 {
@@ -15,7 +14,7 @@ namespace Pnprpg.Domain.Services
         private readonly IBonusRepository _bonusRepository;
         private readonly IWeaponBonusRepository _weaponBonusRepository;
 
-        public WeaponService(IWeaponRepository weaponRepository, IWeaponBonusRepository weaponBonusRepository, 
+        public WeaponService(IWeaponRepository weaponRepository, IWeaponBonusRepository weaponBonusRepository,
             IBonusRepository bonusRepository)
         {
             _weaponRepository = weaponRepository;
@@ -23,12 +22,14 @@ namespace Pnprpg.Domain.Services
             _bonusRepository = bonusRepository;
         }
 
-        public IQueryable<WeaponViewModel> GetAll() => 
-            _weaponRepository.Select().ProjectTo<WeaponViewModel>(MapperConfig);
+        public IQueryable<WeaponViewModel> GetAll()
+        {
+            return _weaponRepository.Select().ProjectTo<WeaponViewModel>(MapperConfig);
+        }
 
         public WeaponEditModel GetForEdit(int? id)
         {
-            var weapon = id != null 
+            var weapon = id != null
                 ? _weaponRepository.Get(id.Value)
                 : new Weapon();
 
@@ -45,7 +46,7 @@ namespace Pnprpg.Domain.Services
                 SkillId = model.SkillId,
                 Weight = model.Weight
             };
-            
+
             weapon.Id = _weaponRepository.InsertOrUpdate(weapon);
 
             SaveBonuses(model.Bonuses, weapon.Id);
@@ -57,13 +58,13 @@ namespace Pnprpg.Domain.Services
             _weaponRepository.Delete(id);
         }
 
-        public IQueryable<BonusModel> GetAllBonuses() => 
+        public IQueryable<BonusModel> GetAllBonuses() =>
             _bonusRepository.Select().ProjectTo<BonusModel>(MapperConfig);
 
         private void SaveBonuses(List<BonusModel> list, int weaponId)
         {
             _weaponBonusRepository.ClearWeaponBonuses(weaponId);
-            if (list == null) 
+            if (list == null)
                 return;
 
             var bonuses = list.Select(x => new WeaponBonus

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
 using Pnprpg.DomainService.Entities;
-using Pnprpg.DomainService.Models.Weapon;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Profiles
 {

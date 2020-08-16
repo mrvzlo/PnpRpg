@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using Pnprpg.DomainService.Models;
-using Pnprpg.DomainService.Models.Processing;
 using Pnprpg.Web.Enums;
 using Rotativa;
 
@@ -36,5 +36,8 @@ namespace Pnprpg.Web.Controllers
             fileStream.Write(byteArray, 0, byteArray.Length);
             fileStream.Close();
         }
+
+        protected SelectList SelectableListToSelectList(List<Selectable> list, int? selected = null) =>
+            new SelectList(list, nameof(Selectable.Value), nameof(Selectable.Text), selected);
     }
 }

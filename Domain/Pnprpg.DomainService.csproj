@@ -77,6 +77,8 @@
     <Compile Include="Profiles\AppUserProfile.cs" />
     <Compile Include="Profiles\HeroProfile.cs" />
     <Compile Include="Profiles\MagicProfile.cs" />
+    <Compile Include="Profiles\SkillProfile.cs" />
+    <Compile Include="Profiles\PerkProfile.cs" />
     <Compile Include="Profiles\RequirementProfile.cs" />
     <Compile Include="Profiles\WeaponProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "PnP RPG 2.3.2";
+﻿@using Pnprpg.DomainService.Helpers
+@{
+    ViewBag.Title = $"PnP RPG {Constants.Version}";
 }
     <div class="row justify-content-center text-center mx-lg-2 m-0">
         @Card(Url.Action("Index", "HeroGen"), "Создать персонажа", "generator.jpg", "Create a hero")

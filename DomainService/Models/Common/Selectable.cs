@@ -1,4 +1,4 @@
-﻿namespace Pnprpg.DomainService.Models.Common
+﻿namespace Pnprpg.DomainService.Models
 {
     public class Selectable
     {

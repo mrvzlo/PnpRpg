@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Pnprpg.DomainService.Entities;
-using Pnprpg.DomainService.Models.Alchemy;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {

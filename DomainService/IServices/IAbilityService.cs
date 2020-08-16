@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using Pnprpg.DomainService.Models;
-using Pnprpg.DomainService.Models.Abilities;
-using Pnprpg.DomainService.Models.Processing;
 
 namespace Pnprpg.DomainService.IServices
 {

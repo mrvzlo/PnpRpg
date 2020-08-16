@@ -10,6 +10,6 @@ namespace Pnprpg.DomainService.Entities
         public int Max { get; set; }
 
         public ICollection<RequirementForPerk> RequirementsForPerks { get; set; }
-        public PerkBranch Branch { get; set; }
+        public Branch Branch { get; set; }
     }
 }

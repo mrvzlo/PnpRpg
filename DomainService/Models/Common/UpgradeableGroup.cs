@@ -2,7 +2,7 @@
 using System.Linq;
 using Pnprpg.DomainService.Helpers;
 
-namespace Pnprpg.DomainService.Models.Common
+namespace Pnprpg.DomainService.Models
 {
     public class UpgradeableGroup<T> where T : Upgradeable
     {

@@ -1,5 +1,5 @@
 ﻿@using Pnprpg.DomainService.Helpers
-@model List<Pnprpg.DomainService.Models.Skills.SkillGroupModel>
+@model List<Pnprpg.DomainService.Models.BranchModel>
 <h5>Навыки</h5>
 <p>
     Навыки делятся на лёгкие, обычные и сложные.
@@ -8,7 +8,7 @@
 
 <div class="table text-center">
     @for (var i = 0; i < Model.Count; i += 2)
-    {
+    {/*
         <table class="table table-bordered">
             <tr>
                 <th class="w-10">Атрибут</th>
@@ -24,9 +24,9 @@
                     <td>@AbilityInfo(Model[i + 1].Skills[j].Ability.Symbol, Model[i + 1].Skills[j].Difficulty)</td>
                     <td>@StringHelper.FormatToSentence(Model[i + 1].Skills[j].Name)</td>
                 </tr>
-            }
+    }
         </table>
-        <br />
+        <br />*/
     }
 </div>
 

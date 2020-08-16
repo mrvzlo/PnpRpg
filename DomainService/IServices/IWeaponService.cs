@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Pnprpg.DomainService.Models.Weapon;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {

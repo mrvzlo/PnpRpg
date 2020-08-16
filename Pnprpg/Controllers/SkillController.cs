@@ -16,8 +16,7 @@ namespace Pnprpg.Web.Controllers
 
         public ActionResult Skills(string prefix)
         {
-            var list = _skillService.GetAllGroups();
-            return View(list);
+            return View();
         }
 
         public PartialViewResult SkillEdit(string prefix) => PartialView("_SkillEdit", model: prefix);

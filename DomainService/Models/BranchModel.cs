@@ -1,6 +1,8 @@
-﻿namespace Pnprpg.DomainService.Models.Perks
+﻿using System.Collections.Generic;
+
+namespace Pnprpg.DomainService.Models
 {
-    public class PerkBranchModel
+    public class BranchModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

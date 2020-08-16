@@ -7,8 +7,7 @@ using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
-using Pnprpg.DomainService.Models.Processing;
-using Pnprpg.DomainService.Models.Users;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Services
 {

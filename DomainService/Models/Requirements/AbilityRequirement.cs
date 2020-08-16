@@ -1,4 +1,4 @@
-﻿namespace Pnprpg.DomainService.Models.Requirements
+﻿namespace Pnprpg.DomainService.Models
 {
     public class AbilityRequirement : RequirementCommonModel
     {

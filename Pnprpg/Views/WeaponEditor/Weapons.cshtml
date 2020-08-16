@@ -4,9 +4,9 @@
 
 <div class="col-12 my-2">@Html.ActionLink("Добавить новое", "EditWeapon", null, new { @class = "btn btn-success" })</div>
 
-@Html.AjaxGrid(Url.Action("WeaponsGrid", "Editor"))
+@Html.AjaxGrid(Url.Action("WeaponsGrid", "WeaponEditor"))
 
-@using (Html.BeginForm("DeleteWeapon", "Editor", FormMethod.Post, new { id = "weaponDeleteForm" }))
+@using (Html.BeginForm("DeleteWeapon", "WeaponEditor", FormMethod.Post, new { id = "weaponDeleteForm" }))
 {
     @Html.AntiForgeryToken();
     @Html.Hidden("WeaponId")

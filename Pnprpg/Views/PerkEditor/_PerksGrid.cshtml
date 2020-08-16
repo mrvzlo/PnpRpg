@@ -1,6 +1,6 @@
 ﻿@using NonFactors.Mvc.Grid
-@using Pnprpg.DomainService.Models.Perks
-@model IQueryable<Pnprpg.DomainService.Models.Perks.PerkViewModel>
+@using Pnprpg.DomainService.Models
+@model IQueryable<Pnprpg.DomainService.Models.PerkViewModel>
 
 @(Html.Grid(Model).Build(columns =>
 {
@@ -14,7 +14,7 @@
     pager.RowsPerPage = 10;
 }).Css("table table-responsive"))
 
-@helper Branch(PerkBranchModel branch)
+@helper Branch(BranchModel branch)
 {
     <div style="color: #@branch.Color">@branch.Name</div>
 }

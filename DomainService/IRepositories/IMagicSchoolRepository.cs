@@ -2,5 +2,7 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface ISkillGroupRepository : IBaseRepository<SkillGroup> { }
+    public interface IMagicSchoolRepository : IBaseRepository<MagicSchool>
+    {
+    }
 }

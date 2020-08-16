@@ -1,4 +1,4 @@
-﻿namespace Pnprpg.DomainService.Models.Processing
+﻿namespace Pnprpg.DomainService.Models
 {
     public class StatusResult
     {

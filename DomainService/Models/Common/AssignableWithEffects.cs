@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace Pnprpg.DomainService.Models.Common
+﻿using System.Collections.Generic;
+
+namespace Pnprpg.DomainService.Models
 {
     public abstract class AssignableWithEffects : Assignable
     {

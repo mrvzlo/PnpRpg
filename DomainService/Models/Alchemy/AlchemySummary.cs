@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Pnprpg.DomainService.Models.Alchemy
+namespace Pnprpg.DomainService.Models
 {
     public class AlchemySummary
     {

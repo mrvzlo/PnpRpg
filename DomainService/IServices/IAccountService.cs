@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Pnprpg.DomainService.Models.Processing;
-using Pnprpg.DomainService.Models.Users;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {

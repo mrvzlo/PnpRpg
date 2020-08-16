@@ -1,6 +1,4 @@
-﻿using Pnprpg.DomainService.Models.Common;
-
-namespace Pnprpg.DomainService.Models.Traits
+﻿namespace Pnprpg.DomainService.Models
 {
     public class TraitModel : AssignableWithEffects
     {

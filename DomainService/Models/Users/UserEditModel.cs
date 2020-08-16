@@ -1,6 +1,6 @@
 ﻿using Pnprpg.DomainService.Enums;
 
-namespace Pnprpg.DomainService.Models.Users
+namespace Pnprpg.DomainService.Models
 {
     public class UserEditModel
     {

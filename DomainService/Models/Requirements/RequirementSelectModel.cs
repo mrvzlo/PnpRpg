@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
-using Pnprpg.DomainService.Models.Common;
 
-namespace Pnprpg.DomainService.Models.Requirements
+namespace Pnprpg.DomainService.Models
 {
     public class RequirementSelectModel : SelectListPosition
     {

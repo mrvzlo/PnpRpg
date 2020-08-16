@@ -394,6 +394,7 @@
     <Compile Include="App_Start\StructureMapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseGenController.cs" />
+    <Compile Include="Controllers\PerkEditorController.cs" />
     <Compile Include="Controllers\MagicController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\AbilityController.cs" />
@@ -403,7 +404,8 @@
     <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\EditorController.cs" />
+    <Compile Include="Controllers\SkillEditorController.cs" />
+    <Compile Include="Controllers\WeaponEditorController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\CookieType.cs" />
@@ -415,10 +417,10 @@
     <Compile Include="Helpers\FileNames.cs" />
     <Compile Include="Models\SelectListPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="App_Data\PnpRpgDb.mdf" />
-    <Content Include="App_Data\PnpRpgDb_log.ldf">
+    <None Include="App_Data\PnpRpgDb.mdf" />
+    <None Include="App_Data\PnpRpgDb_log.ldf">
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
-    </Content>
+    </None>
     <Content Include="Content\MvcGrid\mvc-grid.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -576,7 +578,7 @@
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Views\Editor\EditPerk.cshtml" />
+    <Content Include="Views\PerkEditor\EditPerk.cshtml" />
     <Content Include="Content\sheet.css">
       <DependentUpon>sheet.scss</DependentUpon>
     </Content>
@@ -618,17 +620,20 @@
     <Content Include="Views\Book\HeroSheet.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\EditorTemplates\UserEditModel.cshtml" />
-    <Content Include="Views\Editor\Perks.cshtml" />
-    <Content Include="Views\Editor\_RequirementSelect.cshtml" />
-    <Content Include="Views\Editor\Weapons.cshtml" />
-    <Content Include="Views\Editor\EditWeapon.cshtml" />
+    <Content Include="Views\PerkEditor\Perks.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
-    <Content Include="Views\Editor\_PerksGrid.cshtml" />
-    <Content Include="Views\Editor\_WeaponsGrid.cshtml" />
+    <Content Include="Views\PerkEditor\_PerksGrid.cshtml" />
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\README.md" />
-    <Content Include="Views\Editor\_BonusSelect.cshtml" />
+    <Content Include="Views\WeaponEditor\_BonusSelect.cshtml" />
+    <Content Include="Views\PerkEditor\_RequirementSelect.cshtml" />
+    <Content Include="Views\WeaponEditor\_WeaponsGrid.cshtml" />
+    <Content Include="Views\WeaponEditor\EditWeapon.cshtml" />
+    <Content Include="Views\WeaponEditor\Weapons.cshtml" />
+    <Content Include="Views\SkillEditor\Skills.cshtml" />
+    <Content Include="Views\SkillEditor\_SkillsGrid.cshtml" />
+    <Content Include="Views\SkillEditor\EditSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />

@@ -1,4 +1,4 @@
-﻿@model List<Pnprpg.DomainService.Models.Traits.TraitModel>
+﻿@model List<Pnprpg.DomainService.Models.TraitModel>
 <h5>Особенности</h5>
 <p>
     Это те черты, которые делают персонажа одновременно лучше в одном, но хуже в другом.
@@ -16,6 +16,7 @@
             <td>@item.Name</td>
             @if (item.Effects != null)
             {
+                var merge = item.Effects.Count == 1;
                 <td>
                     @foreach (var effect in item.Effects.Where(x => x.Value >= 0))
                     {

@@ -1,6 +1,6 @@
 ﻿using Pnprpg.DomainService.Enums;
 
-namespace Pnprpg.DomainService.Models.Alchemy
+namespace Pnprpg.DomainService.Models
 {
     public class PotionModel
     {

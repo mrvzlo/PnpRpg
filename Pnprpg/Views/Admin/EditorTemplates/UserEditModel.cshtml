@@ -1,6 +1,6 @@
 ﻿@using Pnprpg.DomainService.Enums
 @using Pnprpg.DomainService.Helpers
-@model Pnprpg.DomainService.Models.Users.UserEditModel
+@model Pnprpg.DomainService.Models.UserEditModel
 @{ 
     var roles = new[] { UserRole.Player, UserRole.Master, UserRole.Editor, UserRole.Admin };
     var items = roles.Select(x => new { Value = (int)x, Text = x.Description() });

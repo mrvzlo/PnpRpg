@@ -1,8 +1,7 @@
 ﻿using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Helpers;
-using Pnprpg.DomainService.Models.Common;
 
-namespace Pnprpg.DomainService.Models.Abilities
+namespace Pnprpg.DomainService.Models
 {
     public class HeroAbilityGroup : UpgradeableGroup<AbilityModel>
     {

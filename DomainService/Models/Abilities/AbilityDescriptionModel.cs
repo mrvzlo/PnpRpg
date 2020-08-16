@@ -1,4 +1,4 @@
-﻿namespace Pnprpg.DomainService.Models.Abilities
+﻿namespace Pnprpg.DomainService.Models
 {
     public class AbilityDescriptionModel
     {

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Pnprpg.DomainService.Models;
-using Pnprpg.DomainService.Models.Processing;
-using Pnprpg.DomainService.Models.Traits;
 
 namespace Pnprpg.DomainService.IServices
 {

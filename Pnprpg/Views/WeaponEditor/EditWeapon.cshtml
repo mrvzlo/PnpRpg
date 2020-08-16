@@ -1,9 +1,9 @@
-﻿@model Pnprpg.DomainService.Models.Weapon.WeaponEditModel
+﻿@model Pnprpg.DomainService.Models.WeaponEditModel
 @{
     ViewBag.Title = Model.Id == 0 ? "Новое оружие" : Model.Name;
 }
 
-@using (Html.BeginForm("EditWeapon", "Editor", FormMethod.Post, 
+@using (Html.BeginForm("EditWeapon", "WeaponEditor", FormMethod.Post,
     new { @class = "col-md-6 col-12 mx-auto" }))
 {
     @Html.AntiForgeryToken()
@@ -11,17 +11,20 @@
         <label class="col-3 col-form-label text-left">Уровень</label>
         <div class="col">
             @Html.TextBoxFor(x => x.Level, new { type = "number", @class = "form-control" })
-        </div>        </div>
+        </div>
+    </div>
     <div class="row">
         <label class="col-3 col-form-label text-left">Вес</label>
         <div class="col">
             @Html.TextBoxFor(x => x.Weight, new { type = "number", @class = "form-control" })
-        </div>        </div>
+        </div>
+    </div>
     <div class="row">
         <label class="col-3 col-form-label text-left">Название</label>
         <div class="col">
             @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-        </div>        </div>
+        </div>
+    </div>
     <div class="row">
         <label class="col-3 col-form-label text-left">Навык</label>
         <div class="col">
@@ -30,7 +33,7 @@
     </div>
 
     <button type="button" class="btn btn-outline-primary ajax-btn" data-container="hr" data-style="prepend"
-            data-url="@Url.Action("BonusSelectModel","Editor")?position=" data-add="@(Model.Bonuses?.Count ?? 0)">
+            data-url="@Url.Action("BonusSelectModel", "WeaponEditor")?position=" data-add="@(Model.Bonuses?.Count ?? 0)">
         Добавить бонус
     </button>
     if (Model.Bonuses != null)
@@ -38,7 +41,7 @@
         var i = 0;
         foreach (var bonus in Model.Bonuses)
         {
-            Html.RenderAction("ShowBonusSelectModel", "Editor", new { position = i++, bonusId = bonus.Id});
+            Html.RenderAction("ShowBonusSelectModel", "WeaponEditor", new { position = i++, bonusId = bonus.Id });
         }
     }
     <hr id="hr" />

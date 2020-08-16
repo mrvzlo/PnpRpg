@@ -1,7 +1,6 @@
-﻿using System;
-using Pnprpg.DomainService.Enums;
+﻿using Pnprpg.DomainService.Enums;
 
-namespace Pnprpg.DomainService.Models.Common
+namespace Pnprpg.DomainService.Models
 {
     public class EffectDescModel
     {

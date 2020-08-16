@@ -1,5 +1,4 @@
-﻿using Pnprpg.DomainService.Models.Races;
-using Pnprpg.DomainService.Models.Traits;
+﻿using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {
