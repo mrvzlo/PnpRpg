@@ -1,4 +1,9 @@
-﻿@import "variables.scss";
+﻿@font-face {
+    src: url('GridGlyphs.woff') format('woff');
+    font-family: 'GridGlyphs';
+}
+
+@import "variables.scss";
 
 @import "bootstrap/bootstrap.scss";
 

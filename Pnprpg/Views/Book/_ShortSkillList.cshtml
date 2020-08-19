@@ -2,10 +2,10 @@
 @model IQueryable<Pnprpg.DomainService.Models.SkillViewModel>
 @foreach (var skill in Model)
 {
-    <div class="text-right font-weight-normal bb">
+    <div class="text-right normal bb">
         @StringHelper.FormatToSentence(skill.Name)
-        <p class="font-weight-bold d-inline-block text-center">
-            (@(skill.Difficulty == 0 ? $"{skill.Ability.Id}" : $"{skill.Ability.Id}-{skill.Difficulty}"))
-        </p>
+        <b class="text-center">
+            (@(skill.Difficulty == 0 ? $"{skill.Ability.Id}" : $"{skill.Ability.Symbol}-{skill.Difficulty}"))
+        </b>
     </div>
 }

@@ -44,3 +44,16 @@
 .no-wrap{
     white-space: nowrap;
 }
+
+.mvc-grid-sort::after {
+    content: "⬆";
+}
+
+.mvc-grid-sort::before {
+    margin: 0;
+    content: "⬇";
+}
+
+.mvc-grid-filter::before, .mvc-grid-filter.applied::before {
+    content: "🔍";
+}

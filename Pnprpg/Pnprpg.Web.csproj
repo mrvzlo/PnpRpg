@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Api2Pdf.DotNet, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Api2Pdf.1.1.0\lib\netstandard2.0\Api2Pdf.DotNet.dll</HintPath>
+    </Reference>
     <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
@@ -55,6 +58,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPdf.Assets.Rendering.Windows, Version=18.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iron.Assets.Rendering.Windows.20.0.0\lib\net40\IronPdf.Assets.Rendering.Windows.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Antiforgery, Version=1.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Antiforgery.1.1.3\lib\net451\Microsoft.AspNetCore.Antiforgery.dll</HintPath>
@@ -182,8 +188,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    <Reference Include="NReco.PdfGenerator, Version=1.2.0.0, Culture=neutral, PublicKeyToken=231663d50a41b451, processorArchitecture=MSIL">
+      <HintPath>..\packages\NReco.PdfGenerator.1.2.0\lib\net45\NReco.PdfGenerator.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.7.1\lib\net45\StructureMap.dll</HintPath>
@@ -394,6 +400,7 @@
     <Compile Include="App_Start\StructureMapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseGenController.cs" />
+    <Compile Include="Controllers\RaceEditorController.cs" />
     <Compile Include="Controllers\PerkEditorController.cs" />
     <Compile Include="Controllers\MagicController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
@@ -421,6 +428,10 @@
     <None Include="App_Data\PnpRpgDb_log.ldf">
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
     </None>
+    <Content Include="Content\images\ArmorIcon.png" />
+    <Content Include="Content\images\DmgIcon.png" />
+    <Content Include="Content\images\HPIcon.png" />
+    <Content Include="Content\images\MPIcon.png" />
     <Content Include="Content\MvcGrid\mvc-grid.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -579,14 +590,6 @@
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Views\PerkEditor\EditPerk.cshtml" />
-    <Content Include="Content\sheet.css">
-      <DependentUpon>sheet.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\sheet.min.css">
-      <DependentUpon>sheet.css</DependentUpon>
-    </Content>
-    <Content Include="Content\sheet.scss" />
-    <Content Include="Content\MvcGrid\Fonts\GridGlyphs.woff" />
     <Content Include="Content\grid.scss" />
     <Content Include="Content\layout.scss" />
     <None Include="Properties\PublishProfiles\Azure.pubxml" />
@@ -595,17 +598,6 @@
     <Content Include="Views\Book\_ShortSkillList.cshtml" />
     <Content Include="App_Data\CharacterSheet.pdf" />
     <Content Include="App_Data\RuleBook.pdf" />
-    <None Include="Content\book.scss" />
-    <Content Include="Content\book.css">
-      <DependentUpon>book.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\book.min.css">
-      <DependentUpon>book.css</DependentUpon>
-    </Content>
-    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
-    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
-    <Content Include="Rotativa\wkhtmltoimage.exe" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Content\images\bg.png" />
     <Content Include="Content\images\perks.jpg" />
@@ -634,6 +626,8 @@
     <Content Include="Views\SkillEditor\Skills.cshtml" />
     <Content Include="Views\SkillEditor\_SkillsGrid.cshtml" />
     <Content Include="Views\SkillEditor\EditSkill.cshtml" />
+    <Content Include="Views\RaceEditor\Races.cshtml" />
+    <Content Include="Views\RaceEditor\_RacesGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />
@@ -737,6 +731,7 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\MvcGrid\Fonts\" />
     <Folder Include="Views\Ability\" />
   </ItemGroup>
   <PropertyGroup>

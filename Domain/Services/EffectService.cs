@@ -19,7 +19,7 @@ namespace Pnprpg.Domain.Services
             _abilityService = abilityService;
         }
 
-        public RaceModel AssignEffects(RaceModel target)
+        public RaceViewModel AssignEffects(RaceViewModel target)
         {
             target.Effects = GetEffects(target.Id, AssignableType.Race);
             return target;
@@ -29,6 +29,13 @@ namespace Pnprpg.Domain.Services
         {
             target.Effects = GetEffects(target.Id, AssignableType.Trait);
             return target;
+        }
+
+        public void ClearEffects(int parentId, AssignableType parentType)
+        {
+            var effects = _effectRepository.Select()
+                .Where(x => x.ParentType == parentType && x.ParentId == parentId);
+            _effectRepository.BatchDelete(effects);
         }
 
         private List<EffectDescModel> GetEffects(int targetId, AssignableType parentType)

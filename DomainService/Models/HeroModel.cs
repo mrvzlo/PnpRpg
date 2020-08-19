@@ -15,7 +15,7 @@ namespace Pnprpg.DomainService.Models
         public HeroAbilityGroup Abilities { get; set; }
         public HeroSkillGroup Skills { get; set; }
         public TraitGroup Traits { get; set; }
-        public RaceModel Race { get; set; }
+        public RaceViewModel Race { get; set; }
 
         public HeroModel(){}
 

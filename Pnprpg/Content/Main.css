@@ -1,4 +1,9 @@
-﻿/*!
+﻿@charset "UTF-8";
+@font-face {
+  src: url("GridGlyphs.woff") format("woff");
+  font-family: 'GridGlyphs'; }
+
+/*!
  * Bootstrap v5.0.0-alpha1 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
@@ -7154,6 +7159,16 @@ td {
 
 .no-wrap {
   white-space: nowrap; }
+
+.mvc-grid-sort::after {
+  content: "⬆"; }
+
+.mvc-grid-sort::before {
+  margin: 0;
+  content: "⬇"; }
+
+.mvc-grid-filter::before, .mvc-grid-filter.applied::before {
+  content: "🔍"; }
 
 .p-default {
   margin-top: -60px !important;

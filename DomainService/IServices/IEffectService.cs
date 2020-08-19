@@ -1,10 +1,12 @@
-﻿using Pnprpg.DomainService.Models;
+﻿using Pnprpg.DomainService.Enums;
+using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {
     public interface IEffectService
     {
-        RaceModel AssignEffects(RaceModel target);
+        RaceViewModel AssignEffects(RaceViewModel target);
         TraitModel AssignEffects(TraitModel target);
+        void ClearEffects(int parentId, AssignableType parentType);
     }
 }

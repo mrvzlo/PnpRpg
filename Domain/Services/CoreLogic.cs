@@ -27,7 +27,8 @@ namespace Pnprpg.Domain.Services
             var abilities = _abilityService.GetAll();
             hero.Abilities.List = abilities.ToList();
             hero.Abilities.Setup(chaos);
-            hero.Race = _raceService.GetAll().First();
+            if (chaos != ChaosLevel.Null)
+                hero.Race = _raceService.GetAll().First();
             return hero;
         }
 

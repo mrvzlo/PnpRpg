@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Pnprpg.DomainService.Models;
 using Pnprpg.Web.Enums;
-using Rotativa;
+using Pnprpg.Web.Helpers;
 
 namespace Pnprpg.Web.Controllers
 {
@@ -28,12 +28,13 @@ namespace Pnprpg.Web.Controllers
             foreach (var error in response.Errors)
                 ModelState.AddModelError(error.Key, error.Error);
         }
-
-        protected void SaveRotativa(ViewAsPdf pdf, string path)
+        
+        protected void SavePdf(string view, string path, object model = null)
         {
-            var byteArray = pdf.BuildFile(ControllerContext);
+            var viewAsString = this.RenderPartialViewToString(view, model);
+            var pdfBytes = new NReco.PdfGenerator.HtmlToPdfConverter().GeneratePdf(viewAsString);
             var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
-            fileStream.Write(byteArray, 0, byteArray.Length);
+            fileStream.Write(pdfBytes, 0, pdfBytes.Length);
             fileStream.Close();
         }
 

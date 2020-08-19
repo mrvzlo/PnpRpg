@@ -22,12 +22,6 @@ namespace Pnprpg.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/MvcGrid/mvc-grid.css",
                         "~/Content/main.css"));
-
-            bundles.Add(new StyleBundle("~/Content/book").Include(
-                      "~/Content/book.css"));
-
-            bundles.Add(new StyleBundle("~/Content/sheet").Include(
-                      "~/Content/sheet.css"));
         }
     }
 }

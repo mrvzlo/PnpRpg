@@ -12,7 +12,8 @@ namespace Pnprpg.Domain.Profiles
         {
             CreateMap<Branch, BranchModel>();
 
-            CreateMap<Race, RaceModel>();
+            CreateMap<Race, RaceViewModel>();
+            CreateMap<Race, RaceEditModel>();
 
             CreateMap<Ability, AbilityModel>();
             CreateMap<Ability, AbilityDescriptionModel>();

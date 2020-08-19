@@ -38,14 +38,14 @@ namespace Pnprpg.Web.Controllers
             var hero = GetHeroFromCookies();
             hero.Name = name;
             hero.Player = User.Identity.Name;
-            _coreLogic.SaveHero(hero);
+            CoreLogic.SaveHero(hero);
             return Json(this.RenderPartialViewToString("_Redirect", Url.Action("MyHero")));
         }
 
         [Authorize]
         public ActionResult MyHero()
         {
-            var hero = _coreLogic.LoadHero(User.Identity.Name);
+            var hero = CoreLogic.LoadHero(User.Identity.Name);
             return View(hero);
         }
     }

@@ -19,9 +19,8 @@ namespace Pnprpg.Web.Helpers
                 var viewResult = ViewEngines.Engines.FindPartialView(controller.ControllerContext, viewName);
                 var viewContext = new ViewContext(controller.ControllerContext, viewResult.View, controller.ViewData, controller.TempData, sw);
                 viewResult.View.Render(viewContext, sw);
-                return sw.GetStringBuilder().ToString();
+                return sw.ToString();
             }
         }
-
     }
 }

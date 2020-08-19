@@ -1,74 +1,173 @@
 ﻿@model Pnprpg.DomainService.Models.HeroModel
 @{
-    @Styles.Render("~/Content/sheet")
     Layout = "~/Views/Shared/_LayoutIntro.cshtml";
     var brCount = 15;
-    var list = new []{ "heart", "mana", "dmg", "armor" };
+    var list = new[] { "Уровень", "Здоровье", "Урон", "Вместимость", "Карма", "Мана", "Защита", "Запас сил" };
 }
+<style>
+    table {
+        width: 100%;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .px-3 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .pl-3 {
+        padding-left: 1.5rem;
+    }
+
+    .bb {
+        padding-left: 10px;
+        border-bottom: 1px solid !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .card {
+        border-top: 1px solid !important;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom: 1px solid !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .card-h {
+        border-left: 1px solid !important;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-right: 1px solid !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    body {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    .w-33 {
+        width: 30%;
+    }
+
+    .w-17 {
+        width: 16%;
+    }
+
+    .w-20 {
+        width: 20%;
+    }
+
+    .w-50 {
+        width: 50%;
+    }
+
+    .normal {
+        font-weight: normal;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .right {
+        float: right;
+    }
+</style>
+
 <table class="table table-borderless">
     <tr>
-        <td><div class="bb">Имя <span class="float-right pr-2">@Model.Name</span></div></td>
-        <td class="w-20"><div class="bb">Возраст</div></td>
-        <td class="w-25"><div class="bb">Кровь <span class="float-right pr-2">@Model.Race</span></div></td>
-        <td class="w-20"><div class="bb">Уровень</div></td>
+        <td class="px-3" style="width: 40%"><div class="bb">Имя <span class="float-right pr-2">@(Model?.Name)</span></div></td>
+        <td class="px-3" style="width: 30%"><div class="bb">Класс</div></td>
+        <td class="px-3" style="width: 30%"><div class="bb">Раса <span class="right pr-2">@(Model?.Race?.Name)</span></div></td>
     </tr>
 </table>
-<table class="table table-borderless text-center">
+<table class="text-center">
     <tr>
-        <td class="w-33">
-            <table class="w-100">
-                @for(var i = 0; i < Model.Abilities.List.Count; i ++)
-                {
-                    <tr>
-                        <td class="py-1">
-                        <div class="card">@Model.Abilities.List[i].Id</div>
-                        <div class="card footer"></div>
-                        </td>
-                        <td class="py-1">
-                            <div class="icon @list[i]"></div>
-                        </td>    
-                    </tr>
-                }
-            </table>
-        </td>
-        <td class="w-33">
-            @Brs(brCount * 2 / 3)
-            <div class="bb">Особенности</div>
-            @Brs(brCount / 3)
-            <div class="bb"></div>
+        <td class="pl-3" style="width: 10%">
+            @foreach (var t in Model.Abilities.List)
+            {
+                <div>@t.Name</div>
+            }
             @Brs(2)
         </td>
-        <td class="w-33" rowspan="2">
-            <div>
-                @{
-                    Html.RenderAction("ShortSkillList");
-                }
-            </div>
+        <td class="pl-3" style="width: 10%">
+            @foreach (var t in Model.Abilities.List)
+            {
+                <div class="card-h">@Brs(2)</div>
+            }
+            @Brs(1)
+        </td>
+        <td class="w-17 pl-3">
+            @for (var i = 0; i < 4; i++)
+            {
+                <div>
+                    <br />
+                    <div class="card-h">
+                        @list[i]@Brs(2)
+                    </div>
+                </div>
+            }
+            @Brs(1)
+        </td>
+        <td class="w-17 pl-3">
+            @for (var i = 4; i < 8; i++)
+            {
+                <div>
+                    <br />
+                    <div class="card-h">
+                        @list[i]@Brs(2)
+                    </div>
+                </div>
+            }
+            @Brs(1)
+        </td>
+        <td class="w-50 px-3" colspan="3" rowspan="4">
+            @Brs(1)
+            <div>Эффекты</div>
+            <div class="card">@Brs(brCount / 3)</div>
+            @Brs(2)
+            <div>Особенности</div>
+            <div class="card">@Brs(brCount / 3)</div>
+            @Brs(2)
         </td>
     </tr>
     <tr>
-        <td>
-            <div class="bb">Заклинания</div>
-            @Brs(brCount)
-            <div class="bb"></div>
+        <td colspan="2" class="px-3 w-33">
+            <div>Заклинания</div>
+            <div class="card">@Brs(brCount)</div>
         </td>
-        <td>
-            <div class="bb">Способности</div>
-            @Brs(brCount)
-            <div class="bb"></div>
+        <td colspan="2" class="px-3 w-33">
+            <div>Способности</div>
+            <div class="card">@Brs(brCount)</div>
+        </td>
+        <td colspan="2" class="px-3 w-33">
+            <div>Навыки</div>
+            <div class="card">@Brs(brCount)</div>
         </td>
     </tr>
     <tr>
-        <td colspan="3">
+        <td colspan="9" class="px-3">
             @Brs(2)
-            <div class="bb">Инвентарь</div>
+            <div>Инвентарь</div>
+            <div class="card">@Brs(20)</div>
         </td>
     </tr>
 </table>
 
-@helper Brs(int count){
-    for(int i=0; i<count; i++)
+@helper Brs(int count)
+{for (var i = 0; i < count; i++)
     {
         <br />
-    }
-}
+    }}

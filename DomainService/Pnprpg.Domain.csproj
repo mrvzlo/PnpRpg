@@ -118,13 +118,15 @@
     <Compile Include="Models\Common\SelectListPosition.cs" />
     <Compile Include="Models\Abilities\HeroAbilityGroup.cs" />
     <Compile Include="Models\BranchModel.cs" />
+    <Compile Include="Models\Effects\EffectSelectModel.cs" />
+    <Compile Include="Models\Races\RaceEditModel.cs" />
     <Compile Include="Models\Skills\HeroSkillGroup.cs" />
     <Compile Include="Models\Skills\SkillEditModel.cs" />
     <Compile Include="Models\Traits\TraitGroup.cs" />
     <Compile Include="Models\Weapon\BonusModel.cs" />
     <Compile Include="Models\Common\Assignable.cs" />
     <Compile Include="Models\Common\Upgradeable.cs" />
-    <Compile Include="Models\Common\EffectDescModel.cs" />
+    <Compile Include="Models\Effects\EffectDescModel.cs" />
     <Compile Include="Models\Magic\SpellModel.cs" />
     <Compile Include="Models\Requirements\RaceRequirement.cs" />
     <Compile Include="Models\Requirements\PerkRequirement.cs" />
@@ -140,7 +142,7 @@
     <Compile Include="Entities\Race.cs" />
     <Compile Include="Entities\Reaction.cs" />
     <Compile Include="Entities\Room.cs" />
-    <Compile Include="Models\Races\RaceModel.cs" />
+    <Compile Include="Models\Races\RaceViewModel.cs" />
     <Compile Include="Models\Common\UpgradeableGroup.cs" />
     <Compile Include="Entities\SkillInfo.cs" />
     <Compile Include="Entities\Spell.cs" />

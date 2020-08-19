@@ -35,18 +35,6 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-outline-primary ajax-btn" data-container="hr" data-style="prepend"
-            data-url="@Url.Action("RequirementSelectModel","PerkEditor")?position=" data-add="@(Model.RequirementsForPerks?.Count ?? 0)">
-        Добавить требование
-    </button>
-    if (Model.RequirementsForPerks != null)
-    {
-        var i = 0;
-        foreach (var req in Model.RequirementsForPerks)
-        {
-            Html.RenderAction("ShowRequirementSelectModel", "PerkEditor", new { pos = i++, value = req.Value, abilityId = req.AbilityId, reqType = req.Type });
-        }
-    }
     <hr id="hr" />
     <button type="submit" class="btn btn-success">Сохранить</button>
 }

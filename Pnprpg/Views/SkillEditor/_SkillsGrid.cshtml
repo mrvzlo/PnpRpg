@@ -6,7 +6,7 @@
 @(Html.Grid(Model).Build(columns =>
 {
     columns.Add(x => x.Name).Titled("Название");
-    columns.Add(x => AbilitySymbol(x.Ability)).Titled("Атрибут").Sortable(true);
+    columns.Add(x => x.Ability.Symbol).RenderedAs(x => AbilitySymbol(x.Ability)).Titled("Атрибут").Sortable(true);
     columns.Add(x => x.BranchName).Titled("Класс").Sortable(true).InitialSort(GridSortOrder.Asc);
     columns.Add(x => x.Difficulty).Titled("Сложность");
     columns.Add(x => x.Type).RenderedAs(x => x.Type.Description()).Titled("Тип");
