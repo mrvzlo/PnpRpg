@@ -1,0 +1,35 @@
+﻿@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Helpers
+@using Pnprpg.DomainService.Models
+@model IQueryable<Pnprpg.DomainService.Models.SkillViewModel>
+
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Ability.Symbol).RenderedAs(x => AbilitySymbol(x.Ability)).Titled("Атрибут").Sortable(true);
+    columns.Add(x => x.BranchName).Titled("Класс").Sortable(true).InitialSort(GridSortOrder.Asc);
+    columns.Add(x => x.Difficulty).Titled("Сложность");
+    columns.Add(x => x.Type).RenderedAs(x => x.Type.Description()).Titled("Тип");
+    columns.Add(x => Actions(x)).Css("no-wrap");
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 12;
+}).Css("table table-responsive"))
+
+@helper AbilitySymbol(AbilityModel ability)
+{
+    <div class="font-weight-bold badge text-white big-badge" style="background-color: #@ability.Color">
+        @ability.Symbol
+    </div>
+}
+
+@helper Actions(SkillViewModel skillView)
+{
+    <div class="btn-group">
+        <a href="@Url.Action("EditSkill", new {id = skillView.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
+        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" data-value="@skillView.Id"
+                data-text="Навык @skillView.Name будет удалён">
+            ❌
+        </button>
+    </div>
+}

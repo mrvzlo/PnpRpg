@@ -14,6 +14,7 @@ namespace Pnprpg.Web
                         "~/Scripts/umd/popper.js",
                         "~/Scripts/jquery.validate.unobtrusive.js",
                         "~/Scripts/jquery.unobtrusive-ajax.js",
+                        "~/Scripts/trumbowyg.js",
                         "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/js/main").Include(
@@ -21,6 +22,7 @@ namespace Pnprpg.Web
             
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/MvcGrid/mvc-grid.css",
+                        "~/Content/trumbowyg.css",
                         "~/Content/main.css"));
         }
     }

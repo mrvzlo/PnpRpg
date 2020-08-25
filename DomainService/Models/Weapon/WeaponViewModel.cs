@@ -2,13 +2,13 @@
 
 namespace Pnprpg.DomainService.Models
 {
-    public class WeaponViewModel
+    public class WeaponViewModel : IBaseViewModel
     {
         public int Id { get; set; }
         public int Level { get; set; }
         public int Weight { get; set; }
         public string Name { get; set; }
         public SkillViewModel Skill { get; set; }
-        public List<BonusModel> Bonuses;
+        public List<BonusViewModel> Bonuses;
     }
 }

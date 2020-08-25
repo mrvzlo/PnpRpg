@@ -5,24 +5,15 @@
     <tr>
         <th>Уровень</th>
         <th class="w-20">Название</th>
-        <th class="w-25">Требования</th>
-        <th class="w-50">Эффект</th>
+        <th>Ранги</th>
+        <th class="w-50">Описание</th>
     </tr>
     @foreach (var perk in Model)
     {
         <tr>
             <td class="text-center">@perk.Level</td>
             <td>@perk.Name</td>
-            <td>
-                @foreach (var r in perk.RequirementsForPerks.OrderBy(x => x.Type))
-                {
-                    @r.Specify().ToString()
-                }
-                @if (!perk.RequirementsForPerks.Any())
-                {
-                    @:Нет
-                }
-            </td>
+            <td>@perk.Max</td>
             <td>@perk.Description</td>
         </tr>
     }

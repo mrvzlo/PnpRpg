@@ -10,10 +10,22 @@ namespace Pnprpg.Domain.Profiles
     {
         public HeroProfile()
         {
-            CreateMap<Branch, BranchModel>();
+            CreateMap<Branch, BranchViewModel>()
+                .ForMember(dest => dest.Bonuses, opts =>
+                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
+            CreateMap<Branch, BranchEditModel>()
+                .ForMember(dest => dest.Bonuses, opts =>
+                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
 
-            CreateMap<Race, RaceViewModel>();
-            CreateMap<Race, RaceEditModel>();
+            CreateMap<Race, RaceViewModel>()
+                .ForMember(dest => dest.Bonuses, opts =>
+                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
+            CreateMap<Race, RaceEditModel>()
+                .ForMember(dest => dest.Bonuses, opts =>
+                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
+
+            CreateMap<Bonus, BonusViewModel>();
+            CreateMap<Bonus, BonusEditModel>();
 
             CreateMap<Ability, AbilityModel>();
             CreateMap<Ability, AbilityDescriptionModel>();

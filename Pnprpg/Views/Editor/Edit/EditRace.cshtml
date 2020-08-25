@@ -1,0 +1,24 @@
+﻿@model Pnprpg.DomainService.Models.RaceEditModel
+@{
+    ViewBag.Title = Model.Id == 0 ? "Новая раса" : Model.Name;
+}
+
+@using (Html.BeginForm("EditRace", "Editor", FormMethod.Post, new { @class = "col-12 mx-auto" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Название</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Описание</label>
+        <div class="col-12 text-left">
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control html-editor" })
+        </div>
+    </div>
+
+    <hr />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+}

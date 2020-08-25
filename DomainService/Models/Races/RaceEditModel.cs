@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class RaceEditModel
+    public class RaceEditModel : IBaseEditModel
     {
         public int Id { get; set; }
-        public int Karma { get; set; }
         public string Name { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
-        public List<EffectDescModel> Effects { get; set; }
+        public virtual ICollection<int> Bonuses { get; set; }
     }
 }

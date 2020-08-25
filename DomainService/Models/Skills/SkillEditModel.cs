@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Models
 {
-    public class SkillEditModel
+    public class SkillEditModel : IBaseEditModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,173 +1,79 @@
 ﻿@model Pnprpg.DomainService.Models.HeroModel
 @{
     Layout = "~/Views/Shared/_LayoutIntro.cshtml";
-    var brCount = 15;
-    var list = new[] { "Уровень", "Здоровье", "Урон", "Вместимость", "Карма", "Мана", "Защита", "Запас сил" };
+    var list = new[] { "Здоровье", "Мана", "Вместимость", "Запас сил", "Уровень", "Карма", "Урон", "Защита" };
 }
 <style>
-    table {
-        width: 100%;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .text-left {
-        text-align: left;
-    }
-
-    .px-3 {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
-    .pl-3 {
-        padding-left: 1.5rem;
-    }
-
-    .bb {
-        padding-left: 10px;
-        border-bottom: 1px solid !important;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
-    .card {
-        border-top: 1px solid !important;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom: 1px solid !important;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
-    .card-h {
-        border-left: 1px solid !important;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-right: 1px solid !important;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
-    body {
-        font-family: "Comic Sans MS", cursive, sans-serif;
-        font-weight: 600;
-        font-size: 13px;
-    }
-
-    .w-33 {
-        width: 30%;
-    }
-
-    .w-17 {
-        width: 16%;
-    }
-
-    .w-20 {
-        width: 20%;
-    }
-
-    .w-50 {
-        width: 50%;
-    }
-
-    .normal {
-        font-weight: normal;
-    }
-
-    .no-print, .no-print * {
-        display: none !important;
-    }
-
-    .right {
-        float: right;
-    }
+    @{ Html.RenderAction("HeroSheetStyle");}
 </style>
 
-<table class="table table-borderless">
+<table class="table">
     <tr>
-        <td class="px-3" style="width: 40%"><div class="bb">Имя <span class="float-right pr-2">@(Model?.Name)</span></div></td>
-        <td class="px-3" style="width: 30%"><div class="bb">Класс</div></td>
-        <td class="px-3" style="width: 30%"><div class="bb">Раса <span class="right pr-2">@(Model?.Race?.Name)</span></div></td>
-    </tr>
-</table>
-<table class="text-center">
-    <tr>
-        <td class="pl-3" style="width: 10%">
-            @foreach (var t in Model.Abilities.List)
-            {
-                <div>@t.Name</div>
-            }
-            @Brs(2)
-        </td>
-        <td class="pl-3" style="width: 10%">
-            @foreach (var t in Model.Abilities.List)
-            {
-                <div class="card-h">@Brs(2)</div>
-            }
-            @Brs(1)
-        </td>
-        <td class="w-17 pl-3">
-            @for (var i = 0; i < 4; i++)
-            {
-                <div>
-                    <br />
-                    <div class="card-h">
-                        @list[i]@Brs(2)
-                    </div>
-                </div>
-            }
-            @Brs(1)
-        </td>
-        <td class="w-17 pl-3">
-            @for (var i = 4; i < 8; i++)
-            {
-                <div>
-                    <br />
-                    <div class="card-h">
-                        @list[i]@Brs(2)
-                    </div>
-                </div>
-            }
-            @Brs(1)
-        </td>
-        <td class="w-50 px-3" colspan="3" rowspan="4">
-            @Brs(1)
-            <div>Эффекты</div>
-            <div class="card">@Brs(brCount / 3)</div>
-            @Brs(2)
-            <div>Особенности</div>
-            <div class="card">@Brs(brCount / 3)</div>
-            @Brs(2)
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="px-3 w-33">
-            <div>Заклинания</div>
-            <div class="card">@Brs(brCount)</div>
-        </td>
-        <td colspan="2" class="px-3 w-33">
-            <div>Способности</div>
-            <div class="card">@Brs(brCount)</div>
-        </td>
-        <td colspan="2" class="px-3 w-33">
-            <div>Навыки</div>
-            <div class="card">@Brs(brCount)</div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="9" class="px-3">
-            @Brs(2)
-            <div>Инвентарь</div>
-            <div class="card">@Brs(20)</div>
-        </td>
+        <td class="px-3" style="width: 25%"><div class="bb pl-3">Имя <span class="float-right pr-2">@(Model?.Name)</span></div></td>
+        <td class="px-3" style="width: 20%"><div class="bb pl-3">Класс</div></td>
+        <td class="px-3" style="width: 20%"><div class="bb pl-3">Раса <span class="right pr-2">@(Model?.Race?.Name)</span></div></td>
+        <td class="px-3" style="width: 20%"><div class="bb pl-3">Игрок</div></td>
+        <td class="px-3" style="width: 15%"><div class="bb pl-3">Уровень</div></td>
     </tr>
 </table>
 
-@helper Brs(int count)
-{for (var i = 0; i < count; i++)
+<div style="@Pos(1, 5, 8, 15)">
+    @for (var i = 0; i < 4; i++)
     {
-        <br />
-    }}
+        <div class="text-center">
+            <div class="">@Model.Abilities.List[i].Name</div>
+            <div class="circle"></div>
+        </div>
+    }
+</div>
+
+<div style="@Pos(11, 5, 8, 15)">
+    @for (var i = 0; i < 4; i++)
+    {
+        <div class="text-center">
+            <div class="">@list[i]</div>
+            <div class="circle"></div>
+        </div>
+    }
+</div>
+
+<div style="@Pos(21, 5, 8, 15)">
+    @for (var i = 4; i < 8; i++)
+    {
+        <div class="text-center">
+            <div class="">@list[i]</div>
+            <div class="circle"></div>
+        </div>
+    }
+</div>
+
+<div style="@Pos(76, 5, 23, 15)">
+    <div class="text-center">Эффекты</div>
+    <div class="card" style="height: 100%"></div>
+</div>
+<div style="@Pos(76, 25, 23, 20)">
+    <div class="text-center">Особенности</div>
+    <div class="card" style="height: 100%"></div>
+</div>
+<div style="@Pos(51, 5, 23, 40)">
+    <div class="text-center">Навыки</div>
+    <div class="card" style="height: 100%"></div>
+</div>
+<div style="@Pos(1, 50, 23, 45)">
+    <div class="text-center">Заклинания</div>
+    <div class="card" style="height: 100%"></div>
+</div>
+<div style="@Pos(26, 50, 23, 45)">
+    <div class="text-center">Способности</div>
+    <div class="card" style="height: 100%"></div>
+</div>
+<div style="@Pos(51, 50, 48, 45)">
+    <div class="text-center">Инвентарь</div>
+    <div class="card" style="height: 100%"></div>
+</div>
+
+@helper Pos(int x, int y, int w, int h)
+{
+    var vMod = 9;
+    @($"position: fixed; left: {x}%; top:{y * vMod}px; width: {w}%; height: {h * vMod}px")
+}

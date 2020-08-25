@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Helpers;
@@ -16,16 +17,8 @@ namespace Pnprpg.Domain.Services
         {
             _abilityRepository = abilityRepository;
         }
-
-        public IQueryable<AbilityDescriptionModel> GetAllWithDescription()
-        {
-            return _abilityRepository.Select().ProjectTo<AbilityDescriptionModel>(MapperConfig);
-        }
-
-        public IQueryable<AbilityModel> GetAll()
-        {
-            return _abilityRepository.Select().ProjectTo<AbilityModel>(MapperConfig);
-        }
+        
+        public IQueryable<T> GetAll<T>() => _abilityRepository.Select().ProjectTo<T>(MapperConfig);
 
         public ServiceResponse<HeroModel> UpgradeAbility(HeroModel hero, int ability, int value)
         {

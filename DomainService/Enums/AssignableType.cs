@@ -2,6 +2,6 @@
 {
     public enum AssignableType
     {
-        Race, Trait
+        Race, Trait, Branch
     }
 }

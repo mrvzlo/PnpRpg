@@ -4,16 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="back d-xl-block d-none"></div>
-    <div class="back d-xl-block d-none right"></div>
-    <div class="container bg-white">
+    <div>
         @RenderBody()
     </div>
-
-    @Scripts.Render("~/js/core")
-    @RenderSection("scripts", false)
 </body>
 </html>

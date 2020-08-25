@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
+using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
@@ -38,10 +39,24 @@ namespace Pnprpg.Domain.Services
             _effectRepository.BatchDelete(effects);
         }
 
+        public void InsertEffects(List<EffectDescModel> model, int parentId, AssignableType parentType)
+        {
+            var list = model.Select(x => new Effect
+            {
+                Description = x.Description,
+                ParentId = parentId, ParentType = parentType,
+                TargetId = x.TargetId,
+                TargetType = x.TargetType
+
+            }).AsQueryable();
+            
+            _effectRepository.BatchInsert(list);
+        }
+
         private List<EffectDescModel> GetEffects(int targetId, AssignableType parentType)
         {
             var effects = _effectRepository.Select().ProjectTo<EffectDescModel>(MapperConfig).ToList();
-            var abilities = _abilityService.GetAll().ToList();
+            var abilities = _abilityService.GetAll<AbilityModel>().ToList();
             foreach (var effect in effects.Where(x => x.TargetType == EffectTarget.Ability))
                 effect.Target = abilities.Single(x => x.Id == effect.TargetId);
 

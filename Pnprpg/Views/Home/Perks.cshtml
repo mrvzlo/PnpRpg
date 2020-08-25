@@ -3,12 +3,12 @@
 @model IQueryable<Pnprpg.DomainService.Models.PerkViewModel>
 @{
     ViewBag.Title = "Способности";
-    var branches = Model.Select(x => x.Branch).Distinct().ToList();
+    var branches = Model.Select(x => x.BranchView).Distinct().ToList();
 }
 @if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
 {
     <div class="col-12">
-        @Html.ActionLink("Редактировать", "Perks", "PerkEditor", null, new { @class = "btn btn-warning float-right" })
+        @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class = "btn btn-warning float-right" })
     </div>
 }
 <div class="nav nav-tabs col-12 my-sm-2 px-2 px-sm-3 justify-content-center">
@@ -23,7 +23,7 @@
     @foreach (var branch in branches)
     {
         <div class="tab-pane fade col-lg-6 mx-auto" id="group_@branch.Id">
-            @foreach (var perk in Model.Where(x => x.Branch.Id == branch.Id).OrderBy(x => x.Level))
+            @foreach (var perk in Model.Where(x => x.BranchView.Id == branch.Id).OrderBy(x => x.Level))
             {
                 <div class="card m-1">
                     <div class="card-header">
@@ -32,7 +32,7 @@
                         @if (User.IsInRole(UserRole.Editor.ToString()) || User.IsInRole(UserRole.Admin.ToString()))
                         {
                             <div class="float-right">
-                                <a href="@Url.Action("EditPerk", "PerkEditor", new {id = perk.Id})" class="link-info">Изменить</a>
+                                <a href="@Url.Action("EditPerk", "Editor", new {id = perk.Id})" class="link-info">Изменить</a>
                             </div>
                         }
                     </div>

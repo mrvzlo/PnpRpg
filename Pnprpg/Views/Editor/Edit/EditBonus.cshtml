@@ -1,0 +1,36 @@
+﻿@model Pnprpg.DomainService.Models.BonusEditModel
+@{
+    ViewBag.Title = Model.Id == 0 ? "Новый бонус" : Model.Name;
+}
+
+@using (Html.BeginForm("EditBonus", "Editor", FormMethod.Post, new { @class = "col-12 mx-auto" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Тип</label>
+        <div class="col">
+            @Html.DropDownListFor(x => x.Type, (SelectList)ViewBag.Types, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Название</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Значок</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Icon, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Описание</label>
+        <div class="col-12 text-left">
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control html-editor" })
+        </div>
+    </div>
+
+    <hr />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+}

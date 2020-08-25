@@ -1,0 +1,26 @@
+﻿@using Pnprpg.DomainService.Helpers
+@using Pnprpg.DomainService.Models
+@model IQueryable<BonusViewModel>
+
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Type.Description()).Titled("Тип");
+    columns.Add(x => x.Icon).Titled("Значок");
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => Html.Raw(x.Description)).Titled("Описание").Css("w-50");
+    columns.Add(x => Actions(x)).Css("no-wrap");
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 12;
+}).Css("table table-responsive"))
+
+@helper Actions(BonusViewModel viewModel)
+{
+    <div class="btn-group">
+        <a href="@Url.Action("EditBonus", new {id = viewModel.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
+        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" 
+                data-value="@viewModel.Id" data-text="Бонус @viewModel.Name будет удалён">
+            ❌
+        </button>
+    </div>
+}

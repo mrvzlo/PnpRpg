@@ -24,7 +24,7 @@ namespace Pnprpg.Domain.Services
         public HeroModel CreateHero(ChaosLevel chaos)
         {
             var hero = new HeroModel(chaos);
-            var abilities = _abilityService.GetAll();
+            var abilities = _abilityService.GetAll<AbilityModel>();
             hero.Abilities.List = abilities.ToList();
             hero.Abilities.Setup(chaos);
             if (chaos != ChaosLevel.Null)

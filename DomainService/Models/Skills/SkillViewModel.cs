@@ -3,7 +3,7 @@ using Pnprpg.DomainService.Helpers;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class SkillViewModel : Upgradeable
+    public class SkillViewModel : Upgradeable, IBaseViewModel
     {
         public string BranchName { get; set; }
         public int Difficulty { get; set; }

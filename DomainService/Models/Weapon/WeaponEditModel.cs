@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class WeaponEditModel
+    public class WeaponEditModel : IBaseEditModel
     {
         public int Id { get; set; }
         public int Level { get; set; }
@@ -12,6 +12,6 @@ namespace Pnprpg.DomainService.Models
         [Required]
         public string Name { get; set; }
 
-        public List<BonusModel> Bonuses { get; set; }
+        public List<BonusViewModel> Bonuses { get; set; }
     }
 }

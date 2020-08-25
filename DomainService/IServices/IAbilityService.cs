@@ -5,8 +5,7 @@ namespace Pnprpg.DomainService.IServices
 {
     public interface IAbilityService
     {
-        IQueryable<AbilityDescriptionModel> GetAllWithDescription();
-        IQueryable<AbilityModel> GetAll();
+        IQueryable<T> GetAll<T>();
         ServiceResponse<HeroModel> UpgradeAbility(HeroModel hero, int ability, int value);
     }
 }

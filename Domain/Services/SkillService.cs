@@ -11,21 +11,16 @@ namespace Pnprpg.Domain.Services
 {
     public class SkillService : BaseService, ISkillService
     {
-        private readonly IBranchRepository _branchRepository;
         private readonly ISkillRepository _skillRepository;
 
-        public SkillService(IBranchRepository branchRepository, ISkillRepository skillRepository)
+        public SkillService(ISkillRepository skillRepository)
         {
-            _branchRepository = branchRepository;
             _skillRepository = skillRepository;
         }
+        
+        public IQueryable<SkillViewModel> GetAll() => SelectSkills();
 
-        public IQueryable<BranchModel> GetAllBranches()
-        {
-            return _branchRepository.Select().ProjectTo<BranchModel>(MapperConfig);
-        }
-
-        public IQueryable<SkillViewModel> GetAllSkills(int? branchId = null, SkillType? type = null)
+        public IQueryable<SkillViewModel> SelectSkills(int? branchId = null, SkillType? type = null)
         {
             var skills = _skillRepository.Select();
             if (branchId != null)
@@ -37,7 +32,7 @@ namespace Pnprpg.Domain.Services
 
         public HeroSkillGroup GetHeroSkillGroup(HeroModel hero)
         {
-            var skills = GetAllSkills();
+            var skills = GetAll();
             var skillGroup = new HeroSkillGroup(hero) {List = skills.ToList()};
             if (hero == null) 
                 return skillGroup;

@@ -15,7 +15,6 @@ namespace Pnprpg.Domain.Profiles
             CreateMap<Weapon, WeaponEditModel>()
                 .ForMember(dest => dest.Bonuses, opts =>
                     { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
-            CreateMap<Bonus, BonusModel>();
         }
     }
 }

@@ -4,6 +4,10 @@
     .btn{
         padding: .3rem .5rem;
     }
+
+    h1,h2,h3,h4,h5,h6,p{
+        margin:0;
+    }
 }
 
 .bg-dark{
@@ -56,4 +60,10 @@
 
 .mvc-grid-filter::before, .mvc-grid-filter.applied::before {
     content: "🔍";
+}
+
+.mvc-grid{
+    .no-wrap{
+        width: 80px;
+    }
 }

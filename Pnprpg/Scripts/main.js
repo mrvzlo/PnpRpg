@@ -3,21 +3,17 @@
     var settings = {};
 
     function init() {
-        $(document).on("click", ".ajax-btn",function () {
+        $(document).on("click", ".ajax-btn", function () {
             var id = $(this).data("container");
             if (!id) id = "main";
             var url = $(this).data("url");
             var style = $(this).data("style");
-            var add = $(this).data("add");
-            if (add != null) url += inc(add);
             call("#" + id, url, style);
         });
         $(document).on("click", ".clear-btn", function () {
-            console.log($(this).data("container"));
-            var id = $(this).data("container");
-            $("#"+id).remove();
+            $(this).closest('.closeable').remove();
         });
-        $(document).on("change", ".ajax-dropdown",function () {
+        $(document).on("change", ".ajax-dropdown", function () {
             var id = $(this).data("container");
             if (!id) id = "main";
             var url = $(this).data("url");
@@ -36,33 +32,55 @@
             if (confirm(btn.data('text')))
                 $('#' + form).submit();
         });
+
+        $(document).on("click", ".clone-btn", function () {
+            var caller = $(this);
+            var clone = $(caller.data("target"));
+            var index = clone.find('.index');
+            var id = new Date().getTime();
+            index.attr('value', id);
+            clone.children().children('.form-control').each(function (i, e) {
+                var name = $(e).attr('name');
+                $(e).attr('name', replaceFormQueryItemId(name, id));
+            });
+            htmlInsert(caller.data("style"), clone.clone().html(), caller.data("container"));
+        });
+
         updateScripts();
+        $('.html-editor').trumbowyg();
     }
 
     function call(id, url, style) {
         toggleLoading();
         $.get(url, function (data) {
             dispose();
-            switch (style) {
-                case "append":
-                    $(id).after(data.partial);
-                    break;
-                case "prepend":
-                    $(id).before(data.partial);
-                    break;
-                case "replace":
-                    $(id).replaceWith(data.partial);
-                    break;
-                default:
-                    $(id).html(data.partial);
-            } 
-
+            htmlInsert(style, data.partial, id);
             if (data.status)
                 $("#status").html(data.status);
             if (data.url)
                 window.history.pushState("object or string", "Title", data.url);
             updateScripts();
         });
+    }
+
+    function replaceFormQueryItemId(src, id) {
+        return src.split('[')[0] + '[' + id + ']' + src.split(']')[1];
+    }
+
+    function htmlInsert(style, data, id) {
+        switch (style) {
+            case "append":
+                $(id).after(data);
+                break;
+            case "prepend":
+                $(id).before(data);
+                break;
+            case "replace":
+                $(id).replaceWith(data);
+                break;
+            default:
+                $(id).html(data);
+        }
     }
 
     function dispose() {
@@ -122,6 +140,11 @@
         [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
             new MvcGrid(element);
         });
+        $('.mvc-grid-loader').parent().html(getSpinner());
+    }
+
+    function getSpinner() {
+        return $("#loading > div").clone();
     }
 
     return {

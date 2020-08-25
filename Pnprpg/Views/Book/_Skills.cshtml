@@ -1,5 +1,5 @@
 ﻿@using Pnprpg.DomainService.Helpers
-@model List<Pnprpg.DomainService.Models.BranchModel>
+@model List<Pnprpg.DomainService.Models.SkillViewModel>
 <h5>Навыки</h5>
 <p>
     Навыки делятся на лёгкие, обычные и сложные.
@@ -7,27 +7,23 @@
 </p>
 
 <div class="table text-center">
-    @for (var i = 0; i < Model.Count; i += 2)
-    {/*
-        <table class="table table-bordered">
+    <table class="table table-bordered">
+        <tr>
+            <th>Название</th>
+            <th>Атрибут</th>
+            <th>Класс</th>
+            <th>Тип</th>
+        </tr>
+        @foreach (var skill in Model)
+        {
             <tr>
-                <th class="w-10">Атрибут</th>
-                <th class="w-40">@Model[i].Name</th>
-                <th class="w-10">Атрибут</th>
-                <th class="w-40">@Model[i + 1].Name</th>
+                <td>@skill.Name</td>
+                <td>@AbilityInfo(skill.Ability.Symbol, skill.Difficulty)</td>
+                <td>@skill.BranchName</td>
+                <td>@skill.Type.Description()</td>
             </tr>
-            @for (var j = 0; j < Model[i].Skills.Count; j++)
-            {
-                <tr>
-                    <td>@AbilityInfo(Model[i].Skills[j].Ability.Symbol, Model[i].Skills[j].Difficulty)</td>
-                    <td>@StringHelper.FormatToSentence(Model[i].Skills[j].Name)</td>
-                    <td>@AbilityInfo(Model[i + 1].Skills[j].Ability.Symbol, Model[i + 1].Skills[j].Difficulty)</td>
-                    <td>@StringHelper.FormatToSentence(Model[i + 1].Skills[j].Name)</td>
-                </tr>
-    }
-        </table>
-        <br />*/
-    }
+        }
+    </table>
 </div>
 
 @helper AbilityInfo(string symbol, int difficulty)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using NReco.PdfGenerator;
 using Pnprpg.DomainService.Models;
 using Pnprpg.Web.Enums;
 using Pnprpg.Web.Helpers;
@@ -29,10 +30,10 @@ namespace Pnprpg.Web.Controllers
                 ModelState.AddModelError(error.Key, error.Error);
         }
         
-        protected void SavePdf(string view, string path, object model = null)
+        protected void SavePdf(HtmlToPdfConverter generator, string view, string path, object model = null)
         {
             var viewAsString = this.RenderPartialViewToString(view, model);
-            var pdfBytes = new NReco.PdfGenerator.HtmlToPdfConverter().GeneratePdf(viewAsString);
+            var pdfBytes = generator.GeneratePdf(viewAsString);
             var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
             fileStream.Write(pdfBytes, 0, pdfBytes.Length);
             fileStream.Close();

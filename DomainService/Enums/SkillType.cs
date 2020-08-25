@@ -4,7 +4,7 @@ namespace Pnprpg.DomainService.Enums
 {
     public enum SkillType
     {
-        [Description("Не выбран")]
+        [Description("Плутовской")]
         None, 
         [Description("Оружейный")]
         Weapon,

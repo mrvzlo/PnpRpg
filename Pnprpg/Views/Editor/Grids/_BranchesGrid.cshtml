@@ -1,0 +1,22 @@
+﻿@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Models
+@model IQueryable<Pnprpg.DomainService.Models.BranchViewModel>
+
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => Name(x)).Titled("Название").Css("py-0");
+    columns.Add(x => x.Bonuses).RenderedAs(y => y.Bonuses.Any() ? string.Join(", ", y.Bonuses.Select(x => x.Name)) : "Нет").Titled("Бонусы");
+    columns.Add(x => Actions(x)).Css("no-wrap");
+}).Empty("No data found").Pageable(pager => {pager.RowsPerPage = 12; }).Css("table table-responsive"))
+
+@helper Name(BranchViewModel x)
+{
+    <div style="background-color: #@x.Color" class="p-2 rounded">@x.Name</div>
+}
+
+@helper Actions(BranchViewModel x)
+{
+    <div class="btn-group">
+        <a href="@Url.Action("EditBranch", new {id = x.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
+    </div>
+}

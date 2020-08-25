@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class PerkEditModel
+    public class PerkEditModel : IBaseEditModel
     {
         public int Id { get; set; }
-        public List<RequirementCommonModel> RequirementsForPerks { get; set; }
         [Required]
         public int Level { get; set; }
         [Required]

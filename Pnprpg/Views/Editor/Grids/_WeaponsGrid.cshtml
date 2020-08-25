@@ -1,0 +1,27 @@
+﻿@using Pnprpg.DomainService.Models
+@model IQueryable<Pnprpg.DomainService.Models.WeaponViewModel>
+
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Level).Titled("Уровень").InitialSort(GridSortOrder.Asc).Sortable(true);
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Skill.Name).Titled("Навык").
+        Css("w-25");columns.Add(x => x.Weight).Titled("Вес");
+    columns.Add(x => x.Bonuses == null || !x.Bonuses.Any()
+        ? "-" : string.Join(", ", x.Bonuses.Select(y => y.Name))).Css("w-25").Titled("Бонусы");
+    columns.Add(x => Actions(x)).Css("no-wrap");
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 12;
+}).Css("table table-responsive"))
+
+@helper Actions(WeaponViewModel weapon)
+{
+    <div class="btn-group">
+        <a href="@Url.Action("EditWeapon", new {id = weapon.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
+        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" 
+                data-value="@weapon.Id" data-text="Оружие @weapon.Name будет удалено">
+            ❌
+        </button>
+    </div>
+}

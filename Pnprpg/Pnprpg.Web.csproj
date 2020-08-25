@@ -400,8 +400,7 @@
     <Compile Include="App_Start\StructureMapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseGenController.cs" />
-    <Compile Include="Controllers\RaceEditorController.cs" />
-    <Compile Include="Controllers\PerkEditorController.cs" />
+    <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\MagicController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\AbilityController.cs" />
@@ -411,8 +410,6 @@
     <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\SkillEditorController.cs" />
-    <Compile Include="Controllers\WeaponEditorController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\CookieType.cs" />
@@ -420,14 +417,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AccessHelper.cs" />
+    <Compile Include="Helpers\SelectListExtension.cs" />
     <Compile Include="Helpers\PartialViewExtension.cs" />
     <Compile Include="Helpers\FileNames.cs" />
-    <Compile Include="Models\SelectListPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="App_Data\PnpRpgDb.mdf" />
     <None Include="App_Data\PnpRpgDb_log.ldf">
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
     </None>
+    <Content Include="Content\HeroSheet.css" />
+    <Content Include="Scripts\ui\icons.svg" />
     <Content Include="Content\images\ArmorIcon.png" />
     <Content Include="Content\images\DmgIcon.png" />
     <Content Include="Content\images\HPIcon.png" />
@@ -517,6 +516,7 @@
     <Content Include="Content\bootstrap\bootstrap-utilities.scss" />
     <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
     <Content Include="Content\bootstrap\bootstrap-grid.scss" />
+    <Content Include="Content\trumbowyg.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -587,9 +587,10 @@
     <Content Include="Scripts\src\utils\setAttributes.js" />
     <Content Include="Scripts\src\utils\setStyles.js" />
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\trumbowyg.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Views\PerkEditor\EditPerk.cshtml" />
+    <Content Include="Views\Editor\Edit\EditPerk.cshtml" />
     <Content Include="Content\grid.scss" />
     <Content Include="Content\layout.scss" />
     <None Include="Properties\PublishProfiles\Azure.pubxml" />
@@ -603,6 +604,8 @@
     <Content Include="Content\images\perks.jpg" />
     <Content Include="Content\images\rooms.jpg" />
     <Content Include="Content\images\weaponry.png" />
+    <Content Include="Views\Editor\Edit\EditBonus.cshtml" />
+    <None Include="Views\Editor\Grids\_BonusesGrid.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
     <Content Include="Views\HeroGen\_HeroInfo.cshtml" />
@@ -612,22 +615,26 @@
     <Content Include="Views\Book\HeroSheet.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\EditorTemplates\UserEditModel.cshtml" />
-    <Content Include="Views\PerkEditor\Perks.cshtml" />
+    <Content Include="Views\Editor\Perks.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
-    <Content Include="Views\PerkEditor\_PerksGrid.cshtml" />
+    <Content Include="Views\Editor\Grids\_PerksGrid.cshtml" />
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\README.md" />
-    <Content Include="Views\WeaponEditor\_BonusSelect.cshtml" />
-    <Content Include="Views\PerkEditor\_RequirementSelect.cshtml" />
-    <Content Include="Views\WeaponEditor\_WeaponsGrid.cshtml" />
-    <Content Include="Views\WeaponEditor\EditWeapon.cshtml" />
-    <Content Include="Views\WeaponEditor\Weapons.cshtml" />
-    <Content Include="Views\SkillEditor\Skills.cshtml" />
-    <Content Include="Views\SkillEditor\_SkillsGrid.cshtml" />
-    <Content Include="Views\SkillEditor\EditSkill.cshtml" />
-    <Content Include="Views\RaceEditor\Races.cshtml" />
-    <Content Include="Views\RaceEditor\_RacesGrid.cshtml" />
+    <Content Include="Views\Editor\Edit\_BonusSelect.cshtml" />
+    <Content Include="Views\Editor\Grids\_WeaponsGrid.cshtml" />
+    <Content Include="Views\Editor\Edit\EditWeapon.cshtml" />
+    <Content Include="Views\Editor\Weapons.cshtml" />
+    <Content Include="Views\Editor\Skills.cshtml" />
+    <Content Include="Views\Editor\Grids\_SkillsGrid.cshtml" />
+    <Content Include="Views\Editor\Edit\EditSkill.cshtml" />
+    <Content Include="Views\Editor\Races.cshtml" />
+    <Content Include="Views\Editor\Grids\_RacesGrid.cshtml" />
+    <Content Include="Views\Editor\Edit\EditRace.cshtml" />
+    <Content Include="Views\Editor\Edit\_EffectForm.cshtml" />
+    <Content Include="Views\Editor\Branches.cshtml" />
+    <Content Include="Views\Editor\Bonuses.cshtml" />
+    <Content Include="Views\Editor\Grids\_BranchesGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />

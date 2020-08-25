@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
@@ -21,15 +22,9 @@ namespace Pnprpg.Domain.Services
             _effectService = effectService;
         }
 
-        public List<RaceViewModel> GetAll()
-        {
-            var races = _raceRepository.Select().ProjectTo<RaceViewModel>(MapperConfig).ToList();
-            for (var i = 0; i < races.Count; i++) 
-                races[i] = _effectService.AssignEffects(races[i]);
-
-            return races;
-        }
-
+        public IQueryable<RaceViewModel> GetAll() => 
+            _raceRepository.Select().ProjectTo<RaceViewModel>(MapperConfig);
+        
         public RaceEditModel GetForEdit(int? id)
         {
             var race = id != null ? _raceRepository.Get(id.Value) : new Race();
@@ -61,7 +56,14 @@ namespace Pnprpg.Domain.Services
 
         public void Save(RaceEditModel model)
         {
-            throw new System.NotImplementedException();
+            var race = new Race
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Description = model.Description
+            };
+
+            _raceRepository.InsertOrUpdate(race);
         }
 
         private RaceViewModel GetRace(int id)
@@ -70,7 +72,6 @@ namespace Pnprpg.Domain.Services
             var model = Mapper.Map<RaceViewModel>(race);
             return _effectService.AssignEffects(model);
         }
-
 
         private List<EffectDescModel> GetRaceChangeEffects(RaceViewModel oldRace, RaceViewModel newRace)
         {

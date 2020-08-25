@@ -1,0 +1,20 @@
+﻿@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Models
+@model IQueryable<Pnprpg.DomainService.Models.RaceViewModel>
+
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => Actions(x)).Css("no-wrap");
+}).Empty("No data found").Pageable(pager => {pager.RowsPerPage = 12; }).Css("table table-responsive"))
+
+@helper Actions(RaceViewModel race)
+{
+    <div class="btn-group">
+        <a href="@Url.Action("EditRace", new {id = race.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
+        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" 
+                data-value="@race.Id" data-text="Раса @race.Name будет удалена">
+            ❌
+        </button>
+    </div>
+}

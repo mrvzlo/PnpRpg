@@ -9,7 +9,7 @@
 @if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
 {
     <div class="col-12">
-        @Html.ActionLink("Редактировать", "Weapons", "WeaponEditor", null, new { @class = "btn btn-warning float-right" })
+        @Html.ActionLink("Редактировать", "Weapons", "Editor", null, new { @class = "btn btn-warning float-right" })
     </div>
 }
 <div class="nav nav-tabs col-12 mt-md-2 justify-content-center">

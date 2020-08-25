@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using NReco.PdfGenerator;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -18,9 +19,10 @@ namespace Pnprpg.Web.Controllers
         private readonly IMagicService _magicService;
         private readonly IAbilityService _abilityService;
         private readonly ICoreLogic _coreLogic;
+        private readonly IBranchService _branchService;
 
         public BookController(IAlchemyService alchemyService, IPerkService perkService, 
-            IRaceService raceService, ITraitService traitService, ISkillService skillService, IMagicService magicService, IAbilityService abilityService, ICoreLogic coreLogic)
+            IRaceService raceService, ITraitService traitService, ISkillService skillService, IMagicService magicService, IAbilityService abilityService, ICoreLogic coreLogic, IBranchService branchService)
         {
             _alchemyService = alchemyService;
             _perkService = perkService;
@@ -30,13 +32,15 @@ namespace Pnprpg.Web.Controllers
             _magicService = magicService;
             _abilityService = abilityService;
             _coreLogic = coreLogic;
+            _branchService = branchService;
         }
 
         public ActionResult Index()
         {
+            var generator = new HtmlToPdfConverter { };
             var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
             if (!System.IO.File.Exists(path) || Request.IsLocal) 
-                SavePdf("Index", path);
+                SavePdf(generator, "Index", path);
 
             var file = new FileStream(path, FileMode.Open, FileAccess.Read);
             return File(file, "application/pdf");
@@ -51,7 +55,7 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult Abilities()
         {
-            var list = _abilityService.GetAllWithDescription();
+            var list = _abilityService.GetAll<AbilityDescriptionModel>();
             return PartialView("_Stats", list);
         }
 
@@ -69,7 +73,7 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult Skills()
         {
-            var list = _skillService.GetAllBranches();
+            var list = _skillService.GetAll();
             return PartialView("_Skills", list.ToList());
         }
 
@@ -93,21 +97,31 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult ShortSkillList()
         {
-            var list = _skillService.GetAllSkills();
+            var list = _skillService.GetAll();
             return PartialView("_ShortSkillList", list);
         }
 
-        public ActionResult HeroSheet()
+        public ActionResult HeroSheet(bool clean = false)
         {
+            var generator = new HtmlToPdfConverter { Orientation = PageOrientation.Landscape };
             var path = Server.MapPath($"~/App_Data/{FileNames.CharacterSheet}");
             if (!System.IO.File.Exists(path) || Request.IsLocal)
             {
                 var hero = _coreLogic.CreateHero(ChaosLevel.Null);
-                SavePdf("HeroSheet", path, hero);
+                if (clean)
+                    return View("HeroSheet", hero);
+                SavePdf(generator, "HeroSheet", path, hero);
             }
 
             var file = new FileStream(path, FileMode.Open, FileAccess.Read);
             return File(file, "application/pdf");
+        }
+
+        public string HeroSheetStyle()
+        {
+            var path = Url.Content("~/Content/HeroSheet.css");
+            path = Server.MapPath(path);
+            return System.IO.File.ReadAllText(path);
         }
     }
 }

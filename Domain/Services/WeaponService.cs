@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -12,13 +13,10 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IWeaponRepository _weaponRepository;
         private readonly IBonusRepository _bonusRepository;
-        private readonly IWeaponBonusRepository _weaponBonusRepository;
 
-        public WeaponService(IWeaponRepository weaponRepository, IWeaponBonusRepository weaponBonusRepository,
-            IBonusRepository bonusRepository)
+        public WeaponService(IWeaponRepository weaponRepository, IBonusRepository bonusRepository)
         {
             _weaponRepository = weaponRepository;
-            _weaponBonusRepository = weaponBonusRepository;
             _bonusRepository = bonusRepository;
         }
 
@@ -36,7 +34,7 @@ namespace Pnprpg.Domain.Services
             return Mapper.Map<WeaponEditModel>(weapon);
         }
 
-        public void SaveWeapon(WeaponEditModel model)
+        public void Save(WeaponEditModel model)
         {
             var weapon = new Weapon
             {
@@ -52,18 +50,15 @@ namespace Pnprpg.Domain.Services
             SaveBonuses(model.Bonuses, weapon.Id);
         }
 
-        public void DeleteWeapon(int id)
+        public void Delete(int id)
         {
-            _weaponBonusRepository.ClearWeaponBonuses(id);
+            _bonusRepository.ClearBonuses(id, BonusType.Weapon);
             _weaponRepository.Delete(id);
         }
-
-        public IQueryable<BonusModel> GetAllBonuses() =>
-            _bonusRepository.Select().ProjectTo<BonusModel>(MapperConfig);
-
-        private void SaveBonuses(List<BonusModel> list, int weaponId)
+        
+        private void SaveBonuses(List<BonusViewModel> list, int weaponId)
         {
-            _weaponBonusRepository.ClearWeaponBonuses(weaponId);
+            _bonusRepository.ClearBonuses(weaponId, BonusType.Weapon);
             if (list == null)
                 return;
 
@@ -73,7 +68,7 @@ namespace Pnprpg.Domain.Services
                 BonusId = x.Id
             }).AsQueryable();
 
-            _weaponBonusRepository.BatchInsert(bonuses);
+            _bonusRepository.BatchInsertBonuses(bonuses);
         }
     }
 }
