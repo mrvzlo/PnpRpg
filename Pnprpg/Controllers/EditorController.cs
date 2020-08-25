@@ -1,11 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
-using Antlr.Runtime.Misc;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
+using Action = Antlr.Runtime.Misc.Action;
 
 namespace Pnprpg.Web.Controllers
 {
@@ -19,13 +20,15 @@ namespace Pnprpg.Web.Controllers
         private readonly IPerkService _perkService;
         private readonly IBranchService _branchService;
         private readonly IBonusService _bonusService;
+        private readonly ICoreLogic _coreLogic;
 
-        public EditorController(IRaceService raceService, IAbilityService abilityService, ISkillService skillService, IWeaponService weaponService, IPerkService perkService, IBranchService branchService, IBonusService bonusService)
+        public EditorController(IRaceService raceService, IAbilityService abilityService, ISkillService skillService, IWeaponService weaponService, IPerkService perkService, IBranchService branchService, IBonusService bonusService, ICoreLogic coreLogic)
         {
             _raceService = raceService;
             _perkService = perkService;
             _skillService = skillService;
             _bonusService = bonusService;
+            _coreLogic = coreLogic;
             _weaponService = weaponService;
             _branchService = branchService;
             _abilityService = abilityService;
@@ -47,8 +50,10 @@ namespace Pnprpg.Web.Controllers
 
         private void PrepareRaceEditViewBags()
         {
-            var abilities = _abilityService.GetAll<Selectable>().ToList();
-            ViewBag.Abilities = SelectableListToSelectList(abilities);
+            var abilities = _abilityService.GetAll<AbilityModel>();
+            var bonuses = _bonusService.Select(BonusType.Race);
+            ViewBag.Abilities = _coreLogic.ToSelectableList(abilities);
+            ViewBag.Bonuses = _coreLogic.ToSelectableList(bonuses);
         }
 
 
@@ -69,14 +74,14 @@ namespace Pnprpg.Web.Controllers
         private void PrepareSkillEditViewBags(SkillEditModel model)
         {
             var branches = _branchService.GetAll();
-            var abilities = _abilityService.GetAll<Selectable>();
-            var skillTypes = new[] { SkillType.None, SkillType.Weapon, SkillType.Magic }
-                .Select(x => new Selectable((int)x, x.Description())).ToList();
+            var abilities = _abilityService.GetAll<AbilityModel>();
+            var skillTypes = new Enum[] {SkillType.None, SkillType.Weapon, SkillType.Magic};
 
-            ViewBag.Types = SelectableListToSelectList(skillTypes, (int)model.Type);
-            ViewBag.Branches = new SelectList(branches, nameof(BranchViewModel.Id), nameof(BranchViewModel.Name), model.BranchId);
-            ViewBag.Abilities = SelectableListToSelectList(abilities.ToList(), model.AbilityId);
+            ViewBag.Types = _coreLogic.ToSelectableList(skillTypes, model.Type);
+            ViewBag.Branches = _coreLogic.ToSelectableList(branches, model.BranchId);
+            ViewBag.Abilities = _coreLogic.ToSelectableList(abilities, model.AbilityId);
         }
+
 
         public ActionResult Branches() => View();
         public ActionResult BranchesGrid() => Grid(_branchService);
@@ -107,10 +112,10 @@ namespace Pnprpg.Web.Controllers
 
         private void PrepareWeaponEditViewBags(WeaponEditModel model)
         {
-            var skills = _skillService.SelectSkills(type: SkillType.Weapon).ToList();
-            var bonuses = _bonusService.Select(BonusType.Weapon).ToList();
-            ViewBag.SkillList = new SelectList(skills, nameof(SkillViewModel.Id), nameof(SkillViewModel.Name), model.SkillId);
-            ViewBag.Bonuses = new SelectList(bonuses, nameof(BonusViewModel.Id), nameof(BonusViewModel.Name));
+            var skills = _skillService.SelectSkills(type: SkillType.Weapon);
+            var bonuses = _bonusService.Select(BonusType.Weapon);
+            ViewBag.SkillList = _coreLogic.ToSelectableList(skills, model.SkillId);
+            ViewBag.Bonuses = _coreLogic.ToSelectableList(bonuses);
         }
 
 
@@ -130,10 +135,8 @@ namespace Pnprpg.Web.Controllers
 
         private void PrepareBonusEditViewBags(BonusEditModel model)
         {
-            var types = new[] { BonusType.Weapon, BonusType.Branch, BonusType.Race }
-                .Select(x => new Selectable((int)x, x.Description())).ToList();
-
-            ViewBag.Types = SelectableListToSelectList(types, (int)model.Type);
+            var types = new Enum[] {BonusType.Weapon, BonusType.Branch, BonusType.Race};
+            ViewBag.Types = _coreLogic.ToSelectableList(types, model.Type);
         }
 
 
@@ -154,7 +157,7 @@ namespace Pnprpg.Web.Controllers
         private void PreparePerkEditViewBags(PerkEditModel model)
         {
             var branches = _branchService.GetAll();
-            ViewBag.Branches = new SelectList(branches, nameof(BranchViewModel.Id), nameof(BranchViewModel.Name), model.BranchId);
+            ViewBag.Branches = _coreLogic.ToSelectableList(branches, model.BranchId);
         }
 
 

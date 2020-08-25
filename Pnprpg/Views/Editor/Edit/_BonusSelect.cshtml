@@ -1,16 +1,9 @@
 ﻿@using Pnprpg.DomainService.Models;
-@using Pnprpg.Web.Helpers
-@model FormQueryItem<BonusViewModel>
-@{
-    if (Model.Selected != null)
-    {
-        Model.List.Select(Model.Selected.Id);
-    }
-}
+@model FormQueryItem
 
 <div class="input-group mt-2 closeable">
     @Html.Hidden("Bonuses.Index", Model.Position, new {@class = "index"})
-    @Html.DropDownList($"Bonuses[{Model.Position}].Id", Model.List, null, new {@class = "form-control"})
+    @Html.DropDownList($"Bonuses[{Model.Position}]", Model.GetSelectList(), null, new {@class = "form-control", id = ""})
     <div class="input-group-append">
         <button class="btn btn-danger clear-btn" type="button">
             X

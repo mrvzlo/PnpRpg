@@ -18,16 +18,17 @@ namespace Pnprpg.Domain.Services
             _skillRepository = skillRepository;
         }
         
-        public IQueryable<SkillViewModel> GetAll() => SelectSkills();
+        public IQueryable<SkillViewModel> GetAll() => 
+            _skillRepository.Select().ProjectTo<SkillViewModel>(MapperConfig);
 
         public IQueryable<SkillViewModel> SelectSkills(int? branchId = null, SkillType? type = null)
         {
-            var skills = _skillRepository.Select();
+            var skills = GetAll();
             if (branchId != null)
                 skills = skills.Where(x => x.BranchId == branchId);
             if (type != null)
                 skills = skills.Where(x => x.Type == type);
-            return skills.ProjectTo<SkillViewModel>(MapperConfig);
+            return skills;
         }
 
         public HeroSkillGroup GetHeroSkillGroup(HeroModel hero)

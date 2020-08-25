@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Models;
 
@@ -8,5 +9,7 @@ namespace Pnprpg.DomainService.IServices
     {
         void Save(BonusEditModel model);
         IQueryable<BonusViewModel> Select(BonusType type);
+        void BatchSave(IQueryable<BaseBonusJoin> list, int parentId, BonusType parentType);
+        void BatchClear(int parentId, BonusType type);
     }
 }

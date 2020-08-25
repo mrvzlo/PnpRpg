@@ -12,6 +12,6 @@ namespace Pnprpg.DomainService.Models
         [Required]
         public string Name { get; set; }
 
-        public List<BonusViewModel> Bonuses { get; set; }
+        public List<int> Bonuses { get; set; }
     }
 }

@@ -15,16 +15,18 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IRaceRepository _raceRepository;
         private readonly IEffectService _effectService;
+        private readonly IBonusService _bonusService;
 
-        public RaceService(IRaceRepository raceRepository, IEffectService effectService)
+        public RaceService(IRaceRepository raceRepository, IEffectService effectService, IBonusService bonusService)
         {
             _raceRepository = raceRepository;
             _effectService = effectService;
+            _bonusService = bonusService;
         }
 
-        public IQueryable<RaceViewModel> GetAll() => 
+        public IQueryable<RaceViewModel> GetAll() =>
             _raceRepository.Select().ProjectTo<RaceViewModel>(MapperConfig);
-        
+
         public RaceEditModel GetForEdit(int? id)
         {
             var race = id != null ? _raceRepository.Get(id.Value) : new Race();
@@ -51,6 +53,7 @@ namespace Pnprpg.Domain.Services
         public void Delete(int id)
         {
             _effectService.ClearEffects(id, AssignableType.Race);
+            _bonusService.BatchClear(id, BonusType.Race);
             _raceRepository.Delete(id);
         }
 
@@ -63,8 +66,17 @@ namespace Pnprpg.Domain.Services
                 Description = model.Description
             };
 
-            _raceRepository.InsertOrUpdate(race);
+            race.Id = _raceRepository.InsertOrUpdate(race);
+
+            var bonuses = model.Bonuses?.Select(x => new RaceBonus
+            {
+                RaceId = model.Id,
+                BonusId = x
+            }).AsQueryable();
+
+            _bonusService.BatchSave(bonuses, race.Id, BonusType.Race);
         }
+
 
         private RaceViewModel GetRace(int id)
         {

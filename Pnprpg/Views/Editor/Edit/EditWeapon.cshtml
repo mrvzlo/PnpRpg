@@ -3,14 +3,14 @@
 @model Pnprpg.DomainService.Models.WeaponEditModel
 @{
     ViewBag.Title = Model.Id == 0 ? "Новое оружие" : Model.Name;
-    var skills = (SelectList)ViewBag.SkillList;
-    var bonuses = (SelectList)ViewBag.Bonuses;
-    skills.Select(Model.SkillId);
+    var skills = (SelectableList)ViewBag.SkillList;
+    var bonuses = (SelectableList)ViewBag.Bonuses;
+    skills.Selected = Model.SkillId;
 }
 
-@using (Html.BeginForm("EditWeapon", "Editor", FormMethod.Post,
-    new { @class = "col-md-6 col-12 mx-auto" }))
+@using (Html.BeginForm("EditWeapon", "Editor", FormMethod.Post, new { @class = "col-md-6 col-12 mx-auto" }))
 {
+    @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
     <div class="row">
         <label class="col-3 col-form-label text-left">Уровень</label>
@@ -33,23 +33,27 @@
     <div class="row">
         <label class="col-3 col-form-label text-left">Навык</label>
         <div class="col">
-            @Html.DropDownListFor(x => x.SkillId, skills, new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.SkillId, skills.GetSelectList(), new { @class = "form-control" })
         </div>
     </div>
 
-    <button type="button" class="btn btn-outline-primary clone-btn"
-            data-container="#hr" data-style="prepend" data-target=".default-bonus">
-        Добавить бонус
-    </button>
+    if (bonuses.List.Any())
+    {
+        <button type="button" class="btn btn-outline-primary clone-btn"
+                data-container="#hr" data-style="prepend" data-target=".default-bonus">
+            Добавить бонус
+        </button>
+    }
+    else
+    {
+        <div class="alert alert-danger">Нет доступных бонусов</div>
+    }
     if (Model.Bonuses != null)
     {
         var i = 0;
-        foreach (var model in Model.Bonuses.Select(bonus => new FormQueryItem<BonusViewModel>
+        foreach (var bonus in Model.Bonuses.Select(model => new FormQueryItem(bonuses.List, i++, model)))
         {
-            Selected = bonus, List = bonuses, Position = i++
-        }))
-        {
-            @Html.Partial("Edit/_BonusSelect", model)
+            @Html.Partial("Edit/_BonusSelect", bonus)
         }
     }
     <hr id="hr" />
@@ -58,7 +62,7 @@
 
 <div class="d-none default-bonus">
     @{
-        var defaultModel = new FormQueryItem<BonusViewModel>{ List = bonuses };
+        var defaultModel = new FormQueryItem(bonuses.List);
         @Html.Partial("Edit/_BonusSelect", defaultModel)
     }
 </div>

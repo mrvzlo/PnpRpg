@@ -1,10 +1,13 @@
-﻿@model Pnprpg.DomainService.Models.PerkEditModel
+﻿@using Pnprpg.DomainService.Models
+@model Pnprpg.DomainService.Models.PerkEditModel
 @{
     ViewBag.Title = Model.Id == 0 ? "Новая способность" : Model.Name;
+    var branches = (SelectableList) ViewBag.Branches;
 }
 
 @using (Html.BeginForm("EditPerk", "Editor", FormMethod.Post, new { @class = "col-md-6 col-12 mx-auto" }))
 {
+    @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
     <div class="row">
         <label class="col-3 col-form-label text-left">Уровень</label>
@@ -31,7 +34,7 @@
     </div><div class="row">
         <label class="col-3 col-form-label text-left">Класс</label>
         <div class="col-9">
-            @Html.DropDownListFor(x => x.BranchId, (SelectList)ViewBag.Branches, new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.BranchId, branches.GetSelectList(), new { @class = "form-control" })
         </div>
     </div>
 

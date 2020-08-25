@@ -10,11 +10,9 @@ namespace Pnprpg.Domain.Profiles
         public WeaponProfile()
         {
             CreateMap<Weapon, WeaponViewModel>()
-                .ForMember(dest => dest.Bonuses, opts =>
-                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
+                .ForMember(dest => dest.Bonuses, opts => { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
             CreateMap<Weapon, WeaponEditModel>()
-                .ForMember(dest => dest.Bonuses, opts =>
-                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
+                .ForMember(dest => dest.Bonuses, opts => { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
         }
     }
 }

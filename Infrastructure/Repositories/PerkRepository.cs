@@ -1,4 +1,6 @@
-﻿using Pnprpg.DomainService.Entities;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 
 namespace Pnprpg.Infrastructure.Repositories

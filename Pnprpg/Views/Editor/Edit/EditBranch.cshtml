@@ -1,11 +1,12 @@
 ﻿@using Pnprpg.DomainService.Models
-@model Pnprpg.DomainService.Models.RaceEditModel
+@model Pnprpg.DomainService.Models.BranchEditModel
 @{
-    ViewBag.Title = Model.Id == 0 ? "Новая раса" : Model.Name;
+    ViewBag.Title = Model.Id == 0 ? "Новый класс" : Model.Name;
     var bonuses = (SelectableList)ViewBag.Bonuses;
+    var hasBonuses = bonuses != null && bonuses.List.Any();
 }
 
-@using (Html.BeginForm("EditRace", "Editor", FormMethod.Post, new { @class = "col-12 mx-auto" }))
+@using (Html.BeginForm("EditBranch", "Editor", FormMethod.Post, new { @class = "col-12 mx-auto" }))
 {
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
@@ -16,13 +17,19 @@
         </div>
     </div>
     <div class="row">
+        <label class="col-3 col-form-label text-left">Цвет</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Color, new { @class = "form-control color-picker" })
+        </div>
+    </div>
+    <div class="row">
         <label class="col-3 col-form-label text-left">Описание</label>
         <div class="col-12 text-left">
             @Html.TextAreaFor(x => x.Description, new { @class = "form-control html-editor" })
         </div>
     </div>
 
-    if (bonuses.List.Any())
+    if (hasBonuses)
     {
         <button type="button" class="btn btn-outline-primary clone-btn"
                 data-container="#hr" data-style="prepend" data-target=".default-bonus">
@@ -46,9 +53,12 @@
     <button type="submit" class="btn btn-success">Сохранить</button>
 }
 
-<div class="d-none default-bonus">
-    @{
-        var defaultModel = new FormQueryItem(bonuses.List);
-        @Html.Partial("Edit/_BonusSelect", defaultModel)
-    }
-</div>
+@if (hasBonuses)
+{
+    <div class="d-none default-bonus">
+        @{
+            var defaultModel = new FormQueryItem(bonuses.List);
+            @Html.Partial("Edit/_BonusSelect", defaultModel)
+        }
+    </div>
+}

@@ -12,12 +12,12 @@ namespace Pnprpg.Domain.Services
     public class WeaponService : BaseService, IWeaponService
     {
         private readonly IWeaponRepository _weaponRepository;
-        private readonly IBonusRepository _bonusRepository;
+        private readonly IBonusService _bonusService;
 
-        public WeaponService(IWeaponRepository weaponRepository, IBonusRepository bonusRepository)
+        public WeaponService(IWeaponRepository weaponRepository, IBonusService bonusService)
         {
             _weaponRepository = weaponRepository;
-            _bonusRepository = bonusRepository;
+            _bonusService = bonusService;
         }
 
         public IQueryable<WeaponViewModel> GetAll()
@@ -47,28 +47,19 @@ namespace Pnprpg.Domain.Services
 
             weapon.Id = _weaponRepository.InsertOrUpdate(weapon);
 
-            SaveBonuses(model.Bonuses, weapon.Id);
+            var bonuses = model.Bonuses?.Select(x => new WeaponBonus
+            {
+                WeaponId = model.Id,
+                BonusId = x
+            }).AsQueryable();
+
+            _bonusService.BatchSave(bonuses, weapon.Id, BonusType.Weapon);
         }
 
         public void Delete(int id)
         {
-            _bonusRepository.ClearBonuses(id, BonusType.Weapon);
+            _bonusService.BatchClear(id, BonusType.Weapon);
             _weaponRepository.Delete(id);
-        }
-        
-        private void SaveBonuses(List<BonusViewModel> list, int weaponId)
-        {
-            _bonusRepository.ClearBonuses(weaponId, BonusType.Weapon);
-            if (list == null)
-                return;
-
-            var bonuses = list.Select(x => new WeaponBonus
-            {
-                WeaponId = weaponId,
-                BonusId = x.Id
-            }).AsQueryable();
-
-            _bonusRepository.BatchInsertBonuses(bonuses);
         }
     }
 }

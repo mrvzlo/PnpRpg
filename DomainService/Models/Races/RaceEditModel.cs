@@ -9,6 +9,6 @@ namespace Pnprpg.DomainService.Models
         public string Name { get; set; }
         [AllowHtml]
         public string Description { get; set; }
-        public virtual ICollection<int> Bonuses { get; set; }
+        public List<int> Bonuses { get; set; }
     }
 }

@@ -38,8 +38,5 @@ namespace Pnprpg.Web.Controllers
             fileStream.Write(pdfBytes, 0, pdfBytes.Length);
             fileStream.Close();
         }
-
-        protected SelectList SelectableListToSelectList(List<Selectable> list, int? selected = null) =>
-            new SelectList(list, nameof(Selectable.Value), nameof(Selectable.Text), selected);
     }
 }

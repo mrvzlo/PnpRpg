@@ -122,8 +122,9 @@
     <Compile Include="Models\Branch\BranchEditModel.cs" />
     <Compile Include="Models\Common\AssignableWithEffects.cs" />
     <Compile Include="Models\Base\IBaseEditModel.cs" />
-    <Compile Include="Models\Common\Selectable.cs" />
     <Compile Include="Models\Common\FormQueryItem.cs" />
+    <Compile Include="Models\Common\Selectable.cs" />
+    <Compile Include="Models\Common\SelectableList.cs" />
     <Compile Include="Models\Abilities\HeroAbilityGroup.cs" />
     <Compile Include="Models\Branch\BranchViewModel.cs" />
     <Compile Include="Models\Races\RaceEditModel.cs" />

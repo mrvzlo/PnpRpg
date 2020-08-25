@@ -45,6 +45,7 @@
             });
             htmlInsert(caller.data("style"), clone.clone().html(), caller.data("container"));
         });
+        $(document).on('change', '.color-picker', updateColorPicker);
 
         updateScripts();
         $('.html-editor').trumbowyg();
@@ -94,6 +95,7 @@
         toggleLoading();
         $('[data-toggle="tooltip"]').tooltip();
         initMvcGrids();
+        updateColorPicker();
     }
 
     // enabled by default
@@ -145,6 +147,11 @@
 
     function getSpinner() {
         return $("#loading > div").clone();
+    }
+
+    function updateColorPicker() {
+        var picker = $('.color-picker');
+        picker.css('background-color', "#" + picker.val());
     }
 
     return {

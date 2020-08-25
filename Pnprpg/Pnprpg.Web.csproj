@@ -605,6 +605,7 @@
     <Content Include="Content\images\rooms.jpg" />
     <Content Include="Content\images\weaponry.png" />
     <Content Include="Views\Editor\Edit\EditBonus.cshtml" />
+    <Content Include="Views\Editor\Edit\EditBranch.cshtml" />
     <None Include="Views\Editor\Grids\_BonusesGrid.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />

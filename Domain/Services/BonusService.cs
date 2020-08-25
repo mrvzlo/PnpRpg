@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -25,15 +26,10 @@ namespace Pnprpg.Domain.Services
 
         public void Delete(int id) => _bonusRepository.Delete(id);
 
-        public IQueryable<BonusViewModel> GetAll()
-        {
-            return _bonusRepository.Select().ProjectTo<BonusViewModel>(MapperConfig);
-        }
+        public IQueryable<BonusViewModel> GetAll() => 
+            _bonusRepository.Select().ProjectTo<BonusViewModel>(MapperConfig);
 
-        public IQueryable<BonusViewModel> Select(BonusType type)
-        {
-            return GetAll().Where(x => x.Type == type);
-        }
+        public IQueryable<BonusViewModel> Select(BonusType type) => GetAll().Where(x => x.Type == type);
 
         public void Save(BonusEditModel model)
         {
@@ -47,6 +43,20 @@ namespace Pnprpg.Domain.Services
             };
 
             _bonusRepository.InsertOrUpdate(bonus);
+        }
+
+        public void BatchSave(IQueryable<BaseBonusJoin> list, int parentId, BonusType parentType)
+        {
+            _bonusRepository.ClearBonuses(parentId, parentType);
+            if (list == null)
+                return;
+
+            _bonusRepository.BatchInsertBonuses(list);
+        }
+
+        public void BatchClear(int parentId, BonusType type)
+        {
+            _bonusRepository.ClearBonuses(parentId, type);
         }
     }
 }

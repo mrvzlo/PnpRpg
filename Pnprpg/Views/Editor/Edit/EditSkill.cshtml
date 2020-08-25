@@ -1,10 +1,15 @@
-﻿@model Pnprpg.DomainService.Models.SkillEditModel
+﻿@using Pnprpg.DomainService.Models
+@model Pnprpg.DomainService.Models.SkillEditModel
 @{
     ViewBag.Title = Model.Id == 0 ? "Новый навык" : Model.Name;
+    var types = (SelectableList) ViewBag.Types;
+    var branches = (SelectableList) ViewBag.Branches;
+    var abilities = (SelectableList) ViewBag.Abilities;
 }
 
 @using (Html.BeginForm("EditSkill", "Editor", FormMethod.Post, new { @class = "col-md-6 col-12 mx-auto" }))
 {
+    @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
     <div class="row">
         <label class="col-3 col-form-label text-left">Название</label>
@@ -15,13 +20,13 @@
     <div class="row">
         <label class="col-3 col-form-label text-left">Класс</label>
         <div class="col">
-            @Html.DropDownListFor(x => x.BranchId, (SelectList)ViewBag.Branches, new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.BranchId, branches.GetSelectList(), new { @class = "form-control" })
         </div>
     </div>
     <div class="row">
         <label class="col-3 col-form-label text-left">Атрибут</label>
         <div class="col">
-            @Html.DropDownListFor(x => x.AbilityId, (SelectList)ViewBag.Abilities, new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.AbilityId, abilities.GetSelectList(), new { @class = "form-control" })
         </div>
     </div>
     <div class="row">
@@ -33,7 +38,7 @@
     <div class="row">
         <label class="col-3 col-form-label text-left">Тип</label>
         <div class="col">
-            @Html.DropDownListFor(x => x.Type, (SelectList)ViewBag.Types, new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.Type, types.GetSelectList(), new { @class = "form-control" })
         </div>
     </div>
 

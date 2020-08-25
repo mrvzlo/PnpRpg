@@ -4,7 +4,8 @@
 
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Name).Titled("Название"); 
+    columns.Add(x => x.Bonuses).RenderedAs(y => y.Bonuses.Any() ? string.Join(", ", y.Bonuses.Select(x => x.Name)) : "Нет").Titled("Бонусы");
     columns.Add(x => Actions(x)).Css("no-wrap");
 }).Empty("No data found").Pageable(pager => {pager.RowsPerPage = 12; }).Css("table table-responsive"))
 

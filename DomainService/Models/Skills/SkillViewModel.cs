@@ -6,6 +6,7 @@ namespace Pnprpg.DomainService.Models
     public class SkillViewModel : Upgradeable, IBaseViewModel
     {
         public string BranchName { get; set; }
+        public int BranchId { get; set; }
         public int Difficulty { get; set; }
         public SkillType Type { get; set; }
 

@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Enums;
+using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -32,15 +35,9 @@ namespace Pnprpg.Domain.Services
             return hero;
         }
 
-        public string EncodeHero(HeroModel hero)
-        {
-            return _encoder.EncodeHero(hero);
-        }
+        public string EncodeHero(HeroModel hero) => _encoder.EncodeHero(hero);
 
-        public HeroModel DecodeHero(string data)
-        {
-            return _encoder.DecodeHero(data);
-        }
+        public HeroModel DecodeHero(string data) => _encoder.DecodeHero(data);
 
         public HeroModel LoadHero(string username)
         {
@@ -53,6 +50,18 @@ namespace Pnprpg.Domain.Services
         {
             var user = _userRepository.GetUserByName(hero.Player);
             throw new System.NotImplementedException();
+        }
+
+        public SelectableList ToSelectableList(IQueryable<object> query, object selected = null)
+        {
+            var list = query.ProjectTo<Selectable>(MapperConfig).ToList();
+            return new SelectableList(list, selected);
+        }
+
+        public SelectableList ToSelectableList(Enum[] query, object selected = null)
+        {
+            var list = query.Select(x => new Selectable(x, x.Description())).ToList();
+            return new SelectableList(list, selected);
         }
     }
 }

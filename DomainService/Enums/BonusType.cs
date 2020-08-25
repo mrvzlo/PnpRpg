@@ -8,7 +8,7 @@ namespace Pnprpg.DomainService.Enums
         Weapon,
         [Description("Классовый")]
         Branch,
-        [Description("Рассовый")]
+        [Description("Расовый")]
         Race
     }
 }

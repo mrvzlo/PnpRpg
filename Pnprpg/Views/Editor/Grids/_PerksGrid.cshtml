@@ -4,7 +4,7 @@
 
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.BranchView.Name).RenderedAs(x => Branch(x.BranchView)).Filterable(GridFilterType.Single).Css("bg-dark").Titled("Класс");
+    columns.Add(x => x.Branch).RenderedAs(x => Branch(x.Branch)).Filterable(GridFilterType.Single).Css("bg-dark").Titled("Класс");
     columns.Add(x => x.Level).Titled("Уровень").Sortable(true).InitialSort(GridSortOrder.Asc);
     columns.Add(x => x.Name).Titled("Название").Css("w-25");
     columns.Add(x => x.Description).Titled("Эффект").Css("w-50");
