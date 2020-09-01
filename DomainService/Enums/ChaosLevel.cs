@@ -1,7 +1,7 @@
 ﻿namespace Pnprpg.DomainService.Enums
 {
-    public enum ChaosLevel
+    public enum Company
     {
-        Normal, High, Extreme, Random, Null
+        Fantasy
     }
 }

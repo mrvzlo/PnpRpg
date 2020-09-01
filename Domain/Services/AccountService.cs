@@ -27,10 +27,10 @@ namespace Pnprpg.Domain.Services
 
         public void SaveAllUsers(List<UserEditModel> list)
         {
-            var users = _userRepository.Select();
+            var users = _userRepository.Select().ToList();
             foreach (var user in users) 
                 user.Role = list.Single(x => x.Id == user.Id).Role;
-            _userRepository.BatchInsert(users);
+            _userRepository.BatchInsert(users.AsQueryable());
         }
 
         public ServiceResponse<UserModel> Login(LoginModel model)

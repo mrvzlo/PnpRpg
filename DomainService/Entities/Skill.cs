@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class SkillInfo : BaseEntity<int>
+    public class Skill : BaseEntity<int>
     {
         public int Difficulty { get; set; }
         public int AbilityId { get; set; }

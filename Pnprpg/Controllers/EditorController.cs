@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using Pnprpg.DomainService.Enums;
-using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
-using Action = Antlr.Runtime.Misc.Action;
 
 namespace Pnprpg.Web.Controllers
 {
@@ -35,18 +32,18 @@ namespace Pnprpg.Web.Controllers
         }
 
         public ActionResult Races() => View();
-        public ActionResult RacesGrid() => Grid(_raceService);
+        public ActionResult RacesGrid() => Grid(_raceService, nameof(RacesGrid));
         public ActionResult EditRace(int? id = null)
         {
             var model = _raceService.GetForEdit(id);
-            return Edit(model, PrepareRaceEditViewBags);
+            return Edit(model, PrepareRaceEditViewBags, nameof(EditRace));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult EditRace(RaceEditModel model) =>
-            Edit(() => _raceService.Save(model), PrepareRaceEditViewBags, model, RedirectToAction("Races"));
+            Edit(() => _raceService.Save(model), PrepareRaceEditViewBags, model, nameof(EditRace), nameof(Races));
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult DeleteRace(int raceId) => Delete(_raceService, raceId);
+        public ActionResult DeleteRace(int modelId) => Delete(_raceService, modelId, nameof(Races));
 
         private void PrepareRaceEditViewBags()
         {
@@ -58,18 +55,18 @@ namespace Pnprpg.Web.Controllers
 
 
         public ActionResult Skills() => View();
-        public ActionResult SkillsGrid() => Grid(_skillService);
+        public ActionResult SkillsGrid() => Grid(_skillService, nameof(SkillsGrid));
         public ActionResult EditSkill(int? id = null)
         {
             var model = _skillService.GetForEdit(id);
-            return Edit(model, () => PrepareSkillEditViewBags(model));
+            return Edit(model, () => PrepareSkillEditViewBags(model), nameof(EditSkill));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult EditSkill(SkillEditModel model) =>
-            Edit(() => _skillService.Save(model), () => PrepareSkillEditViewBags(model), model, RedirectToAction("Skills"));
+            Edit(() => _skillService.Save(model), () => PrepareSkillEditViewBags(model), model, nameof(EditSkill), nameof(Skills));
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult DeleteSkill(int skillId) => Delete(_skillService, skillId);
+        public ActionResult DeleteSkill(int modelId) => Delete(_skillService, modelId, nameof(Skills));
 
         private void PrepareSkillEditViewBags(SkillEditModel model)
         {
@@ -84,31 +81,36 @@ namespace Pnprpg.Web.Controllers
 
 
         public ActionResult Branches() => View();
-        public ActionResult BranchesGrid() => Grid(_branchService);
+        public ActionResult BranchesGrid() => Grid(_branchService, nameof(BranchesGrid));
         public ActionResult EditBranch(int id)
         {
             var model = _branchService.GetForEdit(id);
-            return Edit(model, null);
+            return Edit(model, PrepareBranchEditViewBags, nameof(EditBranch));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult EditBranch(BranchEditModel model) =>
-            Edit(() => _branchService.Save(model), null, model, RedirectToAction("Branches"));
+            Edit(() => _branchService.Save(model), PrepareBranchEditViewBags, model, nameof(EditBranch), nameof(Branches));
 
+        private void PrepareBranchEditViewBags()
+        {
+            var bonuses = _bonusService.Select(BonusType.Branch);
+            ViewBag.Bonuses = _coreLogic.ToSelectableList(bonuses);
+        }
 
         public ActionResult Weapons() => View();
-        public ActionResult WeaponsGrid() => Grid(_weaponService);
+        public ActionResult WeaponsGrid() => Grid(_weaponService, nameof(WeaponsGrid));
         public ActionResult EditWeapon(int? id = null)
         {
             var model = _weaponService.GetForEdit(id);
-            return Edit(model, () => PrepareWeaponEditViewBags(model));
+            return Edit(model, () => PrepareWeaponEditViewBags(model), nameof(EditWeapon));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult EditWeapon(WeaponEditModel model) =>
-            Edit(() => _weaponService.Save(model), () => PrepareWeaponEditViewBags(model), model, RedirectToAction("Weapons"));
+            Edit(() => _weaponService.Save(model), () => PrepareWeaponEditViewBags(model), model, nameof(EditWeapon), nameof(Weapons));
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult DeleteWeapon(int weaponId) => Delete(_weaponService, weaponId);
+        public ActionResult DeleteWeapon(int modelId) => Delete(_weaponService, modelId, nameof(Weapons));
 
         private void PrepareWeaponEditViewBags(WeaponEditModel model)
         {
@@ -120,18 +122,18 @@ namespace Pnprpg.Web.Controllers
 
 
         public ActionResult Bonuses() => View();
-        public ActionResult BonusesGrid() => Grid(_bonusService);
+        public ActionResult BonusesGrid() => Grid(_bonusService, nameof(BonusesGrid));
         public ActionResult EditBonus(int? id = null)
         {
             var model = _bonusService.GetForEdit(id);
-            return Edit(model, () => PrepareBonusEditViewBags(model));
+            return Edit(model, () => PrepareBonusEditViewBags(model), nameof(EditBonus));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult EditBonus(BonusEditModel model) =>
-            Edit(() => _bonusService.Save(model), () => PrepareBonusEditViewBags(model), model, RedirectToAction("Bonuses"));
+            Edit(() => _bonusService.Save(model), () => PrepareBonusEditViewBags(model), model, nameof(EditBonus), nameof(Bonuses));
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult DeleteBonus(int weaponId) => Delete(_weaponService, weaponId);
+        public ActionResult DeleteBonus(int modelId) => Delete(_weaponService, modelId, nameof(Bonuses));
 
         private void PrepareBonusEditViewBags(BonusEditModel model)
         {
@@ -141,18 +143,18 @@ namespace Pnprpg.Web.Controllers
 
 
         public ActionResult Perks() => View();
-        public ActionResult PerksGrid() => Grid(_perkService);
+        public ActionResult PerksGrid() => Grid(_perkService, nameof(PerksGrid));
         public ActionResult EditPerk(int? id = null)
         {
             var model = _perkService.GetForEdit(id);
-            return Edit(model, () => PreparePerkEditViewBags(model));
+            return Edit(model, () => PreparePerkEditViewBags(model), nameof(EditPerk));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult EditPerk(PerkEditModel model) =>
-            Edit(() => _perkService.Save(model), () => PreparePerkEditViewBags(model), model, RedirectToAction("Perks"));
+            Edit(() => _perkService.Save(model), () => PreparePerkEditViewBags(model), model, nameof(EditPerk), nameof(Perks));
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult DeletePerk(int perkId) => Delete(_perkService, perkId);
+        public ActionResult DeletePerk(int modelId) => Delete(_perkService, modelId, nameof(Perks));
 
         private void PreparePerkEditViewBags(PerkEditModel model)
         {
@@ -161,33 +163,31 @@ namespace Pnprpg.Web.Controllers
         }
 
 
-        private PartialViewResult Grid(IViewService<IBaseViewModel> service) =>
-            PartialView($"Grids/_{Caller()}", service.GetAll());
+        private PartialViewResult Grid(IViewService<IBaseViewModel> service, string gridName) =>
+            PartialView($"Grids/_{gridName}", service.GetAll());
 
-        private ActionResult Edit(IBaseEditModel model, Action prepare)
+        private ActionResult Edit(IBaseEditModel model, Action prepare, string caller)
         {
             prepare?.Invoke();
-            return View($"Edit/{Caller()}", model);
+            return View($"Edit/{caller}", model);
         }
 
-        private ActionResult Edit(Action edit, Action prepare, IBaseEditModel model, RedirectToRouteResult redirectOnSuccess)
+        private ActionResult Edit(Action edit, Action prepare, IBaseEditModel model, string caller, string redirectOnSuccess)
         {
             if (!ModelState.IsValid)
             {
                 prepare?.Invoke();
-                return View($"Edit/{Caller()}", model);
+                return View($"Edit/{caller}", model);
             }
 
             edit();
-            return redirectOnSuccess;
+            return RedirectToAction(redirectOnSuccess);
         }
 
-        private ActionResult Delete(IEditService<IBaseEditModel> service, int id)
+        private ActionResult Delete(IEditService<IBaseEditModel> service, int id, string redirect)
         {
             service.Delete(id);
-            return RedirectToAction(Caller());
+            return RedirectToAction(redirect);
         }
-
-        private string Caller() => new StackTrace().GetFrame(2).GetMethod().Name;
     }
 }

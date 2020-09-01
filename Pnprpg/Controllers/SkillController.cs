@@ -2,6 +2,7 @@
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.Web.Helpers;
+using Status = Pnprpg.Web.Enums.Status;
 
 namespace Pnprpg.Web.Controllers
 {

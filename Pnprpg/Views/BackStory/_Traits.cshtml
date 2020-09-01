@@ -1,5 +1,7 @@
 ﻿@using Pnprpg.DomainService.Helpers
+@using Pnprpg.Web.Enums
 @model Pnprpg.DomainService.Models.TraitGroup
+@{ Html.RenderPartial("HeroInfo/_HeroGenWizard", Status.Traits);}
 <div class="h4 col-12">Выберите до @Constants.MaxTraitCount особенностей</div>
 <div id="status" class="w-100"></div>
 @foreach (var trait in Model.List)
@@ -11,7 +13,7 @@
             @if (Model.IsAssignable(trait))
             {
                 <div class="badge ajax-btn pointer btn-success"
-                     data-url="@Url.Action("ChooseTrait", "Trait", new {trait.Id})">
+                     data-url="@Url.Action("ChooseTrait", "BackStory", new {trait.Id})">
                     +
                 </div>
             }
@@ -44,7 +46,7 @@
     </div>
 }
 <div class="col-12">
-    <button class="btn btn-primary mw-260 m-1 ajax-btn" data-url="@Url.Action("ResetTraits", "Trait")">
+    <button class="btn btn-primary mw-260 m-1 ajax-btn" data-url="@Url.Action("ResetTraits", "BackStory")">
         ↺ Перераспределить
     </button><button class="btn btn-success mw-260 m-1 ajax-btn" data-url="@Url.Action("SkillEditJson", "Skill")">
         ✓ Сохранить

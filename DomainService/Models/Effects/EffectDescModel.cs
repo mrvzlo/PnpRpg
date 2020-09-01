@@ -11,7 +11,7 @@ namespace Pnprpg.DomainService.Models
         public int ParentId { get; set; }
         public AssignableType ParentType { get; set; }
 
-        public Assignable Target { get; set; }
+        public Upgradeable Target { get; set; }
 
         public void Revert() => Value = -Value;
 

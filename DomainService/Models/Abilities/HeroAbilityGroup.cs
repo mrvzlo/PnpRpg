@@ -10,14 +10,14 @@ namespace Pnprpg.DomainService.Models
             Limit = Constants.BaseHeroAbilityLevelSum;
         }
 
-        public void Setup(ChaosLevel chaos)
+        public void Setup(Company chaos)
         {
             foreach (var item in List)
             {
-                item.Min = chaos == ChaosLevel.Normal
+                item.Min = chaos == Company.Fantasy
                     ? Constants.ManualMinAbilityLevel
                     : Constants.AbsoluteMinAbilityLevel;
-                item.Max = chaos == ChaosLevel.Normal
+                item.Max = chaos == Company.Fantasy
                     ? Constants.ManualMaxAbilityLevel
                     : Constants.AbsoluteMaxAbilityLevel;
                 item.Level = item.Min;

@@ -24,20 +24,18 @@ namespace Pnprpg.Domain.Services
             _encoder = new Encoder();
         }
 
-        public HeroModel CreateHero(ChaosLevel chaos)
+        public HeroModel CreateHero(Company chaos)
         {
             var hero = new HeroModel(chaos);
             var abilities = _abilityService.GetAll<AbilityModel>();
             hero.Abilities.List = abilities.ToList();
             hero.Abilities.Setup(chaos);
-            if (chaos != ChaosLevel.Null)
-                hero.Race = _raceService.GetAll().First();
             return hero;
         }
 
-        public string EncodeHero(HeroModel hero) => _encoder.EncodeHero(hero);
+        public string EncodeHero(HeroModel hero, string version) => _encoder.EncodeHero(hero, version);
 
-        public HeroModel DecodeHero(string data) => _encoder.DecodeHero(data);
+        public HeroModel DecodeHero(string data, string version) => _encoder.DecodeHero(data, version);
 
         public HeroModel LoadHero(string username)
         {

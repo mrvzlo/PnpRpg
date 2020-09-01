@@ -1,28 +1,37 @@
 ﻿@model Pnprpg.DomainService.Models.AlchemySummary
 
 <h3>Алхимия</h3>
-<h5>Алхимические ингредиенты</h5>
+<h5>Алхимические реагенты и реакции</h5>
 
-<table class="table text-center">
+<table class="table text-center" style="margin-left: 15%; margin-right: 5%; width: 30%; float: left;">
     <tr>
-        <th class="text-center">Символ</th>
-        <th>Эссенция</th>
         <th>Символ</th>
-        <th>Процесс</th>
+        <th>Эссенция</th>
     </tr>
-    @for (var i = 0; i < Model.Reagents.Count; i++)
+    @foreach (var r in Model.Reagents)
     {
-        var r = Model.Reagents[i];
-        var p = Model.Processes[i];
         <tr>
             <td>@r.Symbol</td>
             <td>@r.Name</td>
+        </tr>
+    }
+</table>
+
+<table class="table text-center" style="margin-left: 5%; margin-right: 15%; width: 30%; float: right">
+    <tr>
+        <th>Символ</th>
+        <th>Процесс</th>
+    </tr>
+    @foreach (var p in Model.Processes)
+    {
+        <tr>
             <td>@p.Symbol</td>
             <td>@p.Name</td>
         </tr>
     }
 </table>
-
+@for (var i = 0; i < 15; i++)
+{<br/>}
 <h5>Продукты реакций</h5>
 
 <table class="table table-bordered">

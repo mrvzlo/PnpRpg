@@ -180,8 +180,8 @@
     <Compile Include="Repositories\AlchemySymbolRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\AbilityRepository.cs" />
-    <Compile Include="Repositories\SpellRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\SpellRepository.cs" />
     <Compile Include="Repositories\PerkRepository.cs" />
     <Compile Include="Repositories\WeaponRepository.cs" />
   </ItemGroup>

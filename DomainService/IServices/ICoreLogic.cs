@@ -7,11 +7,11 @@ namespace Pnprpg.DomainService.IServices
 {
     public interface ICoreLogic
     {
-        HeroModel CreateHero(ChaosLevel chaos);
-        HeroModel DecodeHero(string data);
+        HeroModel CreateHero(Company chaos);
+        string EncodeHero(HeroModel hero, string version);
+        HeroModel DecodeHero(string data, string version);
         HeroModel LoadHero(string username);
         bool SaveHero(HeroModel hero);
-        string EncodeHero(HeroModel hero);
         SelectableList ToSelectableList(IQueryable<object> list, object selected = null);
         SelectableList ToSelectableList(Enum[] query, object selected = null);
     }

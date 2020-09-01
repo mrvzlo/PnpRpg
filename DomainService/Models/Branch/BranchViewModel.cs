@@ -10,5 +10,7 @@ namespace Pnprpg.DomainService.Models
         public string Description { get; set; }
 
         public ICollection<BonusViewModel> Bonuses { get; set; }
+        public ICollection<SkillViewModel> Skills { get; set; }
+        public ICollection<PerkViewModel> Perks { get; set; }
     }
 }

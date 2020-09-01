@@ -33,8 +33,8 @@ namespace Pnprpg.Domain.Services
 
         public HeroSkillGroup GetHeroSkillGroup(HeroModel hero)
         {
-            var skills = GetAll();
-            var skillGroup = new HeroSkillGroup(hero) {List = skills.ToList()};
+            var skills = GetAll().ToList();
+            var skillGroup = new HeroSkillGroup(hero) {List = skills};
             if (hero == null) 
                 return skillGroup;
 
@@ -72,14 +72,14 @@ namespace Pnprpg.Domain.Services
         {
             var skill = id != null
                 ? _skillRepository.Get(id.Value)
-                : new SkillInfo();
+                : new Skill();
 
             return Mapper.Map<SkillEditModel>(skill);
         }
 
         public void Save(SkillEditModel model)
         {
-            var skill = new SkillInfo
+            var skill = new Skill
             {
                 Id = model.Id,
                 Difficulty = model.Difficulty,

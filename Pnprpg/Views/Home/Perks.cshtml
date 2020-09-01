@@ -3,7 +3,8 @@
 @model IQueryable<Pnprpg.DomainService.Models.PerkViewModel>
 @{
     ViewBag.Title = "Способности";
-    var branches = Model.Select(x => x.Branch).Distinct().ToList();
+    var a = Model.First();
+    var branches = Model.Select(x => x.Branch).GroupBy(x => x.Id).Select(x => x.FirstOrDefault()).ToList();
 }
 @if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
 {

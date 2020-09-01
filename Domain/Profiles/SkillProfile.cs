@@ -8,9 +8,9 @@ namespace Pnprpg.Domain.Profiles
     {
         public SkillProfile()
         {
-            CreateMap<SkillInfo, SkillViewModel>()
+            CreateMap<Skill, SkillViewModel>()
                 .ForMember(dest => dest.BranchName, opts => { opts.MapFrom(from => from.Branch.Name); });
-            CreateMap<SkillInfo, SkillEditModel>();
+            CreateMap<Skill, SkillEditModel>();
 
         }
     }

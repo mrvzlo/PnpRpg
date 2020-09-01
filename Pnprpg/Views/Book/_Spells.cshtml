@@ -4,7 +4,7 @@
 }
 
 <h3>Магия</h3>
-<div class="mb-3 text-center">Для заклинаний указана изначальная цена, которая меняется при увеличении мастерства </div>
+<div class="mb-3 text-center">Для заклинаний указана изначальная цена, которая меняется при увеличении мастерства.</div>
 <div class="text-center">
     @foreach (var school in Model)
     {
@@ -20,7 +20,7 @@
                 {
                     <th>Эффект</th>
                 }
-                <th class="w-25">Стоимость</th>
+                <th style="width: 20%">Стоимость</th>
             </tr>
             @foreach (var spell in school.Spells)
             {
@@ -33,7 +33,7 @@
                             @if (spell.Damage > 0)
                             {
                                 var separator = string.IsNullOrEmpty(spell.Effect) ? "" : ",";
-                                @:Урон @(spell.Damage + separator)
+                                @:Урон <b>@(spell.Damage + separator)</b>
                             }
                             @spell.Effect
                         </td>

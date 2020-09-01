@@ -10,16 +10,16 @@ namespace Pnprpg.Domain.Services
     {
         private const char Separator = '_';
 
-        public string EncodeHero(HeroModel hero)
+        public string EncodeHero(HeroModel hero, string version)
         {
             hero = Trim(hero);
             var encoded = JsonConvert.SerializeObject(hero);
-            encoded =  $"{Constants.Version}{Separator}{encoded}";
+            encoded =  $"{version}{Separator}{encoded}";
             var bytes = Encoding.UTF8.GetBytes(encoded);
             return Convert.ToBase64String(bytes);
         }
 
-        public HeroModel DecodeHero(string base64)
+        public HeroModel DecodeHero(string base64, string version)
         {
             if (string.IsNullOrEmpty(base64))
                 return null;
@@ -30,7 +30,7 @@ namespace Pnprpg.Domain.Services
                 return null;
 
             var splitted = encoded.Split(Separator);
-            if (splitted.Length < 2 || splitted[0] != Constants.Version)
+            if (splitted.Length < 2 || splitted[0] != version)
                 return null;
             var hero = JsonConvert.DeserializeObject<HeroModel>(splitted[1]);
             return hero;
@@ -41,6 +41,12 @@ namespace Pnprpg.Domain.Services
             hero.Race.Effects = null;
             foreach (var trait in hero.Traits.List) 
                 trait.Effects = null;
+            foreach (var branch in hero.Branches.List)
+            {
+                branch.Skills = null;
+                branch.Bonuses = null;
+                branch.Perks = null;
+            }
 
             return hero;
         }

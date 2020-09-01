@@ -1,10 +1,14 @@
-﻿using Pnprpg.DomainService.Entities;
+﻿using System.Linq;
+using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 
 namespace Pnprpg.Infrastructure.Repositories
 {
-    public class SpellRepository : BaseRepository<Spell>, ISpellRepository
+    public class UserRepository : BaseRepository<AppUser>, IUserRepository
     {
-        public SpellRepository(AppDbContext dbContext) : base(dbContext) { }
+        public UserRepository(AppDbContext dbContext) : base(dbContext) { }
+
+        public AppUser GetUserByName(string name) => 
+            DbContext.AppUsers.SingleOrDefault(x => x.Username == name);
     }
 }

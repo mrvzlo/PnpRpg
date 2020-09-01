@@ -1,0 +1,35 @@
+﻿@using Pnprpg.Web.Enums
+@model IQueryable<Pnprpg.DomainService.Models.RaceViewModel>
+
+@{ Html.RenderPartial("HeroInfo/_HeroGenWizard", Status.Race);}
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle mw-160" type="button" data-toggle="dropdown">Выберите расу&nbsp;</button>
+    <div class="dropdown-menu">
+        @foreach (var race in Model)
+        {
+            <a class="dropdown-item bg-light text-dark" data-toggle="collapse" href="#raceDesc_@race.Id">
+                @race.Name
+            </a>
+        }
+    </div>
+</div>
+
+<div class="accordion">
+    @foreach (var race in Model)
+    {
+        <div class="collapse py-2" id="raceDesc_@race.Id" data-parent=".accordion">
+            <h4>@race.Name</h4>
+            <div class="text-left">@Html.Raw(race.Description)</div>
+            @foreach (var bonus in race.Bonuses)
+            {
+                <div class="text-left">
+                    <b>@bonus.Name:</b>
+                    <div>@Html.Raw(bonus.Description)</div>
+                </div>
+            }
+            <button class="ajax-btn btn btn-success my-2 mw-160" data-url="@Url.Action("PickRace", "BackStory", new {id = race.Id})">
+                Выбрать
+            </button>
+        </div>
+    }
+</div>

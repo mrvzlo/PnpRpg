@@ -31,28 +31,7 @@ namespace Pnprpg.Domain.Services
             target.Effects = GetEffects(target.Id, AssignableType.Trait);
             return target;
         }
-
-        public void ClearEffects(int parentId, AssignableType parentType)
-        {
-            var effects = _effectRepository.Select()
-                .Where(x => x.ParentType == parentType && x.ParentId == parentId);
-            _effectRepository.BatchDelete(effects);
-        }
-
-        public void InsertEffects(List<EffectDescModel> model, int parentId, AssignableType parentType)
-        {
-            var list = model.Select(x => new Effect
-            {
-                Description = x.Description,
-                ParentId = parentId, ParentType = parentType,
-                TargetId = x.TargetId,
-                TargetType = x.TargetType
-
-            }).AsQueryable();
-            
-            _effectRepository.BatchInsert(list);
-        }
-
+        
         private List<EffectDescModel> GetEffects(int targetId, AssignableType parentType)
         {
             var effects = _effectRepository.Select().ProjectTo<EffectDescModel>(MapperConfig).ToList();

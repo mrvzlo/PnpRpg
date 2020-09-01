@@ -9,7 +9,7 @@ namespace Pnprpg.DomainService.Entities
         public int Weight { get; set; }
         public string Name { get; set; }
 
-        public virtual SkillInfo Skill { get; set; }
+        public virtual Skill Skill { get; set; }
         public virtual ICollection<WeaponBonus> Bonuses { get; set; }
     }
 }

@@ -9,5 +9,7 @@ namespace Pnprpg.DomainService.Entities
         public string Description { get; set; }
 
         public virtual ICollection<BranchBonus> Bonuses { get; set; }
+        public virtual ICollection<Skill> Skills { get; set; }
+        public virtual ICollection<Perk> Perks{ get; set; }
     }
 }

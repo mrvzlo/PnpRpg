@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -48,7 +47,7 @@ namespace Pnprpg.Domain.Services
         public void BatchSave(IQueryable<BaseBonusJoin> list, int parentId, BonusType parentType)
         {
             _bonusRepository.ClearBonuses(parentId, parentType);
-            if (list == null)
+            if (list == null || !list.Any())
                 return;
 
             _bonusRepository.BatchInsertBonuses(list);

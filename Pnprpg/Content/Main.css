@@ -7100,7 +7100,6 @@ a {
   color: black; }
   a:hover, a:active, a.active {
     color: black;
-    font-weight: bold;
     text-decoration: none; }
 
 .carousel-indicators {
@@ -7128,6 +7127,12 @@ a {
 
 form .row {
   margin-bottom: 1rem; }
+
+.circle {
+  border-radius: 50%; }
+
+.popover {
+  border: 2px solid black; }
 
 td {
   vertical-align: middle !important; }

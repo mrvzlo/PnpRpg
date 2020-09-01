@@ -1,4 +1,6 @@
-﻿using Pnprpg.DomainService.Entities;
+﻿using System.Data.Entity;
+using System.Linq;
+using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 
 namespace Pnprpg.Infrastructure.Repositories
@@ -6,5 +8,21 @@ namespace Pnprpg.Infrastructure.Repositories
     public class AbilityRepository : BaseRepository<Ability>, IAbilityRepository
     {
         public AbilityRepository(AppDbContext dbContext) : base(dbContext) { }
+
+        public void ClearRaceAbilities(int parentId)
+        {
+            foreach (var entity in DbContext.RaceAbilities.Where(x => x.RaceId == parentId))
+                DbContext.Entry(entity).State = EntityState.Deleted;
+
+            DbContext.SaveChanges();
+        }
+
+        public void InsertRaceAbilities(IQueryable<RaceAbility> abilities)
+        {
+            foreach (var entity in abilities)
+                DbContext.Entry(entity).State = EntityState.Added;
+
+            DbContext.SaveChanges();
+        }
     }
 }

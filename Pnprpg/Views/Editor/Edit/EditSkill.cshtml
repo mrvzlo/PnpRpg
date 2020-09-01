@@ -20,13 +20,13 @@
     <div class="row">
         <label class="col-3 col-form-label text-left">Класс</label>
         <div class="col">
-            @Html.DropDownListFor(x => x.BranchId, branches.GetSelectList(), new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.BranchId, branches.GetSelectList(), new { @class = "form-select" })
         </div>
     </div>
     <div class="row">
         <label class="col-3 col-form-label text-left">Атрибут</label>
         <div class="col">
-            @Html.DropDownListFor(x => x.AbilityId, abilities.GetSelectList(), new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.AbilityId, abilities.GetSelectList(), new { @class = "form-select" })
         </div>
     </div>
     <div class="row">
@@ -38,7 +38,7 @@
     <div class="row">
         <label class="col-3 col-form-label text-left">Тип</label>
         <div class="col">
-            @Html.DropDownListFor(x => x.Type, types.GetSelectList(), new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.Type, types.GetSelectList(), new { @class = "form-select" })
         </div>
     </div>
 

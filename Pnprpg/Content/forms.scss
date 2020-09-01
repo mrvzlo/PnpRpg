@@ -23,7 +23,6 @@ a {
 
     &:hover, &:active, &.active {
         color: black;
-        font-weight: bold;
         text-decoration: none;
     }
 }
@@ -63,4 +62,12 @@ form{
     .row{
         margin-bottom: 1rem;
     }
+}
+
+.circle{
+    border-radius: 50%;
+}
+
+.popover{
+    border: 2px solid black;
 }

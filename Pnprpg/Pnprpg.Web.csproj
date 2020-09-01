@@ -404,8 +404,7 @@
     <Compile Include="Controllers\MagicController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\AbilityController.cs" />
-    <Compile Include="Controllers\TraitController.cs" />
-    <Compile Include="Controllers\RaceController.cs" />
+    <Compile Include="Controllers\BackStoryController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -413,6 +412,7 @@
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\CookieType.cs" />
+    <Compile Include="Enums\Status.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -426,7 +426,7 @@
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
     </None>
     <Content Include="Content\HeroSheet.css" />
-    <Content Include="Scripts\ui\icons.svg" />
+    <Content Include="Content\images\icons.svg" />
     <Content Include="Content\images\ArmorIcon.png" />
     <Content Include="Content\images\DmgIcon.png" />
     <Content Include="Content\images\HPIcon.png" />
@@ -435,6 +435,7 @@
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\custom\ajax.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\index.js.flow" />
@@ -606,14 +607,16 @@
     <Content Include="Content\images\weaponry.png" />
     <Content Include="Views\Editor\Edit\EditBonus.cshtml" />
     <Content Include="Views\Editor\Edit\EditBranch.cshtml" />
-    <None Include="Views\Editor\Grids\_BonusesGrid.cshtml" />
+    <Content Include="Views\Book\HeroSheets.cshtml" />
+    <Content Include="Views\Book\MagicSheet.cshtml" />
+    <Content Include="Views\Editor\Grids\_BonusesGrid.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
     <Content Include="Views\HeroGen\_HeroInfo.cshtml" />
     <Content Include="Views\Home\Weaponry.cshtml" />
     <Content Include="Views\Shared\_Scripts.cshtml" />
     <Content Include="Views\Magic\_RandomSpell.cshtml" />
-    <Content Include="Views\Book\HeroSheet.cshtml" />
+    <Content Include="Views\Book\MainSheet.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\EditorTemplates\UserEditModel.cshtml" />
     <Content Include="Views\Editor\Perks.cshtml" />
@@ -636,6 +639,10 @@
     <Content Include="Views\Editor\Branches.cshtml" />
     <Content Include="Views\Editor\Bonuses.cshtml" />
     <Content Include="Views\Editor\Grids\_BranchesGrid.cshtml" />
+    <Content Include="Views\Editor\Edit\_AbilitySelect.cshtml" />
+    <Content Include="Views\BackStory\_Branches.cshtml" />
+    <Content Include="Views\Shared\HeroInfo\_HeroGenWizard.cshtml" />
+    <Content Include="Views\Book\_Branches.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />
@@ -664,18 +671,18 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\custom\main.js" />
     <Content Include="Views\Shared\HeroInfo\_Stats.cshtml" />
     <Content Include="Views\Skill\Skills.cshtml" />
     <Content Include="Views\HeroGen\_Result.cshtml" />
     <Content Include="Views\Shared\HeroInfo\_Abilities.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\_SignUp.cshtml" />
-    <Content Include="Views\Race\_RacesDropdown.cshtml" />
+    <Content Include="Views\BackStory\_Races.cshtml" />
     <Content Include="Views\HeroGen\MyHero.cshtml" />
     <Content Include="Views\Skill\_SkillList.cshtml" />
     <Content Include="Views\Skill\_SkillEdit.cshtml" />
-    <Content Include="Views\Trait\_Traits.cshtml" />
+    <Content Include="Views\BackStory\_Traits.cshtml" />
     <Content Include="Views\Alchemy\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
@@ -690,7 +697,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HeroGen\Index.cshtml" />
-    <Content Include="Views\HeroGen\_Chaos.cshtml" />
     <Content Include="Views\Shared\HeroInfo\_AbilityEdit.cshtml" />
     <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />

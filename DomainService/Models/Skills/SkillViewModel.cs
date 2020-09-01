@@ -10,9 +10,10 @@ namespace Pnprpg.DomainService.Models
         public int Difficulty { get; set; }
         public SkillType Type { get; set; }
 
-        public AbilityModel Ability { get; set; }
+        public virtual AbilityModel Ability { get; set; }
+        public virtual BranchShortModel Branch { get; set; }
 
-        public SkillViewModel()
+        public SkillViewModel() 
         {
             Max = Constants.MaxSkillLevel;
         }

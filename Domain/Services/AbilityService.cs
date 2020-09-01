@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
+using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IRepositories;
@@ -28,6 +29,20 @@ namespace Pnprpg.Domain.Services
                 response.AddError(GenerationError.AbilitiesError.Description());
             response.Object = hero;
             return response;
+        }
+
+        public void BatchSave(IQueryable<RaceAbility> list, int parentId)
+        {
+            _abilityRepository.ClearRaceAbilities(parentId);
+            if (list == null || !list.Any())
+                return;
+
+            _abilityRepository.InsertRaceAbilities(list);
+        }
+
+        public void BatchClear(int parentId)
+        {
+            _abilityRepository.ClearRaceAbilities(parentId);
         }
     }
 }

@@ -4,7 +4,7 @@
 
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.Branch).RenderedAs(x => Branch(x.Branch)).Filterable(GridFilterType.Single).Css("bg-dark").Titled("Класс");
+    columns.Add(x => x.Branch.Name).RenderedAs(x => Branch(x.Branch)).Filterable(GridFilterType.Single).Css("bg-dark").Filterable(true).Titled("Класс");
     columns.Add(x => x.Level).Titled("Уровень").Sortable(true).InitialSort(GridSortOrder.Asc);
     columns.Add(x => x.Name).Titled("Название").Css("w-25");
     columns.Add(x => x.Description).Titled("Эффект").Css("w-50");
@@ -14,7 +14,7 @@
     pager.RowsPerPage = 10;
 }).Css("table table-responsive"))
 
-@helper Branch(BranchViewModel branchView)
+@helper Branch(BranchShortModel branchView)
 {
     <div style="color: #@branchView.Color">@branchView.Name</div>
 }

@@ -20,8 +20,9 @@ namespace Pnprpg.Web.Controllers
         private readonly IAbilityService _abilityService;
         private readonly ICoreLogic _coreLogic;
         private readonly IBranchService _branchService;
+        private readonly HtmlToPdfConverter _converter;
 
-        public BookController(IAlchemyService alchemyService, IPerkService perkService, 
+        public BookController(IAlchemyService alchemyService, IPerkService perkService,
             IRaceService raceService, ITraitService traitService, ISkillService skillService, IMagicService magicService, IAbilityService abilityService, ICoreLogic coreLogic, IBranchService branchService)
         {
             _alchemyService = alchemyService;
@@ -33,18 +34,35 @@ namespace Pnprpg.Web.Controllers
             _abilityService = abilityService;
             _coreLogic = coreLogic;
             _branchService = branchService;
+
+            _converter = new HtmlToPdfConverter {Size = PageSize.A4};
         }
+
+        //todo news, books, versions
 
         public ActionResult Index()
         {
-            var generator = new HtmlToPdfConverter { };
-            var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
-            if (!System.IO.File.Exists(path) || Request.IsLocal) 
-                SavePdf(generator, "Index", path);
-
-            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
-            return File(file, "application/pdf");
+            _converter.Margins.Top = 20;
+            _converter.Margins.Bottom = 20;
+            _converter.PageFooterHtml = "<div style='text-align: center'><span class='page'></span></div>";
+            return GeneratePdf(_converter, FileNames.RuleBook, "Index");
         }
+
+        public ActionResult HeroSheets() => View();
+
+        public ActionResult MainSheet()
+        {
+            _converter.Orientation = PageOrientation.Landscape;
+            var hero = _coreLogic.CreateHero(Company.Fantasy);
+            hero.Skills = _skillService.GetHeroSkillGroup(hero);
+            return GeneratePdf(_converter, FileNames.CharacterSheet, "MainSheet", hero);
+        }
+
+        public ActionResult MagicSheet()
+        {
+            return GeneratePdf(_converter, FileNames.RuleBook, "MagicSheet");
+        }
+
 
         public ActionResult UpdateBook()
         {
@@ -65,6 +83,12 @@ namespace Pnprpg.Web.Controllers
             return PartialView("_Races", list);
         }
 
+        public PartialViewResult Branches()
+        {
+            var list = _branchService.GetAll().ToList();
+            return PartialView("_Branches", list);
+        }
+
         public PartialViewResult Traits()
         {
             var list = _traitService.GetAll();
@@ -73,8 +97,8 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult Skills()
         {
-            var list = _skillService.GetAll();
-            return PartialView("_Skills", list.ToList());
+            var list = _skillService.GetAll().ToList();
+            return PartialView("_Skills", list);
         }
 
         public PartialViewResult Spells()
@@ -101,27 +125,21 @@ namespace Pnprpg.Web.Controllers
             return PartialView("_ShortSkillList", list);
         }
 
-        public ActionResult HeroSheet(bool clean = false)
-        {
-            var generator = new HtmlToPdfConverter { Orientation = PageOrientation.Landscape };
-            var path = Server.MapPath($"~/App_Data/{FileNames.CharacterSheet}");
-            if (!System.IO.File.Exists(path) || Request.IsLocal)
-            {
-                var hero = _coreLogic.CreateHero(ChaosLevel.Null);
-                if (clean)
-                    return View("HeroSheet", hero);
-                SavePdf(generator, "HeroSheet", path, hero);
-            }
-
-            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
-            return File(file, "application/pdf");
-        }
-
         public string HeroSheetStyle()
         {
             var path = Url.Content("~/Content/HeroSheet.css");
             path = Server.MapPath(path);
             return System.IO.File.ReadAllText(path);
+        }
+
+        private FileResult GeneratePdf(HtmlToPdfConverter generator, string fileName, string viewName, object model = null)
+        {
+            var path = Server.MapPath($"~/App_Data/{fileName}");
+            if (!System.IO.File.Exists(path) || Request.IsLocal) 
+                SavePdf(generator, viewName, path, model);
+
+            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
+            return File(file, "application/pdf");
         }
     }
 }

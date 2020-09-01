@@ -1,37 +1,20 @@
 ﻿@model IQueryable<Pnprpg.DomainService.Models.RaceViewModel>
 <h5>Расы</h5>
 <p>
-    Каждый персонаж по умолчанию является человеком, но может выбрать любую из @Model.Count() рас, чтобы получить их преимущества и недостатки.
+    В волшебном мире бок о бок соседствуют существа разных размеров, цветов и мировозрений. Существа одной расы обладают общими физиологическими особенностями,
+    культурой и зачастую идеологией. Но это совсем не значит, что все эльфы должны быть высокомерными, а орки - грубыми. Стоит помнить, что не
+    каждая разумная раса дотупна игроку. Вы конечно можете играть за собаку или крысу, но не гарантируем вам, что это будет увлекательно.
 </p>
-<table class="table-bordered">
-    <tr>
-        <th>Название</th>
-        <th>Плюсы</th>
-        <th>Минусы</th>
-    </tr>
-    @foreach (var race in Model)
+
+@foreach (var race in Model)
+{
+    <h6>@race.Name</h6>
+    @Html.Raw(race.Description)
+    foreach (var bonus in race.Bonuses)
     {
-        <tr>
-            <td>@race.Name</td>
-            @if (race.Effects?.Any() ?? false)
-            {
-                <td>
-                    @foreach (var effect in race.Effects.Where(x => x.Value > 0))
-                    {
-                        @effect.ToString()
-                    }
-                </td>
-                <td>
-                    @foreach (var effect in race.Effects.Where(x => x.Value < 0))
-                    {
-                        @effect.ToString()
-                    }
-                </td>
-            }
-            else
-            {
-                <td colspan="2" class="text-center">Нет</td>
-            }
-        </tr>
+        <p style="font-weight: bold; margin-bottom: -15px">@bonus.Name</p>
+        <div>
+            @Html.Raw(bonus.Description)
+        </div>
     }
-</table>
+}

@@ -1,14 +1,15 @@
-﻿@using Pnprpg.DomainService.Enums
+﻿@using Pnprpg.Web.Enums
 @model Pnprpg.DomainService.Models.HeroModel
 @{
     ViewBag.Title = "Генератор персонажа";
-    var status = (Status)ViewBag.Status;
-    switch (status)
-    {
-        case Status.Chaos: Html.RenderPartial("_Chaos"); break;
-        case Status.Stats: Html.RenderAction("AbilityEdit", "Ability"); break;
-        case Status.Traits: Html.RenderAction("TraitsPage", "Trait"); break;
-        case Status.Skills: Html.RenderAction("SkillEdit", "Skill"); break;
-        case Status.Result: Html.RenderPartial("_Result", Model); break;
-    }
+    var status = (int)(Status)ViewBag.Status;
+    var urls = new string[Enum.GetValues(typeof(Status)).Length];
+    urls[(int) Status.Race] = Url.Action("Races", "BackStory");
+    urls[(int) Status.Branch] = Url.Action("Branches", "BackStory");
+    urls[(int)Status.Traits] = Url.Action("Traits", "BackStory");
+    urls[(int) Status.Abilities] = Url.Action("AbilityEdit", "Ability");
+    urls[(int) Status.Skills] = Url.Action("SkillEdit", "Skill");
+    urls[(int) Status.Result] = Url.Action("Result", "HeroGen");
 }
+
+@section scripts{<script>AjaxJs.load('@urls[status]');</script>}

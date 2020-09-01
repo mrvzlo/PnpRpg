@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
+using Pnprpg.Web.Enums;
 using Pnprpg.Web.Helpers;
 
 namespace Pnprpg.Web.Controllers
@@ -9,20 +9,18 @@ namespace Pnprpg.Web.Controllers
     {
         public HeroGenController(ICoreLogic coreLogic) : base(coreLogic) { }
 
-        public ActionResult Index(Status status = Status.Chaos)
+        public ActionResult Index(Status status = Status.Race)
         {
-            if (status == Status.Chaos && !User.IsInRole(UserRole.Master.ToString()))
-                status = Status.Stats;
             ViewBag.Status = status;
             return View(GetHeroFromCookies());
         }
 
-        public JsonResult GetHeroModel(ChaosLevel level)
+        public JsonResult GetHeroModel()
         {
-            var heroModel = CreateHero(level);
+            var heroModel = CreateHero();
             SaveHeroToCookies(heroModel);
             var partial = this.RenderPartialViewToString("_StatEdit", heroModel);
-            return ReturnJson(partial, GetUrl(Status.Stats));
+            return ReturnJson(partial, GetUrl(Status.Abilities));
         }
 
         public JsonResult Result()

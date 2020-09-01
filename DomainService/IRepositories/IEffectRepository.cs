@@ -2,5 +2,5 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IEffectRepository : IBaseRepository<Effect> { }
+    public interface IEffectRepository : IBaseRepository<TraitEffect> { }
 }

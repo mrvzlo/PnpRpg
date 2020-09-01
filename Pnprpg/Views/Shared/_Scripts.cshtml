@@ -1,3 +1,6 @@
 ﻿@Scripts.Render("~/js/core")
 @Scripts.Render("~/js/main")
-<script>$(function () { MainJs.init(); });</script>
+<script>$(function() {
+    MainJs.init('@Url.Content("~/Content/images/icons.svg")');
+    AjaxJs.init();
+});</script>

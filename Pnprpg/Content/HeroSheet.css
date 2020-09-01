@@ -15,6 +15,12 @@
     padding-right: 1%;
 }
 
+.pxt-4 {
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+}
+
 .pl-3 {
     padding-left: 13px;
 }
@@ -24,8 +30,13 @@
 }
 
 .bb {
-    border-bottom: 1px solid !important;
+    border-bottom: 1px solid;
     border-radius: 10px;
+}
+
+.bg {
+    border-bottom: 1px solid gray;
+    line-height: 32px;
 }
 
 .card {
@@ -85,4 +96,14 @@ body {
     margin: auto;
     margin-bottom: 10px;
     margin-top: -1px;
+}
+
+.card > div {
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 94%;
+}
+
+html {
+    line-height: 20px;
 }

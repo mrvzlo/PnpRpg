@@ -18,7 +18,7 @@ namespace Pnprpg.Web
                         "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/js/main").Include(
-                "~/Scripts/main.js"));
+                "~/Scripts/custom/main.js", "~/Scripts/custom/ajax.js"));
             
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/MvcGrid/mvc-grid.css",

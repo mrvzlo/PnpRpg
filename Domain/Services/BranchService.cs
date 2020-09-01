@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
+using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -13,13 +15,19 @@ namespace Pnprpg.Domain.Services
         private readonly IBranchRepository _branchRepository;
         private readonly IBonusService _bonusService;
 
-        public BranchService(IBranchRepository branchRepository)
+        public BranchService(IBranchRepository branchRepository, IBonusService bonusService)
         {
             _branchRepository = branchRepository;
+            _bonusService = bonusService;
         }
 
-        public IQueryable<BranchViewModel> GetAll() => 
-            _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig);
+        public IQueryable<BranchViewModel> GetAll() => _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig);
+
+        public BranchViewModel Get(int id)
+        {
+            var race = _branchRepository.Get(id);
+            return Mapper.Map<BranchViewModel>(race);
+        }
 
         public BranchEditModel GetForEdit(int? id)
         {
@@ -53,5 +61,34 @@ namespace Pnprpg.Domain.Services
 
             _bonusService.BatchSave(bonuses, branch.Id, BonusType.Branch);
         }
+
+        public ServiceResponse<HeroModel> Assign(HeroModel hero, int branchId, int pos)
+        {
+            var response = new ServiceResponse<HeroModel>();
+            var newBranch = Get(branchId);
+            var oldBranch = hero.Branches?.List.Skip(pos).FirstOrDefault();
+            var effects = SkillListToEffects(newBranch.Skills.ToList());
+            if (oldBranch != null)
+            {
+                oldBranch = Get(oldBranch.Id);
+                effects.AddRange(SkillListToEffects(oldBranch.Skills.ToList()));
+            }
+
+            hero.ApplyEffectList(effects);
+            if (oldBranch != null)
+                hero.Branches.List.Remove(oldBranch);
+            hero.Branches.List.Add(newBranch);
+            response.Object = hero;
+            return response;
+        }
+
+        private List<EffectDescModel> SkillListToEffects(List<SkillViewModel> skills) =>
+            skills.Select(x => new EffectDescModel
+            {
+                Target = x,
+                TargetType = EffectTarget.Skill,
+                TargetId = x.Id,
+                Value = 1
+            }).ToList();
     }
 }

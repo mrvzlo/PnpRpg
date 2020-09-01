@@ -16,12 +16,14 @@ namespace Pnprpg.Domain.Services
         private readonly IRaceRepository _raceRepository;
         private readonly IEffectService _effectService;
         private readonly IBonusService _bonusService;
+        private readonly IAbilityService _abilityService;
 
-        public RaceService(IRaceRepository raceRepository, IEffectService effectService, IBonusService bonusService)
+        public RaceService(IRaceRepository raceRepository, IEffectService effectService, IBonusService bonusService, IAbilityService abilityService)
         {
             _raceRepository = raceRepository;
             _effectService = effectService;
             _bonusService = bonusService;
+            _abilityService = abilityService;
         }
 
         public IQueryable<RaceViewModel> GetAll() =>
@@ -37,7 +39,7 @@ namespace Pnprpg.Domain.Services
         {
             var response = new ServiceResponse<HeroModel>();
             var newRace = GetRace(raceId);
-            var oldRace = GetRace(hero.Race.Id);
+            var oldRace = hero.Race != null ? GetRace(hero.Race.Id) : null;
 
             if (!hero.ApplyEffectList(GetRaceChangeEffects(oldRace, newRace)))
             {
@@ -52,8 +54,8 @@ namespace Pnprpg.Domain.Services
 
         public void Delete(int id)
         {
-            _effectService.ClearEffects(id, AssignableType.Race);
             _bonusService.BatchClear(id, BonusType.Race);
+            _abilityService.BatchClear(id);
             _raceRepository.Delete(id);
         }
 
@@ -73,8 +75,15 @@ namespace Pnprpg.Domain.Services
                 RaceId = model.Id,
                 BonusId = x
             }).AsQueryable();
-
             _bonusService.BatchSave(bonuses, race.Id, BonusType.Race);
+
+            var abilities = model.Abilities?.Select(x => new RaceAbility()
+            {
+                RaceId = model.Id,
+                AbilityId = x.Id,
+                Value = x.Value
+            }).AsQueryable();
+            _abilityService.BatchSave(abilities, race.Id);
         }
 
 
@@ -87,6 +96,10 @@ namespace Pnprpg.Domain.Services
 
         private List<EffectDescModel> GetRaceChangeEffects(RaceViewModel oldRace, RaceViewModel newRace)
         {
+            var effects = newRace.Effects;
+            if (oldRace == null) 
+                return effects;
+
             foreach (var effect in oldRace.Effects)
                 effect.Revert();
 

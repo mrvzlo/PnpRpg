@@ -1,13 +1,12 @@
-﻿@using Pnprpg.DomainService.Helpers
+﻿@using System.Configuration
 @{
-    ViewBag.Title = $"PnP RPG {Constants.Version}";
+    ViewBag.Title = $"PnP RPG {ConfigurationManager.AppSettings["Version"]}";
 }
     <div class="row justify-content-center text-center mx-lg-2 m-0">
         @Card(Url.Action("Index", "HeroGen"), "Создать персонажа", "generator.jpg", "Create a hero")
-        @*@Card(Url.Action("Index", "Room"), "Играть", "rooms.jpg", "rooms")*@
         @Card(Url.Action("Index", "Book"), "Книга правил", "rulebook.jpg", "Rule book", true)
-        @Card(Url.Action("HeroSheet", "Book"), "Лист персонажа", "sheet.jpg", "Hero sheet", true)
-        @Card(Url.Action("Skills", "Skill", "HeroGen"), "Навыки", "skills.png", "Skills")
+        @Card(Url.Action("HeroSheets", "Book"), "Листы персонажа", "sheet.jpg", "Hero sheet")
+        @Card(Url.Action("Skills", "Skill"), "Навыки", "skills.png", "Skills")
         @Card(Url.Action("Perks", "Home"), "Способности", "perks.jpg", "Perks")
         @Card(Url.Action("Index", "Magic"), "Школы магии", "schools.jpg", "Magic")
         @Card(Url.Action("Index", "Alchemy"), "Алхимия", "alchemy.jpg", "Alchemy")

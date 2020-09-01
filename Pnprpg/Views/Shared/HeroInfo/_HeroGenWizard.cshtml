@@ -1,0 +1,20 @@
+﻿@using Pnprpg.Web.Enums
+@model Pnprpg.Web.Enums.Status
+@{
+    var i = 0;
+    var list = (Status[])Enum.GetValues(typeof(Status));
+}
+<div class="col-12 my-3 d-flex justify-content-center">
+    @foreach (var x in list)
+    {
+        if (i > 0)
+        {
+            <div class="bg-@(x > Model ? "secondary" : "success") my-auto h-25">
+                &nbsp;<span class="d-sm-inline d-none px-3">&nbsp;</span>
+            </div>
+        }
+        <a class="circle btn btn-@(x > Model ? "secondary" : "success") font-weight-bold" href="@(x <= Model ? Url.Action("Index", "HeroGen", new {Status = x}) : "")">
+            @(++i)
+        </a>
+    }
+</div>

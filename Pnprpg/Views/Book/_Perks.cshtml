@@ -8,7 +8,7 @@
         <th>Ранги</th>
         <th class="w-50">Описание</th>
     </tr>
-    @foreach (var perk in Model)
+    @foreach (var perk in Model.OrderBy(x => x.Level))
     {
         <tr>
             <td class="text-center">@perk.Level</td>

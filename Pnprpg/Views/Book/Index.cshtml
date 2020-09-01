@@ -1,15 +1,21 @@
 ﻿@{
     @Styles.Render("~/Content/book")
     Layout = "~/Views/Shared/_LayoutIntro.cshtml";
+    @* ReSharper disable MarkupTextTypo *@
 }
-
 <style>
-    table{
+    html {
+        font-family: "Times New Roman"
+    }
+
+    table {
+        border-collapse: collapse;
         width: 100%;
     }
 
     h2, h3, h4, h5, h6 {
         margin: 1rem;
+        text-align: center;
     }
 
     h3 {
@@ -20,9 +26,8 @@
         font-size: 20px;
     }
 
-    .h1 {
-        font-size: 30px;
-        text-align: center;
+    h6 {
+        font-size: 18px;
     }
 
     .break {
@@ -31,10 +36,11 @@
 
     td, th {
         padding: 0 .5rem;
+        border: solid 1px;
+        text-align: center;
     }
 
     p {
-        text-align: justify;
         text-indent: 2rem;
     }
 
@@ -49,24 +55,78 @@
     .w-40 {
         width: 40%;
     }
+
+    a {
+        color: black;
+        display: block;
+        text-decoration: none;
+        width: 100%;
+        border-bottom: dashed 1px black;
+    }
+
+    .footer {
+        position: fixed;
+    }
 </style>
 
-<div class="h1 text-center">Книга базовых правил для настольных ролевых игр на основе системы GURPS</div>
+<div style="text-align: center; padding-top: 2rem;">
+    <div style="font-size: 2.4rem; font-weight: bold">
+        Система генерации настольных приключений
+        <br /><br />Книга игрока
+    </div>
+    <h3 style="padding-top: 2rem">Оглавление</h3>
+</div>
+
 <br />
-<h3>Персонаж</h3>
+<div style="font-size: 20px">
+    <a href="#b1">Расы <span style="float: right">2</span></a>
+    <a href="#b2">Классы <span style="float: right">4</span></a>
+</div>
+<div class="break"></div>
+
+<div style="text-align: center">
+    <div style="font-size: 2rem; font-weight: bold">Часть 1</div>
+    <h3>
+        Создание персонажа
+    </h3>
+</div>
 <p>
-    В настольной ролевой игре вы создаёте уникального персонажа со своими преимуществами и недостатками.
-    Помните, что это командная игра и некоторые навыки могут бесполезными или наоборот очень важными для команды в конкретный момент.
+    В настольной ролевой игре вы создаёте уникального персонажа со своими преимуществами и недостатками. История определяет его принципы и ориентиры,
+    а атрибуты - способности к решению определённых проблем. Данная система пред- назначена в первую очередь для командной игры, где игроки персонажей по очереди
+    проявляют себя в разных ситуациях. И там, где один бы не справился, ему приходит на помощь другой.
 </p>
-@{
-    Html.RenderAction("Abilities");
+<p>
+    Первым этапом создания персонажа явялется выбор его расы.
+</p>
+
+<div id="b1">
+    @{ Html.RenderAction("Races");}
     <div class="break"></div>
-    Html.RenderAction("Races");
+</div>
+
+<p>
+    Класс определяет призвание вашего персонажа и основыне навыки. Изначально он есть у каждого персонажа и определяет его роль на поле боя, поведение в разговорах, а также
+    возможные пути развития. Каждая раса по своему предрасположена к определённым классам, но не ограничивается ими. На высоких уровнях персонаж может также выбрать себе дополнительный
+    класс для развития.
+    <br /><b>Рекомендуемые ограничения:</b> каждым классом в качестве основного может обладать только 1 персонаж за столом
+</p>
+
+<div id="b2">
+    @{ //Html.RenderAction("Branches");
+    }
+    <div class="break"></div>
+</div>
+
+
+<div id="b4">
+    @{ Html.RenderAction("Abilities");}
+    <div class="break"></div>
+</div>
+
+@{
     Html.RenderAction("Traits");
     <div class="break"></div>
     Html.RenderAction("Skills");
-    <div class="break"></div>
-    Html.RenderAction("Perks");
     <div class="break"></div>
     Html.RenderAction("Spells");
     <div class="break"></div>

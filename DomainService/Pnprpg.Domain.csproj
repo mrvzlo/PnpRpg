@@ -74,6 +74,7 @@
     <Compile Include="Entities\ManyToMany\RaceBonus.cs" />
     <Compile Include="Entities\ManyToMany\BranchBonus.cs" />
     <Compile Include="Entities\ManyToMany\WeaponBonus.cs" />
+    <Compile Include="Entities\RaceAbility.cs" />
     <Compile Include="Enums\AbilityKey.cs" />
     <Compile Include="Enums\AlchemySymbolType.cs" />
     <Compile Include="Enums\AssignableType.cs" />
@@ -114,15 +115,19 @@
     <Compile Include="IServices\ISkillService.cs" />
     <Compile Include="IServices\IWeaponService.cs" />
     <Compile Include="IServices\IPerkService.cs" />
+    <Compile Include="Models\Abilities\AbilityAssignModel.cs" />
     <Compile Include="Models\Abilities\AbilityDescriptionModel.cs" />
     <Compile Include="Models\Abilities\AbilityModel.cs" />
     <Compile Include="Models\Alchemy\ReactionModel.cs" />
     <Compile Include="Models\Base\IBaseViewModel.cs" />
     <Compile Include="Models\Bonuses\BonusEditModel.cs" />
     <Compile Include="Models\Branch\BranchEditModel.cs" />
+    <Compile Include="Models\Branch\BranchGroup.cs" />
+    <Compile Include="Models\Branch\BranchShortModel.cs" />
     <Compile Include="Models\Common\AssignableWithEffects.cs" />
     <Compile Include="Models\Base\IBaseEditModel.cs" />
     <Compile Include="Models\Common\FormQueryItem.cs" />
+    <Compile Include="Models\Common\NumericFormQueryItem.cs" />
     <Compile Include="Models\Common\Selectable.cs" />
     <Compile Include="Models\Common\SelectableList.cs" />
     <Compile Include="Models\Abilities\HeroAbilityGroup.cs" />
@@ -139,7 +144,7 @@
     <Compile Include="Models\Alchemy\PotionModel.cs" />
     <Compile Include="Models\Magic\MagicSchoolModel.cs" />
     <Compile Include="IServices\IMagicService.cs" />
-    <Compile Include="Entities\Effect.cs" />
+    <Compile Include="Entities\TraitEffect.cs" />
     <Compile Include="Entities\MagicSchool.cs" />
     <Compile Include="Entities\Perk.cs" />
     <Compile Include="Entities\Potion.cs" />
@@ -148,7 +153,7 @@
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Models\Races\RaceViewModel.cs" />
     <Compile Include="Models\Common\UpgradeableGroup.cs" />
-    <Compile Include="Entities\SkillInfo.cs" />
+    <Compile Include="Entities\Skill.cs" />
     <Compile Include="Entities\Spell.cs" />
     <Compile Include="Entities\Ability.cs" />
     <Compile Include="Entities\AlchemySymbol.cs" />
@@ -156,7 +161,6 @@
     <Compile Include="Entities\Weapon.cs" />
     <Compile Include="Enums\ChaosLevel.cs" />
     <Compile Include="Enums\EffectTarget.cs" />
-    <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\FileNames.cs" />

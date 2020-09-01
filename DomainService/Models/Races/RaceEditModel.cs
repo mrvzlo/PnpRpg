@@ -10,5 +10,6 @@ namespace Pnprpg.DomainService.Models
         [AllowHtml]
         public string Description { get; set; }
         public List<int> Bonuses { get; set; }
+        public List<AbilityAssignModel> Abilities { get; set; }
     }
 }
