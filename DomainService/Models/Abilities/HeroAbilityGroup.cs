@@ -1,14 +1,15 @@
-﻿using Pnprpg.DomainService.Enums;
+﻿using System.Linq;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Helpers;
 
 namespace Pnprpg.DomainService.Models
 {
     public class HeroAbilityGroup : UpgradeableGroup<AbilityModel>
     {
-        public HeroAbilityGroup()
-        {
-            Limit = Constants.BaseHeroAbilityLevelSum;
-        }
+        public HeroAbilityGroup() { }
+
+        public void SetLimit() => 
+            Limit = Constants.BaseAbilityPoints + List.Select(x => x.Min).Sum();
 
         public void Setup(Company chaos)
         {

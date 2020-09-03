@@ -1,15 +1,15 @@
-﻿@using Pnprpg.Web.Enums
+﻿@using Pnprpg.DomainService.Enums
 @model Pnprpg.DomainService.Models.HeroModel
 @{
     ViewBag.Title = "Генератор персонажа";
-    var status = (int)(Status)ViewBag.Status;
-    var urls = new string[Enum.GetValues(typeof(Status)).Length];
-    urls[(int) Status.Race] = Url.Action("Races", "BackStory");
-    urls[(int) Status.Branch] = Url.Action("Branches", "BackStory");
-    urls[(int)Status.Traits] = Url.Action("Traits", "BackStory");
-    urls[(int) Status.Abilities] = Url.Action("AbilityEdit", "Ability");
-    urls[(int) Status.Skills] = Url.Action("SkillEdit", "Skill");
-    urls[(int) Status.Result] = Url.Action("Result", "HeroGen");
+    var urls = new string[Enum.GetValues(typeof(HeroGenStatus)).Length];
+    urls[(int) HeroGenStatus.Race] = Url.Action("Races", "BackStory");
+    urls[(int) HeroGenStatus.Branch] = Url.Action("Branches", "BackStory");
+    urls[(int) HeroGenStatus.Traits] = Url.Action("Traits", "BackStory");
+    urls[(int) HeroGenStatus.Abilities] = Url.Action("AbilityEdit", "Ability");
+    urls[(int) HeroGenStatus.Result] = Url.Action("Result", "HeroGen");
 }
 
-@section scripts{<script>AjaxJs.load('@urls[status]');</script>}
+<div class="text-center spinner-border"></div>
+
+@section scripts{<script>AjaxJs.load('@urls[(int)ViewBag.Status]');</script>}

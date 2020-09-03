@@ -402,7 +402,6 @@
     <Compile Include="Controllers\BaseGenController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\MagicController.cs" />
-    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\AbilityController.cs" />
     <Compile Include="Controllers\BackStoryController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -412,7 +411,6 @@
     <Compile Include="Controllers\HeroGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\CookieType.cs" />
-    <Compile Include="Enums\Status.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -635,13 +633,12 @@
     <Content Include="Views\Editor\Races.cshtml" />
     <Content Include="Views\Editor\Grids\_RacesGrid.cshtml" />
     <Content Include="Views\Editor\Edit\EditRace.cshtml" />
-    <Content Include="Views\Editor\Edit\_EffectForm.cshtml" />
     <Content Include="Views\Editor\Branches.cshtml" />
     <Content Include="Views\Editor\Bonuses.cshtml" />
     <Content Include="Views\Editor\Grids\_BranchesGrid.cshtml" />
     <Content Include="Views\Editor\Edit\_AbilitySelect.cshtml" />
     <Content Include="Views\BackStory\_Branches.cshtml" />
-    <Content Include="Views\Shared\HeroInfo\_HeroGenWizard.cshtml" />
+    <Content Include="Views\HeroGen\_Wizard.cshtml" />
     <Content Include="Views\Book\_Branches.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -673,15 +670,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\custom\main.js" />
     <Content Include="Views\Shared\HeroInfo\_Stats.cshtml" />
-    <Content Include="Views\Skill\Skills.cshtml" />
     <Content Include="Views\HeroGen\_Result.cshtml" />
     <Content Include="Views\Shared\HeroInfo\_Abilities.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\_SignUp.cshtml" />
     <Content Include="Views\BackStory\_Races.cshtml" />
     <Content Include="Views\HeroGen\MyHero.cshtml" />
-    <Content Include="Views\Skill\_SkillList.cshtml" />
-    <Content Include="Views\Skill\_SkillEdit.cshtml" />
     <Content Include="Views\BackStory\_Traits.cshtml" />
     <Content Include="Views\Alchemy\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -697,7 +691,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HeroGen\Index.cshtml" />
-    <Content Include="Views\Shared\HeroInfo\_AbilityEdit.cshtml" />
+    <Content Include="Views\Ability\_AbilityEdit.cshtml" />
     <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
     <Content Include="Views\Magic\Index.cshtml" />
@@ -746,7 +740,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\MvcGrid\Fonts\" />
-    <Folder Include="Views\Ability\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,9 +7,9 @@ namespace Pnprpg.DomainService.Models
     {
         public List<TraitModel> List;
 
-        public TraitGroup() => ResetTraits();
+        public TraitGroup() => Reset();
 
-        public void ResetTraits() => List = new List<TraitModel>();
+        public void Reset() => List = new List<TraitModel>();
 
         public bool IsAssignable(TraitModel model)
         {

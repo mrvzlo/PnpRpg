@@ -14,14 +14,12 @@ namespace Pnprpg.Domain.Services
     public class RaceService : BaseService, IRaceService
     {
         private readonly IRaceRepository _raceRepository;
-        private readonly IEffectService _effectService;
         private readonly IBonusService _bonusService;
         private readonly IAbilityService _abilityService;
 
-        public RaceService(IRaceRepository raceRepository, IEffectService effectService, IBonusService bonusService, IAbilityService abilityService)
+        public RaceService(IRaceRepository raceRepository, IBonusService bonusService, IAbilityService abilityService)
         {
             _raceRepository = raceRepository;
-            _effectService = effectService;
             _bonusService = bonusService;
             _abilityService = abilityService;
         }
@@ -41,7 +39,7 @@ namespace Pnprpg.Domain.Services
             var newRace = GetRace(raceId);
             var oldRace = hero.Race != null ? GetRace(hero.Race.Id) : null;
 
-            if (!hero.ApplyEffectList(GetRaceChangeEffects(oldRace, newRace)))
+            if (!hero.ApplyModifiers(GetRaceChangeEffects(oldRace, newRace)))
             {
                 response.AddError(GenerationError.AbilitiesError.Description());
                 return response;
@@ -85,25 +83,23 @@ namespace Pnprpg.Domain.Services
             }).AsQueryable();
             _abilityService.BatchSave(abilities, race.Id);
         }
-
-
+        
         private RaceViewModel GetRace(int id)
         {
             var race = _raceRepository.Get(id);
-            var model = Mapper.Map<RaceViewModel>(race);
-            return _effectService.AssignEffects(model);
+            return Mapper.Map<RaceViewModel>(race);
         }
 
-        private List<EffectDescModel> GetRaceChangeEffects(RaceViewModel oldRace, RaceViewModel newRace)
+        private List<AbilityModifier> GetRaceChangeEffects(RaceViewModel oldRace, RaceViewModel newRace)
         {
-            var effects = newRace.Effects;
+            var modifiers = newRace.Modifiers;
             if (oldRace == null) 
-                return effects;
+                return modifiers;
 
-            foreach (var effect in oldRace.Effects)
-                effect.Revert();
+            foreach (var x in oldRace.Modifiers)
+                x.Revert();
 
-            return newRace.Effects.Concat(oldRace.Effects).ToList();
+            return modifiers.Concat(oldRace.Modifiers).ToList();
         }
     }
 }

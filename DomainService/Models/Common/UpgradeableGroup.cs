@@ -18,11 +18,13 @@ namespace Pnprpg.DomainService.Models
 
         public int TotalSpentPoints() => List.Sum(x => x.SpentPoints());
 
+        public int FreePoints() => Limit - TotalSpentPoints();
+
         public bool IsUpdateable(T target, int modifier = 1) =>
             target.FitsLimits(modifier) && FitsLimit(target, modifier);
 
         protected virtual bool FitsLimit(T target, int modifier) => 
-            (modifier + TotalSpentPoints()).Fits(Limit);
+            (modifier * target.Difficulty + TotalSpentPoints()).Fits(Limit);
 
         public bool Update(int id, int modifier = 1, bool manual = true)
         {

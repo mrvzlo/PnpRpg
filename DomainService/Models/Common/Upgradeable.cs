@@ -4,9 +4,17 @@ namespace Pnprpg.DomainService.Models
 {
     public abstract class Upgradeable : Assignable
     {
+        public int Difficulty { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
-        public virtual int SpentPoints() => Level;
+
+        public Upgradeable()
+        {
+            if (Difficulty == 0)
+                Difficulty++;
+        }
+
+        public virtual int SpentPoints() => Level * Difficulty;
 
         public virtual bool FitsLimits(int modifier) => (modifier + Level).Fits(Max, Min);
 
@@ -16,11 +24,8 @@ namespace Pnprpg.DomainService.Models
                 return false;
 
             Level += modifier;
-            if (!manual)
-            {
-                Min += modifier;
-                Max += modifier;
-            }
+            if (!manual) 
+                AdjustBase(modifier);
 
             return true;
         }

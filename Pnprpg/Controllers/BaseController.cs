@@ -12,8 +12,8 @@ namespace Pnprpg.Web.Controllers
 {
     public class BaseController : Controller
     {
-        protected JsonResult ReturnJson(string partial = null, string url = null, string status = null) =>
-            Json(new { url, partial, status }, 0);
+        protected JsonResult ReturnJson(string partial = null, string status = null) =>
+            Json(new { partial, status }, JsonRequestBehavior.AllowGet);
 
         protected void SaveCookie(CookieType t, string data) =>
             Response.Cookies.Add(CreateCookie(t.ToString().ToLower(), data));

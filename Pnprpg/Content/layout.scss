@@ -34,3 +34,31 @@ footer {
 .border-big{
     border: solid 3px;
 }
+
+.card-footer:hover{
+    background-color: $gray-700;
+    a{
+        color: white;
+    }
+}
+
+.dropdown-menu {
+    a:hover {
+        background-color: $gray-700;
+    }
+}
+
+.dropdown-light {
+    a {
+        color: black;
+        background-color: $gray-100;
+
+        &:hover, &:active {
+            color: black;
+            background-color: $gray-400;
+        }
+    }
+}
+.separate:not(:last-child)::after{
+    content: ", ";
+}

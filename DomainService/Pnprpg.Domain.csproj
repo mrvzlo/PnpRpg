@@ -79,7 +79,9 @@
     <Compile Include="Enums\AlchemySymbolType.cs" />
     <Compile Include="Enums\AssignableType.cs" />
     <Compile Include="Enums\BonusType.cs" />
+    <Compile Include="Enums\EffectType.cs" />
     <Compile Include="Enums\GenerationError.cs" />
+    <Compile Include="Enums\HeroGenStatus.cs" />
     <Compile Include="Enums\PotionType.cs" />
     <Compile Include="Enums\SkillType.cs" />
     <Compile Include="Helpers\Int32Extension.cs" />
@@ -108,7 +110,6 @@
     <Compile Include="IServices\ICoreLogic.cs" />
     <Compile Include="IServices\Base\IViewService.cs" />
     <Compile Include="IServices\Base\IEditService.cs" />
-    <Compile Include="IServices\IEffectService.cs" />
     <Compile Include="IServices\IBranchService.cs" />
     <Compile Include="IServices\ITraitService.cs" />
     <Compile Include="IServices\IRaceService.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Models\Abilities\AbilityAssignModel.cs" />
     <Compile Include="Models\Abilities\AbilityDescriptionModel.cs" />
     <Compile Include="Models\Abilities\AbilityModel.cs" />
+    <Compile Include="Models\Abilities\AbilityModifier.cs" />
     <Compile Include="Models\Alchemy\ReactionModel.cs" />
     <Compile Include="Models\Base\IBaseViewModel.cs" />
     <Compile Include="Models\Bonuses\BonusEditModel.cs" />
@@ -139,7 +141,7 @@
     <Compile Include="Models\Bonuses\BonusViewModel.cs" />
     <Compile Include="Models\Common\Assignable.cs" />
     <Compile Include="Models\Common\Upgradeable.cs" />
-    <Compile Include="Models\Effects\EffectDescModel.cs" />
+    <Compile Include="Models\Traits\TraitEffectDescModel.cs" />
     <Compile Include="Models\Magic\SpellModel.cs" />
     <Compile Include="Models\Alchemy\PotionModel.cs" />
     <Compile Include="Models\Magic\MagicSchoolModel.cs" />

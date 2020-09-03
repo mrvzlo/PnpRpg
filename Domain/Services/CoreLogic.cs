@@ -30,6 +30,7 @@ namespace Pnprpg.Domain.Services
             var abilities = _abilityService.GetAll<AbilityModel>();
             hero.Abilities.List = abilities.ToList();
             hero.Abilities.Setup(chaos);
+            hero.MaxStatus = 0;
             return hero;
         }
 

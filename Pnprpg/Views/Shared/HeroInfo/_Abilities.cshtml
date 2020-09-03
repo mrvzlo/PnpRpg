@@ -1,5 +1,6 @@
 ﻿@using System.Web.Mvc.Html
-@model Pnprpg.DomainService.Models.UpgradeableGroup<Pnprpg.DomainService.Models.AbilityModel>
+@using Pnprpg.DomainService.Models
+@model UpgradeableGroup<AbilityModel>
 @foreach(var ability in Model.List)
 {
     <div class="col-md-3 col-6">

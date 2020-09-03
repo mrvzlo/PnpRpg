@@ -91,7 +91,7 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult Traits()
         {
-            var list = _traitService.GetAll();
+            var list = _traitService.GetAll().ToList();
             return PartialView("_Traits", list);
         }
 

@@ -1,11 +1,17 @@
 ﻿using System.Collections.Generic;
-using Pnprpg.DomainService.Entities;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class RaceViewModel : AssignableWithEffects, IBaseViewModel
+    public class RaceViewModel : Assignable, IBaseViewModel
     {
         public string Description { get; set; }
-        public virtual ICollection<BonusViewModel> Bonuses { get; set; }
+        public List<BonusViewModel> Bonuses { get; set; }
+        public List<AbilityModifier> Modifiers { get; set; }
+
+        public void Trim()
+        {
+            Bonuses = null;
+            Modifiers = null;
+        }
     }
 }

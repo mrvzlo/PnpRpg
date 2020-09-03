@@ -19,7 +19,8 @@ namespace Pnprpg.Domain.Profiles
 
             CreateMap<Race, RaceViewModel>()
                 .ForMember(dest => dest.Bonuses, opts =>
-                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
+                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); })
+                .ForMember(dest => dest.Modifiers, opts => { opts.MapFrom(from => from.Abilities); });
             CreateMap<Race, RaceEditModel>()
                 .ForMember(dest => dest.Bonuses, opts =>
                     { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
@@ -30,12 +31,15 @@ namespace Pnprpg.Domain.Profiles
             CreateMap<Ability, AbilityModel>();
             CreateMap<Ability, AbilityDescriptionModel>();
             CreateMap<Ability, AbilityAssignModel>();
+
             CreateMap<RaceAbility, AbilityAssignModel>()
                 .ForMember(dest => dest.Id, opts => { opts.MapFrom(from => from.AbilityId);});
+            CreateMap<RaceAbility, AbilityModifier>()
+                .ForMember(dest => dest.Modifier, opts => { opts.MapFrom(from => from.Value);});
 
             CreateMap<Trait, TraitModel>();
 
-            CreateMap<TraitEffect, EffectDescModel> ();
+            CreateMap<TraitEffect, TraitEffectDescModel> ();
         }
     }
 }

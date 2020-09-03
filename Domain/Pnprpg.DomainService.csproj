@@ -87,7 +87,6 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\BonusService.cs" />
     <Compile Include="Services\CoreLogic.cs" />
-    <Compile Include="Services\EffectService.cs" />
     <Compile Include="Services\Encoder.cs" />
     <Compile Include="Services\MagicService.cs" />
     <Compile Include="Services\PerkService.cs" />

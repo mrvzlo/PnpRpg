@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Pnprpg.DomainService.Enums;
 
 namespace Pnprpg.DomainService.Models
 {
@@ -9,8 +11,17 @@ namespace Pnprpg.DomainService.Models
         public string Color { get; set; }
         public string Description { get; set; }
 
-        public ICollection<BonusViewModel> Bonuses { get; set; }
-        public ICollection<SkillViewModel> Skills { get; set; }
-        public ICollection<PerkViewModel> Perks { get; set; }
+        public List<BonusViewModel> Bonuses { get; set; }
+        public List<SkillViewModel> Skills { get; set; }
+        public List<PerkViewModel> Perks { get; set; }
+
+        public int SpellCount() => Skills.Count(x => x.Type == SkillType.Magic);
+
+        public void Trim()
+        {
+            Bonuses = null;
+            Skills = null;
+            Perks = null;
+        }
     }
 }

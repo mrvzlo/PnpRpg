@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.Web.Enums;
@@ -23,7 +24,7 @@ namespace Pnprpg.Web.Controllers
         public JsonResult Races()
         {
             var races = _raceService.GetAll();
-            return ReturnJson(this.RenderPartialViewToString("_Races", races), GetUrl(Status.Race));
+            return ReturnJson(this.RenderPartialViewToString("_Races", races));
         }
 
         public JsonResult PickRace(int id)
@@ -34,10 +35,11 @@ namespace Pnprpg.Web.Controllers
             {
                 var statusMessage = this.RenderPartialViewToString("_Status", new StatusResult(false, "Ошибка, некорректные атрибуты"));
                 var partial = this.RenderPartialViewToString("_Races", hero);
-                return ReturnJson(partial, GetUrl(Status.Race), statusMessage);
+                return ReturnJson(partial, statusMessage);
             }
 
             hero = response.Object;
+            hero.SetStatus(HeroGenStatus.Branch);
             SaveHeroToCookies(hero);
             return Branches();
         }
@@ -45,31 +47,30 @@ namespace Pnprpg.Web.Controllers
         public JsonResult Branches()
         {
             var query = _branchService.GetAll();
-            return ReturnJson(this.RenderPartialViewToString("_Branches", query), GetUrl(Status.Branch));
+            return ReturnJson(this.RenderPartialViewToString("_Branches", query));
         }
 
         public JsonResult PickBranch(int id)
         {
             var hero = GetHeroFromCookies();
             var response = _branchService.Assign(hero, id, 0);
-            string partial;
             if (!response.Successful())
             {
                 var statusMessage = this.RenderPartialViewToString("_Status", new StatusResult(false, "Ошибка, некорректные атрибуты"));
-                partial = this.RenderPartialViewToString("_Branches", hero);
-                return ReturnJson(partial, GetUrl(Status.Branch), statusMessage);
+                var partial = this.RenderPartialViewToString("_Branches", hero);
+                return ReturnJson(partial, statusMessage);
             }
 
             hero = response.Object;
+            hero.SetStatus(HeroGenStatus.Traits);
             SaveHeroToCookies(hero);
-            partial = this.RenderPartialViewToString("HeroInfo/_AbilityEdit", hero);
-            return ReturnJson(partial, GetUrl(Status.Branch));
+            return Traits();
         }
 
         public JsonResult Traits()
         {
             var hero = GetHeroFromCookies();
-            return ReturnJson(GetTraitsPartial(hero), GetUrl(Status.Traits));
+            return ReturnJson(GetTraitsPartial(hero));
         }
 
         public JsonResult ChooseTrait(int id)
@@ -79,12 +80,13 @@ namespace Pnprpg.Web.Controllers
             if (response.Successful())
             {
                 hero = response.Object;
+                hero.SetStatus(HeroGenStatus.Abilities);
                 SaveHeroToCookies(hero);
-                return ReturnJson(GetTraitsPartial(hero), GetUrl(Status.Traits));
+                return ReturnJson(GetTraitsPartial(hero));
             }
 
             var status = this.RenderPartialViewToString("_Status", new StatusResult(false, "Ошибка, некорректные атрибуты"));
-            return ReturnJson(GetTraitsPartial(hero), GetUrl(Status.Traits), status);
+            return ReturnJson(GetTraitsPartial(hero), status);
         }
 
         public JsonResult ResetTraits()
@@ -92,7 +94,7 @@ namespace Pnprpg.Web.Controllers
             var hero = GetHeroFromCookies();
             hero = _traitService.ResetTraitsForHero(hero).Object;
             SaveHeroToCookies(hero);
-            return ReturnJson(GetTraitsPartial(hero), GetUrl(Status.Traits));
+            return ReturnJson(GetTraitsPartial(hero));
         }
 
         private string GetTraitsPartial(HeroModel hero)

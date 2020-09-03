@@ -1,19 +1,18 @@
 ﻿@using Pnprpg.DomainService.Enums
 @model Pnprpg.DomainService.Models.HeroModel
-@SecondStat("Уровень", "111", Model.Level)
 @SecondStat("Урон", Model.Abilities.Get((int)AbilityKey.S).Color, Model.BaseDmg())
 @SecondStat("Защита", Model.Abilities.Get((int)AbilityKey.E).Color, Model.BaseArmor())
 @SecondStat("Здоровье", Model.Abilities.Get((int)AbilityKey.E).Color, Model.MaxHp())
 @SecondStat("Запас маны", Model.Abilities.Get((int)AbilityKey.I).Color, Model.MaxMp())
 @SecondStat("Вместимость", Model.Abilities.Get((int)AbilityKey.S).Color, Model.MaxCarry())
+@SecondStat("Запас сил", Model.Abilities.Get((int)AbilityKey.A).Color, Model.MaxAp())
+@SecondStat("Восприятие", Model.Abilities.Get((int)AbilityKey.I).Color, Model.Perception())
 
 @helper SecondStat(string name, string color, int value)
 {
-    <div class="col-xl-2 col-md-4 col-6">
-        <div class="row border">
-            <div class="col py-2 px-sm-3 text-light" style="background-color: #@color">
-                @name<span class="float-right font-weight-bold badge bg-light big-badge" style="color: #@color">@value</span>
-            </div>
+    <div class="col-md-3 col-6 p-0 border">
+        <div class="py-2 px-3 text-light" style="background-color: #@color">
+            @name<span class="float-right font-weight-bold badge bg-light big-badge" style="color: #@color">@value</span>
         </div>
     </div>
 }

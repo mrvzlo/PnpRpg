@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
-using Pnprpg.Web.Enums;
 using Pnprpg.Web.Helpers;
 
 namespace Pnprpg.Web.Controllers
@@ -9,24 +9,31 @@ namespace Pnprpg.Web.Controllers
     {
         public HeroGenController(ICoreLogic coreLogic) : base(coreLogic) { }
 
-        public ActionResult Index(Status status = Status.Race)
+        public ActionResult Index(HeroGenStatus status = HeroGenStatus.Race)
         {
+            var hero = GetHeroFromCookies();
             ViewBag.Status = status;
-            return View(GetHeroFromCookies());
-        }
-
-        public JsonResult GetHeroModel()
-        {
-            var heroModel = CreateHero();
-            SaveHeroToCookies(heroModel);
-            var partial = this.RenderPartialViewToString("_StatEdit", heroModel);
-            return ReturnJson(partial, GetUrl(Status.Abilities));
+            return View(hero);
         }
 
         public JsonResult Result()
         {
-            var partial = this.RenderPartialViewToString("_Result", GetHeroFromCookies());
-            return ReturnJson(partial, GetUrl(Status.Result));
+            var hero = GetHeroFromCookies();
+            if (hero.MaxStatus != HeroGenStatus.Result)
+            {
+                hero.SetStatus(HeroGenStatus.Result);
+                SaveHeroToCookies(hero);
+            }
+
+            var partial = this.RenderPartialViewToString("_HeroInfo", hero);
+            return ReturnJson(partial);
+        }
+
+        public PartialViewResult Wizard(HeroGenStatus status)
+        {
+            var hero = GetHeroFromCookies();
+            ViewBag.Current = status;
+            return PartialView("_Wizard", hero.MaxStatus);
         }
 
         [Authorize]

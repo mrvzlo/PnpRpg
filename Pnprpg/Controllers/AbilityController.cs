@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
+using Pnprpg.Web.Enums;
 using Pnprpg.Web.Helpers;
 
 namespace Pnprpg.Web.Controllers
@@ -14,16 +15,11 @@ namespace Pnprpg.Web.Controllers
             _abilityService = abilityService;
         }
         
-        public PartialViewResult Abilities()
+        public JsonResult AbilityEdit()
         {
             var hero = GetHeroFromCookies();
-            return PartialView("HeroInfo/_Abilities", hero.Abilities);
-        }
-
-        public PartialViewResult AbilityEdit()
-        {
-            var hero = GetHeroFromCookies();
-            return PartialView("HeroInfo/_AbilityEdit", hero);
+            var partial = this.RenderPartialViewToString("_AbilityEdit", hero);
+            return ReturnJson(partial);
         }
 
         public JsonResult UpdateAbility(int abilityId, int value)
@@ -36,8 +32,8 @@ namespace Pnprpg.Web.Controllers
                 SaveHeroToCookies(hero);
             }
 
-            var partial = this.RenderPartialViewToString("HeroInfo/_AbilityEdit", hero);
-            return Json(new {partial}, JsonRequestBehavior.AllowGet);
+            var partial = this.RenderPartialViewToString("_AbilityEdit", hero);
+            return ReturnJson(partial);
         }
     }
 }

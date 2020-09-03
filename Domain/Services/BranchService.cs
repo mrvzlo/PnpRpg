@@ -71,24 +71,24 @@ namespace Pnprpg.Domain.Services
             if (oldBranch != null)
             {
                 oldBranch = Get(oldBranch.Id);
-                effects.AddRange(SkillListToEffects(oldBranch.Skills.ToList()));
+                effects.AddRange(SkillListToEffects(oldBranch.Skills.ToList(), true));
             }
 
-            hero.ApplyEffectList(effects);
+            hero.ApplyEffectList(effects, false);
             if (oldBranch != null)
-                hero.Branches.List.Remove(oldBranch);
+                hero.Branches.List.RemoveAt(pos);
             hero.Branches.List.Add(newBranch);
             response.Object = hero;
             return response;
         }
 
-        private List<EffectDescModel> SkillListToEffects(List<SkillViewModel> skills) =>
-            skills.Select(x => new EffectDescModel
+        private List<TraitEffectDescModel> SkillListToEffects(List<SkillViewModel> skills, bool revert = false) =>
+            skills.Select(x => new TraitEffectDescModel
             {
-                Target = x,
+                Skill = x,
                 TargetType = EffectTarget.Skill,
                 TargetId = x.Id,
-                Value = 1
+                Value = revert ? -1 : 1
             }).ToList();
     }
 }

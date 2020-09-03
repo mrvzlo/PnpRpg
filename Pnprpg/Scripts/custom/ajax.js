@@ -17,7 +17,6 @@
         var id = caller.data("container");
         if (!id) id = "main";
         var url = caller.data("url");
-        console.log(caller);
         var style = caller.data("style");
         if (include) {
             if (url.includes('?'))
@@ -35,8 +34,6 @@
             htmlInsert(style, data.partial, id);
             if (data.status)
                 $("#status").html(data.status);
-            if (data.url)
-                window.history.pushState("object or string", "Title", data.url);
             MainJs.updateScripts();
         });
     }

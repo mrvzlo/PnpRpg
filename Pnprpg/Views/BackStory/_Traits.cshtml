@@ -1,7 +1,7 @@
-﻿@using Pnprpg.DomainService.Helpers
-@using Pnprpg.Web.Enums
+﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.DomainService.Helpers
 @model Pnprpg.DomainService.Models.TraitGroup
-@{ Html.RenderPartial("HeroInfo/_HeroGenWizard", Status.Traits);}
+@{ Html.RenderAction("Wizard", "HeroGen", new { status = HeroGenStatus.Traits });}
 <div class="h4 col-12">Выберите до @Constants.MaxTraitCount особенностей</div>
 <div id="status" class="w-100"></div>
 @foreach (var trait in Model.List)
@@ -26,11 +26,11 @@
             @foreach (var effect in trait.Effects)
             {
                 var span = "<span class='badge alert-{0}'>{1}</span>";
-                if (effect.Value > 0)
+                if (effect.Type == EffectType.Positive)
                 {
                     span = string.Format(span, "success", $"+{effect.Value}");
                 }
-                else if (effect.Value < 0)
+                else if (effect.Type == EffectType.Negative)
                 {
                     span = string.Format(span, "danger", effect.Value);
                 }
@@ -48,7 +48,8 @@
 <div class="col-12">
     <button class="btn btn-primary mw-260 m-1 ajax-btn" data-url="@Url.Action("ResetTraits", "BackStory")">
         ↺ Перераспределить
-    </button><button class="btn btn-success mw-260 m-1 ajax-btn" data-url="@Url.Action("SkillEditJson", "Skill")">
+    </button>
+    <button class="btn btn-success mw-260 m-1 ajax-btn" data-url="@Url.Action("AbilityEdit", "Ability")">
         ✓ Сохранить
     </button>
 </div>

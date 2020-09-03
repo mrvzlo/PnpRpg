@@ -1,6 +1,6 @@
 ﻿@model Pnprpg.DomainService.Models.RegistrationModel
 @using (Ajax.BeginForm("SignUp", "Account", null,
-    new AjaxOptions { UpdateTargetId = "_SignUp", HttpMethod = "POST", OnSuccess = "MainJs.formRedirect" },
+    new AjaxOptions { UpdateTargetId = "_SignUp", HttpMethod = "POST", OnSuccess = "AjaxJs.formRedirect" },
     new { id = "formSignUp" }))
 {
     @Html.AntiForgeryToken()

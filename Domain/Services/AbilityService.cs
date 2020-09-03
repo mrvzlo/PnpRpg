@@ -24,7 +24,7 @@ namespace Pnprpg.Domain.Services
         public ServiceResponse<HeroModel> UpgradeAbility(HeroModel hero, int ability, int value)
         {
             var response = new ServiceResponse<HeroModel>();
-            var success= hero.Abilities.Update(ability, value);
+            var success = hero.Abilities.Update(ability, value);
             if (!success)
                 response.AddError(GenerationError.AbilitiesError.Description());
             response.Object = hero;

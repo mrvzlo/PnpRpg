@@ -3145,7 +3145,7 @@ progress {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem; }
+  border-radius: 2rem; }
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
@@ -3154,12 +3154,12 @@ progress {
     border-bottom: inherit; }
     .card > .list-group:first-child {
       border-top-width: 0;
-      border-top-left-radius: calc(0.25rem - 1px);
-      border-top-right-radius: calc(0.25rem - 1px); }
+      border-top-left-radius: calc(2rem - 1px);
+      border-top-right-radius: calc(2rem - 1px); }
     .card > .list-group:last-child {
       border-bottom-width: 0;
-      border-bottom-right-radius: calc(0.25rem - 1px);
-      border-bottom-left-radius: calc(0.25rem - 1px); }
+      border-bottom-right-radius: calc(2rem - 1px);
+      border-bottom-left-radius: calc(2rem - 1px); }
   .card > .card-header + .list-group,
   .card > .list-group + .card-footer {
     border-top: 0; }
@@ -3190,14 +3190,14 @@ progress {
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
   .card-header:first-child {
-    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
+    border-radius: calc(2rem - 1px) calc(2rem - 1px) 0 0; }
 
 .card-footer {
   padding: 0.5rem 1rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125); }
   .card-footer:last-child {
-    border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px); }
+    border-radius: 0 0 calc(2rem - 1px) calc(2rem - 1px); }
 
 .card-header-tabs {
   margin-right: -0.5rem;
@@ -3216,7 +3216,7 @@ progress {
   bottom: 0;
   left: 0;
   padding: 1rem;
-  border-radius: calc(0.25rem - 1px); }
+  border-radius: calc(2rem - 1px); }
 
 .card-img,
 .card-img-top,
@@ -3225,13 +3225,13 @@ progress {
 
 .card-img,
 .card-img-top {
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px); }
+  border-top-left-radius: calc(2rem - 1px);
+  border-top-right-radius: calc(2rem - 1px); }
 
 .card-img,
 .card-img-bottom {
-  border-bottom-right-radius: calc(0.25rem - 1px);
-  border-bottom-left-radius: calc(0.25rem - 1px); }
+  border-bottom-right-radius: calc(2rem - 1px);
+  border-bottom-left-radius: calc(2rem - 1px); }
 
 .card-group > .card {
   margin-bottom: 0.75rem; }
@@ -7208,6 +7208,24 @@ footer {
 
 .border-big {
   border: solid 3px; }
+
+.card-footer:hover {
+  background-color: #495057; }
+  .card-footer:hover a {
+    color: white; }
+
+.dropdown-menu a:hover {
+  background-color: #495057; }
+
+.dropdown-light a {
+  color: black;
+  background-color: #f8f9fa; }
+  .dropdown-light a:hover, .dropdown-light a:active {
+    color: black;
+    background-color: #ced4da; }
+
+.separate:not(:last-child)::after {
+  content: ", "; }
 
 .lds-dual-ring {
   display: inline-block;

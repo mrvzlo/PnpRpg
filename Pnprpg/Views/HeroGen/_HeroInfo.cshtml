@@ -1,36 +1,35 @@
 ﻿@using System.Web.Mvc.Html
+@using Pnprpg.DomainService.Enums
 @model Pnprpg.DomainService.Models.HeroModel
+@{ Html.RenderAction("Wizard", "HeroGen", new {status = HeroGenStatus.Result});}
 <div class="col-12 h4 my-2">
-    @($"{Model.Race.Name} {Model.Name}")
+    @($"{Model.Race.Name} {string.Join(", ", Model.Branches.List.Select(x => x.Name))} {Model.Name}")
 </div>
 @{
     Html.RenderPartial("HeroInfo/_Abilities", Model.Abilities);
     Html.RenderPartial("HeroInfo/_Stats", Model);
 }
-<div class="col-md-6 col-12 card">
-    <div class="h5 card-header">Особенности</div>
-    <div class="card-body">
-        <ul>
-            @foreach (var trait in Model.Traits.List)
-            {
-                <li>@trait.Name</li>
-            }
-        </ul>
+<div class="col-12"></div>
+<div class="col-lg-4 col-sm-6 col-12 card rounded-0">
+    <div class="h5 card-header rounded-0 bg-dark text-light">Особенности</div>
+    <div class="card-body py-1">
+        @foreach (var trait in Model.Traits.List)
+        {
+            <div>@trait.Name</div>
+        }
         @if (!Model.Traits.List.Any())
         {
             <div class="font-italic">Нет</div>
         }
     </div>
 </div>
-<div class="col-md-6 col-12 card">
-    <div class="h5 card-header">Навыки</div>
-    <div class="card-body">
-        <ul>
-            @foreach (var s in Model.Skills.List)
-            {
-                <li>@s</li>
-            }
-        </ul>
+<div class="col-lg-4 col-sm-6 col-12 card rounded-0">
+    <div class="h5 card-header rounded-0 bg-dark text-light">Навыки</div>
+    <div class="card-body py-1">
+        @foreach (var s in Model.Skills.List)
+        {
+            <div>@s</div>
+        }
         @if (!Model.Skills.List.Any())
         {
             <div class="font-italic">Нет</div>

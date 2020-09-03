@@ -1,4 +1,4 @@
-﻿@using Pnprpg.Web.Enums
+﻿@using Pnprpg.DomainService.Enums
 @model Pnprpg.DomainService.Models.HeroModel
 
 @Html.Partial("_HeroInfo")
@@ -7,7 +7,7 @@
     @if (User.Identity.IsAuthenticated)
     {
         using (Ajax.BeginForm("SaveHero", null,
-            new AjaxOptions { UpdateTargetId = "main", HttpMethod = "POST", OnSuccess = "MainJs.formRedirect" },
+            new AjaxOptions { UpdateTargetId = "main", HttpMethod = "POST", OnSuccess = "AjaxJs.formRedirect" },
             new { @class = "row" }))
         {
             @Html.Label("name", "Имя персонажа", new { @class = "col-sm-4 col" })
@@ -19,8 +19,7 @@
     }
     else
     {
-        <a href="@Url.Action("Index", "Account",
-                     new {returnUrl = Url.Action("Index", new {status = Status.Result})})">
+        <a href="@Url.Action("Index", "Account")">
             Войдите, чтобы сохранить персонажа
         </a>
     }

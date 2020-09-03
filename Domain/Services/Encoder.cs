@@ -14,7 +14,7 @@ namespace Pnprpg.Domain.Services
         {
             hero = Trim(hero);
             var encoded = JsonConvert.SerializeObject(hero);
-            encoded =  $"{version}{Separator}{encoded}";
+            encoded = $"{version}{Separator}{encoded}";
             var bytes = Encoding.UTF8.GetBytes(encoded);
             return Convert.ToBase64String(bytes);
         }
@@ -33,20 +33,17 @@ namespace Pnprpg.Domain.Services
             if (splitted.Length < 2 || splitted[0] != version)
                 return null;
             var hero = JsonConvert.DeserializeObject<HeroModel>(splitted[1]);
+            hero.Abilities.SetLimit();
             return hero;
         }
 
         public HeroModel Trim(HeroModel hero)
         {
-            hero.Race.Effects = null;
-            foreach (var trait in hero.Traits.List) 
+            hero.Race.Trim();
+            foreach (var trait in hero.Traits.List)
                 trait.Effects = null;
-            foreach (var branch in hero.Branches.List)
-            {
-                branch.Skills = null;
-                branch.Bonuses = null;
-                branch.Perks = null;
-            }
+            foreach (var branch in hero.Branches.List) 
+                branch.Trim();
 
             return hero;
         }
