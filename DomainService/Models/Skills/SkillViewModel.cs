@@ -17,7 +17,13 @@ namespace Pnprpg.DomainService.Models
         {
             Max = Constants.MaxSkillLevel;
         }
-        
+
+        public void Trim()
+        {
+            Ability = null;
+            Branch = null;
+        }
+
         public override bool FitsLimits(int modifier) =>
             base.FitsLimits(CalcUpgradePoints(modifier));
 

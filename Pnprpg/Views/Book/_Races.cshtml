@@ -12,9 +12,9 @@
     @Html.Raw(race.Description)
     foreach (var bonus in race.Bonuses)
     {
-        <p style="font-weight: bold; margin-bottom: -15px">@bonus.Name</p>
-        <div>
-            @Html.Raw(bonus.Description)
-        </div>
+        <p>
+            <b>@bonus.Name</b><br/>
+            @bonus.Description
+        </p>
     }
 }

@@ -5,9 +5,9 @@
 @(Html.Grid(Model).Build(columns =>
 {
     columns.Add(x => x.Type.Description()).Titled("Тип");
-    columns.Add(x => x.Icon).Titled("Значок");
+    columns.Add(x => x.Usages).Titled("Использований");
     columns.Add(x => x.Name).Titled("Название");
-    columns.Add(x => Html.Raw(x.Description)).Titled("Описание").Css("w-50");
+    columns.Add(x => x.Description).Titled("Описание").Css("w-50");
     columns.Add(x => Actions(x)).Css("no-wrap");
 }).Empty("No data found").Pageable(pager =>
 {
@@ -16,11 +16,7 @@
 
 @helper Actions(BonusViewModel viewModel)
 {
-    <div class="btn-group">
-        <a href="@Url.Action("EditBonus", new {id = viewModel.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
-        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" 
-                data-value="@viewModel.Id" data-text="Бонус @viewModel.Name будет удалён">
-            ❌
-        </button>
-    </div>
+    <a href="@Url.Action("EditBonus", new {id = viewModel.Id})" class="btn btn-info fas fa-pen"></a>
+    <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+            data-value="@viewModel.Id" data-text="Бонус @viewModel.Name будет удалён"></button>
 }

@@ -80,7 +80,7 @@
 <br />
 <div style="font-size: 20px">
     <a href="#b1">Расы <span style="float: right">2</span></a>
-    <a href="#b2">Классы <span style="float: right">4</span></a>
+    <a href="#b2">Классы <span style="float: right">5</span></a>
 </div>
 <div class="break"></div>
 
@@ -104,23 +104,14 @@
     <div class="break"></div>
 </div>
 
-<p>
-    Класс определяет призвание вашего персонажа и основыне навыки. Изначально он есть у каждого персонажа и определяет его роль на поле боя, поведение в разговорах, а также
-    возможные пути развития. Каждая раса по своему предрасположена к определённым классам, но не ограничивается ими. На высоких уровнях персонаж может также выбрать себе дополнительный
-    класс для развития.
-    <br /><b>Рекомендуемые ограничения:</b> каждым классом в качестве основного может обладать только 1 персонаж за столом
-</p>
-
 <div id="b2">
-    @{ //Html.RenderAction("Branches");
-    }
+    @{Html.RenderAction("Branches"); }
     <div class="break"></div>
 </div>
 
 
 <div id="b4">
     @{ Html.RenderAction("Abilities");}
-    <div class="break"></div>
 </div>
 
 @{
@@ -131,4 +122,6 @@
     Html.RenderAction("Spells");
     <div class="break"></div>
     Html.RenderAction("Alchemy");
+    <div class="break"></div>
+    Html.RenderPartial("_Fight");
 }

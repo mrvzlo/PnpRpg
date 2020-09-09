@@ -2,7 +2,7 @@
     vertical-align: middle !important;
 
     .btn{
-        padding: .3rem .5rem;
+        padding: .2rem .5rem;
     }
 
     h1,h2,h3,h4,h5,h6,p{
@@ -49,21 +49,26 @@
     white-space: nowrap;
 }
 
-.mvc-grid-sort::after {
-    content: "⬆";
-}
+.mvc-grid-sort {
+    font-family: 'Font Awesome 5 Free';
 
-.mvc-grid-sort::before {
-    margin: 0;
-    content: "⬇";
+    &::after {
+        content: fa-content($fa-var-long-arrow-alt-up);
+    }
+
+    &::before {
+        margin: 0;
+        content: fa-content($fa-var-long-arrow-alt-down);
+    }
 }
 
 .mvc-grid-filter::before, .mvc-grid-filter.applied::before {
-    content: "🔍";
+    font-family: 'Font Awesome 5 Free';
+    content: fa-content($fa-var-search);
 }
 
 .mvc-grid{
     .no-wrap{
-        width: 80px;
+        width: 0;
     }
 }

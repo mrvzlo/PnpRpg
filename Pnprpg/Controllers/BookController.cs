@@ -20,7 +20,6 @@ namespace Pnprpg.Web.Controllers
         private readonly IAbilityService _abilityService;
         private readonly ICoreLogic _coreLogic;
         private readonly IBranchService _branchService;
-        private readonly HtmlToPdfConverter _converter;
 
         public BookController(IAlchemyService alchemyService, IPerkService perkService,
             IRaceService raceService, ITraitService traitService, ISkillService skillService, IMagicService magicService, IAbilityService abilityService, ICoreLogic coreLogic, IBranchService branchService)
@@ -35,32 +34,31 @@ namespace Pnprpg.Web.Controllers
             _coreLogic = coreLogic;
             _branchService = branchService;
 
-            _converter = new HtmlToPdfConverter {Size = PageSize.A4};
         }
 
         //todo news, books, versions
 
         public ActionResult Index()
         {
-            _converter.Margins.Top = 20;
-            _converter.Margins.Bottom = 20;
-            _converter.PageFooterHtml = "<div style='text-align: center'><span class='page'></span></div>";
-            return GeneratePdf(_converter, FileNames.RuleBook, "Index");
+            Converter.Margins.Top = 20;
+            Converter.Margins.Bottom = 20;
+            Converter.PageFooterHtml = "<div style='text-align: center'><span class='page'></span></div>";
+            return LoadPdf(Converter, FileNames.RuleBook, "Index");
         }
 
         public ActionResult HeroSheets() => View();
 
         public ActionResult MainSheet()
         {
-            _converter.Orientation = PageOrientation.Landscape;
+            Converter.Orientation = PageOrientation.Landscape;
             var hero = _coreLogic.CreateHero(Company.Fantasy);
             hero.Skills = _skillService.GetHeroSkillGroup(hero);
-            return GeneratePdf(_converter, FileNames.CharacterSheet, "MainSheet", hero);
+            return LoadPdf(Converter, FileNames.CharacterSheet, "HeroInfo/MainSheet", hero);
         }
 
         public ActionResult MagicSheet()
         {
-            return GeneratePdf(_converter, FileNames.RuleBook, "MagicSheet");
+            return LoadPdf(Converter, FileNames.MagicBook, "MagicSheet");
         }
 
 
@@ -130,16 +128,6 @@ namespace Pnprpg.Web.Controllers
             var path = Url.Content("~/Content/HeroSheet.css");
             path = Server.MapPath(path);
             return System.IO.File.ReadAllText(path);
-        }
-
-        private FileResult GeneratePdf(HtmlToPdfConverter generator, string fileName, string viewName, object model = null)
-        {
-            var path = Server.MapPath($"~/App_Data/{fileName}");
-            if (!System.IO.File.Exists(path) || Request.IsLocal) 
-                SavePdf(generator, viewName, path, model);
-
-            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
-            return File(file, "application/pdf");
         }
     }
 }

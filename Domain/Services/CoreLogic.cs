@@ -13,14 +13,20 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IAbilityService _abilityService;
+        private readonly ISkillService _skillService;
         private readonly IRaceService _raceService;
+        private readonly IBranchService _branchService;
+        private readonly ITraitService _traitService;
         private readonly Encoder _encoder;
 
-        public CoreLogic(IUserRepository userRepository, IAbilityService abilityService, IRaceService raceService)
+        public CoreLogic(IUserRepository userRepository, IAbilityService abilityService, IRaceService raceService, IBranchService branchService, ISkillService skillService, ITraitService traitService)
         {
             _userRepository = userRepository;
             _abilityService = abilityService;
             _raceService = raceService;
+            _branchService = branchService;
+            _skillService = skillService;
+            _traitService = traitService;
             _encoder = new Encoder();
         }
 
@@ -36,19 +42,10 @@ namespace Pnprpg.Domain.Services
 
         public string EncodeHero(HeroModel hero, string version) => _encoder.EncodeHero(hero, version);
 
-        public HeroModel DecodeHero(string data, string version) => _encoder.DecodeHero(data, version);
-
-        public HeroModel LoadHero(string username)
+        public HeroModel DecodeHero(string data, string version)
         {
-            var user = _userRepository.GetUserByName(username);
-            //todo
-            throw new System.NotImplementedException();
-        }
-
-        public bool SaveHero(HeroModel hero)
-        {
-            var user = _userRepository.GetUserByName(hero.Player);
-            throw new System.NotImplementedException();
+            var hero = _encoder.DecodeHero(data, version);
+            return hero == null ? null : GetFullHeroInfo(hero);
         }
 
         public SelectableList ToSelectableList(IQueryable<object> query, object selected = null)
@@ -61,6 +58,16 @@ namespace Pnprpg.Domain.Services
         {
             var list = query.Select(x => new Selectable(x, x.Description())).ToList();
             return new SelectableList(list, selected);
+        }
+
+        public HeroModel GetFullHeroInfo(HeroModel hero)
+        {
+            hero.Skills = _skillService.GetHeroSkillGroup(hero);
+            hero.Race = _raceService.GetAll().FirstOrDefault(x => x.Id == hero.Race.Id);
+            var branches = hero.Branches.List.Select(y => y.Id);
+            hero.Branches.List = _branchService.GetAll().Where(x => branches.Contains(x.Id)).ToList();
+            hero.Traits.List = _traitService.GetForHero(hero).List.Where(x => x.IsAssigned()).ToList();
+            return hero;
         }
     }
 }

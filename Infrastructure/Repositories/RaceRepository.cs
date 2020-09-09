@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 
@@ -8,6 +9,6 @@ namespace Pnprpg.Infrastructure.Repositories
     {
         public RaceRepository(AppDbContext dbContext) : base(dbContext) { }
 
-        public override IQueryable<Race> Select() => base.Select().OrderBy(x => x.Name);
+        public override IQueryable<Race> Select() => base.Select().Include(x => x.Bonuses).OrderBy(x => x.Name);
     }
 }

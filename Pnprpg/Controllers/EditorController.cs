@@ -133,7 +133,7 @@ namespace Pnprpg.Web.Controllers
         public ActionResult EditBonus(BonusEditModel model) =>
             Edit(() => _bonusService.Save(model), () => PrepareBonusEditViewBags(model), model, nameof(EditBonus), nameof(Bonuses));
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult DeleteBonus(int modelId) => Delete(_weaponService, modelId, nameof(Bonuses));
+        public ActionResult DeleteBonus(int modelId) => Delete(_bonusService, modelId, nameof(Bonuses));
 
         private void PrepareBonusEditViewBags(BonusEditModel model)
         {

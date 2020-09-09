@@ -11,11 +11,9 @@
     {
         if (i > 0)
         {
-            <div class="bg-@(x > max ? "secondary" : "success") my-auto h-25">
-                &nbsp;<span class="d-sm-inline d-none px-3">&nbsp;</span>
-            </div>
+            <div class="bg-@(x > max ? "secondary" : "success") my-auto h-25"><span class="px-md-4 px-3"></span></div>
         }
-        <a class="circle btn btn-@(current == x ? "primary" : x > max ? "secondary" : "success") font-weight-bold" 
+        <a class="circle btn btn-@(current == x ? "primary" : x > max ? "secondary" : "success") font-weight-bold font-monospace px-3" 
            href="@(x <= Model ? Url.Action("Index", "HeroGen", new {Status = x}) : "")">
             @(++i)
         </a>

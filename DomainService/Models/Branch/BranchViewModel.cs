@@ -19,6 +19,7 @@ namespace Pnprpg.DomainService.Models
 
         public void Trim()
         {
+            Description = null;
             Bonuses = null;
             Skills = null;
             Perks = null;

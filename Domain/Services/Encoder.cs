@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using Newtonsoft.Json;
-using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Services
@@ -39,9 +38,12 @@ namespace Pnprpg.Domain.Services
 
         public HeroModel Trim(HeroModel hero)
         {
+            hero.Skills.List.RemoveAll(x => x.Level == 0);
             hero.Race.Trim();
             foreach (var trait in hero.Traits.List)
                 trait.Effects = null;
+            foreach (var skill in hero.Skills.List)
+                skill.Trim();
             foreach (var branch in hero.Branches.List) 
                 branch.Trim();
 

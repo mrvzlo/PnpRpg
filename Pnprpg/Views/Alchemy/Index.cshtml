@@ -19,7 +19,9 @@
             @Html.DropDownList(nameof(ReactionModel.Process), processes, new { @class = "form-control initial-letter" })
         </div>
         <div class="col-12 my-2">
-            <button type="submit" class="btn btn-success my-1 mw-160">Сотворить</button>
+            <button type="submit" class="btn btn-success my-1 mw-160">
+                Сотворить
+            </button>
             <button class="btn btn-primary ajax-btn my-1 mw-160" data-container="alchemyResult" data-url="@Url.Action("Random")" type="button">
                 Случайное зелье
             </button>

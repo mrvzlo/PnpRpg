@@ -17,11 +17,7 @@
 
 @helper Actions(WeaponViewModel weapon)
 {
-    <div class="btn-group">
-        <a href="@Url.Action("EditWeapon", new {id = weapon.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
-        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" 
-                data-value="@weapon.Id" data-text="Оружие @weapon.Name будет удалено">
-            ❌
-        </button>
-    </div>
+    <a href="@Url.Action("EditWeapon", new {id = weapon.Id})" class="btn btn-info fas fa-pen"></a>
+    <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+            data-value="@weapon.Id" data-text="Оружие @weapon.Name будет удалено"></button>
 }

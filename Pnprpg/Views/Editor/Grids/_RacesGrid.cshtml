@@ -4,18 +4,26 @@
 
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.Name).Titled("Название"); 
-    columns.Add(x => x.Bonuses).RenderedAs(y => y.Bonuses.Any() ? string.Join(", ", y.Bonuses.Select(x => x.Name)) : "Нет").Titled("Бонусы");
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => Bonuses(x.Bonuses)).Titled("Бонусы").Css("mw-260");
     columns.Add(x => Actions(x)).Css("no-wrap");
-}).Empty("No data found").Css("table table-responsive"))
+}).Empty("No data found").Css("table table-responsive text-left"))
+
+@helper Bonuses(List<BonusViewModel> list)
+{
+    foreach (var bonus in list)
+    {
+        <a href="@Url.Action("EditBonus", new {id = bonus.Id})" class="btn btn-light border-dark btn-sm my-1">@bonus.Name</a>
+    }
+    if (!list.Any())
+    {
+        @:Нет
+    }
+}
 
 @helper Actions(RaceViewModel race)
 {
-    <div class="btn-group">
-        <a href="@Url.Action("EditRace", new {id = race.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
-        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" 
-                data-value="@race.Id" data-text="Раса @race.Name будет удалена">
-            ❌
-        </button>
-    </div>
+    <a href="@Url.Action("EditRace", new {id = race.Id})" class="btn btn-info fas fa-pen"></a>
+    <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+            data-value="@race.Id" data-text="Раса @race.Name будет удалена"></button>
 }

@@ -25,7 +25,9 @@ namespace Pnprpg.Domain.Profiles
                 .ForMember(dest => dest.Bonuses, opts =>
                     { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
 
-            CreateMap<Bonus, BonusViewModel>();
+            CreateMap<Bonus, BonusViewModel>()
+                .ForMember(dest => dest.Usages, opts =>
+                    { opts.MapFrom(from => from.Races.Count + from.Branches.Count + from.Weapons.Count); });
             CreateMap<Bonus, BonusEditModel>();
 
             CreateMap<Ability, AbilityModel>();

@@ -25,11 +25,7 @@
 
 @helper Actions(SkillViewModel skillView)
 {
-    <div class="btn-group">
-        <a href="@Url.Action("EditSkill", new {id = skillView.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
-        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" data-value="@skillView.Id"
-                data-text="Навык @skillView.Name будет удалён">
-            ❌
-        </button>
-    </div>
+    <a href="@Url.Action("EditSkill", new {id = skillView.Id})" class="btn btn-info fas fa-pen"></a>
+    <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId" data-value="@skillView.Id"
+            data-text="Навык @skillView.Name будет удалён"></button>
 }

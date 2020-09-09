@@ -46,9 +46,9 @@
 @Html.Partial("HeroInfo/_Stats", Model)
 
 <div class="col-lg-4 col-md-6 col-12">
-    <div class="alert alert-info m-0 py-2">Cвободных очков: @remaining</div>
-    <button class="mt-3 btn @(remaining == 0 ? "btn-success" : "btn-secondary") ajax-btn mw-160"
+    <div class="alert alert-info my-3 py-2">Cвободных очков: @remaining</div>
+    <button class="btn @(remaining == 0 ? "btn-success" : "btn-secondary") ajax-btn mw-160"
             data-url="@Url.Action("Result", "HeroGen")" @(remaining == 0 ? "" : "disabled")>
-        Ок
+        Сохранить
     </button>
 </div>

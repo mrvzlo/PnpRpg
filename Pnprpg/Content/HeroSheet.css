@@ -21,8 +21,9 @@
     padding-top: 2%;
 }
 
-.pl-3 {
+.px-4 {
     padding-left: 13px;
+    padding-right: 13px;
 }
 
 .pr-3 {
@@ -91,11 +92,13 @@ body {
     border-left: none;
     border-right: none;
     border-radius: 30%;
-    width: 100%;
+    width: 70%;
     height: 70px;
     margin: auto;
     margin-bottom: 10px;
     margin-top: -1px;
+    line-height: 70px;
+    font-size: 2rem;
 }
 
 .card > div {
@@ -106,4 +109,10 @@ body {
 
 html {
     line-height: 20px;
+}
+
+
+.r-45 {
+    -webkit-transform: translate(-25%, -50%) rotate(-45deg);
+    border-bottom: 1px solid gray;
 }

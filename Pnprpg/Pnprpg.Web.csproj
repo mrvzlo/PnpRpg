@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +46,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Api2Pdf.DotNet, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -419,10 +421,12 @@
     <Compile Include="Helpers\PartialViewExtension.cs" />
     <Compile Include="Helpers\FileNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="App_Data\MagicBook.pdf" />
     <None Include="App_Data\PnpRpgDb.mdf" />
     <None Include="App_Data\PnpRpgDb_log.ldf">
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
     </None>
+    <Content Include="Content\fontawesome\LICENSE.txt" />
     <Content Include="Content\HeroSheet.css" />
     <Content Include="Content\images\icons.svg" />
     <Content Include="Content\images\ArmorIcon.png" />
@@ -430,6 +434,9 @@
     <Content Include="Content\images\HPIcon.png" />
     <Content Include="Content\images\MPIcon.png" />
     <Content Include="Content\MvcGrid\mvc-grid.css" />
+    <Content Include="Content\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\webfonts\fa-solid-900.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -516,6 +523,36 @@
     <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
     <Content Include="Content\bootstrap\bootstrap-grid.scss" />
     <Content Include="Content\trumbowyg.scss" />
+    <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\fontawesome\_variables.scss" />
+    <Content Include="Content\fontawesome\_stacked.scss" />
+    <Content Include="Content\fontawesome\_shims.scss" />
+    <Content Include="Content\fontawesome\_screen-reader.scss" />
+    <Content Include="Content\fontawesome\_rotated-flipped.scss" />
+    <Content Include="Content\fontawesome\_mixins.scss" />
+    <Content Include="Content\fontawesome\_list.scss" />
+    <Content Include="Content\fontawesome\_larger.scss" />
+    <Content Include="Content\fontawesome\_icons.scss" />
+    <Content Include="Content\fontawesome\_fixed-width.scss" />
+    <Content Include="Content\fontawesome\_core.scss" />
+    <Content Include="Content\fontawesome\_bordered-pulled.scss" />
+    <Content Include="Content\fontawesome\_animated.scss" />
+    <Content Include="Content\fontawesome\v4-shims.scss" />
+    <Content Include="Content\fontawesome\solid.scss" />
+    <Content Include="Content\fontawesome\regular.scss" />
+    <Content Include="Content\fontawesome\fontawesome.scss" />
+    <Content Include="Content\fontawesome\brands.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -614,7 +651,7 @@
     <Content Include="Views\Home\Weaponry.cshtml" />
     <Content Include="Views\Shared\_Scripts.cshtml" />
     <Content Include="Views\Magic\_RandomSpell.cshtml" />
-    <Content Include="Views\Book\MainSheet.cshtml" />
+    <Content Include="Views\Shared\HeroInfo\MainSheet.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\EditorTemplates\UserEditModel.cshtml" />
     <Content Include="Views\Editor\Perks.cshtml" />
@@ -640,6 +677,7 @@
     <Content Include="Views\BackStory\_Branches.cshtml" />
     <Content Include="Views\HeroGen\_Wizard.cshtml" />
     <Content Include="Views\Book\_Branches.cshtml" />
+    <Content Include="Views\Book\_Fight.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />
@@ -670,7 +708,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\custom\main.js" />
     <Content Include="Views\Shared\HeroInfo\_Stats.cshtml" />
-    <Content Include="Views\HeroGen\_Result.cshtml" />
     <Content Include="Views\Shared\HeroInfo\_Abilities.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\_SignUp.cshtml" />

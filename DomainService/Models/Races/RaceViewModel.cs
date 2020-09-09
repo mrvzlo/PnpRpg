@@ -10,6 +10,7 @@ namespace Pnprpg.DomainService.Models
 
         public void Trim()
         {
+            Description = null;
             Bonuses = null;
             Modifiers = null;
         }

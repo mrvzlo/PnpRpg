@@ -6,9 +6,10 @@
 {
     columns.Add(x => x.Branch.Name).RenderedAs(x => Branch(x.Branch)).Filterable(GridFilterType.Single).Css("bg-dark").Filterable(true).Titled("Класс");
     columns.Add(x => x.Level).Titled("Уровень").Sortable(true).InitialSort(GridSortOrder.Asc);
+    columns.Add(x => x.Max).Titled("Ранги");
     columns.Add(x => x.Name).Titled("Название").Css("w-25");
     columns.Add(x => x.Description).Titled("Эффект").Css("w-50");
-    columns.Add(x => Actions(x));
+    columns.Add(x => Actions(x)).Css("no-wrap");
 }).Empty("No data found").Pageable(pager =>
 {
     pager.RowsPerPage = 10;
@@ -21,11 +22,7 @@
 
 @helper Actions(PerkViewModel perk)
 {
-    <div class="btn-group">
-        <a href="@Url.Action("EditPerk", new {id = perk.Id})" class="btn btn-outline-info font-weight-bold">🖊️</a>
-        <button class="btn confirm-btn btn-outline-danger" data-form="deleteForm" data-field="ModelId" 
-                data-value="@perk.Id" data-text="Способность @perk.Name будет удалена">
-            ❌
-        </button>
-    </div>
+    <a href="@Url.Action("EditPerk", new {id = perk.Id})" class="btn btn-info fas fa-pen"></a>
+    <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+            data-value="@perk.Id" data-text="Способность @perk.Name будет удалена"></button>
 }

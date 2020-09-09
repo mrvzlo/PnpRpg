@@ -37,12 +37,14 @@
                         {
                             <tr class="text-left">
                                 <td>
-                                    <div class="btn-dark btn-sm circle py-0 px-2 mt-1 border-0 font-weight-bold">@perk.Level</div>
+                                    <div class="btn-dark btn-sm circle py-0 px-2 mt-1 border-0 font-weight-bold font-monospace">@perk.Level</div>
                                 </td>
                                 <td class="px-2">@perk.Name</td>
-                                <td>
-                                    <a tabindex="0" class="btn btn-info circle btn-sm align-baseline py-0 px-1 border-0" data-trigger="focus"
-                                       data-placement="top" data-toggle="popover" role="button" data-content="@Html.Raw(perk.Description)">❔</a>
+                                <td class="pt-1">
+                                    <a tabindex="0" class="link-info" data-trigger="focus"
+                                       data-placement="top" data-toggle="popover" role="button" data-content="@Html.Raw(perk.Description)">
+                                        <i class="fas fa-question-circle h5"></i>
+                                    </a>
                                 </td>
                             </tr>
                         }

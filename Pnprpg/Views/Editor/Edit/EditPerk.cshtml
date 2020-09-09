@@ -5,7 +5,7 @@
     var branches = (SelectableList) ViewBag.Branches;
 }
 
-@using (Html.BeginForm("EditPerk", "Editor", FormMethod.Post, new { @class = "col-md-6 col-12 mx-auto" }))
+@using (Html.BeginForm("EditPerk", "Editor", FormMethod.Post, new { @class = "col-md-9 col-12 mx-auto" }))
 {
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
