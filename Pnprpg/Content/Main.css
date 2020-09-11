@@ -11669,6 +11669,9 @@ a {
   font-size: 100%;
   min-width: 20px; }
 
+.fw-40 {
+  width: 40px; }
+
 .mw-160 {
   min-width: 160px; }
 
@@ -11736,28 +11739,33 @@ td {
   margin-top: -60px !important;
   padding-top: 60px !important; }
 
-.navbar-collapse, .dropdown-menu {
-  background-color: #343a40; }
+.navbar-collapse, .dropdown-menu, nav {
+  background-color: #213; }
 
 nav {
   height: 60px; }
 
-.navbar-dark, .navbar-collapse {
-  background-color: #215; }
+.navbar-nav .nav-link {
+  padding: .5rem; }
+
+.navbar-nav .dropdown-menu {
+  border-color: #314;
+  background-color: #314; }
 
 .back {
-  filter: hue-rotate(60deg);
-  opacity: .9;
+  filter: hue-rotate(40deg);
+  opacity: .05;
   min-height: 100vh;
-  width: 200px;
+  width: 450px;
   background-image: url(images/bg.png);
-  background-repeat: repeat-y;
-  background-size: 200px 200px;
+  background-repeat: repeat;
+  background-size: 150px 150px;
   position: fixed;
   z-index: -1; }
 
 .container {
-  min-height: 100vh; }
+  min-height: 100vh;
+  padding: 0; }
 
 footer {
   position: fixed;
@@ -11767,12 +11775,12 @@ footer {
   border: solid 3px; }
 
 .card-footer:hover {
-  background-color: #495057; }
+  background-color: #425; }
   .card-footer:hover a {
     color: white; }
 
-.dropdown-menu a:hover {
-  background-color: #495057; }
+.dropdown-menu a:active, .dropdown-menu a:focus, .dropdown-menu a:hover {
+  background-color: #425; }
 
 .dropdown-light a {
   color: black;
@@ -11783,6 +11791,15 @@ footer {
 
 .separate:not(:last-child)::after {
   content: ", "; }
+
+@media (max-width: 767.98px) {
+  #mainNavBar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto; } }
 
 .lds-dual-ring {
   display: inline-block;
