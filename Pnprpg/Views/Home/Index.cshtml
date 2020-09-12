@@ -4,10 +4,9 @@
 }
 <div class="row justify-content-center text-center mx-lg-2 mx-0 mt-2">
     @Card(Url.Action("Index", "HeroGen"), "Создать персонажа", "user", "Create a hero")
-    <div class="col-12 d-md-none"></div>
+    @Card(Url.Action("Index", "Donation"), "Пожертвования", "donate", "Donation")
     @Card(Url.Action("Index", "Book"), "Книга правил", "book", "Rule book", true)
     @Card(Url.Action("HeroSheets", "Book"), "Листы персонажа", "id-card", "Hero sheet")
-    <div class="col-12"></div>
     @Card(Url.Action("Perks", "Home"), "Способности", "graduation-cap", "Perks")
     @Card(Url.Action("Index", "Magic"), "Школы магии", "hand-sparkles", "Magic")
     @Card(Url.Action("Index", "Alchemy"), "Алхимия", "mortar-pestle", "Alchemy")

@@ -12,6 +12,10 @@ nav {
     height: $nav-h;
 }
 
+.flex-1{
+    flex: 1;
+}
+
 .navbar-nav {
     .nav-link {
         padding: .5rem;
@@ -36,7 +40,6 @@ nav {
 }
 
 .container {
-    min-height: 100vh;
     padding: 0;
 }
 
@@ -85,11 +88,9 @@ footer {
         top: $nav-h;
         left: 0;
         right: 0;
-        bottom: 0;
-        overflow: auto;
 
-        ul{}
-
-        .dropdown-menu{}
+        > *:first-child{
+            height: 100vh;
+        }
     }
 }

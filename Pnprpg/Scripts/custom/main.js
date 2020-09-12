@@ -9,7 +9,7 @@
     }
 
     function updateScripts() {
-        $(".carousel").carousel({
+        $('.carousel').carousel({
             interval: 0
         });
         toggleLoading();
@@ -21,7 +21,7 @@
 
     // enabled by default
     function toggleLoading() {
-        $("#loading").toggle();
+        $('#loading').toggle();
     }
 
     function initMvcGrids() {
@@ -32,12 +32,12 @@
     }
 
     function getSpinner() {
-        return $("#loading > div").clone();
+        return $('#loading > div').clone();
     }
 
     function updateColorPicker() {
         var picker = $('.color-picker');
-        picker.css('background-color', "#" + picker.val());
+        picker.css('background-color', '#' + picker.val());
     }
 
     return {

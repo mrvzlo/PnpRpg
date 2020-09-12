@@ -402,6 +402,7 @@
     <Compile Include="App_Start\StructureMapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseGenController.cs" />
+    <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\MagicController.cs" />
     <Compile Include="Controllers\AbilityController.cs" />
@@ -678,6 +679,9 @@
     <Content Include="Views\HeroGen\_Wizard.cshtml" />
     <Content Include="Views\Book\_Branches.cshtml" />
     <Content Include="Views\Book\_Fight.cshtml" />
+    <Content Include="Views\Donation\Index.cshtml" />
+    <Content Include="Views\Donation\Edit.cshtml" />
+    <Content Include="Views\Donation\EditorTemplates\DonationEditModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />

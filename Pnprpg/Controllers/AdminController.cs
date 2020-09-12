@@ -27,8 +27,7 @@ namespace Pnprpg.Web.Controllers
         public ActionResult Users(List<UserEditModel> list)
         {
             _accountService.SaveAllUsers(list);
-            var users = _accountService.GetEditModels();
-            return View(users);
+            return Users();
         }
     }
 }

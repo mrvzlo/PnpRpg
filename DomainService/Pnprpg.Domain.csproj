@@ -70,6 +70,7 @@
     <Compile Include="Entities\AppUser.cs" />
     <Compile Include="Entities\Bonus.cs" />
     <Compile Include="Entities\Branch.cs" />
+    <Compile Include="Entities\Donation.cs" />
     <Compile Include="Entities\ManyToMany\BaseBonusJoin.cs" />
     <Compile Include="Entities\ManyToMany\RaceBonus.cs" />
     <Compile Include="Entities\ManyToMany\BranchBonus.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="IRepositories\IAlchemySymbolRepository.cs" />
     <Compile Include="IRepositories\IBaseRepository.cs" />
     <Compile Include="IRepositories\IBonusRepository.cs" />
+    <Compile Include="IRepositories\IDonationRepository.cs" />
     <Compile Include="IRepositories\IEffectRepository.cs" />
     <Compile Include="IRepositories\IBranchRepository.cs" />
     <Compile Include="IRepositories\IMagicSchoolRepository.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="IServices\Base\IViewService.cs" />
     <Compile Include="IServices\Base\IEditService.cs" />
     <Compile Include="IServices\IBranchService.cs" />
+    <Compile Include="IServices\IDonationService.cs" />
     <Compile Include="IServices\ITraitService.cs" />
     <Compile Include="IServices\IRaceService.cs" />
     <Compile Include="IServices\ISkillService.cs" />
@@ -122,7 +125,7 @@
     <Compile Include="Models\Abilities\AbilityModifier.cs" />
     <Compile Include="Models\Alchemy\ReactionModel.cs" />
     <Compile Include="Models\Base\IBaseViewModel.cs" />
-    <Compile Include="Models\Bonuses\BonusEditModel.cs" />
+    <Compile Include="Models\Bonus\BonusEditModel.cs" />
     <Compile Include="Models\Branch\BranchEditModel.cs" />
     <Compile Include="Models\Branch\BranchGroup.cs" />
     <Compile Include="Models\Branch\BranchShortModel.cs" />
@@ -134,11 +137,13 @@
     <Compile Include="Models\Common\SelectableList.cs" />
     <Compile Include="Models\Abilities\HeroAbilityGroup.cs" />
     <Compile Include="Models\Branch\BranchViewModel.cs" />
+    <Compile Include="Models\Donation\DonationEditModel.cs" />
+    <Compile Include="Models\Donation\DonationViewModel.cs" />
     <Compile Include="Models\Races\RaceEditModel.cs" />
     <Compile Include="Models\Skills\HeroSkillGroup.cs" />
     <Compile Include="Models\Skills\SkillEditModel.cs" />
     <Compile Include="Models\Traits\TraitGroup.cs" />
-    <Compile Include="Models\Bonuses\BonusViewModel.cs" />
+    <Compile Include="Models\Bonus\BonusViewModel.cs" />
     <Compile Include="Models\Common\Assignable.cs" />
     <Compile Include="Models\Common\Upgradeable.cs" />
     <Compile Include="Models\Traits\TraitEffectDescModel.cs" />

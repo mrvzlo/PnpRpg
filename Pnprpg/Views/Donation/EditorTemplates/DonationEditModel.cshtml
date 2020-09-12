@@ -1,0 +1,10 @@
+﻿@model Pnprpg.DomainService.Models.DonationEditModel
+
+<tr>
+    <td>
+        @Html.HiddenFor(x => x.Id)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </td>
+    <td>@Html.TextBoxFor(x => x.Current, new {@class = "form-control", type = "number", min = 0, step = 0.01, max = Model.Total})</td>
+    <td>@Html.TextBoxFor(x => x.Total, new {@class = "form-control", type = "number", min = 0, step = 0.01})</td>
+</tr>

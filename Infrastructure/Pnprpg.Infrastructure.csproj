@@ -172,7 +172,7 @@
     <Compile Include="Repositories\EffectRepository.cs" />
     <Compile Include="Repositories\BranchRepository.cs" />
     <Compile Include="Repositories\MagicSchoolRepository.cs" />
-    <Compile Include="Repositories\TraitRepository.cs.cs" />
+    <Compile Include="Repositories\TraitRepository.cs" />
     <Compile Include="Repositories\SkillRepository.cs" />
     <Compile Include="Repositories\RaceRepository.cs" />
     <Compile Include="Repositories\PotionRepository.cs" />
@@ -183,6 +183,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\SpellRepository.cs" />
     <Compile Include="Repositories\PerkRepository.cs" />
+    <Compile Include="Repositories\DonationRepository.cs" />
     <Compile Include="Repositories\WeaponRepository.cs" />
   </ItemGroup>
   <ItemGroup>

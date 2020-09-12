@@ -2,22 +2,27 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     @Html.Partial("_Nav")
     <div class="back d-xl-block d-none"></div>
     <div class="back d-xl-block d-none right"></div>
-    <div class="container p-default bg-white">
+    <div class="container p-default bg-white flex-1">
         <h3 class="text-center my-2">@ViewBag.Title</h3>
         <div id="main" class="row justify-content-center text-center pb-5 mx-0">@RenderBody()</div>
     </div>
-    <footer class="fixed-bottom">
+    <div class="container border-top bg-white">
+        <div class="text-center">
+            <a href="https://vk.com/dndotvlada" class="fa-2x fa-vk fab link-info text-decoration-none"></a>
+        </div>
+    </div>
+    <div class="fixed-bottom">
         <div id="loading">@Html.Partial("_Loading")</div>
-    </footer>
+    </div>
     @Html.Partial("_Scripts")
-@RenderSection("scripts", false)
+    @RenderSection("scripts", false)
 </body>
 </html>

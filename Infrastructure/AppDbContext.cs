@@ -15,6 +15,7 @@ namespace Pnprpg.Infrastructure
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<BranchBonus> BranchBonuses { get; set; }
+        public DbSet<Donation> Donations { get; set; }
         public DbSet<TraitEffect> Effects { get; set; }
         public DbSet<MagicSchool> MagicSchools { get; set; }
         public DbSet<Perk> Perks{ get; set; }

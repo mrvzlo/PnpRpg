@@ -28,7 +28,9 @@
             else
             {
                 <li class="nav-item active mx-2">
-                    <a href="@Url.Action("Index", "Account")" class="nav-link text-light">Войти</a>
+                    <a href="@Url.Action("Index", "Account")" class="nav-link text-light">
+                        <i class="fa-sign-in-alt fas h5 m-0"></i>
+                    </a>
                 </li>
             }
         </ul>
@@ -51,7 +53,7 @@
             @Html.AntiForgeryToken()
         }
         <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
-            Выйти
+            <i class="fa-sign-out-alt fas h5 m-0"></i>
         </a>
     </li>
 }

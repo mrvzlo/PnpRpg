@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Profiles\AlchemyProfile.cs" />
     <Compile Include="Profiles\AppUserProfile.cs" />
+    <Compile Include="Profiles\DonationProfile.cs" />
     <Compile Include="Profiles\HeroProfile.cs" />
     <Compile Include="Profiles\MagicProfile.cs" />
     <Compile Include="Profiles\SkillProfile.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\BonusService.cs" />
     <Compile Include="Services\CoreLogic.cs" />
+    <Compile Include="Services\DonationService.cs" />
     <Compile Include="Services\Encoder.cs" />
     <Compile Include="Services\MagicService.cs" />
     <Compile Include="Services\PerkService.cs" />
