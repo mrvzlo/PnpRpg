@@ -7,7 +7,12 @@
 
     <div class="collapse navbar-collapse" id="mainNavBar">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active mx-2 dropdown">
+            <li class="nav-item mx-2">
+                <a href="https://vk.com/dndotvlada" class="nav-link text-light">
+                    <i class="fa-vk fab h5 m-0"></i>
+                </a>
+            </li>
+            <li class="nav-item active mx-2">
                 <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Персонаж</a>
             </li>
             <li class="nav-item active mx-2 dropdown">
@@ -52,7 +57,7 @@
         {
             @Html.AntiForgeryToken()
         }
-        <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+        <a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()">
             <i class="fa-sign-out-alt fas h5 m-0"></i>
         </a>
     </li>

@@ -34,7 +34,7 @@ namespace Pnprpg.DomainService.Models
 
         public int BaseArmor() => (GetAbilityLevel(AbilityKey.E) + 5) / 10;
         public int BaseDmg() => (GetAbilityLevel(AbilityKey.S) + 5) / 10;
-        public int MaxHp() => GetAbilityLevel(AbilityKey.E) + Level * 2 - 2;
+        public int MaxHp() => GetAbilityLevel(AbilityKey.E) + Level / 2 + 3;
         public int MaxMp() => Math.Max(GetAbilityLevel(AbilityKey.I) + Level - 4, 0);
         public int MaxCarry() => GetAbilityLevel(AbilityKey.S) * GetAbilityLevel(AbilityKey.E) / 10;
         public int MaxAp() => GetAbilityLevel(AbilityKey.A) / 2 + Level;
