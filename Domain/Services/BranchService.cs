@@ -14,14 +14,26 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IBranchRepository _branchRepository;
         private readonly IBonusService _bonusService;
+        private readonly IPerkService _perkService;
 
-        public BranchService(IBranchRepository branchRepository, IBonusService bonusService)
+        public BranchService(IBranchRepository branchRepository, IBonusService bonusService, IPerkService perkService)
         {
             _branchRepository = branchRepository;
             _bonusService = bonusService;
+            _perkService = perkService;
         }
 
-        public IQueryable<BranchViewModel> GetAll() => _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig);
+        public IQueryable<BranchViewModel> GetAll() => 
+            _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig);
+
+        public List<BranchViewModel> GetAllWithPerks()
+        {
+            var branches = _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig).ToList();
+            foreach (var branch in branches)
+                branch.Perks = branch.Perks.SelectMany(x => _perkService.GetPerkRanks(x)).ToList();
+
+            return branches;
+        }
 
         public BranchViewModel Get(int id)
         {

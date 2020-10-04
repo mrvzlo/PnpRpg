@@ -15,13 +15,6 @@
     <br />
     <h6>@branch.Name</h6>
     @Html.Raw(branch.Description)
-    foreach (var bonus in branch.Bonuses)
-    {
-        <p>
-            <b>@bonus.Name</b> - 
-            @Html.Raw(bonus.Description)
-        </p>
-    }
     <p style="font-weight: bold">Навыки</p>
     <ul>
         @foreach (var skill in branch.Skills)
@@ -31,11 +24,17 @@
     </ul>
     <div style="text-align: center; font-weight: bold">Способности</div>
     <br />
+    foreach (var bonus in branch.Bonuses)
+    {
+        <p>
+            <b>@bonus.Name</b> -
+            @Html.Raw(bonus.Description)
+        </p>
+    }
     <table>
         <tr>
             <th>Уровень</th>
             <th>Название</th>
-            <th>Ранги</th>
             <th>Описание</th>
         </tr>
         @foreach (var perk in branch.Perks.OrderBy(x => x.Level))
@@ -43,7 +42,6 @@
             <tr>
                 <td>@perk.Level</td>
                 <td style="width: 200px;">@perk.Name</td>
-                <td>@perk.Max</td>
                 <td>@perk.Description</td>
             </tr>
         }

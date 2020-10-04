@@ -139,6 +139,7 @@
     <Compile Include="Models\Branch\BranchViewModel.cs" />
     <Compile Include="Models\Donation\DonationEditModel.cs" />
     <Compile Include="Models\Donation\DonationViewModel.cs" />
+    <Compile Include="Models\Magic\SpellEditModel.cs" />
     <Compile Include="Models\Races\RaceEditModel.cs" />
     <Compile Include="Models\Skills\HeroSkillGroup.cs" />
     <Compile Include="Models\Skills\SkillEditModel.cs" />
@@ -147,7 +148,7 @@
     <Compile Include="Models\Common\Assignable.cs" />
     <Compile Include="Models\Common\Upgradeable.cs" />
     <Compile Include="Models\Traits\TraitEffectDescModel.cs" />
-    <Compile Include="Models\Magic\SpellModel.cs" />
+    <Compile Include="Models\Magic\SpellViewModel.cs" />
     <Compile Include="Models\Alchemy\PotionModel.cs" />
     <Compile Include="Models\Magic\MagicSchoolModel.cs" />
     <Compile Include="IServices\IMagicService.cs" />

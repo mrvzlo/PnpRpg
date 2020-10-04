@@ -1,4 +1,5 @@
 ﻿@model IQueryable<Pnprpg.DomainService.Models.RaceViewModel>
+<br/>
 <h5>Расы</h5>
 <p>
     В волшебном мире бок о бок соседствуют существа разных размеров, цветов и мировозрений. Существа одной расы обладают общими физиологическими особенностями,
@@ -6,8 +7,13 @@
     каждая разумная раса дотупна игроку. Вы конечно можете играть за собаку или крысу, но не гарантируем вам, что это будет увлекательно.
 </p>
 
+@{
+    var i = 0;
+}
 @foreach (var race in Model)
 {
+    i++;
+    <br/>
     <h6>@race.Name</h6>
     @Html.Raw(race.Description)
     foreach (var bonus in race.Bonuses)
@@ -16,5 +22,9 @@
             <b>@bonus.Name</b><br/>
             @bonus.Description
         </p>
+    }
+    if (i == 2)
+    {
+        <div class="break"></div>
     }
 }

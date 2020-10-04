@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
+using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -18,15 +19,49 @@ namespace Pnprpg.Domain.Services
             _spellRepository = spellRepository;
         }
 
-        public IQueryable<MagicSchoolModel> GetAll()
+        public IQueryable<MagicSchoolModel> GetAllSchools()
         {
             return _magicSchoolRepository.Select().ProjectTo<MagicSchoolModel>(MapperConfig);
         }
 
-        public SpellModel GetRandomSpell()
+        public SpellViewModel GetRandomSpell()
         {
             var spell = _spellRepository.GetRandom();
-            return Mapper.Map<SpellModel>(spell);
+            return Mapper.Map<SpellViewModel>(spell);
+        }
+
+        public IQueryable<SpellViewModel> GetAll()
+        {
+            return _spellRepository.Select().ProjectTo<SpellViewModel>(MapperConfig);
+        }
+
+        public SpellEditModel GetForEdit(int? id)
+        {
+            if (id == null)
+                return new SpellEditModel();
+            var spell = _spellRepository.Get(id.Value);
+            return spell != null ? Mapper.Map<SpellEditModel>(spell) : new SpellEditModel();
+        }
+
+        public void Save(SpellEditModel model)
+        {
+            var perk = new Spell
+            {
+                Id = model.Id,
+                MagicSchoolId = model.MagicSchoolId,
+                Level = model.Level,
+                Cost = model.Cost,
+                Damage = model.Damage,
+                Effect = model.Effect,
+                Name = model.Name
+            };
+
+            model.Id = _spellRepository.InsertOrUpdate(perk);
+        }
+
+        public void Delete(int id)
+        {
+            _spellRepository.Delete(id);
         }
     }
 }

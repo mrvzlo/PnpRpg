@@ -46,7 +46,7 @@ namespace Pnprpg.Web.Controllers
 
         public JsonResult Branches()
         {
-            var query = _branchService.GetAll();
+            var query = _branchService.GetAllWithPerks();
             return ReturnJson(this.RenderPartialViewToString("_Branches", query));
         }
 

@@ -20,7 +20,7 @@ namespace Pnprpg.DomainService.Models
         public int BadKarma { get; set; }
         public HeroGenStatus MaxStatus { get; set; }
 
-        public HeroModel(){}
+        public HeroModel() { }
 
         public HeroModel(Company chaos)
         {
@@ -36,15 +36,15 @@ namespace Pnprpg.DomainService.Models
         public int BaseDmg() => (GetAbilityLevel(AbilityKey.S) + 5) / 10;
         public int MaxHp() => GetAbilityLevel(AbilityKey.E) + Level / 2 + 3;
         public int MaxMp() => Math.Max(GetAbilityLevel(AbilityKey.I) + Level - 4, 0);
-        public int MaxCarry() => GetAbilityLevel(AbilityKey.S) * GetAbilityLevel(AbilityKey.E) / 10;
-        public int MaxAp() => GetAbilityLevel(AbilityKey.A) / 2 + Level;
+        public int MaxCarry() => GetAbilityLevel(AbilityKey.S) * GetAbilityLevel(AbilityKey.S) / 10;
+        public int MaxAp() => GetAbilityLevel(AbilityKey.E) / 2 + Level * 2;
         public int Perception() => Math.Max(GetAbilityLevel(AbilityKey.I) + Level - 5, 0);
 
-        private int GetAbilityLevel(AbilityKey id) => Abilities.Get((int) id).Level;
+        private int GetAbilityLevel(AbilityKey id) => Abilities.Get((int)id).Level;
 
         public bool ApplyEffectList(List<TraitEffectDescModel> list, bool manual) => list.All(x => ApplyEffect(x, manual));
 
-        public bool ApplyModifiers(List<AbilityModifier> list) => 
+        public bool ApplyModifiers(List<AbilityModifier> list) =>
             list.All(x => Abilities.Update(x.Ability.Id, x.Modifier, false));
 
         public void SetStatus(HeroGenStatus status)
@@ -58,10 +58,10 @@ namespace Pnprpg.DomainService.Models
             switch (traitEffect.TargetType)
             {
                 case EffectTarget.Ability:
-                    return Abilities.Update(traitEffect.TargetId, traitEffect.Value, manual); 
+                    return Abilities.Update(traitEffect.TargetId, traitEffect.Value, manual);
                 case EffectTarget.Skill:
                     return Skills.Update(traitEffect.Skill, traitEffect.Value, manual);
-                default: 
+                default:
                     return true;
             }
         }

@@ -16,7 +16,7 @@ namespace Pnprpg.Web.Controllers
 
         public ActionResult Index()
         {
-            var list = _magicSchoolService.GetAll();
+            var list = _magicSchoolService.GetAllSchools();
             return View(list);
         }
 

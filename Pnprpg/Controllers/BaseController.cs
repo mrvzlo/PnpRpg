@@ -38,12 +38,18 @@ namespace Pnprpg.Web.Controllers
 
         protected FileResult LoadPdf(HtmlToPdfConverter generator, string fileName, string viewName, object model = null)
         {
+            CheckPdf(generator, fileName, viewName, model);
+
+            var path = Server.MapPath($"~/App_Data/{fileName}");
+            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
+            return File(file, "application/pdf");
+        }
+
+        protected void CheckPdf(HtmlToPdfConverter generator, string fileName, string viewName, object model = null)
+        {
             var path = Server.MapPath($"~/App_Data/{fileName}");
             if (!System.IO.File.Exists(path) || Request.IsLocal)
                 SavePdf(generator, viewName, path, model);
-
-            var file = new FileStream(path, FileMode.Open, FileAccess.Read);
-            return File(file, "application/pdf");
         }
 
         protected ActionResult PersonalPdf(HtmlToPdfConverter generator, string viewName, object model = null)

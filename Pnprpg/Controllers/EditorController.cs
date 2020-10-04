@@ -13,24 +13,28 @@ namespace Pnprpg.Web.Controllers
         private readonly IRaceService _raceService;
         private readonly ISkillService _skillService;
         private readonly IAbilityService _abilityService;
+        private readonly IMagicService _magicService;
         private readonly IWeaponService _weaponService;
         private readonly IPerkService _perkService;
         private readonly IBranchService _branchService;
         private readonly IBonusService _bonusService;
         private readonly ICoreLogic _coreLogic;
 
-        public EditorController(IRaceService raceService, IAbilityService abilityService, ISkillService skillService, IWeaponService weaponService, IPerkService perkService, IBranchService branchService, IBonusService bonusService, ICoreLogic coreLogic)
+        public EditorController(IRaceService raceService, IAbilityService abilityService, ISkillService skillService, IWeaponService weaponService, IPerkService perkService, IBranchService branchService, IBonusService bonusService, ICoreLogic coreLogic, IMagicService magicService)
         {
             _raceService = raceService;
             _perkService = perkService;
             _skillService = skillService;
             _bonusService = bonusService;
             _coreLogic = coreLogic;
+            _magicService = magicService;
             _weaponService = weaponService;
             _branchService = branchService;
             _abilityService = abilityService;
         }
 
+        #region Races
+        
         public ActionResult Races() => View();
         public ActionResult RacesGrid() => Grid(_raceService, nameof(RacesGrid));
         public ActionResult EditRace(int? id = null)
@@ -53,7 +57,10 @@ namespace Pnprpg.Web.Controllers
             ViewBag.Bonuses = _coreLogic.ToSelectableList(bonuses);
         }
 
+        #endregion
 
+        #region Skills
+        
         public ActionResult Skills() => View();
         public ActionResult SkillsGrid() => Grid(_skillService, nameof(SkillsGrid));
         public ActionResult EditSkill(int? id = null)
@@ -79,7 +86,10 @@ namespace Pnprpg.Web.Controllers
             ViewBag.Abilities = _coreLogic.ToSelectableList(abilities, model.AbilityId);
         }
 
+        #endregion
 
+        #region Branches
+        
         public ActionResult Branches() => View();
         public ActionResult BranchesGrid() => Grid(_branchService, nameof(BranchesGrid));
         public ActionResult EditBranch(int id)
@@ -97,6 +107,10 @@ namespace Pnprpg.Web.Controllers
             var bonuses = _bonusService.Select(BonusType.Branch);
             ViewBag.Bonuses = _coreLogic.ToSelectableList(bonuses);
         }
+
+        #endregion
+
+        #region Weapons
 
         public ActionResult Weapons() => View();
         public ActionResult WeaponsGrid() => Grid(_weaponService, nameof(WeaponsGrid));
@@ -120,6 +134,9 @@ namespace Pnprpg.Web.Controllers
             ViewBag.Bonuses = _coreLogic.ToSelectableList(bonuses);
         }
 
+        #endregion
+
+        #region Bonuses
 
         public ActionResult Bonuses() => View();
         public ActionResult BonusesGrid() => Grid(_bonusService, nameof(BonusesGrid));
@@ -141,7 +158,10 @@ namespace Pnprpg.Web.Controllers
             ViewBag.Types = _coreLogic.ToSelectableList(types, model.Type);
         }
 
+        #endregion
 
+        #region Perks
+        
         public ActionResult Perks() => View();
         public ActionResult PerksGrid() => Grid(_perkService, nameof(PerksGrid));
         public ActionResult EditPerk(int? id = null)
@@ -162,6 +182,31 @@ namespace Pnprpg.Web.Controllers
             ViewBag.Branches = _coreLogic.ToSelectableList(branches, model.BranchId);
         }
 
+        #endregion
+
+        #region Spells
+
+        public ActionResult Spells() => View();
+        public ActionResult SpellsGrid() => Grid(_magicService, nameof(SpellsGrid));
+        public ActionResult EditSpell(int? id = null)
+        {
+            var model = _magicService.GetForEdit(id);
+            return Edit(model, PrepareSpellEditViewBags, nameof(EditSpell));
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult EditSpell(SpellEditModel model) =>
+            Edit(() => _magicService.Save(model), PrepareSpellEditViewBags, model, nameof(EditSpell), nameof(Spells));
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult DeleteSpell(int modelId) => Delete(_magicService, modelId, nameof(Spells));
+
+        private void PrepareSpellEditViewBags()
+        {
+            var schools = _magicService.GetAllSchools();
+            ViewBag.Schools = _coreLogic.ToSelectableList(schools);
+        }
+
+        #endregion
 
         private PartialViewResult Grid(IViewService<IBaseViewModel> service, string gridName) =>
             PartialView($"Grids/_{gridName}", service.GetAll());

@@ -20,7 +20,7 @@ namespace Pnprpg.Web.Controllers
 
         public ActionResult Perks()
         {
-            var list = _perkService.GetAll();
+            var list = _perkService.GetAllSimplified();
             return View(list);
         }
 

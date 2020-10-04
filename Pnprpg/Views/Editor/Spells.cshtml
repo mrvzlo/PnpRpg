@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Редактор заклинаний";
+}
+
+<div class="col-12 my-2">@Html.ActionLink("Добавить новое", "EditSpell", null, new { @class = "btn btn-success" })</div>
+
+@Html.AjaxGrid(Url.Action("SpellsGrid", "Editor"))
+
+@using (Html.BeginForm("DeleteSpell", "Editor", FormMethod.Post, new { id = "deleteForm" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.Hidden("ModelId")
+}

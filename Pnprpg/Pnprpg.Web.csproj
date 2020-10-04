@@ -52,6 +52,15 @@
     <Reference Include="Api2Pdf.DotNet, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Api2Pdf.1.1.0\lib\netstandard2.0\Api2Pdf.DotNet.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
     <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
@@ -422,7 +431,6 @@
     <Compile Include="Helpers\PartialViewExtension.cs" />
     <Compile Include="Helpers\FileNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="App_Data\MagicBook.pdf" />
     <None Include="App_Data\PnpRpgDb.mdf" />
     <None Include="App_Data\PnpRpgDb_log.ldf">
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
@@ -634,8 +642,6 @@
     <None Include="Properties\PublishProfiles\GearHost.pubxml" />
     <None Include="Properties\PublishProfiles\pnprpg - FTP.pubxml" />
     <Content Include="Views\Book\_ShortSkillList.cshtml" />
-    <Content Include="App_Data\CharacterSheet.pdf" />
-    <Content Include="App_Data\RuleBook.pdf" />
     <Content Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Content\images\bg.png" />
     <Content Include="Content\images\perks.jpg" />
@@ -682,6 +688,10 @@
     <Content Include="Views\Donation\Index.cshtml" />
     <Content Include="Views\Donation\Edit.cshtml" />
     <Content Include="Views\Donation\EditorTemplates\DonationEditModel.cshtml" />
+    <Content Include="Views\Editor\Spells.cshtml" />
+    <Content Include="Views\Editor\Grids\_SpellsGrid.cshtml" />
+    <Content Include="Views\Editor\Edit\EditSpell.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />
@@ -740,12 +750,10 @@
     <Content Include="Views\Alchemy\_ReactionResult.cshtml" />
     <Content Include="Views\Home\Perks.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Ability.cshtml" />
-    <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\_Stats.cshtml" />
     <Content Include="Views\Book\_Races.cshtml" />
     <Content Include="Views\Book\_Traits.cshtml" />
     <Content Include="Views\Book\_Skills.cshtml" />
-    <Content Include="Views\Book\_Perks.cshtml" />
     <Content Include="Views\Book\_Spells.cshtml" />
     <Content Include="Views\Book\_Alchemy.cshtml" />
   </ItemGroup>

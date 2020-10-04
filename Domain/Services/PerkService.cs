@@ -20,8 +20,11 @@ namespace Pnprpg.Domain.Services
 
         public IQueryable<PerkViewModel> GetAll()
         {
-            //return _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig).AsEnumerable().SelectMany(GetPerkRanks).AsQueryable();
             return _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig);
+        }
+        public IQueryable<PerkViewModel> GetAllSimplified()
+        {
+            return _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig).AsEnumerable().SelectMany(GetPerkRanks).AsQueryable();
         }
 
         public PerkEditModel GetForEdit(int? id)
@@ -60,26 +63,9 @@ namespace Pnprpg.Domain.Services
                 list.Add(perk);
                 return list;
             }
-
-            var splitted = perk.Description.Split('[', ']');
-            var description = "";
-            var baseValues = new List<int>();
-            for (var i = 0; i < splitted.Length; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    description += splitted[i];
-                }
-                else
-                {
-                    description += $"{{{i / 2}}}";
-                    baseValues.Add(Convert.ToInt32(splitted[i]));
-                }
-            }
-
+            
             for (var i = 0; i < perk.Max; i++)
             {
-                var values = baseValues.Select(x => (x + i * x).ToString()).ToArray();
                 var child = new PerkViewModel
                 {
                     Branch = perk.Branch,
@@ -87,7 +73,7 @@ namespace Pnprpg.Domain.Services
                     Id = perk.Id, 
                     Name = i == 0 ? perk.Name : $"{perk.Name} {i+1}", 
                     Level = perk.Level + i * 2,
-                    Description = string.Format(description, values)
+                    Description = perk.Description
                 };
                 list.Add(child);
             }

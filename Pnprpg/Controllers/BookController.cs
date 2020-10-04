@@ -12,7 +12,6 @@ namespace Pnprpg.Web.Controllers
     public class BookController : BaseController
     {
         private readonly IAlchemyService _alchemyService;
-        private readonly IPerkService _perkService;
         private readonly IRaceService _raceService;
         private readonly ITraitService _traitService;
         private readonly ISkillService _skillService;
@@ -21,11 +20,10 @@ namespace Pnprpg.Web.Controllers
         private readonly ICoreLogic _coreLogic;
         private readonly IBranchService _branchService;
 
-        public BookController(IAlchemyService alchemyService, IPerkService perkService,
-            IRaceService raceService, ITraitService traitService, ISkillService skillService, IMagicService magicService, IAbilityService abilityService, ICoreLogic coreLogic, IBranchService branchService)
+        public BookController(IAlchemyService alchemyService, IRaceService raceService, ITraitService traitService, ISkillService skillService, 
+            IMagicService magicService, IAbilityService abilityService, ICoreLogic coreLogic, IBranchService branchService)
         {
             _alchemyService = alchemyService;
-            _perkService = perkService;
             _raceService = raceService;
             _traitService = traitService;
             _skillService = skillService;
@@ -42,7 +40,7 @@ namespace Pnprpg.Web.Controllers
         {
             Converter.Margins.Top = 20;
             Converter.Margins.Bottom = 20;
-            Converter.PageFooterHtml = "<div style='text-align: center'><span class='page'></span></div>";
+            Converter.PageFooterHtml = "<div style='text-align: center'><b class='page'></b></div>";
             return LoadPdf(Converter, FileNames.RuleBook, "Index");
         }
 
@@ -64,8 +62,7 @@ namespace Pnprpg.Web.Controllers
 
         public ActionResult UpdateBook()
         {
-            var path = Server.MapPath($"~/App_Data/{FileNames.RuleBook}");
-            System.IO.File.Delete(path);
+            System.IO.File.Delete(Server.MapPath($"~/App_Data/{FileNames.RuleBook}"));
             return RedirectToAction("Index");
         }
 
@@ -83,7 +80,7 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult Branches()
         {
-            var list = _branchService.GetAll().ToList();
+            var list = _branchService.GetAllWithPerks();
             return PartialView("_Branches", list);
         }
 
@@ -101,16 +98,10 @@ namespace Pnprpg.Web.Controllers
 
         public PartialViewResult Spells()
         {
-            var list = _magicService.GetAll();
+            var list = _magicService.GetAllSchools();
             return PartialView("_Spells", list);
         }
-
-        public PartialViewResult Perks()
-        {
-            var list = _perkService.GetAll();
-            return PartialView("_Perks", list);
-        }
-
+        
         public PartialViewResult Alchemy()
         {
             var summary = _alchemyService.GetSummary();

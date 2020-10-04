@@ -1,5 +1,5 @@
 ﻿@using Pnprpg.DomainService.Enums
-@model IQueryable<Pnprpg.DomainService.Models.BranchViewModel>
+@model List<Pnprpg.DomainService.Models.BranchViewModel>
 @{ Html.RenderAction("Wizard", "HeroGen", new { status = HeroGenStatus.Branch });}
 <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle mw-160" type="button" data-toggle="dropdown">Выберите класс&nbsp;</button>

@@ -10,40 +10,29 @@
     {
         i++;
         <h5>@school.Name</h5>
-        var showDesc = !school.Spells.All(x => string.IsNullOrEmpty(x.Effect));
-        <div>@school.Desctiption</div>
         <table class="table">
             <tr>
-                <th class="w-10">Уровень</th>
-                <th>Название</th>
-                @if (showDesc)
-                {
-                    <th>Эффект</th>
-                }
-                <th style="width: 20%">Стоимость</th>
+                <th style="width: 70px;">Мин. ур. школы</th>
+                <th style="width: 120px;">Название</th>
+                <th>Эффект</th>
+                <th style="width: 70px;">Стоимость</th>
             </tr>
             @foreach (var spell in school.Spells)
             {
                 <tr>
                     <td>@spell.Level</td>
                     <td>@spell.Name</td>
-                    @if (showDesc)
-                    {
-                        <td>
-                            @if (spell.Damage > 0)
-                            {
-                                var separator = string.IsNullOrEmpty(spell.Effect) ? "" : ",";
-                                @:Урон <b>@(spell.Damage + separator)</b>
-                            }
-                            @spell.Effect
-                        </td>
-                    }
+                    <td>
+                        @(spell.Damage > 0 ? string.Format(spell.Effect, spell.Damage) : spell.Effect)
+                    </td>
                     <td>@spell.Cost</td>
                 </tr>
             }
         </table>
+        <br/>
+        <br/>
 
-        if (i == 4)
+        if (i % 2 == 1)
         {<p class="break"></p>}
     }
 </div>

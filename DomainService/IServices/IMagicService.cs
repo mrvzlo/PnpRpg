@@ -3,10 +3,10 @@ using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {
-    public interface IMagicService
+    public interface IMagicService : IViewService<SpellViewModel>, IEditService<SpellEditModel>
     {
-        IQueryable<MagicSchoolModel> GetAll();
-
-        SpellModel GetRandomSpell();
+        IQueryable<MagicSchoolModel> GetAllSchools();
+        void Save(SpellEditModel model);
+        SpellViewModel GetRandomSpell();
     }
 }
