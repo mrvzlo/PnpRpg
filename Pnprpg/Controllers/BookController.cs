@@ -120,5 +120,12 @@ namespace Pnprpg.Web.Controllers
             path = Server.MapPath(path);
             return System.IO.File.ReadAllText(path);
         }
+
+        public string BookStyle()
+        {
+            var path = Url.Content("~/Content/book.css");
+            path = Server.MapPath(path);
+            return System.IO.File.ReadAllText(path);
+        }
     }
 }

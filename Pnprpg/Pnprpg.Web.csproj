@@ -411,6 +411,7 @@
     <Compile Include="App_Start\StructureMapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseGenController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\MagicController.cs" />
@@ -435,6 +436,7 @@
     <None Include="App_Data\PnpRpgDb_log.ldf">
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
     </None>
+    <Content Include="Content\book.css" />
     <Content Include="Content\fontawesome\LICENSE.txt" />
     <Content Include="Content\HeroSheet.css" />
     <Content Include="Content\images\icons.svg" />
@@ -562,6 +564,7 @@
     <Content Include="Content\fontawesome\regular.scss" />
     <Content Include="Content\fontawesome\fontawesome.scss" />
     <Content Include="Content\fontawesome\brands.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -639,7 +642,6 @@
     <Content Include="Content\grid.scss" />
     <Content Include="Content\layout.scss" />
     <None Include="Properties\PublishProfiles\Azure.pubxml" />
-    <None Include="Properties\PublishProfiles\GearHost.pubxml" />
     <None Include="Properties\PublishProfiles\pnprpg - FTP.pubxml" />
     <Content Include="Views\Book\_ShortSkillList.cshtml" />
     <Content Include="Views\Account\_SignIn.cshtml" />

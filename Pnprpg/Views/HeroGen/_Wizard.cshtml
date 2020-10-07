@@ -2,7 +2,7 @@
 @model HeroGenStatus
 @{
     var i = 0;
-    var current = (HeroGenStatus) ViewBag.Current;
+    var current = (HeroGenStatus)ViewBag.Current;
     var max = (HeroGenStatus)Math.Max((int)current, (int)Model);
     var list = (HeroGenStatus[])Enum.GetValues(typeof(HeroGenStatus));
 }
@@ -11,9 +11,11 @@
     {
         if (i > 0)
         {
-            <div class="bg-@(x > max ? "secondary" : "success") my-auto h-25"><span class="px-md-4 px-3"></span></div>
+            <div class="bg-@(x > max ? "secondary" : "success") my-auto h-25 mx-n1">
+                <span class="px-md-4 px-3"></span>
+            </div>
         }
-        <a class="circle btn btn-@(current == x ? "primary" : x > max ? "secondary" : "success") font-weight-bold font-monospace px-3" 
+        <a class="circle btn btn-@(current == x ? "primary" : x > max ? "secondary" : "success") font-weight-bold font-monospace px-3 z-2"
            href="@(x <= Model ? Url.Action("Index", "HeroGen", new {Status = x}) : "")">
             @(++i)
         </a>

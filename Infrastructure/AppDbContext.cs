@@ -18,6 +18,7 @@ namespace Pnprpg.Infrastructure
         public DbSet<Donation> Donations { get; set; }
         public DbSet<TraitEffect> Effects { get; set; }
         public DbSet<MagicSchool> MagicSchools { get; set; }
+        public DbSet<News> News { get; set; }
         public DbSet<Perk> Perks{ get; set; }
         public DbSet<Potion> Potions{ get; set; }
         public DbSet<Race> Races { get; set; }

@@ -11815,9 +11815,25 @@ footer {
     position: fixed;
     top: 60px;
     left: 0;
-    right: 0; }
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll; }
+    #mainNavBar .dropdown-menu {
+      padding: 0;
+      margin: 0; }
     #mainNavBar > *:first-child {
-      height: 100vh; } }
+      height: 100vh; }
+    #mainNavBar .dont-hide .dropdown-menu {
+      display: block; }
+    #mainNavBar a {
+      text-align: center; } }
+
+.mx-n1 {
+  margin-left: -5px;
+  margin-right: -5px; }
+
+.z-2 {
+  z-index: 2; }
 
 .lds-dual-ring {
   display: inline-block;

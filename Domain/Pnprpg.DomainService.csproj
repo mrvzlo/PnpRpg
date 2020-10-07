@@ -78,6 +78,7 @@
     <Compile Include="Profiles\DonationProfile.cs" />
     <Compile Include="Profiles\HeroProfile.cs" />
     <Compile Include="Profiles\MagicProfile.cs" />
+    <Compile Include="Profiles\NewsProfile.cs" />
     <Compile Include="Profiles\SkillProfile.cs" />
     <Compile Include="Profiles\PerkProfile.cs" />
     <Compile Include="Profiles\SelectableProfile.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\AlchemyService.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\NewsService.cs" />
     <Compile Include="Services\BonusService.cs" />
     <Compile Include="Services\CoreLogic.cs" />
     <Compile Include="Services\DonationService.cs" />

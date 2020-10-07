@@ -75,6 +75,7 @@
     <Compile Include="Entities\ManyToMany\RaceBonus.cs" />
     <Compile Include="Entities\ManyToMany\BranchBonus.cs" />
     <Compile Include="Entities\ManyToMany\WeaponBonus.cs" />
+    <Compile Include="Entities\News.cs" />
     <Compile Include="Entities\RaceAbility.cs" />
     <Compile Include="Enums\AbilityKey.cs" />
     <Compile Include="Enums\AlchemySymbolType.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="IRepositories\IEffectRepository.cs" />
     <Compile Include="IRepositories\IBranchRepository.cs" />
     <Compile Include="IRepositories\IMagicSchoolRepository.cs" />
+    <Compile Include="IRepositories\INewsRepository.cs" />
     <Compile Include="IRepositories\ITraitRepository.cs" />
     <Compile Include="IRepositories\IRaceRepository.cs" />
     <Compile Include="IRepositories\IReactionRepository.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="IServices\IAccountService.cs" />
     <Compile Include="IServices\IAlchemyService.cs" />
     <Compile Include="IServices\IBonusService.cs" />
+    <Compile Include="IServices\INewsService.cs" />
     <Compile Include="IServices\ICoreLogic.cs" />
     <Compile Include="IServices\Base\IViewService.cs" />
     <Compile Include="IServices\Base\IEditService.cs" />
@@ -140,6 +143,8 @@
     <Compile Include="Models\Donation\DonationEditModel.cs" />
     <Compile Include="Models\Donation\DonationViewModel.cs" />
     <Compile Include="Models\Magic\SpellEditModel.cs" />
+    <Compile Include="Models\News\NewsViewModel.cs" />
+    <Compile Include="Models\News\NewsEditModel.cs" />
     <Compile Include="Models\Races\RaceEditModel.cs" />
     <Compile Include="Models\Skills\HeroSkillGroup.cs" />
     <Compile Include="Models\Skills\SkillEditModel.cs" />
