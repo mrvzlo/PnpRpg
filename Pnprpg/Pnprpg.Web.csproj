@@ -694,6 +694,8 @@
     <Content Include="Views\Editor\Grids\_SpellsGrid.cshtml" />
     <Content Include="Views\Editor\Edit\EditSpell.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\News\_NewsGrid.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\alchemy.jpg" />

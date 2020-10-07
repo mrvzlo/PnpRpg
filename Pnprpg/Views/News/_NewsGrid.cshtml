@@ -1,0 +1,26 @@
+﻿@using System.Globalization
+@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Enums
+@using Pnprpg.DomainService.Models
+@model IQueryable<Pnprpg.DomainService.Models.NewsViewModel>
+@Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x).RenderedAs(News).Titled("");
+}).Css("table table-specific").Pageable(pager => { pager.RowsPerPage = 5; })
+
+@helper News(NewsViewModel x)
+{
+    <div class="card">
+        <div class="card-header d-sm-flex justify-content-between px-4 font-weight-bold">
+            <div class="py-1 order-sm-last">@x.Date.ToString("D", new CultureInfo("ru-ru"))</div>
+            <div class="h4">@x.Title</div>
+        </div>
+        <div class="card-body text-left p-3">
+            @Html.Raw(x.Content)
+            @if (User.IsInRole(UserRole.Admin.ToString()))
+            {
+                <a href="@Url.Action("Edit", new {id=x.Id})" class="d-block text-right"><i class="fas fa-edit"></i></a>
+            }
+        </div>
+    </div>
+}

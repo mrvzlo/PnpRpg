@@ -1,0 +1,33 @@
+﻿@using System.Globalization
+@model Pnprpg.DomainService.Models.NewsEditModel
+@{
+    ViewBag.Title = Model.Id == 0 ? "Новая новость" : Model.Title;
+}
+
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { @class = "col-12 mx-auto" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Заголовок</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Дата</label>
+        <div class="col-12">
+            @Html.HiddenFor(x => x.Date)
+            <div class="form-control text-left" readonly>@Model.Date.ToString("D", new CultureInfo("ru"))</div>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Текст</label>
+        <div class="col-12 text-left">
+            @Html.TextAreaFor(x => x.Content, new { @class = "form-control html-editor" })
+        </div>
+    </div>
+
+    <hr id="hr" />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+}

@@ -20,26 +20,26 @@ namespace Pnprpg.Domain.Services
 
         public NewsEditModel GetForEdit(int? id)
         {
-            var news = id == null ? new News() : _newsRepository.Get(id.Value);
+            var news = id == null ? new News(){Date = DateTime.Now} : _newsRepository.Get(id.Value);
             return Mapper.Map<NewsEditModel>(news);
         }
 
         public void Delete(int id) => _newsRepository.Delete(id);
 
         public IQueryable<NewsViewModel> GetAll() => 
-            _newsRepository.Select().ProjectTo<NewsViewModel>(MapperConfig);
+            _newsRepository.Select().ProjectTo<NewsViewModel>(MapperConfig).OrderByDescending(x => x.Date);
 
         public void Save(NewsEditModel model)
         {
-            var bonus = new News
+            var news = new News
             {
                 Id = model.Id,
                 Title = model.Title,
                 Content = model.Content,
-                Date = DateTime.UtcNow
+                Date = model.Date
             };
 
-            model.Id = _newsRepository.InsertOrUpdate(bonus);
+            model.Id = _newsRepository.InsertOrUpdate(news);
         }
     }
 }

@@ -7,19 +7,21 @@
 
     <div class="collapse navbar-collapse" id="mainNavBar">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-2">
-                <a href="https://vk.com/dndotvlada" class="nav-link text-light">
-                    <i class="fa-vk fab h5 m-0"></i>
+            <li class="nav-item active mx-2 dropdown dont-hide">
+                <a class="nav-link dropdown-toggle" href="#"data-toggle="dropdown">
+                    Персонаж
                 </a>
-            </li>
-            <li class="nav-item active mx-2">
-                <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Персонаж</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="nav-link" href="@Url.Action("Index", "HeroGen")">Создать нового</a>
+                    <a class="nav-link" href="@Url.Action("HeroSheets", "Book")">Листы персонажа</a>
+                </div>
             </li>
             <li class="nav-item active mx-2 dropdown dont-hide">
-                <a class="nav-link dropdown-toggle" href="#" id="rulesDropdown" data-toggle="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                     Правила
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
+                    <a class="nav-link" href="@Url.Action("Index", "Book")">Книга правил</a>
                     <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
                     <a class="nav-link" href="@Url.Action("Index", "Magic")">Школы магии</a>
                     <a class="nav-link" href="@Url.Action("Perks", "Home")">Способности</a>
@@ -30,14 +32,34 @@
             {
                 @Authed()
             }
-            else
-            {
-                <li class="nav-item active mx-2">
+            <li class="nav-item mx-2">
+                <a href="https://vk.com/dndotvlada" class="nav-link text-light">
+                    <i class="fa-vk fab h5 m-0"></i>
+                </a>
+            </li>
+            <li class="nav-item mx-2">
+                <a href="@Url.Action("Index", "Donation")" class="nav-link text-light">
+                    <i class="fa-donate fas h5 m-0"></i>
+                </a>
+            </li>
+            <li class="nav-item active mx-2">
+                @if (!User.Identity.IsAuthenticated)
+                {
                     <a href="@Url.Action("Index", "Account")" class="nav-link text-light">
                         <i class="fa-sign-in-alt fas h5 m-0"></i>
                     </a>
-                </li>
-            }
+                }
+                else
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-none" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    }
+                    <a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()">
+                        <i class="fa-sign-out-alt fas h5 m-0"></i>
+                    </a>
+                }
+            </li>
         </ul>
     </div>
 </nav>
@@ -52,15 +74,6 @@
     {
         @Editor()
     }
-    <li class="nav-item active mx-2 dropdown">
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-none" }))
-        {
-            @Html.AntiForgeryToken()
-        }
-        <a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()">
-            <i class="fa-sign-out-alt fas h5 m-0"></i>
-        </a>
-    </li>
 }
 
 @helper Admin()
@@ -73,6 +86,7 @@
         <div class="dropdown-menu dropdown-menu-right">
             <a class="nav-link" href="@Url.Action("Users", "Admin")">Настройка ролей</a>
             <a class="nav-link" href="@Url.Action("UpdateBook", "Book")">Обновить книгу</a>
+            <a class="nav-link" href="@Url.Action("Edit", "News")">Добавить новость</a>
         </div>
     </li>
 }

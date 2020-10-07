@@ -33,9 +33,7 @@ namespace Pnprpg.Web.Controllers
             _branchService = branchService;
 
         }
-
-        //todo news, books, versions
-
+        
         public ActionResult Index()
         {
             Converter.Margins.Top = 20;

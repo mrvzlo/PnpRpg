@@ -72,3 +72,12 @@
         width: 0;
     }
 }
+
+.table-specific{
+    th{
+        display: none;
+    }
+    td{
+        border: none;
+    }
+}

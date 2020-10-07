@@ -14,10 +14,10 @@ namespace Pnprpg.Web.Controllers
             _newsService = newsService;
         }
 
-        public ActionResult Index()
+        public PartialViewResult NewsGrid()
         {
             var list = _newsService.GetAll();
-            return View(list);
+            return PartialView("_NewsGrid", list);
         }
 
         [Authorize(Roles = "Admin")]
@@ -31,7 +31,7 @@ namespace Pnprpg.Web.Controllers
         public ActionResult Edit(NewsEditModel model)
         {
             _newsService.Save(model);
-            return Edit(model.Id);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
