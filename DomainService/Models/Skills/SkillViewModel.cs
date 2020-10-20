@@ -7,7 +7,6 @@ namespace Pnprpg.DomainService.Models
     {
         public string BranchName { get; set; }
         public int BranchId { get; set; }
-        public int Difficulty { get; set; }
         public SkillType Type { get; set; }
 
         public virtual AbilityModel Ability { get; set; }

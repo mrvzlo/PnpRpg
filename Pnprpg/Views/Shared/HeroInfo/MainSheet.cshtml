@@ -2,7 +2,8 @@
 @model Pnprpg.DomainService.Models.HeroModel
 @{
     Layout = "~/Views/Shared/_LayoutIntro.cshtml";
-    var list = new[] { "Здоровье", "Мана", "Запас сил", "Восприятие", };
+    ViewBag.Title = "Лист персонажа";
+    var list = new[] { "Здоровье", "Мана", "Запас сил", "Восприятие", "Урон", "Слава", "Карма", "Харизма" };
     var traits = Model.Traits.List.Select(x => x.Name).ToList();
     var final = Model.MaxStatus == HeroGenStatus.Result;
     if (final)
@@ -45,6 +46,10 @@
             <div class="">@list[i]</div>
             <div class="circle"></div>
         </div>
+        <div class="text-center">
+            <div class="">@list[i+4]</div>
+            <div class="circle"></div>
+        </div>
     </div>
 }
 
@@ -57,36 +62,17 @@
     <div style=" line-height: 32px;">Ноги</div>
 </div>
 
-<div style="@Pos(7, 27, 10, 15)">
-    <div class="text-center">
-        <div class="">Урон</div>
-        <div class="circle"></div>
-    </div>
-</div>
-<div style="@Pos(18, 27, 10, 15)">
-    <div class="text-center">
-        <div class="">Слава</div>
-        <div class="circle"></div>
-    </div>
-</div>
-<div style="@Pos(29, 27, 10, 15)">
-    <div class="text-center">
-        <div class="">Карма</div>
-        <div class="circle"></div>
-    </div>
-</div>
-
 
 <div class="text-center" style="@Pos(61, 5, 18, 2)">Особенности</div>
 <div class="card" style="@Pos(61, 7, 18, 18)">
     @for (var i = 0; i < 5; i++)
     {<div class="text-center @(i < 4 ? "bg" : "")" style=" line-height: 32px;">
-         @if (traits.Count > i)
-         {
-             @traits[i];
-         }
-         &nbsp;
-     </div>}
+            @if (traits.Count > i)
+            {
+                @traits[i];
+            }
+            &nbsp;
+        </div>}
 </div>
 
 <div class="text-center" style="@Pos(46, 27, 33, 2)">Эффекты и болезни</div>
@@ -113,14 +99,14 @@
     <div style="height: 5px">&nbsp;</div>
     @foreach (var skill in Model.Skills.List)
     {
-        <span style="margin-left: 9%;">(</span>
-        <span style="margin-left: 7%">)</span>
+        <span style="margin-left: 3%;">(</span>
+        <span style="margin-left: 11%">)</span>
         @skill.Name
-        <span style="float: right; color: gray; margin-right: 9%">
+        <span style="float: right; color: gray; margin-right: 3%">
             @{
                 var level = Model.Skills.List.FirstOrDefault(x => x.Id == skill.Id)?.Level ?? 0;
                 level -= skill.Difficulty;
-                var lvlStr = level < 0 ? level.ToString() : $"+{level}";
+                var lvlStr = level < 0 ? level.ToString() : level == 0 ? "" : $"+{level}";
             }
             @($"({skill.Ability.Symbol}{lvlStr})")
         </span>
@@ -140,27 +126,30 @@
     {<div class="bg">&nbsp;</div>}
 </div>
 
-<div style="@Pos(90, 55, 10, 15)">
+<div style="@Pos(90, 50, 10, 15)">
     <div class="text-center">
         <div class="">Футляр</div>
         <div class="circle">
             <div class="r-45" style="margin-top: 10px;">&nbsp;</div>
         </div>
-        <br />
         <div class="">Колчан</div>
         <div class="circle">
             <div class="r-45" style="margin-top: 10px;">&nbsp;</div>
         </div>
-        <br />
         <div class="">Общий вес</div>
         <div class="circle">
             <div class="r-45" style="margin-top: 10px;">&nbsp;</div>
         </div>
+        <br />
+        <div>
+            <img src="https://psv4.userapi.com/c856424/u162228043/docs/d13/266bd3962654/qrcode.jpg?extra=IxNf_pgjxgnBDRml1UClZNV5QEU0CS4oHgmwJ5bp1i0TmLO2ZiXVz19tj8VRUakKXKmGocNN9otmSZD2e_Ts9ZJIG0qoskpPn4an0xj8SQATaJs-KsavbvdezgDB3KTgoIlJK-1vMv1c55PLLKpFGjzAfMz3" 
+                 style="width: 80px; height: 80px;"/>
+        </div>
     </div>
 </div>
 
-<div style="@Pos(70, 97, 28, 5)">
-    <div style="color: gray; text-align: right">Table Adventures Generation System by AVE</div>
+<div style="@Pos(0, 97, 100, 5)">
+    <div style="color: gray; text-align: center">Table Adventures Generation System by AVE</div>
 </div>
 
 @helper Pos(double x, double y, double w, double h)

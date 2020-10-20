@@ -1,9 +1,4 @@
-﻿@font-face {
-    src: url('GridGlyphs.woff') format('woff');
-    font-family: 'GridGlyphs';
-}
-
-@import "variables.scss";
+﻿@import "variables.scss";
 
 @import "fontawesome/fontawesome.scss";
 @import "fontawesome/solid.scss";
@@ -11,8 +6,10 @@
 
 @import "bootstrap/bootstrap.scss";
 
+@import "trumbowyg.scss";
+
 @import "forms.scss";
 @import "grid.scss";
 @import "layout.scss";
 @import "loading.scss";
-@import "trumbowyg.scss";
+@import "fonts.scss";

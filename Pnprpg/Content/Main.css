@@ -1,9 +1,5 @@
-﻿@font-face {
-  src: url("GridGlyphs.woff") format("woff");
-  font-family: 'GridGlyphs'; }
-
-/*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+﻿/*!
+ * Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 .fa,
@@ -200,9 +196,6 @@ readers do not read off random characters that represent icons */
 
 .fa-adn:before {
   content: "\f170"; }
-
-.fa-adobe:before {
-  content: "\f778"; }
 
 .fa-adversal:before {
   content: "\f36a"; }
@@ -992,6 +985,9 @@ readers do not read off random characters that represent icons */
 
 .fa-cloud-upload-alt:before {
   content: "\f382"; }
+
+.fa-cloudflare:before {
+  content: "\e07d"; }
 
 .fa-cloudscale:before {
   content: "\f383"; }
@@ -1986,6 +1982,9 @@ readers do not read off random characters that represent icons */
 .fa-grunt:before {
   content: "\f3ad"; }
 
+.fa-guilded:before {
+  content: "\e07e"; }
+
 .fa-guitar:before {
   content: "\f7a6"; }
 
@@ -2160,6 +2159,9 @@ readers do not read off random characters that represent icons */
 .fa-history:before {
   content: "\f1da"; }
 
+.fa-hive:before {
+  content: "\e07f"; }
+
 .fa-hockey-puck:before {
   content: "\f453"; }
 
@@ -2289,11 +2291,17 @@ readers do not read off random characters that represent icons */
 .fa-info-circle:before {
   content: "\f05a"; }
 
+.fa-innosoft:before {
+  content: "\e080"; }
+
 .fa-instagram:before {
   content: "\f16d"; }
 
 .fa-instagram-square:before {
   content: "\e055"; }
+
+.fa-instalod:before {
+  content: "\e081"; }
 
 .fa-intercom:before {
   content: "\f7af"; }
@@ -2814,6 +2822,9 @@ readers do not read off random characters that represent icons */
 .fa-object-ungroup:before {
   content: "\f248"; }
 
+.fa-octopus-deploy:before {
+  content: "\e082"; }
+
 .fa-odnoklassniki:before {
   content: "\f263"; }
 
@@ -2951,6 +2962,9 @@ readers do not read off random characters that represent icons */
 
 .fa-pepper-hot:before {
   content: "\f816"; }
+
+.fa-perbyte:before {
+  content: "\e083"; }
 
 .fa-percent:before {
   content: "\f295"; }
@@ -4122,6 +4136,9 @@ readers do not read off random characters that represent icons */
 .fa-umbrella-beach:before {
   content: "\f5ca"; }
 
+.fa-uncharted:before {
+  content: "\e084"; }
+
 .fa-underline:before {
   content: "\f0cd"; }
 
@@ -4275,6 +4292,12 @@ readers do not read off random characters that represent icons */
 .fa-venus-mars:before {
   content: "\f228"; }
 
+.fa-vest:before {
+  content: "\e085"; }
+
+.fa-vest-patches:before {
+  content: "\e086"; }
+
 .fa-viacoin:before {
   content: "\f237"; }
 
@@ -4365,6 +4388,9 @@ readers do not read off random characters that represent icons */
 .fa-warehouse:before {
   content: "\f494"; }
 
+.fa-watchman-monitoring:before {
+  content: "\e087"; }
+
 .fa-water:before {
   content: "\f773"; }
 
@@ -4439,6 +4465,9 @@ readers do not read off random characters that represent icons */
 
 .fa-wizards-of-the-coast:before {
   content: "\f730"; }
+
+.fa-wodu:before {
+  content: "\e088"; }
 
 .fa-wolf-pack-battalion:before {
   content: "\f514"; }
@@ -4537,7 +4566,7 @@ readers do not read off random characters that represent icons */
   width: auto; }
 
 /*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
@@ -4554,7 +4583,7 @@ readers do not read off random characters that represent icons */
   font-weight: 900; }
 
 /*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
@@ -11629,240 +11658,6 @@ button.close {
   .d-print-inline-flex {
     display: inline-flex !important; } }
 
-.bg-primary {
-  color: #fff; }
-
-.bg-secondary {
-  color: #fff; }
-
-.bg-success {
-  color: #fff; }
-
-.bg-info {
-  color: #fff; }
-
-.bg-warning {
-  color: #fff; }
-
-.bg-danger {
-  color: #fff; }
-
-.bg-light {
-  color: #fff; }
-
-.bg-dark {
-  color: #fff; }
-
-.card {
-  padding: 0; }
-  .card .card-body {
-    padding-left: .1rem;
-    padding-right: .1rem; }
-
-.right {
-  right: 0; }
-
-a {
-  color: black; }
-  a:hover, a:active, a.active {
-    color: black;
-    text-decoration: none; }
-
-.carousel-indicators {
-  position: relative;
-  margin: 0; }
-  .carousel-indicators li {
-    border-radius: 50%; }
-
-@media (max-width: 540px) {
-  .smallForSmall {
-    font-size: 80%; } }
-
-.pointer {
-  cursor: pointer; }
-
-.big-badge {
-  font-size: 100%;
-  min-width: 20px; }
-
-.fw-40 {
-  width: 40px; }
-
-.mw-160 {
-  min-width: 160px; }
-
-.mw-260 {
-  min-width: 260px; }
-
-form .row {
-  margin-bottom: 1rem; }
-
-.circle {
-  border-radius: 50%; }
-
-.popover {
-  border: 2px solid black; }
-
-td {
-  vertical-align: middle !important; }
-  td .btn {
-    padding: .2rem .5rem; }
-  td h1, td .h1, td h2, td .h2, td h3, td .h3, td h4, td .h4, td h5, td .h5, td h6, td .h6, td p {
-    margin: 0; }
-
-.bg-dark .mvc-grid-filter {
-  color: white; }
-
-.mvc-grid-pager {
-  font-size: 0; }
-  .mvc-grid-pager button {
-    font-size: 1rem;
-    margin: 5px -1px;
-    padding: 0 5px;
-    color: #50a;
-    background-color: #d5aaff;
-    border: 1px solid gray; }
-    .mvc-grid-pager button.active, .mvc-grid-pager button:not(.disabled):hover, .mvc-grid-pager button.active:hover {
-      color: white;
-      background-color: #50a;
-      border-color: #50a; }
-    .mvc-grid-pager button:first-child {
-      border-top-left-radius: 15px;
-      border-bottom-left-radius: 15px; }
-    .mvc-grid-pager button:nth-last-child(2) {
-      border-top-right-radius: 15px;
-      border-bottom-right-radius: 15px; }
-
-.no-wrap {
-  white-space: nowrap; }
-
-.mvc-grid-sort {
-  font-family: 'Font Awesome 5 Free'; }
-  .mvc-grid-sort::after {
-    content: "\f30c"; }
-  .mvc-grid-sort::before {
-    margin: 0;
-    content: "\f309"; }
-
-.mvc-grid-filter::before, .mvc-grid-filter.applied::before {
-  font-family: 'Font Awesome 5 Free';
-  content: "\f002"; }
-
-.mvc-grid .no-wrap {
-  width: 0; }
-
-.table-specific th {
-  display: none; }
-
-.table-specific td {
-  border: none; }
-
-.p-default {
-  margin-top: -60px !important;
-  padding-top: 60px !important; }
-
-.navbar-collapse, .dropdown-menu, nav {
-  background-color: #213; }
-
-nav {
-  height: 60px; }
-
-.flex-1 {
-  flex: 1; }
-
-.navbar-nav .nav-link {
-  padding: .5rem; }
-
-.navbar-nav .dropdown-menu {
-  border-color: #314;
-  background-color: #314; }
-
-.back {
-  filter: hue-rotate(40deg);
-  opacity: .05;
-  min-height: 100vh;
-  width: 450px;
-  background-image: url(images/bg.png);
-  background-repeat: repeat;
-  background-size: 150px 150px;
-  position: fixed;
-  z-index: -1; }
-
-.container {
-  padding: 0; }
-
-footer {
-  position: fixed;
-  bottom: 0; }
-
-.border-big {
-  border: solid 3px; }
-
-.card-footer:hover {
-  background-color: #425; }
-  .card-footer:hover a {
-    color: white; }
-
-.dropdown-menu a:active, .dropdown-menu a:focus, .dropdown-menu a:hover {
-  background-color: #425; }
-
-.dropdown-light a {
-  color: black;
-  background-color: #f8f9fa; }
-  .dropdown-light a:hover, .dropdown-light a:active {
-    color: black;
-    background-color: #ced4da; }
-
-.separate:not(:last-child)::after {
-  content: ", "; }
-
-@media (max-width: 767.98px) {
-  #mainNavBar {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow-y: scroll; }
-    #mainNavBar .dropdown-menu {
-      padding: 0;
-      margin: 0; }
-    #mainNavBar > *:first-child {
-      height: 100vh; }
-    #mainNavBar .dont-hide .dropdown-menu {
-      display: block; }
-    #mainNavBar a {
-      text-align: center; } }
-
-.mx-n1 {
-  margin-left: -5px;
-  margin-right: -5px; }
-
-.z-2 {
-  z-index: 2; }
-
-.lds-dual-ring {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  right: 0; }
-  .lds-dual-ring:after {
-    content: " ";
-    display: block;
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    border-radius: 50%;
-    border: 5px solid;
-    border-color: #444 transparent #444 transparent;
-    animation: lds-dual-ring 1.2s linear infinite; }
-
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg); }
-  100% {
-    transform: rotate(360deg); } }
-
 /**
  * Trumbowyg v2.21.0 - A lightweight WYSIWYG editor
  * Default stylesheet for Trumbowyg editor
@@ -12377,7 +12172,7 @@ body.trumbowyg-body-fullscreen {
     background: #111; }
   .trumbowyg-dark .trumbowyg-box.trumbowyg-box-blur .trumbowyg-editor *, .trumbowyg-dark .trumbowyg-box.trumbowyg-box-blur .trumbowyg-editor::before {
     text-shadow: 0 0 7px #ccc; }
-    @media screen and (min-width: 0 \0 ) {
+    @media screen and (min-width: 0 \0 ) {
       .trumbowyg-dark .trumbowyg-box.trumbowyg-box-blur .trumbowyg-editor *, .trumbowyg-dark .trumbowyg-box.trumbowyg-box-blur .trumbowyg-editor::before {
         color: rgba(20, 20, 20, 0.6) !important; } }
     @supports (-ms-accelerator: true) {
@@ -12465,3 +12260,247 @@ body.trumbowyg-body-fullscreen {
 
 .trumbowyg-dark .trumbowyg-overlay {
   background-color: rgba(15, 15, 15, 0.6); }
+
+.bg-primary {
+  color: #fff; }
+
+.bg-secondary {
+  color: #fff; }
+
+.bg-success {
+  color: #fff; }
+
+.bg-info {
+  color: #fff; }
+
+.bg-warning {
+  color: #fff; }
+
+.bg-danger {
+  color: #fff; }
+
+.bg-light {
+  color: #fff; }
+
+.bg-dark {
+  color: #fff; }
+
+.card {
+  padding: 0; }
+  .card .card-body {
+    padding-left: .1rem;
+    padding-right: .1rem; }
+
+.right {
+  right: 0; }
+
+a {
+  color: black; }
+  a:hover, a:active, a.active {
+    color: black;
+    text-decoration: none; }
+
+.carousel-indicators {
+  position: relative;
+  margin: 0; }
+  .carousel-indicators li {
+    border-radius: 50%; }
+
+@media (max-width: 540px) {
+  .smallForSmall {
+    font-size: 80%; } }
+
+.pointer {
+  cursor: pointer; }
+
+.big-badge {
+  font-size: 100%;
+  min-width: 20px; }
+
+.fw-40 {
+  width: 40px; }
+
+.mw-160 {
+  min-width: 160px; }
+
+.mw-260 {
+  min-width: 260px; }
+
+form .row {
+  margin-bottom: 1rem; }
+
+.circle {
+  border-radius: 50%; }
+
+.popover {
+  border: 2px solid black; }
+
+td {
+  vertical-align: middle !important; }
+  td .btn {
+    padding: .2rem .5rem; }
+  td h1, td .h1, td h2, td .h2, td h3, td .h3, td h4, td .h4, td h5, td .h5, td h6, td .h6, td p {
+    margin: 0; }
+
+.bg-dark .mvc-grid-filter {
+  color: white; }
+
+.mvc-grid-pager {
+  font-size: 0; }
+  .mvc-grid-pager button {
+    font-size: 1rem;
+    margin: 5px -1px;
+    padding: 0 5px;
+    color: #50a;
+    background-color: #d5aaff;
+    border: 1px solid gray; }
+    .mvc-grid-pager button.active, .mvc-grid-pager button:not(.disabled):hover, .mvc-grid-pager button.active:hover {
+      color: white;
+      background-color: #50a;
+      border-color: #50a; }
+    .mvc-grid-pager button:first-child {
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px; }
+    .mvc-grid-pager button:nth-last-child(2) {
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px; }
+
+.no-wrap {
+  white-space: nowrap; }
+
+.mvc-grid-sort {
+  font-family: 'Font Awesome 5 Free'; }
+  .mvc-grid-sort::after {
+    content: "\f30c"; }
+  .mvc-grid-sort::before {
+    margin: 0;
+    content: "\f309"; }
+
+.mvc-grid-filter::before, .mvc-grid-filter.applied::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f002"; }
+
+.mvc-grid .no-wrap {
+  width: 0; }
+
+.table-specific th {
+  display: none; }
+
+.table-specific td {
+  border: none; }
+
+.p-default {
+  margin-top: -60px !important;
+  padding-top: 60px !important; }
+
+.navbar-collapse, .dropdown-menu, nav {
+  background-color: #213; }
+
+nav {
+  height: 60px; }
+
+.flex-1 {
+  flex: 1; }
+
+.navbar-nav .nav-link {
+  padding: .5rem; }
+
+.navbar-nav .dropdown-menu {
+  border-color: #314;
+  background-color: #314; }
+
+.back {
+  filter: hue-rotate(40deg);
+  opacity: .03;
+  min-height: 100vh;
+  width: 450px;
+  background-image: url(images/bg.png);
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  position: fixed;
+  z-index: -1; }
+
+.container {
+  padding: 0; }
+
+footer {
+  position: fixed;
+  bottom: 0; }
+
+.border-big {
+  border: solid 3px; }
+
+.card-footer:hover {
+  background-color: #425; }
+  .card-footer:hover a {
+    color: white; }
+
+.dropdown-menu a:active, .dropdown-menu a:focus, .dropdown-menu a:hover {
+  background-color: #425; }
+
+.dropdown-light a {
+  color: black;
+  background-color: #f8f9fa; }
+  .dropdown-light a:hover, .dropdown-light a:active {
+    color: black;
+    background-color: #ced4da; }
+
+.separate:not(:last-child)::after {
+  content: ", "; }
+
+@media (max-width: 767.98px) {
+  #mainNavBar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll; }
+    #mainNavBar .dropdown-menu {
+      padding: 0;
+      margin: 0; }
+    #mainNavBar > *:first-child {
+      height: 100vh; }
+    #mainNavBar .dont-hide .dropdown-menu {
+      display: block; }
+    #mainNavBar a {
+      text-align: center; } }
+
+.mx-n1 {
+  margin-left: -5px;
+  margin-right: -5px; }
+
+.z-2 {
+  z-index: 2; }
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  right: 0; }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 5px solid;
+    border-color: #444 transparent #444 transparent;
+    animation: lds-dual-ring 1.2s linear infinite; }
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@font-face {
+  src: url("GridGlyphs.woff") format("woff");
+  font-family: 'GridGlyphs'; }
+
+body {
+  font-family: 'Roboto Slab', serif; }
+
+.h1:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), h1:not(.fas):not(.fab):not(.fa):not(.far), .h1:not(.fas):not(.fab):not(.fa):not(.far), h2:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), h3:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), h4:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), h5:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), h6:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far) {
+  font-family: 'Balsamiq Sans'; }

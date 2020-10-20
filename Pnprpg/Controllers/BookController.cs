@@ -1,11 +1,10 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using NReco.PdfGenerator;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.Web.Helpers;
+using Rocket.PdfGenerator;
 
 namespace Pnprpg.Web.Controllers
 {
@@ -36,8 +35,11 @@ namespace Pnprpg.Web.Controllers
         
         public ActionResult Index()
         {
-            Converter.Margins.Top = 20;
-            Converter.Margins.Bottom = 20;
+            Converter.Margins = new PageMargins
+            {
+                Top = 20,
+                Bottom = 20
+            };
             Converter.PageFooterHtml = "<div style='text-align: center'><b class='page'></b></div>";
             return LoadPdf(Converter, FileNames.RuleBook, "Index");
         }

@@ -1,15 +1,15 @@
-﻿html {
-    font-family: "Times New Roman"
-}
-
-table {
+﻿table {
     border-collapse: collapse;
     width: 100%;
 }
 
-h2, h3, h4, h5, h6 {
+.h, h1, h2, h3, h4, h5, h6 {
     margin: 1rem;
     text-align: center;
+}
+
+h1{
+    font-size: 28px;
 }
 
 h3 {
@@ -25,7 +25,7 @@ h6 {
 }
 
 td, th {
-    padding: .5rem;
+    padding: .3rem;
     border: solid 1px;
     text-align: center;
 }

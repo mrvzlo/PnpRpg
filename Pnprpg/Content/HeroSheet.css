@@ -116,3 +116,11 @@ html {
     -webkit-transform: translate(-25%, -50%) rotate(-45deg);
     border-bottom: 1px solid gray;
 }
+
+body {
+    font-family: 'Roboto Slab', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Balsamiq Sans';
+}

@@ -4,9 +4,9 @@
 
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.Name).Titled("Название");
     columns.Add(x => x.MagicSchoolName).RenderedAs(x => Html.Raw($"<div style='color: #{x.Color}'>{x.MagicSchoolName}</div>")).Titled("Школа")
-        .Filterable(true).Sortable(true).Css("bg-dark");
+        .Filterable(true).Sortable(true).Css("bg-dark").InitialSort(GridSortOrder.Asc);
+    columns.Add(x => x.Name).Titled("Название");
     columns.Add(x => x.Effect).RenderedAs(x => Html.Raw(x.Damage > 0 ? string.Format(x.Effect, x.Damage) : x.Effect)).Titled("Эффект").Css("w-50");
     columns.Add(x => x.Level).Titled("Ур. школы").Css("no-wrap");
     columns.Add(x => x.Cost).Titled("Цена");

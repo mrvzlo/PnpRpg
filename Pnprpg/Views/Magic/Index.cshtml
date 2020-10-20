@@ -7,7 +7,7 @@
     @foreach (var school in Model)
     {
         <li class="col-6 nav-item">
-            <a class="btn btn-block smallForSmall border d-sm-block my-1 nav-link" data-toggle="tab" 
+            <a class="btn btn-block smallForSmall border d-sm-block my-1 nav-link" data-toggle="tab"
                href="#school_@school.Id" style="background-color: #@school.Color">@school.Name</a>
         </li>
     }
@@ -23,30 +23,18 @@
                 <tr>
                     <th>Уровень</th>
                     <th>Название</th>
-                    @if (showDesc)
-                    {
-                        <th>Эффект</th>
-                    }
+                    <th>Эффект</th>
                     <th>Стоимость</th>
                 </tr>
                 @foreach (var spell in school.Spells)
                 {
                     <tr>
                         <td>@spell.Level</td>
-                        <td>@spell.Name</td>
-                        @if (showDesc)
-                        {
-                            <td>
-                                @if (spell.Damage > 0)
-                                {
-                                    @:<span class="text-danger">Урон @spell.Damage</span>
-                                }
-                                @spell.Effect
-                            </td>
-                        }
-                        <td>@spell.Cost</td>
-                    </tr>
-                }
+                        <td class="font-weight-bold">@spell.Name</td>
+                        <td>@(spell.Damage > 0 ? string.Format(spell.Effect, spell.Damage) : spell.Effect)</td>
+                    <td>@spell.Cost</td>
+                </tr>
+            }
             </table>
         </div>
     }

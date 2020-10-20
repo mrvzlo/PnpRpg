@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using NReco.PdfGenerator;
+﻿using System.Web.Mvc;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.Web.Helpers;
+using Rocket.PdfGenerator;
 
 namespace Pnprpg.Web.Controllers
 {

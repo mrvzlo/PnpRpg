@@ -49,9 +49,6 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Api2Pdf.DotNet, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Api2Pdf.1.1.0\lib\netstandard2.0\Api2Pdf.DotNet.dll</HintPath>
-    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -199,8 +196,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NReco.PdfGenerator, Version=1.2.0.0, Culture=neutral, PublicKeyToken=231663d50a41b451, processorArchitecture=MSIL">
-      <HintPath>..\packages\NReco.PdfGenerator.1.2.0\lib\net45\NReco.PdfGenerator.dll</HintPath>
+    <Reference Include="Rocket.PdfGenerator, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rocket.PdfGenerator.1.0.1\lib\net40\Rocket.PdfGenerator.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.7.1\lib\net45\StructureMap.dll</HintPath>
@@ -432,18 +429,15 @@
     <Compile Include="Helpers\PartialViewExtension.cs" />
     <Compile Include="Helpers\FileNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="App_Data\MagicBook.pdf" />
+    <Content Include="App_Data\CharacterSheet.pdf" />
     <None Include="App_Data\PnpRpgDb.mdf" />
     <None Include="App_Data\PnpRpgDb_log.ldf">
       <DependentUpon>PnpRpgDb.mdf</DependentUpon>
     </None>
     <Content Include="Content\book.css" />
-    <Content Include="Content\fontawesome\LICENSE.txt" />
     <Content Include="Content\HeroSheet.css" />
     <Content Include="Content\images\icons.svg" />
-    <Content Include="Content\images\ArmorIcon.png" />
-    <Content Include="Content\images\DmgIcon.png" />
-    <Content Include="Content\images\HPIcon.png" />
-    <Content Include="Content\images\MPIcon.png" />
     <Content Include="Content\MvcGrid\mvc-grid.css" />
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
@@ -534,6 +528,8 @@
     <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
     <Content Include="Content\bootstrap\bootstrap-grid.scss" />
     <Content Include="Content\trumbowyg.scss" />
+    <Content Include="Content\fonts.scss" />
+    <Content Include="App_Data\RuleBook.pdf" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
@@ -646,9 +642,6 @@
     <Content Include="Views\Book\_ShortSkillList.cshtml" />
     <Content Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Content\images\bg.png" />
-    <Content Include="Content\images\perks.jpg" />
-    <Content Include="Content\images\rooms.jpg" />
-    <Content Include="Content\images\weaponry.png" />
     <Content Include="Views\Editor\Edit\EditBonus.cshtml" />
     <Content Include="Views\Editor\Edit\EditBranch.cshtml" />
     <Content Include="Views\Book\HeroSheets.cshtml" />
@@ -698,12 +691,6 @@
     <Content Include="Views\News\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\images\alchemy.jpg" />
-    <Content Include="Content\images\generator.jpg" />
-    <Content Include="Content\images\rulebook.jpg" />
-    <Content Include="Content\images\schools.jpg" />
-    <Content Include="Content\images\sheet.jpg" />
-    <Content Include="Content\images\skills.png" />
     <Content Include="Content\Main.css">
       <DependentUpon>main.scss</DependentUpon>
     </Content>

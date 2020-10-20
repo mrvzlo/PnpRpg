@@ -4,14 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico">
+    <meta property="og:image" content="/favicon.ico">
     @Styles.Render("~/Content/css")
+    @{
+        var hideTitle = (bool?)ViewBag.HideTitle ?? false;
+    }
 </head>
 <body class="d-flex flex-column min-vh-100">
     @Html.Partial("_Nav")
     <div class="back d-xl-block d-none"></div>
     <div class="back d-xl-block d-none right"></div>
     <div class="container p-default bg-white flex-1">
-        <h3 class="text-center my-2">@ViewBag.Title</h3>
+        @if (!hideTitle){<h3 class="text-center my-2">@ViewBag.Title</h3>}
         <div id="main" class="row justify-content-center text-center pb-5 mx-0">@RenderBody()</div>
     </div>
     <div class="fixed-bottom">

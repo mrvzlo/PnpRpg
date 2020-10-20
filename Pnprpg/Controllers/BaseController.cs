@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using NReco.PdfGenerator;
+using Rocket.PdfGenerator;
 using Pnprpg.DomainService.Models;
 using Pnprpg.Web.Enums;
 using Pnprpg.Web.Helpers;
