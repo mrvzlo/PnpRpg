@@ -60,7 +60,8 @@ namespace Pnprpg.Domain.Services
                 Id = model.Id,
                 Name = model.Name,
                 Color = model.Color,
-                Description = model.Description
+                Description = model.Description,
+                ShortDescription = model.ShortDescription
             };
 
             branch.Id = _branchRepository.InsertOrUpdate(branch);

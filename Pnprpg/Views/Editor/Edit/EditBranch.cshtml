@@ -23,6 +23,12 @@
         </div>
     </div>
     <div class="row">
+        <label class="col-3 col-form-label text-left">Краткое описание</label>
+        <div class="col-12">
+            @Html.TextAreaFor(x => x.ShortDescription, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
         <label class="col-3 col-form-label text-left">Описание</label>
         <div class="col-12 text-left">
             @Html.TextAreaFor(x => x.Description, new { @class = "form-control html-editor" })

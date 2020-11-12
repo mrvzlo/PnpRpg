@@ -6,6 +6,7 @@
 {
     columns.Add(x => Name(x)).Titled("Название");
     columns.Add(x => Bonuses(x.Bonuses)).Titled("Бонусы");
+    columns.Add(x => x.ShortDescription).Titled("Краткое описание").Css("d-none d-md-block");
     columns.Add(x => Actions(x)).Css("no-wrap");
 }).Empty("No data found").Css("table table-responsive"))
 

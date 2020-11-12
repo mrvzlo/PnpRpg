@@ -13,6 +13,8 @@ namespace Pnprpg.DomainService.Models
         public string Color { get; set; }
         [AllowHtml]
         public string Description { get; set; }
+        [Required]
+        public string ShortDescription { get; set; }
 
         public ICollection<int> Bonuses { get; set; }
     }
