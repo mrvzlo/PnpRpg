@@ -7,6 +7,7 @@ namespace Pnprpg.DomainService.IServices
     {
         void Save(NewsEditModel model);
         IQueryable<NewsViewModel> GetAll();
+        NewsViewModel GetLatest();
         NewsEditModel GetForEdit(int? id);
         void Delete(int id);
     }

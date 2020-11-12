@@ -18,6 +18,8 @@ namespace Pnprpg.Domain.Services
             _newsRepository = newsRepository;
         }
 
+        public NewsViewModel GetLatest() => GetAll().First();
+
         public NewsEditModel GetForEdit(int? id)
         {
             var news = id == null ? new News(){Date = DateTime.Now} : _newsRepository.Get(id.Value);

@@ -9,14 +9,20 @@ namespace Pnprpg.Web.Controllers
     {
         private readonly IWeaponService _weaponService;
         private readonly IPerkService _perkService;
+        private readonly INewsService _newsService;
 
-        public HomeController(IPerkService perkService, IWeaponService weaponService)
+        public HomeController(IPerkService perkService, IWeaponService weaponService, INewsService newsService)
         {
             _perkService = perkService;
             _weaponService = weaponService;
+            _newsService = newsService;
         }
 
-        public ActionResult Index() => View();
+        public ActionResult Index()
+        {
+            var model = _newsService.GetLatest();
+            return View(model);
+        }
 
         public ActionResult Perks()
         {

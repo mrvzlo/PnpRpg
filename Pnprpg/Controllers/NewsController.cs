@@ -14,6 +14,8 @@ namespace Pnprpg.Web.Controllers
             _newsService = newsService;
         }
 
+        public ActionResult Index() => View();
+
         public PartialViewResult NewsGrid()
         {
             var list = _newsService.GetAll();
