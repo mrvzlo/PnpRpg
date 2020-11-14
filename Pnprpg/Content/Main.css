@@ -12335,6 +12335,11 @@ form .row {
 .popover {
   border: 2px solid black; }
 
+select.form-control {
+  display: none; }
+  select.form-control::after {
+    content: ">"; }
+
 td {
   vertical-align: middle !important; }
   td .btn {

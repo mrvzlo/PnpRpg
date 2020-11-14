@@ -16,15 +16,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Sitepages.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Sitepages.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Sitepages.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="LightInject.Microsoft.Hosting" Version="1.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="NonFactors.Grid.Mvc6" Version="6.2.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +45,31 @@
     <ProjectReference Include="..\Domain\Pnprpg.DomainService.csproj" />
     <ProjectReference Include="..\Infrastructure\Pnprpg.Infrastructure.csproj" />
     <ProjectReference Include="..\Ioc\Pnprpg.Ioc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Sitepages.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Sitepages.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Editor\Donations\" />
+    <Folder Include="Pages\Editor\Branches\" />
+    <Folder Include="Pages\Editor\Weaponry\" />
+    <Folder Include="Pages\Editor\Races\" />
+    <Folder Include="Pages\Editor\Skills\" />
+    <Folder Include="Pages\Editor\Perks\" />
+    <Folder Include="Pages\Editor\News\" />
+    <Folder Include="Pages\Herogen\" />
+    <Folder Include="Pages\Admin\" />
+    <Folder Include="Pages\Book\" />
   </ItemGroup>
 
 </Project>

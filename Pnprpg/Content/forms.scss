@@ -75,3 +75,10 @@ form{
 .popover{
     border: 2px solid black;
 }
+
+select.form-control {
+    &::after {
+        content: ">";
+    }
+    display: none;
+}

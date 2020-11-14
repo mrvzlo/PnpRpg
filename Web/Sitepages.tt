@@ -1,0 +1,69 @@
+﻿<#@ template language="C#" hostSpecific="true" debug="True" #>
+<#@ output extension="cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDte" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System" #>
+<#
+  var visualStudio = (this.Host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
+  var project = visualStudio.Solution.FindProjectItem(this.Host.TemplateFile).ContainingProject as EnvDTE.Project;
+
+  string root = Host.ResolvePath("");
+  var projectItems = GetProjectItemsRecursively(project.ProjectItems);
+#>
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+	public static class SitePages
+	{
+<#ListPages("/Pages", "cshtml", projectItems);#>
+
+	}
+}
+
+<#+
+	public void ListPages(string path, string fileType, List<string> projectItems)
+	{
+		var root = Host.ResolvePath("");
+		
+		var fileNames = Directory.EnumerateFiles(root + path, "*." + fileType, SearchOption.AllDirectories)
+			.Select(x => x.Replace("\\", "/"))
+			.Where(x => projectItems.Any(p => p.Equals(x, StringComparison.OrdinalIgnoreCase)))
+			.Select(x => x.Substring(root.Length))
+			.Select(x => x.Replace("/Pages/", ""))
+			.Select(x => x.Replace(".cshtml", ""))
+			.OrderBy(x => x)
+			.ToList();
+
+		foreach(string fileName in fileNames)
+		{
+			if (fileName.Contains("_"))
+				WriteLine("\t\tpublic static string " + fileName.Replace("/", "") + " => @\"" + fileName + "\";");
+			else
+				WriteLine("\t\tpublic static string " + fileName.Replace("/", "") + " => @\"/" + fileName + "\";");
+		}
+	}
+
+	public List<string> GetProjectItemsRecursively(EnvDTE.ProjectItems items)
+	{
+		var ret = new List<string>();
+		if (items == null) return ret;
+
+		foreach(EnvDTE.ProjectItem item in items)
+		{
+			string result = item.FileNames[1].Replace("\\", "/");
+			
+			// If not folder.
+			if (result[result.Length - 1] != '\\')
+			{
+				ret.Add(result);
+			}
+						
+			ret.AddRange(GetProjectItemsRecursively(item.ProjectItems));
+		}
+
+		return ret;
+	}
+#>

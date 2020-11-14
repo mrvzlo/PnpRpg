@@ -1,0 +1,38 @@
+﻿@page
+@model SignInModel
+@{
+    ViewData["Title"] = "Авторизация";
+}
+
+<div class="col-md-8 col-12">
+    <div class="nav btn-group row justify-content-center text-center font-weight-bold my-3">
+        <div class="btn btn-outline-primary col-md-5 col-lg-4 col-6 active">
+            Войти
+        </div>
+        <a class="btn btn-outline-primary col-md-5 col-lg-4 col-6" asp-page="@SitePages.AccountSignUp">
+            Зарегистрироваться
+        </a>
+    </div>
+    <div>
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="text-danger col-12">@Html.ValidationSummary(true)</div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(x => x.Login.Username, new {@class = "col-sm-3 col-md-4 col-form-label"})
+                @Html.TextBoxFor(x => x.Login.Username, new {@class = "col form-control"})
+                <div class="text-danger col-12">@Html.ValidationMessageFor(x => x.Login.Username)</div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(x => x.Login.Password, new {@class = "col-sm-3 col-md-4 col-form-label"})
+                @Html.PasswordFor(x => x.Login.Password, new {@class = "col form-control"})
+                <div class="text-danger col-12">@Html.ValidationMessageFor(x => x.Login.Password)</div>
+            </div>
+            @Html.HiddenFor(x => x.Login.ReturnUrl)
+            <div class="row justify-content-center">
+                <button type="submit" class="col-md-5 col-lg-4 col-6 btn btn-primary py-2 mt-3">Войти</button>
+            </div>
+        </form>
+    </div>
+</div>

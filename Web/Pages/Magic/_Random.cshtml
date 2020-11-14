@@ -1,0 +1,16 @@
+﻿@model Pnprpg.DomainService.Models.SpellViewModel
+@{
+    Layout = null;
+}
+<form method="get" asp-page="@SitePages.MagicIndex" asp-page-handler="Random" data-ajax="true"
+      data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#randomSpell">
+    <button class="btn btn-primary my-3" type="submit">
+        Случайный свиток
+    </button>
+</form>
+@if (!string.IsNullOrEmpty(Model.Name))
+{
+    <div class="h4 p-2 rounded border-big mw-260 d-inline-block" style="background-color: #@(Model.Color)">
+        @Model.Name
+    </div>
+}

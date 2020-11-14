@@ -23,7 +23,6 @@ namespace Pnprpg.WebCore.Pages
         {
             LatestNews = _newsService.GetLatest();
             Version = _configuration["Version"];
-            ViewData["HideTitle"] = true;
         }
     }
 }

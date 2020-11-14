@@ -1,0 +1,6 @@
+﻿@using NonFactors.Mvc.Grid
+@model IQueryable<Pnprpg.DomainService.Models.NewsViewModel>
+@Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x).RenderedAs(x => Html.RenderPartialAsync("_NewsDetails", x)).Titled("");
+}).Css("table table-specific").Pageable(pager => { pager.RowsPerPage = 5; })

@@ -1,5 +1,5 @@
 ﻿<nav class="navbar sticky-top navbar-expand-md navbar-dark px-5">
-    <a class="navbar-brand" href="@Url.Action("Index","Home")">Домой</a>
+    <a class="navbar-brand" asp-page="@SitePages.Index">Домой</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavBar"
             aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,10 +22,10 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="nav-link" href="@Url.Action("Index", "Book")" target="_blank">Книга правил</a>
-                    <a class="nav-link" href="@Url.Action("Index", "Alchemy")">Алхимия</a>
-                    <a class="nav-link" href="@Url.Action("Index", "Magic")">Школы магии</a>
-                    <a class="nav-link" href="@Url.Action("Perks", "Home")">Способности</a>
-                    <a class="nav-link" href="@Url.Action("Weaponry", "Home")">Оружейная</a>
+                    <a class="nav-link" asp-page="@SitePages.AlchemyIndex">Алхимия</a>
+                    <a class="nav-link" asp-page="@SitePages.MagicIndex">Школы магии</a>
+                    <a class="nav-link" asp-page="@SitePages.PerksIndex">Способности</a>
+                    <a class="nav-link" asp-page="@SitePages.WeaponryIndex">Оружейная</a>
                 </div>
             </li>
             @if (User.Identity.IsAuthenticated)
@@ -38,26 +38,23 @@
                 </a>
             </li>
             <li class="nav-item mx-2">
-                <a href="@Url.Action("Index", "Donation")" class="nav-link text-light">
+                <a asp-page="@SitePages.DonationIndex" class="nav-link text-light">
                     <i class="fa-donate fas h5 m-0"></i>
                 </a>
             </li>
             <li class="nav-item active mx-2">
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <a href="@Url.Action("Index", "Account")" class="nav-link text-light">
+                    <a asp-page="@SitePages.AccountSignIn" class="nav-link text-light">
                         <i class="fa-sign-in-alt fas h5 m-0"></i>
                     </a>
                 }
                 else
                 {
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-none" }))
-                    {
-                        @Html.AntiForgeryToken()
-                    }
-                    <a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()">
+                    <form method="post" asp-page="@SitePages.AccountSignOut" id="logoutForm"></form>
+                    <button class="btn btn-link nav-link active border-0" type="submit" form="logoutForm">
                         <i class="fa-sign-out-alt fas h5 m-0"></i>
-                    </a>
+                    </button>
                 }
             </li>
         </ul>

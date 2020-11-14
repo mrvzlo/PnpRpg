@@ -402,22 +402,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\StructureMapMvc.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseGenController.cs" />
     <Compile Include="Controllers\Editor\BaseEditorController.cs" />
     <Compile Include="Controllers\Editor\SpellEditorController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\Editor\EditorController.cs" />
-    <Compile Include="Controllers\MagicController.cs" />
     <Compile Include="Controllers\AbilityController.cs" />
     <Compile Include="Controllers\BackStoryController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AlchemyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
@@ -642,7 +635,6 @@
     <None Include="Properties\PublishProfiles\Azure.pubxml" />
     <None Include="Properties\PublishProfiles\pnprpg - FTP.pubxml" />
     <Content Include="Views\Book\_ShortSkillList.cshtml" />
-    <Content Include="Views\Account\_SignIn.cshtml" />
     <Content Include="Content\images\bg.png" />
     <Content Include="Views\Editor\Edit\EditBonus.cshtml" />
     <Content Include="Views\Editor\Edit\EditBranch.cshtml" />
@@ -652,9 +644,7 @@
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
     <Content Include="Views\HeroGen\_HeroInfo.cshtml" />
-    <Content Include="Views\Home\Weaponry.cshtml" />
     <Content Include="Views\Shared\_Scripts.cshtml" />
-    <Content Include="Views\Magic\_RandomSpell.cshtml" />
     <Content Include="Views\Shared\HeroInfo\MainSheet.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\EditorTemplates\UserEditModel.cshtml" />
@@ -689,9 +679,6 @@
     <Content Include="Views\Editor\Grids\_SpellsGrid.cshtml" />
     <Content Include="Views\Editor\Edit\EditSpell.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
-    <Content Include="Views\News\_NewsGrid.cshtml" />
-    <Content Include="Views\News\Edit.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Main.css">
@@ -717,13 +704,9 @@
     <Content Include="Scripts\custom\main.js" />
     <Content Include="Views\Shared\HeroInfo\_Stats.cshtml" />
     <Content Include="Views\Shared\HeroInfo\_Abilities.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\_SignUp.cshtml" />
     <Content Include="Views\BackStory\_Races.cshtml" />
     <Content Include="Views\HeroGen\MyHero.cshtml" />
     <Content Include="Views\BackStory\_Traits.cshtml" />
-    <Content Include="Views\Alchemy\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -739,10 +722,7 @@
     <Content Include="Views\Ability\_AbilityEdit.cshtml" />
     <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
-    <Content Include="Views\Magic\Index.cshtml" />
     <Content Include="Views\Shared\_Loading.cshtml" />
-    <Content Include="Views\Alchemy\_ReactionResult.cshtml" />
-    <Content Include="Views\Home\Perks.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Ability.cshtml" />
     <Content Include="Views\Book\_Stats.cshtml" />
     <Content Include="Views\Book\_Races.cshtml" />

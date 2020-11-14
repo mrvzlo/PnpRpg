@@ -1,5 +1,8 @@
 ﻿@using Pnprpg.DomainService.Enums
 @model Pnprpg.DomainService.Models.PotionModel
+@{
+    Layout = null;
+}
 <div class="h4 p-2 mx-auto d-inline-block mw-260 border-big rounded
      @(Model.PotionType == PotionType.Poison ? "alert-danger" : "alert-success")">
     @Model.Name

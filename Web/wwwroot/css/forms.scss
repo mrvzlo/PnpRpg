@@ -36,7 +36,7 @@ a {
     }
 }
 
-@media (max-width: map-get($container-max-widths, "sm")) {
+@include media-breakpoint-down(sm) {
     .smallForSmall {
         font-size: 80%;
     }
@@ -74,4 +74,10 @@ form{
 
 .popover{
     border: 2px solid black;
+}
+
+@include media-breakpoint-down(sm) {
+    select.form-control {
+        background-image: none;
+    }
 }

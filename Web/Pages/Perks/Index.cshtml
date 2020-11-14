@@ -1,11 +1,12 @@
-﻿@using Pnprpg.DomainService.Enums
-@using Pnprpg.Web.Helpers
-@model IQueryable<Pnprpg.DomainService.Models.PerkViewModel>
+﻿@page
+@using Pnprpg.DomainService.Enums
+@using Pnprpg.WebCore.Helpers
+@model IndexModel
 @{
-    ViewBag.Title = "Способности";
-    var branches = Model.Select(x => x.Branch).GroupBy(x => x.Id).Select(x => x.FirstOrDefault()).ToList();
+    ViewData["Title"] = "Способности";
+    var branches = Model.Perks.Select(x => x.Branch).GroupBy(x => x.Id).Select(x => x.FirstOrDefault()).ToList();
 }
-@if (AccessHelper.UserInRole(Request, User, UserRole.Editor))
+@if (AccessHelper.UserInRole(User, UserRole.Editor))
 {
     <div class="col-12">
         @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class = "btn btn-warning float-right" })
@@ -14,7 +15,8 @@
 <div class="nav nav-tabs col-12 my-sm-2 px-2 px-sm-3 justify-content-center">
     @foreach (var branch in branches)
     {
-        <a class="btn btn-primary m-1 mw-160 text-dark col-md-3" data-toggle="tab" href="#group_@branch.Id" style="background-color: #@branch.Color">
+        <a class="btn btn-primary m-1 mw-160 text-dark col-md-3" data-toggle="tab" href="#group_@branch.Id" 
+           style="background-color: #@branch.Color">
             @branch.Name
         </a>
     }
@@ -24,7 +26,7 @@
     {
         <div class="tab-pane fade col-lg-10 mx-auto" id="group_@branch.Id">
             <div class="row">
-                @foreach (var perk in Model.Where(x => x.Branch.Id == branch.Id).OrderBy(x => x.Level))
+                @foreach (var perk in Model.Perks.Where(x => x.Branch.Id == branch.Id).OrderBy(x => x.Level))
                 {
                     <div class="card rounded-0 col-lg-6">
                         <div class="card-header rounded-0">

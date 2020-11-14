@@ -1,0 +1,42 @@
+﻿@page
+@model SignUpModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="col-md-8 col-12">
+    <div class="nav btn-group row justify-content-center text-center font-weight-bold my-3">
+        <a class="btn btn-outline-primary col-md-5 col-lg-4 col-6" asp-page="@SitePages.AccountSignIn">
+            Войти
+        </a>
+        <div class="btn btn-outline-primary col-md-5 col-lg-4 col-6 active">
+            Зарегистрироваться
+        </div>
+    </div>
+    <div>
+        <form method="post">
+            <div class="row">
+                <div class="text-danger col-12">@Html.ValidationSummary(true)</div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(x => x.Registration.Username, new { @class = "col-sm-3 col-md-4 col-form-label" })
+                @Html.TextBoxFor(x => x.Registration.Username, new { @class = "col form-control" })
+                <div class="text-danger col-12">@Html.ValidationMessageFor(x => x.Registration.Username)</div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(x => x.Registration.Password, new { @class = "col-sm-3 col-md-4 col-form-label" })
+                @Html.PasswordFor(x => x.Registration.Password, new { @class = "col form-control" })
+                <div class="text-danger col-12">@Html.ValidationMessageFor(x => x.Registration.Password)</div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(x => x.Registration.ConfirmPassword, new { @class = "col-sm-3 col-md-4 col-form-label" })
+                @Html.PasswordFor(x => x.Registration.ConfirmPassword, new { @class = "col form-control" })
+                <div class="text-danger col-12">@Html.ValidationMessageFor(x => x.Registration.ConfirmPassword)</div>
+            </div>
+            @Html.HiddenFor(x => x.Registration.ReturnUrl)
+            <div class="row justify-content-center">
+                <button type="submit" class="col-md-5 col-lg-4 col-6 btn btn-primary py-2 mt-3">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+</div>

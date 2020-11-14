@@ -1,0 +1,8 @@
+﻿@page
+@using NonFactors.Mvc.Grid
+@model Pnprpg.WebCore.Pages.News.IndexModel
+@{
+    ViewData["Title"] = "Новости";
+}
+
+@Html.AjaxGrid(Url.Page(SitePages.NewsIndex, "Grid"))

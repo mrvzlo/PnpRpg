@@ -4,6 +4,7 @@
 @using Pnprpg.DomainService.Enums
 @using Pnprpg.WebCore.Pages.Home
 @{
+    ViewData["HideTitle"] = true;
     ViewData["Title"] = $"Table Adventures Generation System {Model.Version}";
 }
 
@@ -35,5 +36,5 @@
     </div>
 </div>
 <div class="py-3">
-    @Html.ActionLink("К другим новостям", "Index", "News", null, new { @class = "link-info" })
+    <a asp-page="@SitePages.NewsIndex" class="link-info">К другим новостям</a>
 </div>
