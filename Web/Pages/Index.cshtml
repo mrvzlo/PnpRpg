@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@using System.Globalization
+@using Pnprpg.DomainService.Enums
+@using Pnprpg.WebCore.Pages.Home
+@{
+    ViewData["Title"] = $"Table Adventures Generation System {Model.Version}";
+}
+
+<div class="display-6 m-3 my-5">Table Adventures Generation System @Model.Version</div>
+@{
+    await Html.RenderPartialAsync("Home/Card",
+        new CardModel {Icon = "mask", Url = Url.Action("Index", "HeroGen"), Name = "Создать персонажа"});
+    await Html.RenderPartialAsync("Home/Card",
+        new CardModel {Icon = "book", Url = Url.Action("Index", "Book"), Name = "Книга игрока" });
+    await Html.RenderPartialAsync("Home/Card",
+        new CardModel {Icon = "id-card", Url = Url.Action("HeroSheets", "Book"), Name = "Листы персонажа" });
+}
+
+<div class="my-3"></div>
+
+<div class="card smallForSmall">
+    <div class="card-header d-sm-flex justify-content-between px-4 font-weight-bold">
+        <div class="py-1 order-sm-last">@Model.LatestNews.Date.ToString("D", new CultureInfo("ru-ru"))</div>
+        <div class="h4">@Model.LatestNews.Title</div>
+    </div>
+    <div class="card-body text-left p-3">
+        @Html.Raw(Model.LatestNews.Content)
+        @if (User.IsInRole(UserRole.Admin.ToString()))
+        {
+            <a href="@Url.Action("Edit", "News", new {id = Model.LatestNews.Id})" class="d-block text-right">
+                <i class="fas fa-edit"></i>
+            </a>
+        }
+    </div>
+</div>
+<div class="py-3">
+    @Html.ActionLink("К другим новостям", "Index", "News", null, new { @class = "link-info" })
+</div>

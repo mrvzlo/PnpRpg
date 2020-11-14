@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
-using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -16,14 +16,14 @@ namespace Pnprpg.Domain.Services
         private readonly IBonusService _bonusService;
         private readonly IPerkService _perkService;
 
-        public BranchService(IBranchRepository branchRepository, IBonusService bonusService, IPerkService perkService)
+        public BranchService(IMapper mapper, IBranchRepository branchRepository, IBonusService bonusService, IPerkService perkService) : base(mapper)
         {
             _branchRepository = branchRepository;
             _bonusService = bonusService;
             _perkService = perkService;
         }
 
-        public IQueryable<BranchViewModel> GetAll() => 
+        public IQueryable<BranchViewModel> GetAll(int? filter = null) =>
             _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig);
 
         public List<BranchViewModel> GetAllWithPerks()

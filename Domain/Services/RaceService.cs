@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -17,14 +18,15 @@ namespace Pnprpg.Domain.Services
         private readonly IBonusService _bonusService;
         private readonly IAbilityService _abilityService;
 
-        public RaceService(IRaceRepository raceRepository, IBonusService bonusService, IAbilityService abilityService)
+        public RaceService(IMapper mapper, IRaceRepository raceRepository, IBonusService bonusService, 
+            IAbilityService abilityService) : base(mapper)
         {
             _raceRepository = raceRepository;
             _bonusService = bonusService;
             _abilityService = abilityService;
         }
 
-        public IQueryable<RaceViewModel> GetAll() =>
+        public IQueryable<RaceViewModel> GetAll(int? filter = null) =>
             _raceRepository.Select().ProjectTo<RaceViewModel>(MapperConfig);
 
         public RaceEditModel GetForEdit(int? id)

@@ -1,0 +1,83 @@
+﻿td {
+    vertical-align: middle !important;
+
+    .btn{
+        padding: .2rem .5rem;
+    }
+
+    h1,h2,h3,h4,h5,h6,p{
+        margin:0;
+    }
+}
+
+.bg-dark{
+    .mvc-grid-filter{
+        color: white;
+    }
+}
+
+.mvc-grid-pager {
+    font-size: 0;
+
+    button {
+        font-size: 1rem;
+        margin: 5px -1px;
+        padding: 0 5px;
+        color: $primary;
+        background-color: lighten($primary, 50%);
+        border: 1px solid gray;
+
+        &.active, &:not(.disabled):hover, &.active:hover {
+            color: white;
+            background-color: $primary;
+            border-color: $primary;
+        }
+
+        &:first-child {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        &:nth-last-child(2) {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+    }
+}
+
+.no-wrap{
+    white-space: nowrap;
+}
+
+.mvc-grid-sort {
+    font-family: 'Font Awesome 5 Free';
+
+    &::after {
+        content: fa-content($fa-var-long-arrow-alt-up);
+    }
+
+    &::before {
+        margin: 0;
+        content: fa-content($fa-var-long-arrow-alt-down);
+    }
+}
+
+.mvc-grid-filter::before, .mvc-grid-filter.applied::before {
+    font-family: 'Font Awesome 5 Free';
+    content: fa-content($fa-var-search);
+}
+
+.mvc-grid{
+    .no-wrap{
+        width: 0;
+    }
+}
+
+.table-specific{
+    th{
+        display: none;
+    }
+    td{
+        border: none;
+    }
+}

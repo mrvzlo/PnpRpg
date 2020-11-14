@@ -1,0 +1,63 @@
+﻿table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.h, h1, h2, h3, h4, h5, h6 {
+    margin: 1rem;
+    text-align: center;
+}
+
+h1{
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+h6 {
+    font-size: 18px;
+}
+
+td, th {
+    padding: .3rem;
+    border: solid 1px;
+    text-align: center;
+}
+
+p {
+    text-indent: 2rem;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+a {
+    color: black;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    border-bottom: dashed 1px black;
+}
+
+.footer {
+    position: fixed;
+}
+
+.break {
+    page-break-after: always;
+}

@@ -1,0 +1,17 @@
+﻿@model Pnprpg.WebCore.Pages.Home.CardModel
+@{
+    <div class="col-lg-3 col-md-4 p-0 card border-0 d-md-block d-none">
+        <i class="fas fa-4x fa-@Model.Icon py-3"></i>
+        <div class="px-2">
+            <a class="btn btn-outline-dark stretched-link d-block" href="@Model.Url"
+               target='@(Model.Blank ? "_blank" : "_self")'>@Model.Name</a>
+        </div>
+    </div>
+    <div class="d-md-none p-0 col-sm-6">
+        <a class="btn btn-outline-dark m-2 mx-3 d-block text-left" href="@Model.Url"
+           target='@(Model.Blank ? "_blank" : "_self")'>
+            <i class="fas fa-@Model.Icon fa-fw"></i>
+            @Model.Name
+        </a>
+    </div>
+}

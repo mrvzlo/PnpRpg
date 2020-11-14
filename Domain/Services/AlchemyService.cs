@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
@@ -14,8 +15,8 @@ namespace Pnprpg.Domain.Services
         private readonly IPotionRepository _potionRepository;
         private readonly IReactionRepository _reactionRepository;
 
-        public AlchemyService(IAlchemySymbolRepository alchemySymbolRepository, IReactionRepository reactionRepository,
-            IPotionRepository potionRepository)
+        public AlchemyService(IMapper mapper, IAlchemySymbolRepository alchemySymbolRepository, IReactionRepository reactionRepository,
+            IPotionRepository potionRepository) : base(mapper)
         {
             _alchemySymbolRepository = alchemySymbolRepository;
             _reactionRepository = reactionRepository;

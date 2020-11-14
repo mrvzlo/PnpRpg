@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -13,7 +14,7 @@ namespace Pnprpg.Domain.Services
     {
         private readonly INewsRepository _newsRepository;
 
-        public NewsService(INewsRepository newsRepository)
+        public NewsService(IMapper mapper, INewsRepository newsRepository) : base(mapper)
         {
             _newsRepository = newsRepository;
         }

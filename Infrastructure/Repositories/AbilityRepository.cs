@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 

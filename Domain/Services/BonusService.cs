@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -12,7 +13,7 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IBonusRepository _bonusRepository;
 
-        public BonusService(IBonusRepository bonusRepository)
+        public BonusService(IMapper mapper, IBonusRepository bonusRepository) : base(mapper)
         {
             _bonusRepository = bonusRepository;
         }
@@ -25,10 +26,11 @@ namespace Pnprpg.Domain.Services
 
         public void Delete(int id) => _bonusRepository.Delete(id);
 
-        public IQueryable<BonusViewModel> GetAll() => 
-            _bonusRepository.Select().ProjectTo<BonusViewModel>(MapperConfig);
-
-        public IQueryable<BonusViewModel> Select(BonusType type) => GetAll().Where(x => x.Type == type);
+        public IQueryable<BonusViewModel> GetAll(int? filter = null)
+        {
+            var query = _bonusRepository.Select().ProjectTo<BonusViewModel>(MapperConfig);
+            return filter is null ? query : query.Where(x => (int)x.Type == filter);
+        }
 
         public void Save(BonusEditModel model)
         {

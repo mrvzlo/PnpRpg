@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
@@ -13,7 +14,7 @@ namespace Pnprpg.Domain.Services
         private readonly IMagicSchoolRepository _magicSchoolRepository;
         private readonly ISpellRepository _spellRepository;
 
-        public MagicService(IMagicSchoolRepository magicSchoolRepository, ISpellRepository spellRepository)
+        public MagicService(IMapper mapper, IMagicSchoolRepository magicSchoolRepository, ISpellRepository spellRepository) : base(mapper)
         {
             _magicSchoolRepository = magicSchoolRepository;
             _spellRepository = spellRepository;
@@ -30,9 +31,10 @@ namespace Pnprpg.Domain.Services
             return Mapper.Map<SpellViewModel>(spell);
         }
 
-        public IQueryable<SpellViewModel> GetAll()
+        public IQueryable<SpellViewModel> GetAll(int? filter = null)
         {
-            return _spellRepository.Select().ProjectTo<SpellViewModel>(MapperConfig);
+            var query = _spellRepository.Select().ProjectTo<SpellViewModel>(MapperConfig);
+            return filter is null ? query : query.Where(x => x.MagicSchoolId == filter);
         }
 
         public SpellEditModel GetForEdit(int? id)

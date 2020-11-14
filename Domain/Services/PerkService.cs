@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
@@ -13,14 +14,15 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IPerkRepository _perkRepository;
 
-        public PerkService(IPerkRepository perkRepository)
+        public PerkService(IMapper mapper, IPerkRepository perkRepository) : base(mapper)
         {
             _perkRepository = perkRepository;
         }
 
-        public IQueryable<PerkViewModel> GetAll()
+        public IQueryable<PerkViewModel> GetAll(int? filter = null)
         {
-            return _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig);
+            var query = _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig);
+            return filter is null ? query : query.Where(x => x.BranchId == filter);
         }
         public IQueryable<PerkViewModel> GetAllSimplified()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
@@ -12,12 +13,13 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IDonationRepository _donationRepository;
 
-        public DonationService(IDonationRepository donationRepository)
+        public DonationService(IMapper mapper, IDonationRepository donationRepository) : base(mapper)
         {
             _donationRepository = donationRepository;
         }
 
-        public IQueryable<DonationViewModel> GetAll() => _donationRepository.Select().ProjectTo<DonationViewModel>(MapperConfig);
+        public IQueryable<DonationViewModel> GetAll(int? filter = null) => 
+            _donationRepository.Select().ProjectTo<DonationViewModel>(MapperConfig);
 
         public IQueryable<DonationEditModel> GetEditModels() => _donationRepository.Select().ProjectTo<DonationEditModel>(MapperConfig);
 

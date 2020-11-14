@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -14,15 +14,16 @@ namespace Pnprpg.Domain.Services
         private readonly IWeaponRepository _weaponRepository;
         private readonly IBonusService _bonusService;
 
-        public WeaponService(IWeaponRepository weaponRepository, IBonusService bonusService)
+        public WeaponService(IMapper mapper, IWeaponRepository weaponRepository, IBonusService bonusService) : base(mapper)
         {
             _weaponRepository = weaponRepository;
             _bonusService = bonusService;
         }
 
-        public IQueryable<WeaponViewModel> GetAll()
+        public IQueryable<WeaponViewModel> GetAll(int? filter = null)
         {
-            return _weaponRepository.Select().ProjectTo<WeaponViewModel>(MapperConfig);
+            var query = _weaponRepository.Select().ProjectTo<WeaponViewModel>(MapperConfig);
+            return filter is null ? query : query.Where(x => x.Skill.Id == filter);
         }
 
         public WeaponEditModel GetForEdit(int? id)

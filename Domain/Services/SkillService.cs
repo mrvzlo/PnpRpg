@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -13,21 +14,22 @@ namespace Pnprpg.Domain.Services
     {
         private readonly ISkillRepository _skillRepository;
 
-        public SkillService(ISkillRepository skillRepository)
+        public SkillService(IMapper mapper, ISkillRepository skillRepository) : base(mapper)
         {
             _skillRepository = skillRepository;
         }
         
-        public IQueryable<SkillViewModel> GetAll() => 
-            _skillRepository.Select().ProjectTo<SkillViewModel>(MapperConfig);
-
-        public IQueryable<SkillViewModel> SelectSkills(int? branchId = null, SkillType? type = null)
+        public IQueryable<SkillViewModel> GetAll(int? filter = null)
         {
-            var skills = GetAll();
+            var query = _skillRepository.Select().ProjectTo<SkillViewModel>(MapperConfig);
+            return query is null ? query : query.Where(x => (int) x.Type == filter);
+        }
+
+        public IQueryable<SkillViewModel> SelectSkills(SkillType? type, int ? branchId = null)
+        {
+            var skills = GetAll((int?)type);
             if (branchId != null)
                 skills = skills.Where(x => x.BranchId == branchId);
-            if (type != null)
-                skills = skills.Where(x => x.Type == type);
             return skills;
         }
 

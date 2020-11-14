@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Helpers;
@@ -13,7 +14,7 @@ namespace Pnprpg.Domain.Services
     {
         private readonly ITraitRepository _traitRepository;
 
-        public TraitService(ITraitRepository traitRepository)
+        public TraitService(IMapper mapper, ITraitRepository traitRepository) : base(mapper)
         {
             _traitRepository = traitRepository;
         }

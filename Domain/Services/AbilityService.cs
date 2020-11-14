@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -14,7 +15,7 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IAbilityRepository _abilityRepository;
 
-        public AbilityService(IAbilityRepository abilityRepository)
+        public AbilityService(IMapper mapper, IAbilityRepository abilityRepository) : base(mapper)
         {
             _abilityRepository = abilityRepository;
         }

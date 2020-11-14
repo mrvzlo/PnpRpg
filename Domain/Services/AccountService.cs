@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Helpers;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
@@ -15,7 +16,7 @@ namespace Pnprpg.Domain.Services
     {
         private readonly IUserRepository _userRepository;
 
-        public AccountService(IUserRepository userRepository)
+        public AccountService(IMapper mapper, IUserRepository userRepository) : base(mapper)
         {
             _userRepository = userRepository;
         }

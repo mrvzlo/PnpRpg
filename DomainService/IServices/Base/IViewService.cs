@@ -5,6 +5,6 @@ namespace Pnprpg.DomainService.IServices
 {
     public interface IViewService<out T> where T : IBaseViewModel
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(int? filter = null);
     }
 }

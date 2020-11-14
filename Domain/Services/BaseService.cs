@@ -5,10 +5,13 @@ namespace Pnprpg.Domain.Services
 {
     public class BaseService
     {
-        public Lazy<IMapper> MapperInstance { protected get; set; }
-
-        protected IMapper Mapper => MapperInstance.Value;
+        protected IMapper Mapper;
 
         protected IConfigurationProvider MapperConfig => Mapper.ConfigurationProvider;
+
+        public BaseService(IMapper mapper)
+        {
+            Mapper = mapper;
+        }
     }
 }

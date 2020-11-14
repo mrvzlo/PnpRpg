@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Helpers;
@@ -19,7 +20,8 @@ namespace Pnprpg.Domain.Services
         private readonly ITraitService _traitService;
         private readonly Encoder _encoder;
 
-        public CoreLogic(IUserRepository userRepository, IAbilityService abilityService, IRaceService raceService, IBranchService branchService, ISkillService skillService, ITraitService traitService)
+        public CoreLogic(IMapper mapper, IUserRepository userRepository, IAbilityService abilityService, IRaceService raceService, 
+            IBranchService branchService, ISkillService skillService, ITraitService traitService) : base(mapper)
         {
             _userRepository = userRepository;
             _abilityService = abilityService;

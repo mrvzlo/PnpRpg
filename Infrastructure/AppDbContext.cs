@@ -1,14 +1,11 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using Pnprpg.DomainService.Entities;
 
 namespace Pnprpg.Infrastructure
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(string nameOrConnectionString) : base(nameOrConnectionString)
-        {
-            Database.SetInitializer<AppDbContext>(null);
-        }
+        public AppDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Ability> Abilities { get; set; }
         public DbSet<AlchemySymbol> AlchemySymbols { get; set; }

@@ -6,7 +6,7 @@ namespace Pnprpg.DomainService.IServices
 {
     public interface ISkillService : IViewService<SkillViewModel>, IEditService<SkillEditModel>
     {
-        IQueryable<SkillViewModel> SelectSkills(int? branchId = null, SkillType? type = null);
+        IQueryable<SkillViewModel> SelectSkills(SkillType? type, int? branchId = null);
         HeroSkillGroup GetHeroSkillGroup(HeroModel hero);
         ServiceResponse<HeroModel> UpgradeSkill(HeroModel hero, int skillId);
         HeroModel ResetSkills(HeroModel hero);

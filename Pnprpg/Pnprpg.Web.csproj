@@ -408,9 +408,11 @@
     <Compile Include="App_Start\StructureMapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseGenController.cs" />
+    <Compile Include="Controllers\Editor\BaseEditorController.cs" />
+    <Compile Include="Controllers\Editor\SpellEditorController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
-    <Compile Include="Controllers\EditorController.cs" />
+    <Compile Include="Controllers\Editor\EditorController.cs" />
     <Compile Include="Controllers\MagicController.cs" />
     <Compile Include="Controllers\AbilityController.cs" />
     <Compile Include="Controllers\BackStoryController.cs" />
