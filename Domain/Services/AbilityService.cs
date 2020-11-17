@@ -27,7 +27,7 @@ namespace Pnprpg.Domain.Services
             var response = new ServiceResponse<HeroModel>();
             var success = hero.Abilities.Update(ability, value);
             if (!success)
-                response.AddError(GenerationError.AbilitiesError.Description());
+                response = response.AddError(GenerationError.AbilitiesError.Description());
             response.Object = hero;
             return response;
         }

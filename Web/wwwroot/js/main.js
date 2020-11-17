@@ -19,7 +19,6 @@
         updateColorPicker();
     }
 
-    // enabled by default
     function toggleLoading() {
         $('#loading').toggle();
     }

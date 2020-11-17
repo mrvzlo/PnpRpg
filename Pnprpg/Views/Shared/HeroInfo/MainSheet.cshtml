@@ -5,7 +5,7 @@
     ViewBag.Title = "Лист персонажа";
     var list = new[] { "Здоровье", "Мана", "Запас сил", "Восприятие", "Урон", "Слава", "Карма", "Харизма" };
     var traits = Model.Traits.List.Select(x => x.Name).ToList();
-    var final = Model.MaxStatus == HeroGenStatus.Result;
+    var final = Model.MaxStage == HeroGenStage.Result;
     if (final)
     {
         traits.AddRange(Model.Race.Bonuses.Select(x => x.Name).ToList());

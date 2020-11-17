@@ -83,7 +83,7 @@
     <Compile Include="Enums\BonusType.cs" />
     <Compile Include="Enums\EffectType.cs" />
     <Compile Include="Enums\GenerationError.cs" />
-    <Compile Include="Enums\HeroGenStatus.cs" />
+    <Compile Include="Enums\HeroGenStage.cs" />
     <Compile Include="Enums\PotionType.cs" />
     <Compile Include="Enums\SkillType.cs" />
     <Compile Include="Helpers\Int32Extension.cs" />

@@ -34,12 +34,11 @@ namespace Pnprpg.Domain.Services
         {
             var response = new ServiceResponse<HeroModel>();
             var trait = GetTraitById(traitId);
+            if (trait == null)
+                return response.AddError("Особенность не найдена");
 
             if (!hero.Traits.IsAssignable(trait) || !hero.ApplyEffectList(trait.Effects, false))
-            {
-                response.AddError(GenerationError.AbilitiesError.Description());
-                return response;
-            }
+                return response.AddError(GenerationError.AbilitiesError.Description());
 
             trait.Level = 1;
             hero.Traits.List.Add(trait);

@@ -15,8 +15,12 @@
       "destination": "wwwroot/lib/jquery-validate/"
     },
     {
-      "library": "popper.js@2.5.4",
-      "destination": "wwwroot/lib/popper.js/"
+      "library": "popper.js@1.16.1",
+      "destination": "wwwroot/lib/popper.js/",
+      "files": [
+        "umd/popper.min.js",
+        "umd/popper.min.js.map"
+      ]
     },
     {
       "library": "Trumbowyg@2.21.0",

@@ -40,10 +40,7 @@ namespace Pnprpg.Domain.Services
             var users = _userRepository.Select();
             var user = users.SingleOrDefault(x => x.Username.ToUpper() == model.Username.ToUpper());
             if (user == null || !Crypto.VerifyHashedPassword(user.Password, model.Password))
-            {
-                response.AddError("Неверный логин или пароль");
-                return response;
-            }
+                return response.AddError("Неверный логин или пароль");
 
             response.Object = Mapper.Map<UserModel>(user);
             return response;
@@ -55,11 +52,8 @@ namespace Pnprpg.Domain.Services
             var users = _userRepository.Select();
             var user = users.SingleOrDefault(x => x.Username.ToUpper() == model.Username.ToUpper());
             if (user != null)
-            {
-                response.AddError("Логин уже занят");
-                return response;
-            }
-            
+                return response.AddError("Логин уже занят");
+
             user = new AppUser
             {
                 Username = model.Username,

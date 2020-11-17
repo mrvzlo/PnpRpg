@@ -13,7 +13,6 @@ namespace Pnprpg.Infrastructure
         public DbSet<Branch> Branches { get; set; }
         public DbSet<BranchBonus> BranchBonuses { get; set; }
         public DbSet<Donation> Donations { get; set; }
-        public DbSet<TraitEffect> Effects { get; set; }
         public DbSet<MagicSchool> MagicSchools { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Perk> Perks{ get; set; }
@@ -25,6 +24,7 @@ namespace Pnprpg.Infrastructure
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Spell> Spells { get; set; }
         public DbSet<Trait> Traits { get; set; }
+        public DbSet<TraitEffect> TraitEffects { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<WeaponBonus> WeaponBonuses { get; set; }
     }

@@ -28,7 +28,9 @@ namespace Pnprpg.DomainService.Models
 
         public bool Update(int id, int modifier = 1, bool manual = true)
         {
-            var target = List.Single(x => x.Id == id);
+            var target = List.SingleOrDefault(x => x.Id == id);
+            if (target == null)
+                return false;
             return Update(target, modifier, manual);
         }
 

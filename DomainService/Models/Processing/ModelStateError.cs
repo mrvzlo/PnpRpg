@@ -10,5 +10,10 @@
             Key = key;
             Error = error;
         }
+
+        public ModelStateError(string error)
+        {
+            Error = error;
+        }
     }
 }

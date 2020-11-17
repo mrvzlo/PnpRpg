@@ -1,0 +1,45 @@
+﻿@page
+@model AbilitiesModel
+@{
+    ViewData["Title"] = "Создание персонажа";
+    if (Model.IsPartial) { Layout = null; }
+    await Html.RenderPartialAsync(SitePages.Shared_Status, Model.Status);
+    await Html.RenderPartialAsync(SitePages.HeroGen_Stage, (Model.CurrentStage, Model.Hero.MaxStage));
+    var remaining = Model.Hero.Abilities.FreePoints();
+}
+<div id="status" class="w-100"></div>
+
+@foreach (var ability in Model.Hero.Abilities.List)
+{
+    <div class="col-md-3 col-6">
+        <div class="row border">
+            @{ await Html.RenderPartialAsync("Stats/PrimaryDetails", ability);}
+            <div class="col-12 my-2">
+                <div class="btn-group">
+                    @{
+                        await Html.RenderPartialAsync("Stats/IncStat", new IncStatModel { Ability = ability, Remaining = remaining, Value = -3, OnlyLg = true });
+                        await Html.RenderPartialAsync("Stats/IncStat", new IncStatModel { Ability = ability, Remaining = remaining, Value = -1, OnlyLg = false });
+                        await Html.RenderPartialAsync("Stats/IncStat", new IncStatModel { Ability = ability, Remaining = remaining, Value = 1, OnlyLg = false });
+                        await Html.RenderPartialAsync("Stats/IncStat", new IncStatModel { Ability = ability, Remaining = remaining, Value = 3, OnlyLg = true });
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@{ await Html.RenderPartialAsync("Stats/_SecondaryGroup", Model.Hero);}
+
+<div class="col-lg-4 col-md-6 col-12">
+    <form id="abilityIncForm" method="post" asp-page="@SitePages.HeroGenAbilities"
+          data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+        @Html.Hidden("abilityId")
+        @Html.Hidden("value")
+    </form>
+    <form id="saveForm" method="post" asp-page="@SitePages.HeroGenAbilities" asp-page-handler="Save" 
+          data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main"></form>
+    <div class="alert alert-info my-3 py-2">Cвободных очков: @remaining</div>
+    <button form="saveForm" class="btn @(remaining == 0 ? "btn-success" : "btn-secondary") mw-160" @(remaining == 0 ? "" : "disabled")>
+        Сохранить
+    </button>
+</div>

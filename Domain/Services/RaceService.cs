@@ -39,13 +39,13 @@ namespace Pnprpg.Domain.Services
         {
             var response = new ServiceResponse<HeroModel>();
             var newRace = GetRace(raceId);
+            if (newRace == null)
+                return response.AddError("Раса не найдена");
+
             var oldRace = hero.Race != null ? GetRace(hero.Race.Id) : null;
 
             if (!hero.ApplyModifiers(GetRaceChangeEffects(oldRace, newRace)))
-            {
-                response.AddError(GenerationError.AbilitiesError.Description());
-                return response;
-            }
+                return response.AddError(GenerationError.AbilitiesError.Description());
 
             hero.Race = newRace;
             response.Object = hero;

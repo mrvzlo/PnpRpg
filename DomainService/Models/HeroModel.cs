@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pnprpg.DomainService.Enums;
-using Pnprpg.DomainService.Helpers;
 
 namespace Pnprpg.DomainService.Models
 {
@@ -18,7 +17,8 @@ namespace Pnprpg.DomainService.Models
         public BranchGroup Branches { get; set; }
         public int GoodKarma { get; set; }
         public int BadKarma { get; set; }
-        public HeroGenStatus MaxStatus { get; set; }
+        public int Charisma { get; set; }
+        public HeroGenStage MaxStage { get; set; }
 
         public HeroModel() { }
 
@@ -26,6 +26,7 @@ namespace Pnprpg.DomainService.Models
         {
             Name = "";
             Level = 1;
+            Charisma = 10;
             Abilities = new HeroAbilityGroup();
             Skills = new HeroSkillGroup(this);
             Traits = new TraitGroup();
@@ -47,10 +48,10 @@ namespace Pnprpg.DomainService.Models
         public bool ApplyModifiers(List<AbilityModifier> list) =>
             list.All(x => Abilities.Update(x.Ability.Id, x.Modifier, false));
 
-        public void SetStatus(HeroGenStatus status)
+        public void SetStatus(HeroGenStage stage)
         {
-            if (status > MaxStatus)
-                MaxStatus = status;
+            if (stage > MaxStage)
+                MaxStage = stage;
         }
 
         private bool ApplyEffect(TraitEffectDescModel traitEffect, bool manual)

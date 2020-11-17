@@ -3,39 +3,13 @@
     var settings = {};
 
     function init() {
-        $(document).on('click', '.ajax-btn', function () { prepareCall($(this), false); });
-        $(document).on('change', '.ajax-dropdown', function () { prepareCall(true); });
         $(document).on('click', '.clear-btn', function () {
             $(this).closest('.closeable').remove();
         });
         $(document).on('click', '.confirm-btn', confirmBtn);
         $(document).on('click', '.clone-btn', cloneBtn);
+        $(document).on('click', '.add-params', addParams);
         $(document).on('change', '.color-picker', MainJs.updateColorPicker);
-    }
-
-    function prepareCall(caller, include) {
-        var id = caller.data('container');
-        if (!id) id = 'main';
-        var url = caller.data('url');
-        var style = caller.data('style');
-        if (include) {
-            if (url.includes('?'))
-                url += '&id=' + caller.val();
-            else
-                url += '/' + caller.val();
-        }
-        call('#' + id, url, style);
-    }
-
-    function call(id, url, style) {
-        MainJs.toggleLoading();
-        $.get(url, function (data) {
-            dispose();
-            htmlInsert(style, data.partial, id);
-            if (data.status)
-                $('#status').html(data.status);
-            MainJs.updateScripts();
-        });
     }
 
     function confirmBtn() {
@@ -80,24 +54,16 @@
         }
     }
 
-    function dispose() {
-        $('[data-toggle="tooltip"]').tooltip('dispose');
+    function addParams() {
+        var caller = $(this);
+        var form = $(`#${caller.attr('form')}`);
+        caller.children('input').each(function () {
+            $(`#${this.name}`).val(this.value);
+        });
+        form.submit();
     }
     
-    function formRedirect() {
-        var url = $('#redirect').data('redirect');
-        if (!url) return;
-        MainJs.toggleLoading();
-        window.location = url;
-    }
-
-    function load(url) {
-        return call('#main', url);
-    }
-
     return {
-        init: init,
-        formRedirect: formRedirect,
-        load: load
+        init: init
     };
 })();

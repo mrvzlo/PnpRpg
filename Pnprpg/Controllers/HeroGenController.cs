@@ -16,10 +16,10 @@ namespace Pnprpg.Web.Controllers
             _coreLogic = coreLogic;
         }
 
-        public ActionResult Index(HeroGenStatus status = HeroGenStatus.Race)
+        public ActionResult Index(HeroGenStage stage = HeroGenStage.Race)
         {
             var hero = GetHeroFromCookies();
-            ViewBag.Status = status;
+            ViewBag.Status = stage;
             return View(hero);
         }
 
@@ -27,20 +27,20 @@ namespace Pnprpg.Web.Controllers
         {
             var hero = GetHeroFromCookies();
             var partial = this.RenderPartialViewToString("_HeroInfo", hero);
-            if (hero.MaxStatus != HeroGenStatus.Result)
+            if (hero.MaxStage != HeroGenStage.Result)
             {
-                hero.SetStatus(HeroGenStatus.Result);
+                hero.SetStatus(HeroGenStage.Result);
                 SaveHeroToCookies(hero);
             }
 
             return ReturnJson(partial);
         }
 
-        public PartialViewResult Wizard(HeroGenStatus status)
+        public PartialViewResult Wizard(HeroGenStage stage)
         {
             var hero = GetHeroFromCookies();
-            ViewBag.Current = status;
-            return PartialView("_Wizard", hero.MaxStatus);
+            ViewBag.Current = stage;
+            return PartialView("_Wizard", hero.MaxStage);
         }
 
         [HttpPost]

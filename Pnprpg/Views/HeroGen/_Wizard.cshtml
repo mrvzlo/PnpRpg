@@ -1,10 +1,10 @@
 ﻿@using Pnprpg.DomainService.Enums
-@model HeroGenStatus
+@model HeroGenStage
 @{
     var i = 0;
-    var current = (HeroGenStatus)ViewBag.Current;
-    var max = (HeroGenStatus)Math.Max((int)current, (int)Model);
-    var list = (HeroGenStatus[])Enum.GetValues(typeof(HeroGenStatus));
+    var current = (HeroGenStage)ViewBag.Current;
+    var max = (HeroGenStage)Math.Max((int)current, (int)Model);
+    var list = (HeroGenStage[])Enum.GetValues(typeof(HeroGenStage));
 }
 <div class="col-12 my-3 d-flex justify-content-center">
     @foreach (var x in list)

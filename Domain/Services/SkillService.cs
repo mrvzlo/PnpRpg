@@ -53,7 +53,7 @@ namespace Pnprpg.Domain.Services
             var skill = GetSkillById(skillId);
             var success = hero.Skills.Update(skill);
             if (!success)
-                response.AddError(GenerationError.AbilitiesError.Description());
+                response = response.AddError(GenerationError.AbilitiesError.Description());
             response.Object = hero;
             return response;
         }

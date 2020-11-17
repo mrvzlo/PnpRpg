@@ -1,0 +1,61 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Pnprpg.DomainService.Enums
+@model Pnprpg.WebCore.Pages.HeroGen.ResultModel
+@{
+    ViewData["Title"] = "Создание персонажа";
+    if (Model.IsPartial) { Layout = null; }
+    var traits = Model.Hero.Traits.List.Select(x => x.Name).ToList();
+    var final = Model.Hero.MaxStage == HeroGenStage.Result;
+    var skills = Model.Hero.Skills.List.Where(x => x.Level > 0).ToList();
+    if (final)
+    {
+        traits.AddRange(Model.Hero.Race.Bonuses.Select(x => x.Name).ToList());
+        traits.AddRange(Model.Hero.Branches.List.SelectMany(x => x.Bonuses).Select(x => x.Name).ToList());
+    }
+
+    await Html.RenderPartialAsync(SitePages.HeroGen_Stage, (Model.CurrentStage, Model.Hero.MaxStage));
+}
+<div class="col-12 h4 my-2">
+    @($"{Model.Hero.Race.Name} {string.Join(", ", Model.Hero.Branches.List.Select(x => x.Name))} {Model.Hero.Name} {Model.Hero.Level} уровня")
+</div>
+@{
+    await Html.RenderPartialAsync("Stats/_PrimaryGroup", Model.Hero.Abilities);
+    await Html.RenderPartialAsync("Stats/_SecondaryGroup", Model.Hero);
+}
+<div class="col-12"></div>
+<div class="col-sm-6 col-12 card rounded-0">
+    <div class="h5 card-header rounded-0 bg-dark text-light">Особенности</div>
+    <div class="card-body py-1">
+        @foreach (var trait in traits)
+        {
+            <div>@trait</div>
+        }
+        @if (!traits.Any())
+        {
+            <div class="font-italic">Нет</div>
+        }
+    </div>
+</div>
+<div class="col-sm-6 col-12 card rounded-0">
+    <div class="h5 card-header rounded-0 bg-dark text-light">Навыки</div>
+    <div class="card-body py-1">
+        @foreach (var s in skills)
+        {
+            <div>@s</div>
+        }
+        @if (!skills.Any())
+        {
+            <div class="font-italic">Нет</div>
+        }
+    </div>
+</div>
+
+<form method="post" target="_blank" class="col-md-6 col-12 my-3 p-0"
+      data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+    <div class="input-group mb-3">
+        <div class="input-group-text">Имя</div>
+        @Html.TextBoxFor(x => x.Hero.Name, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Скачать</button>
+</form>

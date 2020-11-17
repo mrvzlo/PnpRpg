@@ -67,7 +67,6 @@
     <Folder Include="Pages\Editor\Skills\" />
     <Folder Include="Pages\Editor\Perks\" />
     <Folder Include="Pages\Editor\News\" />
-    <Folder Include="Pages\Herogen\" />
     <Folder Include="Pages\Admin\" />
     <Folder Include="Pages\Book\" />
   </ItemGroup>
