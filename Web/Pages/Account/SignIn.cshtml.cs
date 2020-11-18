@@ -1,5 +1,5 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 
@@ -17,7 +17,7 @@ namespace Pnprpg.WebCore.Pages.Account
             Login = new LoginModel{ReturnUrl = returnUrl};
         }
 
-        public ActionResult OnPost()
+        public async Task<ActionResult> OnPost()
         {
             if (!ModelState.IsValid)
                 return Page();
@@ -25,7 +25,7 @@ namespace Pnprpg.WebCore.Pages.Account
             var response = AccountService.Login(Login);
             if (response.Successful())
             {
-                CreateTicket(response.Object);
+                await CreateTicket(response.Object);
                 return Redirect(GetRedirectUrl(Login.ReturnUrl));
             }
 

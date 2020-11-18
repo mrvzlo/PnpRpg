@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -7,6 +8,7 @@ namespace Pnprpg.WebCore.Pages.Account
 {
     public class SignUpModel : AccountPage
     {
+        [BindProperty]
         public RegistrationModel Registration { get; set; }
         
         public SignUpModel(IAccountService accountService) : base(accountService) { }
@@ -16,7 +18,7 @@ namespace Pnprpg.WebCore.Pages.Account
             Registration = new RegistrationModel { ReturnUrl = returnUrl };
         }
 
-        public ActionResult OnPost()
+        public async Task<ActionResult> OnPost()
         {
             if (!ModelState.IsValid)
                 return Page();
@@ -24,7 +26,7 @@ namespace Pnprpg.WebCore.Pages.Account
             var response = AccountService.Register(Registration);
             if (response.Successful())
             {
-                CreateTicket(response.Object);
+                await CreateTicket(response.Object);
                 return Redirect(GetRedirectUrl(Registration.ReturnUrl));
             }
 

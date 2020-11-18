@@ -29,8 +29,12 @@ namespace Pnprpg.Domain.Services
         public void SaveAllUsers(List<UserEditModel> list)
         {
             var users = _userRepository.Select().ToList();
-            foreach (var user in users) 
-                user.Role = list.Single(x => x.Id == user.Id).Role;
+            foreach (var user in users)
+            {
+                var updater = list.SingleOrDefault(x => x.Id == user.Id);
+                if (updater == null) continue;
+                user.Role = updater.Role;
+            }
             _userRepository.BatchInsert(users.AsQueryable());
         }
 
@@ -50,7 +54,7 @@ namespace Pnprpg.Domain.Services
         {
             var response = new ServiceResponse<UserModel>();
             var users = _userRepository.Select();
-            var user = users.SingleOrDefault(x => x.Username.ToUpper() == model.Username.ToUpper());
+            var user = users.FirstOrDefault(x => x.Username.ToUpper() == model.Username.ToUpper());
             if (user != null)
                 return response.AddError("Логин уже занят");
 
@@ -60,7 +64,7 @@ namespace Pnprpg.Domain.Services
                 Password = Crypto.HashPassword(model.Password),
                 Role = UserRole.Player
             };
-            
+
             _userRepository.InsertOrUpdate(user);
             response.Object = Mapper.Map<UserModel>(user);
             return response;

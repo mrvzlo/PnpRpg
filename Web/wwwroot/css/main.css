@@ -12028,6 +12028,9 @@ form .row {
   select.form-control {
     background-image: none; } }
 
+.field-validation-error {
+  color: #a22; }
+
 td {
   vertical-align: middle !important; }
   td .btn {

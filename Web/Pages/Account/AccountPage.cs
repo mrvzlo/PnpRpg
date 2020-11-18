@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 
@@ -16,7 +18,7 @@ namespace Pnprpg.WebCore.Pages.Account
             AccountService = accountService;
         }
 
-        protected void CreateTicket(UserModel user)
+        protected async Task CreateTicket(UserModel user)
         {
             var claims = new[]
             {
@@ -26,7 +28,7 @@ namespace Pnprpg.WebCore.Pages.Account
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
         }
 
         protected string GetRedirectUrl(string returnUrl)

@@ -7,13 +7,16 @@
 		public static string AccountSignIn => @"/Account/SignIn";
 		public static string AccountSignOut => @"/Account/SignOut";
 		public static string AccountSignUp => @"/Account/SignUp";
+		public static string AdminUsersEdit => @"/Admin/Users/Edit";
 		public static string Alchemy_Result => @"Alchemy/_Result";
 		public static string AlchemyIndex => @"/Alchemy/Index";
 		public static string DonationIndex => @"/Donation/Index";
+		public static string EditorDonationsIndex => @"/Editor/Donations/Index";
 		public static string EditorSpells_Grid => @"Editor/Spells/_Grid";
 		public static string EditorSpellsEdit => @"/Editor/Spells/Edit";
 		public static string EditorSpellsIndex => @"/Editor/Spells/Index";
 		public static string Error => @"/Error";
+		public static string ErrorsNotFound => @"/Errors/NotFound";
 		public static string HeroGen_Stage => @"HeroGen/_Stage";
 		public static string HeroGenAbilities => @"/HeroGen/Abilities";
 		public static string HeroGenBranch => @"/HeroGen/Branch";

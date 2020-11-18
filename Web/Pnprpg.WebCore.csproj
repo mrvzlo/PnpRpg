@@ -60,14 +60,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Editor\Donations\" />
     <Folder Include="Pages\Editor\Branches\" />
     <Folder Include="Pages\Editor\Weaponry\" />
     <Folder Include="Pages\Editor\Races\" />
     <Folder Include="Pages\Editor\Skills\" />
     <Folder Include="Pages\Editor\Perks\" />
     <Folder Include="Pages\Editor\News\" />
-    <Folder Include="Pages\Admin\" />
     <Folder Include="Pages\Book\" />
   </ItemGroup>
 

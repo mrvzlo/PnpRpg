@@ -1,0 +1,25 @@
+﻿@page
+@using Pnprpg.DomainService.Enums
+@model Pnprpg.WebCore.Pages.Admin.EditModel
+@{
+    ViewData["Title"] = "Настройка ролей";
+    var roles = new[] { UserRole.Player, UserRole.Master, UserRole.Editor, UserRole.Admin };
+    var items = roles.Select(x => new { Value = (int)x, Text = x.ToString() }).ToList();
+    var i = 0;
+}
+
+<form class="col-md-6" method="post">
+    <table class="table table-striped">
+        @foreach (var user in Model.Users.Where(x => x.Username != User.Identity.Name))
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => user.Username)</td>
+                <td>
+                    @Html.Hidden($"users[{i}].Id", user.Id)
+                    @Html.DropDownList($"users[{i++}].Role", new SelectList(items, "Value", "Text", (int)user.Role), new { @class = "form-select" })
+                </td>
+            </tr>
+        }
+    </table>
+    <input class="btn btn-success" type="submit" value="Сохранить" />
+</form>

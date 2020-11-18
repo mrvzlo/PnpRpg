@@ -20,7 +20,7 @@
     }
     <div>
         Номер счёта
-        @Html.TextBox("account", "LV52HABA0551048206917", new { @class = "form-control text-center font-monospace" })
+        @Html.TextBox("account", Model.BankAccount, new { @class = "form-control text-center font-monospace" })
     </div>
     <div class="text-muted my-3">
         Создание каждого набора предположительно займёт 3 месяца
@@ -29,6 +29,6 @@
 @if (AccessHelper.UserInRole(User, UserRole.Admin))
 {
     <div class="col-12">
-        @Html.ActionLink("Редактировать", "Edit", "Donation", null, new { @class = "btn btn-warning" })
+        <a asp-page="@SitePages.EditorDonationsIndex" class="btn btn-warning">Редактировать</a>
     </div>
 }

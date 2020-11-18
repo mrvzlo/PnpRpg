@@ -81,3 +81,7 @@ form{
         background-image: none;
     }
 }
+
+.field-validation-error{
+    color: $danger;
+}

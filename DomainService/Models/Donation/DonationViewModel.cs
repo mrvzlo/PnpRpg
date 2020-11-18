@@ -9,6 +9,6 @@ namespace Pnprpg.DomainService.Models
         public decimal Total { get; set; }
         public decimal Current { get; set; }
 
-        public int Percent() => (int) Math.Round(100 * Current / Total);
+        public int Percent() => Total == 0 ? 0 : (int) Math.Round(100 * Current / Total);
     }
 }

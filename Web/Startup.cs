@@ -26,11 +26,16 @@ namespace Pnprpg.WebCore
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+
             services.AddDbContextPool<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.AccessDeniedPath = new PathString(SitePages.AccountSignIn));
+                .AddCookie(o =>
+                {
+                    o.LoginPath = new PathString(SitePages.AccountSignIn);
+                    o.AccessDeniedPath = new PathString(SitePages.ErrorsNotFound);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,10 +59,7 @@ namespace Pnprpg.WebCore
             app.UseAuthorization();
             app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapRazorPages());
         }
 
         public void ConfigureContainer(IServiceContainer container)

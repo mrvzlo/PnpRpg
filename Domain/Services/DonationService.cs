@@ -29,8 +29,8 @@ namespace Pnprpg.Domain.Services
             foreach (var donation in donations)
             {
                 var model = list.Find(x => x.Id == donation.Id);
-                donation.Current = model.Current;
-                donation.Total = model.Total;
+                donation.Current = Math.Floor(model.Current * 100) / 100;
+                donation.Total = Math.Floor(model.Total * 100) / 100;
             }
             _donationRepository.BatchInsert(donations.AsQueryable());
         }

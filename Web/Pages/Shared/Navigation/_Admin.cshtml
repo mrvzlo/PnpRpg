@@ -4,7 +4,7 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right">
-        <a class="nav-link" href="@Url.Action("Users", "Admin")">Настройка ролей</a>
+        <a class="nav-link" asp-page="@SitePages.AdminUsersEdit">Настройка ролей</a>
         <a class="nav-link" href="@Url.Action("UpdateBook", "Book")">Обновить книгу</a>
         <a class="nav-link" href="@Url.Action("Edit", "News")">Добавить новость</a>
     </div>

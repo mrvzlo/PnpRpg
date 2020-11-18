@@ -1,0 +1,42 @@
+﻿@page
+@model Pnprpg.WebCore.Pages.Editor.Donations.EditModel
+@{
+    ViewData["Title"] = "Настройка пожертвований";
+    await Html.RenderPartialAsync(SitePages.Shared_Status, Model.Status);
+    var i = 0;
+}
+
+<form method="post">
+    <table class="table table-striped">
+        <tr>
+            <th class="w-50">Название</th>
+            <th class="w-25">Собрано</th>
+            <th class="w-25">Цель</th>
+        </tr>
+        @foreach (var x in Model.Donations)
+        {
+            <tr class="border-0">
+                <td class="border-0">
+                    <input type="hidden" name="Donations[@(i)].Id" value="@x.Id" />
+                    <input type="text" name="Donations[@(i)].Name" value="@x.Name" class="form-control" />
+                </td>
+                <td class="border-0">
+                    <input type="text" name="Donations[@(i)].Current" value="@x.Current" class="form-control" />
+                </td>
+                <td class="border-0">
+                    <input type="text" name="Donations[@(i)].Total" value="@x.Total" class="form-control" />
+                </td>
+            </tr>
+            <tr class="d-none"></tr>
+            <tr>
+                <td colspan="3">
+                    @Html.ValidationMessage($"Donations[{i}].Name")
+                    @Html.ValidationMessage($"Donations[{i}].Current")
+                    @Html.ValidationMessage($"Donations[{i}].Total")
+                </td>
+            </tr>
+            i++;
+        }
+    </table>
+    <input class="btn btn-success" type="submit" value="Сохранить" />
+</form>
