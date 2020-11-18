@@ -87,7 +87,6 @@
     <Compile Include="Enums\PotionType.cs" />
     <Compile Include="Enums\SkillType.cs" />
     <Compile Include="Helpers\Int32Extension.cs" />
-    <Compile Include="Helpers\SelectableHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="IRepositories\IAbilityRepository.cs" />
     <Compile Include="IRepositories\IAlchemySymbolRepository.cs" />
@@ -137,7 +136,6 @@
     <Compile Include="Models\Common\FormQueryItem.cs" />
     <Compile Include="Models\Common\NumericFormQueryItem.cs" />
     <Compile Include="Models\Common\Selectable.cs" />
-    <Compile Include="Models\Common\SelectableList.cs" />
     <Compile Include="Models\Abilities\HeroAbilityGroup.cs" />
     <Compile Include="Models\Branch\BranchViewModel.cs" />
     <Compile Include="Models\Donation\DonationEditModel.cs" />

@@ -402,11 +402,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BaseGenController.cs" />
     <Compile Include="Controllers\Editor\BaseEditorController.cs" />
     <Compile Include="Controllers\Editor\SpellEditorController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\Editor\EditorController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
@@ -665,9 +663,6 @@
     <Content Include="Views\HeroGen\_Wizard.cshtml" />
     <Content Include="Views\Book\_Branches.cshtml" />
     <Content Include="Views\Book\_Fight.cshtml" />
-    <Content Include="Views\Donation\Index.cshtml" />
-    <Content Include="Views\Donation\Edit.cshtml" />
-    <Content Include="Views\Donation\EditorTemplates\DonationEditModel.cshtml" />
     <Content Include="Views\Editor\Spells.cshtml" />
     <Content Include="Views\Editor\Grids\_SpellsGrid.cshtml" />
     <Content Include="Views\Editor\Edit\EditSpell.cshtml" />
@@ -710,7 +705,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HeroGen\Index.cshtml" />
-    <Content Include="Views\Shared\_Nav.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
     <Content Include="Views\Shared\_Loading.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Ability.cshtml" />

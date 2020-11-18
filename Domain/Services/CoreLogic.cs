@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -50,16 +51,20 @@ namespace Pnprpg.Domain.Services
             return hero == null ? null : GetFullHeroInfo(hero);
         }
 
-        public SelectableList ToSelectableList(IQueryable<object> query, object selected = null)
+        public List<Selectable> ToSelectableList(IQueryable<object> query, string selected = null)
         {
             var list = query.ProjectTo<Selectable>(MapperConfig).ToList();
-            return new SelectableList(list, selected);
+            foreach (var x in list) 
+                x.Selected = x.Value == selected;
+            return list;
         }
 
-        public SelectableList ToSelectableList(Enum[] query, object selected = null)
+        public List<Selectable> ToSelectableList(IEnumerable<Enum> query, string selected = null)
         {
             var list = query.Select(x => new Selectable(x, x.Description())).ToList();
-            return new SelectableList(list, selected);
+            foreach (var x in list)
+                x.Selected = x.Value == selected;
+            return list;
         }
 
         public HeroModel GetFullHeroInfo(HeroModel hero)

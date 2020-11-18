@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Pnprpg.DomainService.Enums;
+﻿using Pnprpg.DomainService.Enums;
+using Pnprpg.WebCore.Helpers;
 
 namespace Pnprpg.WebCore.Pages.Admin
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = nameof(UserRole.Admin))]
+    [CustomAuthorize(UserRole.Admin)]
     public class AdminPage : BasePage
     {
     }

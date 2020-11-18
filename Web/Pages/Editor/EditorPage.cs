@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Pnprpg.DomainService.Enums;
+﻿using Pnprpg.DomainService.Enums;
+using Pnprpg.WebCore.Helpers;
 
 namespace Pnprpg.WebCore.Pages.Editor
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = nameof(UserRole.Editor))]
+    [CustomAuthorize(UserRole.Editor)]
     public class EditorPage : BasePage
     {
     }

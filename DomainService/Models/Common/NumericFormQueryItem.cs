@@ -6,7 +6,8 @@ namespace Pnprpg.DomainService.Models
     {
         public int Value;
 
-        public NumericFormQueryItem(List<Selectable> list, int position = 0, object selected = null, int value = 0) : base(list, position, selected)
+        public NumericFormQueryItem(List<Selectable> list, int position = 0, int value = 0) 
+            : base(list, position)
         {
             Value = value;
         }

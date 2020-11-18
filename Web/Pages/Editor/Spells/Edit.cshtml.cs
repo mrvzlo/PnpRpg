@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace Pnprpg.WebCore.Pages.Editor.Spells
 {
-    public class EditModel : PageModel
+    public class EditModel : EditorPage
     {
         public void OnGet()
         {

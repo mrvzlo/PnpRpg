@@ -9,6 +9,6 @@ namespace Pnprpg.DomainService.Models
         public int Weight { get; set; }
         public string Name { get; set; }
         public SkillViewModel Skill { get; set; }
-        public List<BonusViewModel> Bonuses;
+        public List<BonusViewModel> Bonuses { get; set; }
     }
 }

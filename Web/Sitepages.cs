@@ -12,9 +12,14 @@
 		public static string AlchemyIndex => @"/Alchemy/Index";
 		public static string DonationIndex => @"/Donation/Index";
 		public static string EditorDonationsIndex => @"/Editor/Donations/Index";
+		public static string EditorSelects_AbilitySelect => @"Editor/Selects/_AbilitySelect";
+		public static string EditorSelects_BonusSelect => @"Editor/Selects/_BonusSelect";
 		public static string EditorSpells_Grid => @"Editor/Spells/_Grid";
 		public static string EditorSpellsEdit => @"/Editor/Spells/Edit";
 		public static string EditorSpellsIndex => @"/Editor/Spells/Index";
+		public static string EditorWeaponry_Grid => @"Editor/Weaponry/_Grid";
+		public static string EditorWeaponryEdit => @"/Editor/Weaponry/Edit";
+		public static string EditorWeaponryIndex => @"/Editor/Weaponry/Index";
 		public static string Error => @"/Error";
 		public static string ErrorsNotFound => @"/Errors/NotFound";
 		public static string HeroGen_Stage => @"HeroGen/_Stage";

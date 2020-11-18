@@ -12,7 +12,7 @@ namespace Pnprpg.Domain.Profiles
             CreateMap<Weapon, WeaponViewModel>()
                 .ForMember(dest => dest.Bonuses, opts => { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
             CreateMap<Weapon, WeaponEditModel>()
-                .ForMember(dest => dest.Bonuses, opts => { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
+                .ForMember(dest => dest.Bonuses, opts => { opts.MapFrom(from => from.Bonuses.Select(x => x.BonusId)); });
         }
     }
 }

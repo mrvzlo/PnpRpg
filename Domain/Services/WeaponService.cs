@@ -28,14 +28,11 @@ namespace Pnprpg.Domain.Services
 
         public WeaponEditModel GetForEdit(int? id)
         {
-            var weapon = id != null
-                ? _weaponRepository.Get(id.Value)
-                : new Weapon();
-
-            return Mapper.Map<WeaponEditModel>(weapon);
+            var weapons = _weaponRepository.Select().ProjectTo<WeaponEditModel>(MapperConfig);
+            return weapons.FirstOrDefault(x => x.Id == id) ?? new WeaponEditModel();
         }
 
-        public void Save(WeaponEditModel model)
+        public int Save(WeaponEditModel model)
         {
             var weapon = new Weapon
             {
@@ -50,11 +47,13 @@ namespace Pnprpg.Domain.Services
 
             var bonuses = model.Bonuses?.Select(x => new WeaponBonus
             {
-                WeaponId = model.Id,
+                WeaponId = weapon.Id,
                 BonusId = x
             }).AsQueryable();
 
             _bonusService.BatchSave(bonuses, weapon.Id, BonusType.Weapon);
+
+            return weapon.Id;
         }
 
         public void Delete(int id)

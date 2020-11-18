@@ -24,9 +24,7 @@
     }
 
     function initMvcGrids() {
-        [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
-            new MvcGrid(element);
-        });
+        document.querySelectorAll('.mvc-grid').forEach(element => new MvcGrid(element));
         $('.mvc-grid-loader').parent().html(getSpinner());
     }
 
