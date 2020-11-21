@@ -6,7 +6,7 @@ namespace Pnprpg.DomainService.IServices
     public interface IMagicService : IViewService<SpellViewModel>, IEditService<SpellEditModel>
     {
         IQueryable<MagicSchoolModel> GetAllSchools();
-        void Save(SpellEditModel model);
+        int Save(SpellEditModel model);
         SpellViewModel GetRandomSpell();
     }
 }

@@ -1,0 +1,44 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model Pnprpg.WebCore.Pages.Editor.Skills.EditModel
+@{
+    ViewData["Title"] = Model.Input.Id == 0 ? "Новый навык" : Model.Input.Name;
+}
+
+<form class="col-md-6 col-12 mx-auto" method="post">
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.Input.Id)
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Название</label>
+        <div class="col">
+            @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Класс</label>
+        <div class="col">
+            @Html.DropDownListFor(x => x.Input.BranchId, SelectableHelper.GetSelectList(Model.Branches), new { @class = "form-select" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Атрибут</label>
+        <div class="col">
+            @Html.DropDownListFor(x => x.Input.AbilityId, SelectableHelper.GetSelectList(Model.Abilities), new { @class = "form-select" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Сложность</label>
+        <div class="col">
+            @Html.TextBoxFor(x => x.Input.Difficulty, new { type = "number", @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Тип</label>
+        <div class="col">
+            @Html.DropDownListFor(x => x.Input.Type, SelectableHelper.GetSelectList(Model.Types), new { @class = "form-select" })
+        </div>
+    </div>
+
+    <hr />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>

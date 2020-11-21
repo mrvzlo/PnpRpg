@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Html
+@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Helpers
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.SkillViewModel>
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Ability).RenderedAs(AbilitySymbol).Titled("Атрибут").Sortable(true);
+    columns.Add(x => x.BranchName).Titled("Класс").Sortable(true);
+    columns.Add(x => x.Difficulty).Titled("Сложность");
+    columns.Add(x => x.Type).RenderedAs(x => x.Type.Description()).Titled("Тип");
+    columns.Add(x => x).RenderedAs(Actions).Css("no-wrap");
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 12;
+}).Css("table table-responsive"))
+
+@{
+    IHtmlContent AbilitySymbol(SkillViewModel x) => PartialHelper.Body(
+    @<div class="font-weight-bold badge text-white big-badge" style="background-color: #@x.Ability.Color">
+        @x.Ability.Symbol
+    </div>
+    );
+
+    IHtmlContent Actions(SkillViewModel x) => PartialHelper.Body(
+    @<text>
+        <a asp-page="@SitePages.EditorSkillsEdit" asp-route-id="@x.Id" class="btn btn-info fas fa-pen"></a>
+        <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId" data-value="@x.Id"
+                data-text="Навык @x.Name будет удалён"></button>
+    </text>
+    );
+}

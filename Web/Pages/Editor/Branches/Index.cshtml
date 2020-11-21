@@ -1,0 +1,11 @@
+﻿@page
+@model Pnprpg.WebCore.Pages.Editor.Branches.IndexModel
+@{
+    ViewData["Title"] = "Редактор классов";
+}
+
+<div class="mvc-grid" data-source-url="@Url.Page(SitePages.EditorBranchesIndex, "Grid")"></div>
+
+<form asp-page-handler="Delete" id="deleteForm">
+    @Html.Hidden("ModelId")
+</form>

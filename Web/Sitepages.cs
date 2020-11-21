@@ -7,19 +7,35 @@
 		public static string AccountSignIn => @"/Account/SignIn";
 		public static string AccountSignOut => @"/Account/SignOut";
 		public static string AccountSignUp => @"/Account/SignUp";
+		public static string AdminDonationsEdit => @"/Admin/Donations/Edit";
+		public static string AdminNewsEdit => @"/Admin/News/Edit";
 		public static string AdminUsersEdit => @"/Admin/Users/Edit";
 		public static string Alchemy_Result => @"Alchemy/_Result";
 		public static string AlchemyIndex => @"/Alchemy/Index";
 		public static string DonationIndex => @"/Donation/Index";
-		public static string EditorDonationsIndex => @"/Editor/Donations/Index";
+		public static string EditorBonuses_Grid => @"Editor/Bonuses/_Grid";
+		public static string EditorBonusesEdit => @"/Editor/Bonuses/Edit";
+		public static string EditorBonusesIndex => @"/Editor/Bonuses/Index";
+		public static string EditorBranches_Grid => @"Editor/Branches/_Grid";
+		public static string EditorBranchesEdit => @"/Editor/Branches/Edit";
+		public static string EditorBranchesIndex => @"/Editor/Branches/Index";
+		public static string EditorPerks_Grid => @"Editor/Perks/_Grid";
+		public static string EditorPerksEdit => @"/Editor/Perks/Edit";
+		public static string EditorPerksIndex => @"/Editor/Perks/Index";
+		public static string EditorRaces_Grid => @"Editor/Races/_Grid";
+		public static string EditorRacesEdit => @"/Editor/Races/Edit";
+		public static string EditorRacesIndex => @"/Editor/Races/Index";
 		public static string EditorSelects_AbilitySelect => @"Editor/Selects/_AbilitySelect";
 		public static string EditorSelects_BonusSelect => @"Editor/Selects/_BonusSelect";
+		public static string EditorSkills_Grid => @"Editor/Skills/_Grid";
+		public static string EditorSkillsEdit => @"/Editor/Skills/Edit";
+		public static string EditorSkillsIndex => @"/Editor/Skills/Index";
 		public static string EditorSpells_Grid => @"Editor/Spells/_Grid";
 		public static string EditorSpellsEdit => @"/Editor/Spells/Edit";
 		public static string EditorSpellsIndex => @"/Editor/Spells/Index";
-		public static string EditorWeaponry_Grid => @"Editor/Weaponry/_Grid";
-		public static string EditorWeaponryEdit => @"/Editor/Weaponry/Edit";
-		public static string EditorWeaponryIndex => @"/Editor/Weaponry/Index";
+		public static string EditorWeapons_Grid => @"Editor/Weapons/_Grid";
+		public static string EditorWeaponsEdit => @"/Editor/Weapons/Edit";
+		public static string EditorWeaponsIndex => @"/Editor/Weapons/Index";
 		public static string Error => @"/Error";
 		public static string ErrorsNotFound => @"/Errors/NotFound";
 		public static string HeroGen_Stage => @"HeroGen/_Stage";
@@ -54,6 +70,7 @@
 		public static string SharedNavigation_Authed => @"Shared/Navigation/_Authed";
 		public static string SharedNavigation_Editor => @"Shared/Navigation/_Editor";
 		public static string SharedNavigation_Top => @"Shared/Navigation/_Top";
+		public static string SheetsIndex => @"/Sheets/Index";
 		public static string WeaponryIndex => @"/Weaponry/Index";
 
 	}

@@ -45,7 +45,7 @@ namespace Pnprpg.Domain.Services
             return spell != null ? Mapper.Map<SpellEditModel>(spell) : new SpellEditModel();
         }
 
-        public void Save(SpellEditModel model)
+        public int Save(SpellEditModel model)
         {
             var perk = new Spell
             {
@@ -58,7 +58,7 @@ namespace Pnprpg.Domain.Services
                 Name = model.Name
             };
 
-            model.Id = _spellRepository.InsertOrUpdate(perk);
+            return _spellRepository.InsertOrUpdate(perk);
         }
 
         public void Delete(int id)

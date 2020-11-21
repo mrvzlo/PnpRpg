@@ -10,6 +10,6 @@ namespace Pnprpg.DomainService.IServices
         HeroSkillGroup GetHeroSkillGroup(HeroModel hero);
         ServiceResponse<HeroModel> UpgradeSkill(HeroModel hero, int skillId);
         HeroModel ResetSkills(HeroModel hero);
-        void Save(SkillEditModel viewModel);
+        int Save(SkillEditModel viewModel);
     }
 }

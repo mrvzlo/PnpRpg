@@ -53,7 +53,7 @@ namespace Pnprpg.Domain.Services
             _branchRepository.Delete(id);
         }
 
-        public void Save(BranchEditModel model)
+        public int Save(BranchEditModel model)
         {
             var branch = new Branch
             {
@@ -73,6 +73,8 @@ namespace Pnprpg.Domain.Services
             }).AsQueryable();
 
             _bonusService.BatchSave(bonuses, branch.Id, BonusType.Branch);
+
+            return branch.Id;
         }
 
         public ServiceResponse<HeroModel> Assign(HeroModel hero, int branchId, int pos)

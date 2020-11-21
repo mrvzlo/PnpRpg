@@ -10,7 +10,7 @@
 @if (AccessHelper.UserInRole(User, UserRole.Editor))
 {
     <div class="col-12">
-        @Html.ActionLink("Редактировать", "Weapons", "Editor", null, new { @class = "btn btn-warning float-right" })
+        <a class="btn btn-warning float-right" asp-page="@SitePages.EditorWeaponsIndex">Редактировать</a>
     </div>
 }
 <div class="nav nav-tabs col-12 mt-md-2 justify-content-center">

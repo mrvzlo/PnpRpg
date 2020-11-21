@@ -5,7 +5,7 @@ namespace Pnprpg.DomainService.IServices
 {
     public interface IBranchService : IViewService<BranchViewModel>, IEditService<BranchEditModel>
     {
-        void Save(BranchEditModel model);
+        int Save(BranchEditModel model);
         List<BranchViewModel> GetAllWithPerks();
         ServiceResponse<HeroModel> Assign(HeroModel hero, int branchId, int pos);
     }

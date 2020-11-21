@@ -1,7 +1,5 @@
 ﻿@page
 @model IndexModel
-@using System.Globalization
-@using Pnprpg.DomainService.Enums
 @using Pnprpg.WebCore.Pages.Home
 @{
     ViewData["HideTitle"] = true;
@@ -15,7 +13,7 @@
     await Html.RenderPartialAsync("Home/Card",
         new CardModel {Icon = "book", Url = Url.Action("Index", "Book"), Name = "Книга игрока" });
     await Html.RenderPartialAsync("Home/Card",
-        new CardModel {Icon = "id-card", Url = Url.Action("HeroSheets", "Book"), Name = "Листы персонажа" });
+        new CardModel {Icon = "id-card", Url = SitePages.SheetsIndex, Name = "Листы персонажа" });
 }
 
 <div class="my-3"></div>

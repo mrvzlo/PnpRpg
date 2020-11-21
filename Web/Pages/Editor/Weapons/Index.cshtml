@@ -1,0 +1,15 @@
+﻿@page
+@model Pnprpg.WebCore.Pages.Editor.Weapons.IndexModel
+@{
+    ViewData["Title"] = "Редактор оружия";
+}
+
+<div class="col-12 mb-3">
+    <a class="btn btn-success" asp-page="@SitePages.EditorWeaponsEdit">Добавить новое</a>
+</div>
+
+<div class="mvc-grid" data-source-url="@Url.Page(SitePages.EditorWeaponsIndex, "Grid")"></div>
+
+<form asp-page-handler="Delete" id="deleteForm">
+    @Html.Hidden("ModelId")
+</form>

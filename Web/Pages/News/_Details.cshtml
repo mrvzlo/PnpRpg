@@ -11,7 +11,9 @@
         @Html.Raw(Model.Content)
         @if (User.IsInRole(UserRole.Admin.ToString()))
         {
-            <a href="@Url.Action("Edit", new {id=Model.Id})" class="d-block text-right"><i class="fas fa-edit"></i></a>
+            <a asp-page="@SitePages.AdminNewsEdit" asp-route-id="@Model.Id" class="d-block text-right">
+                <i class="fas fa-edit"></i>
+            </a>
         }
     </div>
 </div>

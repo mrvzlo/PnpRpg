@@ -1,15 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="wwwroot\css\MvcGrid\fonts\**" />
-    <Content Remove="wwwroot\css\MvcGrid\fonts\**" />
-    <EmbeddedResource Remove="wwwroot\css\MvcGrid\fonts\**" />
-    <None Remove="wwwroot\css\MvcGrid\fonts\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
@@ -60,11 +53,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Editor\Branches\" />
-    <Folder Include="Pages\Editor\Races\" />
-    <Folder Include="Pages\Editor\Skills\" />
-    <Folder Include="Pages\Editor\Perks\" />
-    <Folder Include="Pages\Editor\News\" />
     <Folder Include="Pages\Book\" />
   </ItemGroup>
 

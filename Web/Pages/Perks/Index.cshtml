@@ -9,7 +9,7 @@
 @if (AccessHelper.UserInRole(User, UserRole.Editor))
 {
     <div class="col-12">
-        @Html.ActionLink("Редактировать", "Perks", "Editor", null, new { @class = "btn btn-warning float-right" })
+        <a class="btn btn-warning float-right" asp-page="@SitePages.EditorPerksIndex">Редактировать</a>
     </div>
 }
 <div class="nav nav-tabs col-12 my-sm-2 px-2 px-sm-3 justify-content-center">
@@ -35,7 +35,7 @@
                             @if (User.IsInRole(UserRole.Editor.ToString()) || User.IsInRole(UserRole.Admin.ToString()))
                             {
                                 <div class="float-right">
-                                    <a href="@Url.Action("EditPerk", "Editor", new {id = perk.Id})" class="link-info">
+                                    <a asp-page="@SitePages.EditorPerksEdit" asp-route-id="@perk.Id" class="link-info">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>

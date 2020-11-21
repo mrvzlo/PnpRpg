@@ -79,7 +79,7 @@ namespace Pnprpg.Domain.Services
             return Mapper.Map<SkillEditModel>(skill);
         }
 
-        public void Save(SkillEditModel model)
+        public int Save(SkillEditModel model)
         {
             var skill = new Skill
             {
@@ -91,7 +91,7 @@ namespace Pnprpg.Domain.Services
                 Name = model.Name
             };
 
-            _skillRepository.InsertOrUpdate(skill);
+            return _skillRepository.InsertOrUpdate(skill);
         }
 
         public void Delete(int id)

@@ -1,0 +1,15 @@
+﻿@page
+@model Pnprpg.WebCore.Pages.Sheets.IndexModel
+@{
+    ViewData["Title"] = "Листы персонажа";
+}
+
+<div>
+    <a class="btn btn-info mw-260 mt-3" href="@Url.Action("MainSheet")" target="_blank">
+        Основной лист персонажа
+    </a>
+    <br />
+    <a class="btn btn-info mw-260 mt-3" href="@Url.Action("MagicSheet")" target="_blank">
+        Лист заклинаний
+    </a>
+</div>

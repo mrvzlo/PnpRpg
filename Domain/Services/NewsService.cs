@@ -32,7 +32,7 @@ namespace Pnprpg.Domain.Services
         public IQueryable<NewsViewModel> GetAll() => 
             _newsRepository.Select().ProjectTo<NewsViewModel>(MapperConfig).OrderByDescending(x => x.Date);
 
-        public void Save(NewsEditModel model)
+        public int Save(NewsEditModel model)
         {
             var news = new News
             {
@@ -42,7 +42,7 @@ namespace Pnprpg.Domain.Services
                 Date = model.Date
             };
 
-            model.Id = _newsRepository.InsertOrUpdate(news);
+            return _newsRepository.InsertOrUpdate(news);
         }
     }
 }

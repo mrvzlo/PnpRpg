@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Html
+@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@model IQueryable<WeaponViewModel>
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Level).Titled("Уровень").Sortable(true);
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Skill.Name).Titled("Навык").Css("w-25");
+    columns.Add(x => x.Weight).Titled("Вес");
+    columns.Add(x => x.Bonuses == null || !x.Bonuses.Any()
+        ? "-" : string.Join(", ", x.Bonuses.Select(y => y.Name))).Css("w-25").Titled("Бонусы");
+    columns.Add(x => x).RenderedAs(Actions).Css("no-wrap");
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 12;
+}).Css("table table-responsive"))
+
+@{
+    IHtmlContent Actions(WeaponViewModel x) => PartialHelper.Body(
+    @<text>
+        <a asp-page="@SitePages.EditorWeaponsEdit" asp-route-id="@x.Id" class="btn btn-info fas fa-pen"></a>
+        <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+                data-value="@x.Id" data-text="Оружие @x.Name будет удалено"></button>
+    </text>
+    );
+}

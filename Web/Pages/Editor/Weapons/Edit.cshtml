@@ -1,0 +1,65 @@
+﻿@page
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@model Pnprpg.WebCore.Pages.Editor.Weapons.EditModel
+@{
+    ViewData["Title"] = Model.Input.Id == 0 ? "Новое оружие" : Model.Input.Name;
+}
+<form method="post" class="col-md-6 col-12 mx-auto">
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.Input.Id)
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Уровень</label>
+        <div class="col">
+            @Html.TextBoxFor(x => x.Input.Level, new { type = "number", @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Вес</label>
+        <div class="col">
+            @Html.TextBoxFor(x => x.Input.Weight, new { type = "number", @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Название</label>
+        <div class="col">
+            @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Навык</label>
+        <div class="col">
+            @Html.DropDownListFor(x => x.Input.SkillId, SelectableHelper.GetSelectList(Model.Skills), new { @class = "form-select" })
+        </div>
+    </div>
+
+    @if (Model.Bonuses.Any())
+    {
+        <button type="button" class="btn btn-outline-primary clone-btn"
+                data-container="#hr" data-style="prepend" data-target=".default-bonus">
+            Добавить бонус
+        </button>
+    }
+    else
+    {
+        <div class="alert alert-danger">Нет доступных бонусов</div>
+    }
+    @if (Model.Input.Bonuses != null)
+    {
+        var i = 0;
+        foreach (var bonus in Model.Input.Bonuses.Select(x => new FormQueryItem(Model.Bonuses, i++)))
+        {
+            await Html.RenderPartialAsync("Editor/Selects/_BonusSelect", bonus);
+        }
+    }
+    <hr id="hr" />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+
+</form>
+
+<div class="d-none default-bonus">
+    @{
+        var defaultModel = new FormQueryItem(Model.Bonuses);
+        await Html.RenderPartialAsync("Editor/Selects/_BonusSelect", defaultModel);
+    }
+</div>

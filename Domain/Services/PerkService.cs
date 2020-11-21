@@ -37,7 +37,7 @@ namespace Pnprpg.Domain.Services
             return perk != null ? Mapper.Map<PerkEditModel>(perk) : new PerkEditModel();
         }
 
-        public void Save(PerkEditModel model)
+        public int Save(PerkEditModel model)
         {
             var perk = new Perk
             {
@@ -49,7 +49,7 @@ namespace Pnprpg.Domain.Services
                 Max = model.Max
             };
 
-            model.Id = _perkRepository.InsertOrUpdate(perk);
+            return _perkRepository.InsertOrUpdate(perk);
         }
 
         public void Delete(int id)

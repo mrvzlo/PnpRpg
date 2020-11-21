@@ -32,7 +32,7 @@ namespace Pnprpg.Domain.Services
             return filter is null ? query : query.Where(x => (int)x.Type == filter);
         }
 
-        public void Save(BonusEditModel model)
+        public int Save(BonusEditModel model)
         {
             var bonus = new Bonus
             {
@@ -43,7 +43,7 @@ namespace Pnprpg.Domain.Services
                 Icon = model.Icon
             };
 
-            _bonusRepository.InsertOrUpdate(bonus);
+            return _bonusRepository.InsertOrUpdate(bonus);
         }
 
         public void BatchSave(IQueryable<BaseBonusJoin> list, int parentId, BonusType parentType)

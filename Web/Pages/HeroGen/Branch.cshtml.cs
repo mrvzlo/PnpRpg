@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
-using Pnprpg.WebCore.Helpers;
 
 namespace Pnprpg.WebCore.Pages.HeroGen
 {

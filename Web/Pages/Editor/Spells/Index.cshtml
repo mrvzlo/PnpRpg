@@ -1,4 +1,15 @@
 ﻿@page
 @model Pnprpg.WebCore.Pages.Editor.Spells.IndexModel
 @{
+    ViewData["Title"] = "Редактор заклинаний";
 }
+
+<div class="col-12 mb-3">
+    <a class="btn btn-success" asp-page="@SitePages.EditorSpellsEdit">Добавить новое</a>
+</div>
+
+<div class="mvc-grid" data-source-url="@Url.Page(SitePages.EditorSpellsIndex, "Grid")"></div>
+
+<form asp-page-handler="Delete" id="deleteForm">
+    @Html.Hidden("ModelId")
+</form>

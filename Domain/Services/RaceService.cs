@@ -59,7 +59,7 @@ namespace Pnprpg.Domain.Services
             _raceRepository.Delete(id);
         }
 
-        public void Save(RaceEditModel model)
+        public int Save(RaceEditModel model)
         {
             var race = new Race
             {
@@ -84,6 +84,8 @@ namespace Pnprpg.Domain.Services
                 Value = x.Value
             }).AsQueryable();
             _abilityService.BatchSave(abilities, race.Id);
+
+            return race.Id;
         }
         
         private RaceViewModel GetRace(int id)

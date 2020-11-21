@@ -6,7 +6,7 @@ namespace Pnprpg.DomainService.IServices
 {
     public interface IPerkService: IEditService<PerkEditModel>, IViewService<PerkViewModel>
     {
-        void Save(PerkEditModel model);
+        int Save(PerkEditModel model);
         IQueryable<PerkViewModel> GetAllSimplified();
         List<PerkViewModel> GetPerkRanks(PerkViewModel perk);
     }

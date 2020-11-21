@@ -1,0 +1,32 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model Pnprpg.WebCore.Pages.Editor.Bonuses.EditModel
+@{
+    ViewData["Title"] = Model.Input.Id == 0 ? "Новый бонус" : Model.Input.Name;
+}
+
+<form method="post" class="col-12 mx-auto">
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Тип</label>
+        <div class="col">
+            @Html.DropDownListFor(x => x.Input.Type, SelectableHelper.GetSelectList(Model.Types), new { @class = "form-select" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Название</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Описание</label>
+        <div class="col-12 text-left">
+            @Html.TextAreaFor(x => x.Input.Description, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <hr />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>

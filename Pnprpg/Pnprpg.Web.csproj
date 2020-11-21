@@ -402,10 +402,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Editor\BaseEditorController.cs" />
-    <Compile Include="Controllers\Editor\SpellEditorController.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\Editor\EditorController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HeroGenController.cs" />
@@ -624,48 +620,23 @@
     <Content Include="Scripts\trumbowyg.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Views\Editor\Edit\EditPerk.cshtml" />
     <Content Include="Content\grid.scss" />
     <Content Include="Content\layout.scss" />
     <None Include="Properties\PublishProfiles\Azure.pubxml" />
     <None Include="Properties\PublishProfiles\pnprpg - FTP.pubxml" />
     <Content Include="Views\Book\_ShortSkillList.cshtml" />
     <Content Include="Content\images\bg.png" />
-    <Content Include="Views\Editor\Edit\EditBonus.cshtml" />
-    <Content Include="Views\Editor\Edit\EditBranch.cshtml" />
     <Content Include="Views\Book\HeroSheets.cshtml" />
     <Content Include="Views\Book\MagicSheet.cshtml" />
-    <Content Include="Views\Editor\Grids\_BonusesGrid.cshtml" />
     <Content Include="Views\Shared\_Redirect.cshtml" />
     <Content Include="Views\Shared\_Status.cshtml" />
     <Content Include="Views\Shared\_Scripts.cshtml" />
-    <Content Include="Views\Shared\HeroInfo\MainSheet.cshtml" />
-    <Content Include="Views\Editor\Perks.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
-    <Content Include="Views\Editor\Grids\_PerksGrid.cshtml" />
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\README.md" />
-    <Content Include="Views\Editor\Edit\_BonusSelect.cshtml" />
-    <Content Include="Views\Editor\Grids\_WeaponsGrid.cshtml" />
-    <Content Include="Views\Editor\Edit\EditWeapon.cshtml" />
-    <Content Include="Views\Editor\Weapons.cshtml" />
-    <Content Include="Views\Editor\Skills.cshtml" />
-    <Content Include="Views\Editor\Grids\_SkillsGrid.cshtml" />
-    <Content Include="Views\Editor\Edit\EditSkill.cshtml" />
-    <Content Include="Views\Editor\Races.cshtml" />
-    <Content Include="Views\Editor\Grids\_RacesGrid.cshtml" />
-    <Content Include="Views\Editor\Edit\EditRace.cshtml" />
-    <Content Include="Views\Editor\Branches.cshtml" />
-    <Content Include="Views\Editor\Bonuses.cshtml" />
-    <Content Include="Views\Editor\Grids\_BranchesGrid.cshtml" />
-    <Content Include="Views\Editor\Edit\_AbilitySelect.cshtml" />
-    <Content Include="Views\HeroGen\_Wizard.cshtml" />
     <Content Include="Views\Book\_Branches.cshtml" />
     <Content Include="Views\Book\_Fight.cshtml" />
-    <Content Include="Views\Editor\Spells.cshtml" />
-    <Content Include="Views\Editor\Grids\_SpellsGrid.cshtml" />
-    <Content Include="Views\Editor\Edit\EditSpell.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -690,9 +661,6 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\custom\main.js" />
-    <Content Include="Views\Shared\HeroInfo\_Stats.cshtml" />
-    <Content Include="Views\Shared\HeroInfo\_Abilities.cshtml" />
-    <Content Include="Views\HeroGen\MyHero.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -704,7 +672,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\HeroGen\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutIntro.cshtml" />
     <Content Include="Views\Shared\_Loading.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Ability.cshtml" />
