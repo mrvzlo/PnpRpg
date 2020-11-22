@@ -6,10 +6,10 @@ namespace Pnprpg.DomainService.Models
     {
         public int Value { get; set; }
 
-        public NumericFormQueryItem(List<Selectable> list, int position = 0, string value = null) 
-            : base(list, position)
+        public NumericFormQueryItem(List<Selectable> list, int position = 0, int selected = 0, int value = 0) 
+            : base(list, position, selected)
         {
-            Value = int.Parse(value ?? "0");
+            Value = value;
         }
     }
 }

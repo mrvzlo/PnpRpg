@@ -47,10 +47,10 @@
     @if (Model.Bonuses != null)
     {
         var i = 0;
-        foreach (var model in Model.Bonuses)
+        foreach (var bonus in Model.Input.Bonuses)
         {
-            var bonus = new FormQueryItem(Model.Bonuses, i++);
-            @await Html.PartialAsync("Editor/Selects/_BonusSelect", bonus)
+            var queryItem = new FormQueryItem(Model.Bonuses, i++, bonus);
+            @await Html.PartialAsync("Editor/Selects/_BonusSelect", queryItem)
         }
     }
     <hr id="hr" />

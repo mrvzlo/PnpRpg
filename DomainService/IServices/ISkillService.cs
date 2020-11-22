@@ -8,8 +8,6 @@ namespace Pnprpg.DomainService.IServices
     {
         IQueryable<SkillViewModel> SelectSkills(SkillType? type, int? branchId = null);
         HeroSkillGroup GetHeroSkillGroup(HeroModel hero);
-        ServiceResponse<HeroModel> UpgradeSkill(HeroModel hero, int skillId);
-        HeroModel ResetSkills(HeroModel hero);
         int Save(SkillEditModel viewModel);
     }
 }

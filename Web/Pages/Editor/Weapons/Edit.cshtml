@@ -24,6 +24,7 @@
         <label class="col-3 col-form-label text-left">Название</label>
         <div class="col">
             @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Input.Name)
         </div>
     </div>
     <div class="row">
@@ -47,9 +48,10 @@
     @if (Model.Input.Bonuses != null)
     {
         var i = 0;
-        foreach (var bonus in Model.Input.Bonuses.Select(x => new FormQueryItem(Model.Bonuses, i++)))
+        foreach (var bonus in Model.Input.Bonuses)
         {
-            await Html.RenderPartialAsync("Editor/Selects/_BonusSelect", bonus);
+            var queryItem = new FormQueryItem(Model.Bonuses, i++, bonus);
+            await Html.RenderPartialAsync("Editor/Selects/_BonusSelect", queryItem);
         }
     }
     <hr id="hr" />

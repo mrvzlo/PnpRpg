@@ -41,8 +41,8 @@ namespace Pnprpg.Domain.Services
         {
             if (id == null)
                 return new SpellEditModel();
-            var spell = _spellRepository.Get(id.Value);
-            return spell != null ? Mapper.Map<SpellEditModel>(spell) : new SpellEditModel();
+            var model = _spellRepository.Get(id.Value).ProjectTo<SpellEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new SpellEditModel();
         }
 
         public int Save(SpellEditModel model)

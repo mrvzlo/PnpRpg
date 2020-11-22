@@ -20,8 +20,10 @@ namespace Pnprpg.Domain.Services
 
         public BonusEditModel GetForEdit(int? id)
         {
-            var bonus = id == null ? new Bonus() : _bonusRepository.Get(id.Value);
-            return Mapper.Map<BonusEditModel>(bonus);
+            if (id == null)
+                return new BonusEditModel();
+            var model = _bonusRepository.Get(id.Value).ProjectTo<BonusEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new BonusEditModel();
         }
 
         public void Delete(int id) => _bonusRepository.Delete(id);

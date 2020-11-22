@@ -37,14 +37,16 @@ namespace Pnprpg.Domain.Services
 
         public BranchViewModel Get(int id)
         {
-            var race = _branchRepository.Get(id);
-            return Mapper.Map<BranchViewModel>(race);
+            var race = _branchRepository.Get(id).ProjectTo<BranchViewModel>(MapperConfig).First();
+            return race;
         }
 
         public BranchEditModel GetForEdit(int? id)
         {
-            var race = id != null ? _branchRepository.Get(id.Value) : new Branch();
-            return Mapper.Map<BranchEditModel>(race);
+            if (id == null)
+                return new BranchEditModel();
+            var model = _branchRepository.Get(id.Value).ProjectTo<BranchEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new BranchEditModel();
         }
 
         public void Delete(int id)

@@ -60,8 +60,8 @@ namespace Pnprpg.Domain.Services
 
         private TraitModel GetTraitById(int id)
         {
-            var trait = _traitRepository.Get(id);
-            return Mapper.Map<TraitModel>(trait);
+            var trait = _traitRepository.Get(id).ProjectTo<TraitModel>(MapperConfig).First();
+            return trait;
         }
     }
 }

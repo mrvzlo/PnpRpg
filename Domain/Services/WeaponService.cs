@@ -28,8 +28,10 @@ namespace Pnprpg.Domain.Services
 
         public WeaponEditModel GetForEdit(int? id)
         {
-            var weapons = _weaponRepository.Select().ProjectTo<WeaponEditModel>(MapperConfig);
-            return weapons.FirstOrDefault(x => x.Id == id) ?? new WeaponEditModel();
+            if (id == null)
+                return new WeaponEditModel();
+            var model = _weaponRepository.Get(id.Value).ProjectTo<WeaponEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new WeaponEditModel();
         }
 
         public int Save(WeaponEditModel model)

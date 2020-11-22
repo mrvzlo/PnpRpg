@@ -5,7 +5,7 @@ namespace Pnprpg.DomainService.IRepositories
 {
     public interface IBaseRepository<T> where T : BaseEntity<int>
     {
-        T Get(int id);
+        IQueryable<T> Get(int id);
         T GetRandom();
         IQueryable<T> Select();
         int InsertOrUpdate(T entity);

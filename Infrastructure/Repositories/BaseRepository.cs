@@ -22,9 +22,9 @@ namespace Pnprpg.Infrastructure.Repositories
             return DbSet;
         }
 
-        public virtual T Get(int id)
+        public virtual IQueryable<T> Get(int id)
         {
-            return DbSet.Find(id);
+            return Select().Where(x => x.Id == id);
         }
 
         public virtual T GetRandom()
@@ -52,7 +52,7 @@ namespace Pnprpg.Infrastructure.Repositories
 
         public virtual void Delete(int id)
         {
-            Delete(Get(id));
+            Delete(DbSet.Find(id));
             DbContext.SaveChanges();
         }
 

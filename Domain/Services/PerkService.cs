@@ -33,8 +33,8 @@ namespace Pnprpg.Domain.Services
         {
             if (id == null)
                 return new PerkEditModel();
-            var perk = _perkRepository.Get(id.Value);
-            return perk != null ? Mapper.Map<PerkEditModel>(perk) : new PerkEditModel();
+            var model = _perkRepository.Get(id.Value).ProjectTo<PerkEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new PerkEditModel();
         }
 
         public int Save(PerkEditModel model)
@@ -80,7 +80,7 @@ namespace Pnprpg.Domain.Services
                 list.Add(child);
             }
 
-             return list;
+            return list;
         }
     }
 }

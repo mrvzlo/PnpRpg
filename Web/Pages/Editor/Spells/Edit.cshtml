@@ -12,6 +12,7 @@
         <label class="col-3 col-form-label text-left">Название</label>
         <div class="col">
             @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Input.Name)
         </div>
     </div>
     <div class="row">
@@ -30,12 +31,14 @@
         <label class="col-3 col-form-label text-left">Эффект</label>
         <div class="col">
             @Html.TextAreaFor(x => x.Input.Effect, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Input.Effect)
         </div>
     </div>
     <div class="row">
         <label class="col-3 col-form-label text-left">Цена</label>
         <div class="col">
             @Html.TextBoxFor(x => x.Input.Cost, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Input.Cost)
         </div>
     </div>
 

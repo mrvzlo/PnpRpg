@@ -31,8 +31,10 @@ namespace Pnprpg.Domain.Services
 
         public RaceEditModel GetForEdit(int? id)
         {
-            var race = id != null ? _raceRepository.Get(id.Value) : new Race();
-            return Mapper.Map<RaceEditModel>(race);
+            if (id == null)
+                return new RaceEditModel();
+            var model = _raceRepository.Get(id.Value).ProjectTo<RaceEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new RaceEditModel();
         }
 
         public ServiceResponse<HeroModel> AssignRace(HeroModel hero, int raceId)
@@ -90,8 +92,8 @@ namespace Pnprpg.Domain.Services
         
         private RaceViewModel GetRace(int id)
         {
-            var race = _raceRepository.Get(id);
-            return Mapper.Map<RaceViewModel>(race);
+            var race = _raceRepository.Get(id).ProjectTo<RaceViewModel>(MapperConfig).First();
+            return race;
         }
 
         private List<AbilityModifier> GetRaceChangeEffects(RaceViewModel oldRace, RaceViewModel newRace)

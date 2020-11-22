@@ -9,6 +9,7 @@ namespace Pnprpg.Infrastructure.Repositories
     {
         public RaceRepository(AppDbContext dbContext) : base(dbContext) { }
 
-        public override IQueryable<Race> Select() => base.Select().Include(x => x.Bonuses).OrderBy(x => x.Name);
+        public override IQueryable<Race> Select() => base.Select()
+            .Include(x => x.Bonuses).Include(x => x.Abilities).OrderBy(x => x.Name);
     }
 }

@@ -23,8 +23,10 @@ namespace Pnprpg.Domain.Services
 
         public NewsEditModel GetForEdit(int? id)
         {
-            var news = id == null ? new News(){Date = DateTime.Now} : _newsRepository.Get(id.Value);
-            return Mapper.Map<NewsEditModel>(news);
+            if (id == null)
+                return new NewsEditModel();
+            var model = _newsRepository.Get(id.Value).ProjectTo<NewsEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new NewsEditModel();
         }
 
         public void Delete(int id) => _newsRepository.Delete(id);

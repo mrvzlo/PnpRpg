@@ -12028,7 +12028,7 @@ form .row {
   select.form-control {
     background-image: none; } }
 
-.field-validation-error {
+.field-validation-error, .validation-summary-errors {
   color: #a22; }
 
 td {

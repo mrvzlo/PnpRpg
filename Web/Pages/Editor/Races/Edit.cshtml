@@ -12,12 +12,14 @@
         <label class="col-3 col-form-label text-left">Название</label>
         <div class="col-12">
             @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Input.Name)
         </div>
     </div>
     <div class="row">
         <label class="col-3 col-form-label text-left">Описание</label>
         <div class="col-12 text-left">
             @Html.TextAreaFor(x => x.Input.Description, new { @class = "form-control html-editor" })
+            @Html.ValidationMessageFor(x => x.Input.Description)
         </div>
     </div>
 
@@ -33,17 +35,19 @@
     @if (Model.Bonuses != null)
     {
         var i = 0;
-        foreach (var bonus in Model.Bonuses.Select(model => new FormQueryItem(Model.Bonuses, i++)))
+        foreach (var bonus in Model.Input.Bonuses)
         {
-            await Html.RenderPartialAsync("Editor/Selects/_BonusSelect", bonus);
+            var queryItem = new FormQueryItem(Model.Bonuses, i++, bonus);
+            await Html.RenderPartialAsync("Editor/Selects/_BonusSelect", queryItem);
         }
     }
     @if (Model.Abilities != null)
     {
         var j = 0;
-        foreach (var ability in Model.Abilities.Select(model => new NumericFormQueryItem(Model.Abilities, j++, model.Value)))
+        foreach (var ability in Model.Input.Abilities)
         {
-            await Html.RenderPartialAsync("Editor/Selects/_AbilitySelect", ability);
+            var queryItem = new NumericFormQueryItem(Model.Abilities, j++, ability.Id, ability.Value);
+            await Html.RenderPartialAsync("Editor/Selects/_AbilitySelect", queryItem);
         }
     }
     <hr id="hr" />

@@ -7,11 +7,11 @@ namespace Pnprpg.DomainService.Models
     public class BranchEditModel : IBaseEditModel
     {
         public int Id { get; set; }
-        [StringLength(50)]
+        [StringLength(50), Required]
         public string Name { get; set; }
         [StringLength(6)]
         public string Color { get; set; }
-        [AllowHtml]
+        [AllowHtml, Required]
         public string Description { get; set; }
         [Required]
         public string ShortDescription { get; set; }

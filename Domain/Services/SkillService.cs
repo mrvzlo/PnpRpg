@@ -3,7 +3,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
-using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -22,7 +21,7 @@ namespace Pnprpg.Domain.Services
         public IQueryable<SkillViewModel> GetAll(int? filter = null)
         {
             var query = _skillRepository.Select().ProjectTo<SkillViewModel>(MapperConfig);
-            return query is null ? query : query.Where(x => (int) x.Type == filter);
+            return filter == null ? query : query.Where(x => (int) x.Type == filter);
         }
 
         public IQueryable<SkillViewModel> SelectSkills(SkillType? type, int ? branchId = null)
@@ -47,36 +46,18 @@ namespace Pnprpg.Domain.Services
             return skillGroup;
         }
 
-        public ServiceResponse<HeroModel> UpgradeSkill(HeroModel hero, int skillId)
-        {
-            var response = new ServiceResponse<HeroModel>();
-            var skill = GetSkillById(skillId);
-            var success = hero.Skills.Update(skill);
-            if (!success)
-                response = response.AddError(GenerationError.AbilitiesError.Description());
-            response.Object = hero;
-            return response;
-        }
-
-        public HeroModel ResetSkills(HeroModel hero)
-        {
-            hero.Skills.Reset();
-            return hero;
-        }
-
         private SkillViewModel GetSkillById(int id)
         {
-            var skill = _skillRepository.Get(id);
+            var skill = _skillRepository.Get(id).First();
             return Mapper.Map<SkillViewModel>(skill);
         }
 
         public SkillEditModel GetForEdit(int? id)
         {
-            var skill = id != null
-                ? _skillRepository.Get(id.Value)
-                : new Skill();
-
-            return Mapper.Map<SkillEditModel>(skill);
+            if (id == null)
+                return new SkillEditModel();
+            var model = _skillRepository.Get(id.Value).ProjectTo<SkillEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new SkillEditModel();
         }
 
         public int Save(SkillEditModel model)
