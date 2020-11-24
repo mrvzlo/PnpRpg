@@ -1,0 +1,158 @@
+﻿@page
+@using Pnprpg.DomainService.Enums
+@model Pnprpg.WebCore.Pages.Shared.Pdf.HeroSheetModel
+@{
+    Layout = "_LayoutIntro";
+    var pageModel = (HeroSheetModel)ViewBag.Model;
+    var list = new[] { "Здоровье", "Мана", "Запас сил", "Восприятие", "Урон", "Слава", "Карма", "Харизма" };
+    var traits = pageModel.Hero.Traits.List.Any() ? pageModel.Hero.Traits.List.Select(x => x.Name).ToList() : new List<string>();
+    var final = pageModel.Hero.MaxStage == HeroGenStage.Result;
+    if (final)
+    {
+        traits.AddRange(pageModel.Hero.Race.Bonuses.Select(x => x.Name).ToList());
+        traits.AddRange(pageModel.Hero.Branches.List.SelectMany(x => x.Bonuses).Select(x => x.Name).ToList());
+    }
+}
+<link rel="stylesheet" href="@pageModel.RootPath/css/HeroSheet.css" />
+
+<table class="table">
+    <tr>
+        <td class="px-3" style="width: 25%"><div class="bb px-4">Имя <span class="right pr-2">@(pageModel.Hero.Name)</span></div></td>
+        <td class="px-3" style="width: 20%">
+            <div class="bb px-4">
+                Класс <span class="right pr-2">@(string.Join(", ", pageModel.Hero.Branches.List.Select(x => x.Name)))</span>
+            </div>
+        </td>
+        <td class="px-3" style="width: 20%"><div class="bb px-4">Раса <span class="right pr-2">@(pageModel.Hero.Race?.Name)</span></div></td>
+        <td class="px-3" style="width: 20%"><div class="bb px-4">Игрок</div></td>
+        <td class="px-3" style="width: 15%"><div class="bb px-4">Уровень</div></td>
+    </tr>
+</table>
+
+@for (var i = 0; i < 4; i++)
+{
+    <div style="@Pos(1 + i * 11, 5, 10, 15)">
+        <div class="text-center">
+            <div class="">@pageModel.Hero.Abilities.List[i].Name (@pageModel.Hero.Abilities.List[i].Symbol)</div>
+            <div class="circle">
+                @if (final)
+                {
+                    <span>@pageModel.Hero.Abilities.List[i].Level</span>
+                }
+            </div>
+        </div>
+        <div class="text-center">
+            <div class="">@list[i]</div>
+            <div class="circle"></div>
+        </div>
+        <div class="text-center">
+            <div class="">@list[i + 4]</div>
+            <div class="circle"></div>
+        </div>
+    </div>
+}
+
+<div class="text-center" style="@Pos(46, 5, 13, 2)">Защита</div>
+<div class="card" style="@Pos(46, 7, 13, 18)">
+    <div class="bg">Голова</div>
+    <div class="bg">Грудь</div>
+    <div class="bg">Живот</div>
+    <div class="bg">Руки</div>
+    <div style=" line-height: 32px;">Ноги</div>
+</div>
+
+
+<div class="text-center" style="@Pos(61, 5, 18, 2)">Особенности</div>
+<div class="card" style="@Pos(61, 7, 18, 18)">
+    @for (var i = 0; i < 5; i++)
+    {<div class="text-center @(i < 4 ? "bg" : "")" style=" line-height: 32px;">
+            @if (traits.Count > i)
+            {
+                @traits[i];
+            }
+            &nbsp;
+        </div>}
+</div>
+
+<div class="text-center" style="@Pos(46, 27, 33, 2)">Эффекты и болезни</div>
+<div class="card" style="@Pos(46, 29, 33, 18)">
+    @for (var i = 0; i < 4; i++)
+    {<div class="bg">&nbsp;</div>}
+</div>
+
+<div class="text-center" style="@Pos(81, 5, 18, 2)">Заклинания</div>
+<div class="card" style="@Pos(81, 7, 18, 40) line-height: 32px;">
+    @for (var i = 0; i < 11; i++)
+    {
+        <div class="@(i < 10 ? "bg" : "")" style="text-align: right">
+            <span>O</span>
+            <span>O</span>
+            <span>O</span>
+            <span>O</span>
+        </div>
+    }
+</div>
+
+<div class="text-center" style="@Pos(1, 39, 21, 2)">Навыки </div>
+<div class="card" style="@Pos(1, 41, 21, 55)">
+    <div style="height: 5px">&nbsp;</div>
+    @foreach (var skill in pageModel.Hero.Skills.List)
+    {
+        <span style="margin-left: 3%;">(</span>
+        <span style="margin-left: 11%">)</span>
+        @skill.Name
+        <span style="float: right; color: gray; margin-right: 3%">
+            @{
+                var level = pageModel.Hero.Skills.List.FirstOrDefault(x => x.Id == skill.Id)?.Level ?? 0;
+                level -= skill.Difficulty;
+                var lvlStr = level < 0 ? level.ToString() : level == 0 ? "" : $"+{level}";
+            }
+            @($"({skill.Ability.Symbol}{lvlStr})")
+        </span>
+        <br />
+    }
+</div>
+
+<div class="text-center" style="@Pos(23, 39, 22, 54)">Способности</div>
+<div class="card" style="@Pos(23, 41, 22, 55)">
+    @for (var i = 0; i < 14; i++)
+    {<div class="bg">&nbsp;</div>}
+</div>
+
+<div class="text-center" style="@Pos(46, 50, 44, 43)">Инвентарь</div>
+<div class="card" style="@Pos(46, 52, 44, 44)">
+    @for (var i = 0; i < 11; i++)
+    {<div class="bg">&nbsp;</div>}
+</div>
+
+<div style="@Pos(90, 50, 10, 15)">
+    <div class="text-center">
+        <div class="">Футляр</div>
+        <div class="circle">
+            <div class="r-45" style="margin-top: 10px;">&nbsp;</div>
+        </div>
+        <div class="">Колчан</div>
+        <div class="circle">
+            <div class="r-45" style="margin-top: 10px;">&nbsp;</div>
+        </div>
+        <div class="">Общий вес</div>
+        <div class="circle">
+            <div class="r-45" style="margin-top: 10px;">&nbsp;</div>
+        </div>
+        <br />
+        <div>
+            <img src="https://pnp-rpg.com/content/images/qrcode.png" style="width: 80px; height: 80px;" />
+        </div>
+    </div>
+</div>
+
+<div style="@Pos(0, 97, 100, 5)">
+    <div style="color: gray; text-align: center">Table Adventures Generation System by AVE</div>
+</div>
+@{
+    string Pos(double x, double y, double w, double h)
+    {
+        var vMod = 9;
+        return $"position: fixed; left: {x:0,0}%; top:{y * vMod}px; width: {w:0,0}%; height: {h * vMod}px;";
+    }
+}

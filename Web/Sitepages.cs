@@ -7,6 +7,7 @@
 		public static string AccountSignIn => @"/Account/SignIn";
 		public static string AccountSignOut => @"/Account/SignOut";
 		public static string AccountSignUp => @"/Account/SignUp";
+		public static string AdminDeleteBook => @"/Admin/DeleteBook";
 		public static string AdminDonationsEdit => @"/Admin/Donations/Edit";
 		public static string AdminNewsEdit => @"/Admin/News/Edit";
 		public static string AdminUsersEdit => @"/Admin/Users/Edit";
@@ -70,6 +71,9 @@
 		public static string SharedNavigation_Authed => @"Shared/Navigation/_Authed";
 		public static string SharedNavigation_Editor => @"Shared/Navigation/_Editor";
 		public static string SharedNavigation_Top => @"Shared/Navigation/_Top";
+		public static string SharedPdfBook => @"/Shared/Pdf/Book";
+		public static string SharedPdfHeroSheet => @"/Shared/Pdf/HeroSheet";
+		public static string SharedPdfMagicSheet => @"/Shared/Pdf/MagicSheet";
 		public static string SheetsIndex => @"/Sheets/Index";
 		public static string WeaponryIndex => @"/Weaponry/Index";
 

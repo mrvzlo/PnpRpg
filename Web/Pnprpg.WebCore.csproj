@@ -31,6 +31,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="NonFactors.Grid.Mvc6" Version="6.2.1" />
+    <PackageReference Include="Rocket.PdfGenerator" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,10 +51,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Sitepages.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Book\" />
   </ItemGroup>
 
 </Project>

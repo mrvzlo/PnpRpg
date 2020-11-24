@@ -11,7 +11,7 @@
     await Html.RenderPartialAsync("Home/Card",
         new CardModel {Icon = "mask", Url = SitePages.HeroGenIndex, Name = "Создать персонажа"});
     await Html.RenderPartialAsync("Home/Card",
-        new CardModel {Icon = "book", Url = Url.Action("Index", "Book"), Name = "Книга игрока" });
+        new CardModel {Icon = "book", Url = SitePages.SharedPdfBook, Name = "Книга игрока", Blank = true});
     await Html.RenderPartialAsync("Home/Card",
         new CardModel {Icon = "id-card", Url = SitePages.SheetsIndex, Name = "Листы персонажа" });
 }

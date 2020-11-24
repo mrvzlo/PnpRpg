@@ -19,5 +19,14 @@ namespace Pnprpg.WebCore.Pages.HeroGen
                 return RedirectToPage(SitePages.HeroGenIndex);
             return Page();
         }
+
+        public ActionResult OnPost(string name)
+        {
+            Hero = GetHeroFromCookies();
+            Hero.Name = name;
+            SaveHeroToCookies(Hero);
+            var result = CoreLogic.EncodeHero(Hero, Configuration["Version"]);
+            return RedirectToPage(SitePages.SharedPdfHeroSheet, new { cookie = true });
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿@* ReSharper disable MarkupTextTypo *@
+﻿@using Microsoft.AspNetCore.Html
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@* ReSharper disable MarkupTextTypo *@
 <h1 id="p4">Часть 4 Ведение боя</h1>
 
 <p>
@@ -35,7 +38,7 @@
 <h5>Защитные действия</h5>
 
 <p>
-    Один раз за раунд любое существо может среагировать на любую атаку ближнего боя перед броском на урон. 
+    Один раз за раунд любое существо может среагировать на любую атаку ближнего боя перед броском на урон.
 </p>
 
 @Defence("Контратака", "Сила", "Персонаж получает полный урон, но наносит мгновенный ответный удар", "Персонаж иметь возможность атаковать")
@@ -43,22 +46,24 @@
 @Defence("Уклонение", "Ловкость", "Персонаж перемещается на 1 метр, игнорируя весь урон", "Должно быть место для отступления")
 @Defence("Предсказание", "Интеллект", "Персонаж предсказывает поведение атакующего, защищая слабые места и получая половину урона", "Персонаж должен видеть или слышать атакующего")
 
-@helper Defence(string name, string attr, string desc, string req)
-{
-    <h6>@name</h6>
-    <table>
-        <tr>
-            <th style="width: 50%">Атрибут</th>
-            <td style="width: 50%">@attr</td>
-        </tr>
-        <tr>
-            <th>Описание</th>
-            <th>Требования</th>
-        </tr>
-        <tr>
-            <td><br />@desc<br /><br /></td>
-            <td>@req<br /></td>
-        </tr>
-    </table>
-    <br />
+@{
+    IHtmlContent Defence(string name, string attr, string desc, string req) => PartialHelper.Body(
+    @<text>
+        <h6>@name</h6>
+        <table>
+            <tr>
+                <th style="width: 50%">Атрибут</th>
+                <td style="width: 50%">@attr</td>
+            </tr>
+            <tr>
+                <th>Описание</th>
+                <th>Требования</th>
+            </tr>
+            <tr>
+                <td><br />@desc<br /><br /></td>
+                <td>@req<br /></td>
+            </tr>
+        </table>
+        <br />
+    </text>);
 }

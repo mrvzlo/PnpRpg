@@ -1,14 +1,18 @@
+using System.Linq;
 using LightInject;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Pnprpg.Infrastructure;
 using Pnprpg.IoC;
+using Pnprpg.WebCore.Helpers;
 
 namespace Pnprpg.WebCore
 {
@@ -36,6 +40,9 @@ namespace Pnprpg.WebCore
                     o.LoginPath = new PathString(SitePages.AccountSignIn);
                     o.AccessDeniedPath = new PathString(SitePages.ErrorsNotFound);
                 });
+
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

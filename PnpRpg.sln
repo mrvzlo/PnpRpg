@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pnprpg.Web", "Pnprpg\Pnprpg.Web.csproj", "{1093BD6B-45C6-4C5B-8D24-A17EBAF8A5AB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pnprpg.Domain", "DomainService\Pnprpg.Domain.csproj", "{0A8D919A-03F6-4CA6-91E8-13C9F10522CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pnprpg.Infrastructure", "Infrastructure\Pnprpg.Infrastructure.csproj", "{70A97737-5C23-4A04-9E28-31390680B1D6}"
@@ -31,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1093BD6B-45C6-4C5B-8D24-A17EBAF8A5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1093BD6B-45C6-4C5B-8D24-A17EBAF8A5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1093BD6B-45C6-4C5B-8D24-A17EBAF8A5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1093BD6B-45C6-4C5B-8D24-A17EBAF8A5AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A8D919A-03F6-4CA6-91E8-13C9F10522CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A8D919A-03F6-4CA6-91E8-13C9F10522CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A8D919A-03F6-4CA6-91E8-13C9F10522CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -64,7 +58,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1093BD6B-45C6-4C5B-8D24-A17EBAF8A5AB} = {72537406-8919-4983-9BB6-09B8E71FAAF3}
 		{0A8D919A-03F6-4CA6-91E8-13C9F10522CE} = {3C5C648C-323E-4513-8DE9-695B80266844}
 		{70A97737-5C23-4A04-9E28-31390680B1D6} = {BA042CC5-44FC-4E77-AF73-A04DC7AE497E}
 		{793BE1C0-5456-4FFC-85B9-7CFE90435CDB} = {3C5C648C-323E-4513-8DE9-695B80266844}

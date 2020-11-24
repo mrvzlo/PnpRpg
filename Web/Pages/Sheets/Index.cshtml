@@ -5,11 +5,11 @@
 }
 
 <div>
-    <a class="btn btn-info mw-260 mt-3" href="@Url.Action("MainSheet")" target="_blank">
+    <a class="btn btn-info mw-260 mt-3" asp-page="@SitePages.SharedPdfHeroSheet" target="_blank">
         Основной лист персонажа
     </a>
     <br />
-    <a class="btn btn-info mw-260 mt-3" href="@Url.Action("MagicSheet")" target="_blank">
+    <a class="btn btn-info mw-260 mt-3" asp-page="@SitePages.SharedPdfMagicSheet" target="_blank">
         Лист заклинаний
     </a>
 </div>

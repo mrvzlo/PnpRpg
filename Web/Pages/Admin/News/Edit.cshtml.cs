@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
-using Pnprpg.WebCore.Pages.Admin;
 
-namespace Pnprpg.WebCore.Pages.Editor.News
+namespace Pnprpg.WebCore.Pages.Admin.News
 {
     public class EditModel : AdminPage
     {

@@ -1,0 +1,34 @@
+﻿@model List<Pnprpg.DomainService.Models.MagicSchoolModel>
+
+<h1 id="p2">Часть 2 Магия</h1>
+<h3>Школы и заклинания</h3>
+<div class="mb-3 text-center">Для заклинаний указана изначальная цена, которая меняется при увеличении мастерства.</div>
+<div class="text-center">
+    @foreach (var school in Model.OrderBy(x => x.Id))
+    {
+        <h5>@school.Name</h5>
+        <table class="table">
+            <tr>
+                <th style="width: 70px;">Мин. ур. школы</th>
+                <th style="width: 120px;">Название</th>
+                <th>Эффект</th>
+                <th style="width: 70px;">Стоимость</th>
+            </tr>
+            @foreach (var spell in school.Spells.OrderBy(x => x.Level))
+            {
+                <tr>
+                    <td>@spell.Level</td>
+                    <td>@spell.Name</td>
+                    <td>
+                        @(spell.Damage > 0 ? string.Format(spell.Effect, spell.Damage) : spell.Effect)
+                    </td>
+                    <td>@spell.Cost</td>
+                </tr>
+            }
+        </table>
+        <br />
+        <br />
+
+        <p class="break"></p>
+    }
+</div>

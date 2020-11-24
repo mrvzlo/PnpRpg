@@ -51,11 +51,10 @@
     </div>
 </div>
 
-<form method="post" target="_blank" class="col-md-6 col-12 my-3 p-0"
-      data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+<form method="post" asp-page="@SitePages.HeroGenResult" target="_blank" class="col-md-6 col-12 my-3 p-0">
     <div class="input-group mb-3">
         <div class="input-group-text">Имя</div>
-        @Html.TextBoxFor(x => x.Hero.Name, new { @class = "form-control" })
+        @Html.TextBox("name", Model.Hero.Name, new { @class = "form-control" })
     </div>
     <button type="submit" class="btn btn-primary">Скачать</button>
 </form>

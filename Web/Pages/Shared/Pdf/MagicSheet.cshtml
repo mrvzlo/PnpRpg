@@ -1,0 +1,36 @@
+﻿@page
+@model Pnprpg.WebCore.Pages.Shared.Pdf.MagicSheetModel
+@{
+    Layout = "_LayoutIntro";
+    var border = "solid 1px black";
+}
+<br />
+@for (var k = 0; k < 4; k++)
+{
+    <table style="border-collapse: collapse; @Pos(2 + k%2*52, k/2*72, 46, 50);">
+        <tr>
+            <th style="border-bottom: @border; width: 5%">Ур<br /></th>
+            <th style="border-bottom: @border; width: 5%">Мана</th>
+            <th style="border-bottom: @border; width: 28%">Название</th>
+            <th style="border-bottom: @border; width: 12%;text-align: right">Готовность</th>
+        </tr>
+        @for (var i = 0; i < 12; i++)
+        {
+            <tr>
+                <td style="border-bottom: @border;"><br /><br /></td>
+                <td style="border-bottom: @border;"></td>
+                <td style="border-bottom: @border;"></td>
+                <td style="border-bottom: @border; text-align: center; font-size: 32px; text-align: right">
+                    <span>O</span><span>O</span><span>O</span><span>O</span>
+                </td>
+            </tr>
+        }
+    </table>
+}
+@{
+    string Pos(double x, double y, double w, double h)
+    {
+        var vMod = 9;
+        return $"position: fixed; left: {x:0,0}%; top:{y * vMod}px; width: {w:0,0}%; height: {h * vMod}px";
+    }
+}

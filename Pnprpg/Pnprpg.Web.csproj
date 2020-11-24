@@ -404,8 +404,6 @@
   <ItemGroup>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\HeroGenController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\CookieType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -624,20 +622,9 @@
     <Content Include="Content\layout.scss" />
     <None Include="Properties\PublishProfiles\Azure.pubxml" />
     <None Include="Properties\PublishProfiles\pnprpg - FTP.pubxml" />
-    <Content Include="Views\Book\_ShortSkillList.cshtml" />
     <Content Include="Content\images\bg.png" />
-    <Content Include="Views\Book\HeroSheets.cshtml" />
-    <Content Include="Views\Book\MagicSheet.cshtml" />
-    <Content Include="Views\Shared\_Redirect.cshtml" />
-    <Content Include="Views\Shared\_Status.cshtml" />
-    <Content Include="Views\Shared\_Scripts.cshtml" />
-    <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
-    <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\README.md" />
-    <Content Include="Views\Book\_Branches.cshtml" />
-    <Content Include="Views\Book\_Fight.cshtml" />
-    <Content Include="Views\Book\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Main.css">
@@ -668,19 +655,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LayoutIntro.cshtml" />
-    <Content Include="Views\Shared\_Loading.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Ability.cshtml" />
-    <Content Include="Views\Book\_Stats.cshtml" />
-    <Content Include="Views\Book\_Races.cshtml" />
-    <Content Include="Views\Book\_Traits.cshtml" />
-    <Content Include="Views\Book\_Skills.cshtml" />
-    <Content Include="Views\Book\_Spells.cshtml" />
-    <Content Include="Views\Book\_Alchemy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainService\Pnprpg.Domain.csproj">
