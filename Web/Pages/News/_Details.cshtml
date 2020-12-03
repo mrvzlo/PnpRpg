@@ -2,18 +2,25 @@
 @using Pnprpg.DomainService.Enums
 @model Pnprpg.DomainService.Models.NewsViewModel
 
-<div class="card smallForSmall">
-    <div class="card-header d-sm-flex justify-content-between px-4 font-weight-bold">
+<div class="card smallForSmall news">
+    <div class="card-header d-sm-flex justify-content-between px-4 py-3">
         <div class="order-sm-last">@Model.Date.ToString("D", new CultureInfo("ru"))</div>
         <div class="h4 m-0">@Model.Title</div>
+        <div class="fas fa-circle text-muted py-2"></div>
     </div>
-    <div class="card-body text-left p-3">
+    <div class="card-body text-left px-3">
         @Html.Raw(Model.Content)
-        @if (User.IsInRole(UserRole.Admin.ToString()))
-        {
-            <a asp-page="@SitePages.AdminNewsEdit" asp-route-id="@Model.Id" class="d-block text-right">
-                <i class="fas fa-edit"></i>
-            </a>
-        }
+        <div class="position-absolute right-0 bottom-0 text-right">
+            @if (User.IsInRole(UserRole.Admin.ToString()))
+            {
+                <a asp-page="@SitePages.AdminNewsEdit" asp-route-id="@Model.Id">
+                    <i class="fas fa-edit p-3"></i>
+                </a>
+            }
+            else
+            {
+                <img src="@Url.Content("~/images/seal.png")" class="img-fluid w-50 m-2"/>
+            }
+        </div>
     </div>
 </div>

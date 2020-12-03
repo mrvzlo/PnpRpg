@@ -82,6 +82,24 @@
     }
 }
 
+.news {
+    background-color: antiquewhite;
+    border-radius: .5rem;
+
+    .card-header {
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+    }
+
+    .card-body{
+        padding-bottom: 50px;
+    }
+
+    &, * {
+        border-color: black;
+    }
+}
+
 .border-colourful {
     --color: black;
     border-radius: 100px;
