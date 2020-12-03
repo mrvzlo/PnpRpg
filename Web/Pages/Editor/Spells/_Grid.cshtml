@@ -5,12 +5,10 @@
 @model IQueryable<Pnprpg.DomainService.Models.SpellViewModel>
 @(Html.Grid(Model).Build(columns =>
 {
-    columns.Add(x => x.MagicSchoolName).RenderedAs(x => Html.Raw($"<div style='color: #{x.Color}'>{x.MagicSchoolName}</div>")).Titled("Øêîëà")
-        .Filterable(true).Sortable(true).Css("bg-dark");
-    columns.Add(x => x.Name).Titled("Íàçâàíèå");
-    columns.Add(x => x.Effect).RenderedAs(x => Html.Raw(x.Damage > 0 ? string.Format(x.Effect, x.Damage) : x.Effect)).Titled("Ýôôåêò").Css("w-50");
-    columns.Add(x => x.Level).Titled("Óð. øêîëû").Css("no-wrap");
-    columns.Add(x => x.Cost).Titled("Öåíà");
+    columns.Add(x => x.Name).Titled("ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ");
+    columns.Add(x => x.Effect).RenderedAs(x => Html.Raw(x.Damage > 0 ? string.Format(x.Effect, x.Damage) : x.Effect)).Titled("Ð­Ñ„Ñ„ÐµÐºÑ‚").Css("w-50");
+    columns.Add(x => x.Level).Titled("Ð£Ñ€. ÑˆÐºÐ¾Ð»Ñ‹").Css("no-wrap");
+    columns.Add(x => x.Cost).Titled("Ð¦ÐµÐ½Ð°");
     columns.Add(x => x).RenderedAs(Actions).Css("no-wrap");
 }).Empty("No data found").Pageable(pager =>
 {
@@ -22,7 +20,7 @@
     @<text>
         <a asp-page="@SitePages.EditorSpellsEdit" asp-route-id="@x.Id" class="btn btn-info fas fa-pen"></a>
         <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
-                data-value="@x.Id" data-text="Çàêëèíàíèå @x.Name áóäåò óäàëåíî"></button>
+                data-value="@x.Id" data-text="Ð—Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ @x.Name Ð±ÑƒÐ´ÐµÑ‚ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾"></button>
     </text>
     );
 }

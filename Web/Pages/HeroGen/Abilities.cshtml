@@ -32,12 +32,12 @@
 
 <div class="col-lg-4 col-md-6 col-12">
     <form id="abilityIncForm" method="post" asp-page="@SitePages.HeroGenAbilities"
-          data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-success="AjaxJs.end" data-ajax-update="#main">
         @Html.Hidden("abilityId")
         @Html.Hidden("value")
     </form>
     <form id="saveForm" method="post" asp-page="@SitePages.HeroGenAbilities" asp-page-handler="Save" 
-          data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main"></form>
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-success="AjaxJs.begin" data-ajax-update="#main"></form>
     <div class="alert alert-info my-3 py-2">Cвободных очков: @remaining</div>
     <button form="saveForm" class="btn @(remaining == 0 ? "btn-success" : "btn-secondary") mw-160" @(remaining == 0 ? "" : "disabled")>
         Сохранить

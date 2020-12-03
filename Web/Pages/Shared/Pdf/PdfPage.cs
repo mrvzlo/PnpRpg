@@ -18,17 +18,17 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
             Converter = new HtmlToPdfConverter { Size = PageSize.A4 };
         }
 
-        protected async Task<FileResult> LoadPdf(HtmlToPdfConverter generator, string pageName, PageModel model)
+        protected async Task<FileResult> LoadPdf(HtmlToPdfConverter generator, string pageName, PageModel model, bool rewrite = false)
         {
             pageName = pageName.Replace("/Shared/", "");
-            await CheckPdf(generator, pageName, model);
+            await CheckPdf(generator, pageName, model, rewrite);
             var file = new FileStream(Path(pageName), FileMode.Open, FileAccess.Read);
             return File(file, "application/pdf");
         }
 
-        private async Task CheckPdf(HtmlToPdfConverter generator, string pageName, PageModel model)
+        private async Task CheckPdf(HtmlToPdfConverter generator, string pageName, PageModel model, bool rewrite)
         {
-            if (!System.IO.File.Exists(Path(pageName)) || HttpContext.Request.Host.Value.Contains("localhost"))
+            if (rewrite || !System.IO.File.Exists(Path(pageName)) || HttpContext.Request.Host.Value.Contains("localhost"))
                 await SavePdf(generator, pageName, model);
         }
 

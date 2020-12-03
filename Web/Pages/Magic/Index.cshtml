@@ -7,9 +7,9 @@
 <ul class="nav nav-tabs row justify-content-center px-0">
     @foreach (var school in Model.Schools)
     {
-        <li class="col-6 nav-item">
-            <a class="btn btn-block smallForSmall border d-sm-block my-1 nav-link" data-toggle="tab"
-               href="#school_@school.Id" style="background-color: #@school.Color">@school.Name</a>
+        <li class="col-lg-4 col-6 nav-item">
+            <a class="btn btn-block smallForSmall d-block my-2 border-colourful" data-toggle="tab"
+               href="#school_@school.Id" style="--color: #@school.Color">@school.Name</a>
         </li>
     }
 </ul>
@@ -26,7 +26,7 @@
                     <th>Эффект</th>
                     <th>Стоимость</th>
                 </tr>
-                @foreach (var spell in school.Spells)
+                @foreach (var spell in school.Spells.OrderBy(x => x.Level))
                 {
                     <tr>
                         <td>@spell.Level</td>

@@ -12085,6 +12085,14 @@ td {
 .table-specific td {
   border: none; }
 
+.border-colourful {
+  --color: black;
+  border-radius: 100px;
+  margin-bottom: .5rem;
+  border-color: var(--color); }
+  .border-colourful, .border-colourful:hover, .border-colourful:active, .border-colourful:focus {
+    box-shadow: 0 0 3pt 2pt var(--color), inset 0 0 3pt 0pt var(--color); }
+
 .p-default {
   margin-top: -60px !important;
   padding-top: 60px !important; }
@@ -12198,5 +12206,5 @@ footer {
 body {
   font-family: 'Roboto Slab', serif; }
 
-.h1:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), h1:not(.fas):not(.fab):not(.fa):not(.far), .h1:not(.fas):not(.fab):not(.fa):not(.far), h2:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), h3:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), h4:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), h5:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), h6:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far) {
+.h1:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), h1:not(.fas):not(.fab):not(.fa):not(.far), .h1:not(.fas):not(.fab):not(.fa):not(.far), h2:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), h3:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), h4:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), h5:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), h6:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), .beauty:not(.fas):not(.fab):not(.fa):not(.far) {
   font-family: 'Balsamiq Sans'; }

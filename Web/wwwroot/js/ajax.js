@@ -62,8 +62,16 @@
         });
         form.submit();
     }
-    
+
+    function begin() {
+        TogglerJs.disableAll();
+    }
+
+    function end() {
+        TogglerJs.enableAll();
+    }
+
     return {
-        init: init
+        init: init, begin: begin, end: end
     };
 })();

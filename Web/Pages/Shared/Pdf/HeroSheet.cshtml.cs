@@ -41,7 +41,7 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
             }
             Hero ??= _coreLogic.CreateHero(Company.Fantasy);
             Hero.Skills = _skillService.GetHeroSkillGroup(Hero);
-            return await LoadPdf(Converter, SitePages.SharedPdfHeroSheet, this);
+            return await LoadPdf(Converter, SitePages.SharedPdfHeroSheet, this, cookie);
         }
     }
 }

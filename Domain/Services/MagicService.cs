@@ -28,12 +28,13 @@ namespace Pnprpg.Domain.Services
         public SpellViewModel GetRandomSpell()
         {
             var spell = _spellRepository.GetRandom();
-            return Mapper.Map<SpellViewModel>(spell);
+            return spell.ProjectTo<SpellViewModel>(MapperConfig).First();
         }
 
         public IQueryable<SpellViewModel> GetAll(int? filter = null)
         {
-            var query = _spellRepository.Select().ProjectTo<SpellViewModel>(MapperConfig);
+            var query = _spellRepository.Select().ProjectTo<SpellViewModel>(MapperConfig)
+                .OrderBy(x => x.MagicSchoolId).ThenBy(x => x.Level).AsQueryable();
             return filter is null ? query : query.Where(x => x.MagicSchoolId == filter);
         }
 

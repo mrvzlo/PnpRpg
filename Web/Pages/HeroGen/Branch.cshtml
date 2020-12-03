@@ -72,6 +72,6 @@
 </div>
 
 <form id="branchPickForm" method="post" asp-page="@SitePages.HeroGenBranch" 
-      data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+      data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-success="AjaxJs.end" data-ajax-update="#main">
     @Html.Hidden("id")
 </form>

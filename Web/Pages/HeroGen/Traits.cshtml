@@ -47,14 +47,14 @@
 }
 <div class="col-12">
     <form method="post" asp-page="@SitePages.HeroGenTraits" id="traitPickForm"
-          data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-success="AjaxJs.end" data-ajax-update="#main">
         @Html.Hidden("id")
     </form>
     <form method="post" asp-page="@SitePages.HeroGenTraits" id="resetForm" asp-page-handler="Reset"
-          data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-success="AjaxJs.end" data-ajax-update="#main">
     </form>
     <form method="post" asp-page="@SitePages.HeroGenTraits" id="saveForm" asp-page-handler="Save"
-          data-ajax="true" data-ajax-begin="MainJs.toggleLoading" data-ajax-success="MainJs.toggleLoading" data-ajax-update="#main">
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-success="AjaxJs.end" data-ajax-update="#main">
     </form>
     <button class="btn btn-success mw-260 m-1" type="submit" form="saveForm">
         <i class="fas fa-check mr-2"></i>Сохранить

@@ -50,7 +50,7 @@ namespace Pnprpg.Domain.Services
         public PotionModel GetRandomPotion()
         {
             var potion = _potionRepository.GetRandom();
-            return Mapper.Map<PotionModel>(potion);
+            return potion.ProjectTo<PotionModel>(MapperConfig).First();
         }
 
         public AlchemySummary GetSummary()

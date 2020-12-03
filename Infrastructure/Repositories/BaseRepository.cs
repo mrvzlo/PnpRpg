@@ -27,14 +27,14 @@ namespace Pnprpg.Infrastructure.Repositories
             return Select().Where(x => x.Id == id);
         }
 
-        public virtual T GetRandom()
+        public virtual IQueryable<T> GetRandom()
         {
             var count = DbSet.Count();
             if (count == 0) 
                 return null;
 
             var rand = new Random().Next(count);
-            return DbSet.OrderBy(x => x.Id).Skip(rand).First();
+            return DbSet.OrderBy(x => x.Id).Skip(rand).Take(1);
         }
 
         public virtual int InsertOrUpdate(T entity)
