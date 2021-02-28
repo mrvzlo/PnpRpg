@@ -1,9 +1,7 @@
-﻿using System;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 

@@ -7,7 +7,8 @@ namespace Pnprpg.WebCore.Pages.HeroGen
 {
     public class ResultModel : HeroGenPage
     {
-        public ResultModel(ICoreLogic coreLogic, IConfiguration configuration) : base(coreLogic, configuration, HeroGenStage.Result)
+        public ResultModel(ICoreLogic coreLogic, IConfiguration configuration, IMajorService majorService) 
+            : base(coreLogic, configuration, HeroGenStage.Result, majorService)
         {
         }
 

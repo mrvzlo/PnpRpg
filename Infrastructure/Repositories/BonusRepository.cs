@@ -12,7 +12,7 @@ namespace Pnprpg.Infrastructure.Repositories
 
         public void ClearBonuses(int parentId, BonusType type)
         {
-            IQueryable<BaseEntity<int>> set; 
+            IQueryable<BaseEntity> set; 
             switch (type)
             {
                 case BonusType.Weapon:

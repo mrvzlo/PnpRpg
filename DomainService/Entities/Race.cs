@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class Race : BaseEntity<int>
+    public class Race : BaseSettingPart
     {
         public string Name { get; set; }
         public string Description { get; set; }

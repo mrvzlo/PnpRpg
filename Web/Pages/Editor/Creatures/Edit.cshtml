@@ -1,0 +1,38 @@
+﻿@page
+@model Pnprpg.WebCore.Pages.Editor.Creatures.EditModel
+@{
+    ViewData["Title"] = Model.Input.Id == 0 ? "Новое существо" : Model.Input.Name;
+}
+
+<form method="post" class="col-12 mx-auto">
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Input.Id)
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Название</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Группа</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Input.Group, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Уровень</label>
+        <div class="col-12">
+            @Html.TextBoxFor(x => x.Input.Level, new { @class = "form-control", type = "number" })
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-3 col-form-label text-left">Описание</label>
+        <div class="col-12 text-left">
+            @Html.TextAreaFor(x => x.Input.Description, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <hr />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>

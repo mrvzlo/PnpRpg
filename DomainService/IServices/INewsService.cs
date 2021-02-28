@@ -3,12 +3,10 @@ using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {
-    public interface INewsService
+    public interface INewsService : IEditService<NewsEditModel>
     {
         int Save(NewsEditModel model);
         IQueryable<NewsViewModel> GetAll();
         NewsViewModel GetLatest();
-        NewsEditModel GetForEdit(int? id);
-        void Delete(int id);
     }
 }

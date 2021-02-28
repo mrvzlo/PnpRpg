@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Pnprpg.DomainService.Helpers;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
+using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
 using Rocket.PdfGenerator;
 
@@ -33,7 +34,8 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
         private readonly IBranchService _branchService;
 
         public BookModel(IPageRenderer pageRenderer, IAlchemyService alchemyService, IRaceService raceService, ITraitService traitService, ISkillService skillService,
-            IMagicService magicService, IAbilityService abilityService, IBranchService branchService) : base(pageRenderer)
+            IMagicService magicService, IAbilityService abilityService, IBranchService branchService, IMajorService majorService) : 
+            base(pageRenderer, majorService)
         {
             _alchemyService = alchemyService;
             _raceService = raceService;
@@ -54,7 +56,7 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
                 Bottom = 20
             };
             Converter.PageFooterHtml = "<div style='text-align: center'><b class='page'></b></div>";
-            return await LoadPdf(Converter, SitePages.SharedPdfBook, this);
+            return await LoadPdf(Converter, SitePages.SharedPdfBook, FileType.Book, this);
         }
 
         private void Setup()

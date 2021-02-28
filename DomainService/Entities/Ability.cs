@@ -1,6 +1,6 @@
 ﻿namespace Pnprpg.DomainService.Entities
 {
-    public class Ability : BaseEntity<int>
+    public class Ability : BaseSettingPart
     {
         public string Symbol { get; set; }
         public string Name { get; set; }

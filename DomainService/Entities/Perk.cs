@@ -1,6 +1,6 @@
 ﻿namespace Pnprpg.DomainService.Entities
 {
-    public class Perk : BaseEntity<int>
+    public class Perk : BaseSettingPart
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class Trait : BaseEntity<int>
+    public class Trait : BaseSettingPart
     {
         public string Name { get; set; }
 

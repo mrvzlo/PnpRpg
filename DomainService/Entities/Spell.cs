@@ -1,6 +1,6 @@
 ﻿namespace Pnprpg.DomainService.Entities
 {
-    public class Spell : BaseEntity<int>
+    public class Spell : BaseEntity
     {
         public int MagicSchoolId { get; set; }
         public int Level { get; set; }

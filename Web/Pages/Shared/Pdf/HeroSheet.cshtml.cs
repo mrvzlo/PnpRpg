@@ -22,26 +22,35 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
         private readonly IConfiguration _configuration;
         private readonly ISkillService _skillService;
 
-        public HeroSheetModel(IPageRenderer pageRenderer, ICoreLogic coreLogic, IConfiguration configuration, ISkillService skillService) : base(pageRenderer)
+        public HeroSheetModel(IPageRenderer pageRenderer, ICoreLogic coreLogic, IConfiguration configuration, 
+            ISkillService skillService, IMajorService majorService) : base(pageRenderer, majorService)
         {
             _coreLogic = coreLogic;
             _configuration = configuration;
             _skillService = skillService;
         }
 
-        public async Task<FileResult> OnGet(bool cookie = false)
+        public async Task<FileResult> OnGet(bool getFromCookies = false)
         {
             var url = HttpContext.Request.GetDisplayUrl();
             RootPath = url.Remove(url.IndexOf("Shared"));
             Converter.Orientation = PageOrientation.Landscape;
-            if (cookie)
+            if (getFromCookies)
             {
                 var encoded = GetCookie(CookieType.Hero);
                 Hero = _coreLogic.DecodeHero(encoded, _configuration["Version"]);
             }
-            Hero ??= _coreLogic.CreateHero(Company.Fantasy);
+
+            if (Hero == null)
+            {
+                getFromCookies = false;
+                Hero = _coreLogic.CreateHero(Company.Fantasy);
+            }
+            
+            var fileType = getFromCookies ? FileType.FilledHeroSheet : FileType.BaseHeroSheet;
+
             Hero.Skills = _skillService.GetHeroSkillGroup(Hero);
-            return await LoadPdf(Converter, SitePages.SharedPdfHeroSheet, this, cookie);
+            return await LoadPdf(Converter, SitePages.SharedPdfHeroSheet, fileType, this, getFromCookies);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace Pnprpg.WebCore.Pages.HeroGen
         public TraitGroup Traits { get; set; }
         private readonly ITraitService _traitService;
 
-        public TraitsModel(ICoreLogic coreLogic, IConfiguration configuration, ITraitService traitService) 
-            : base(coreLogic, configuration, HeroGenStage.Traits)
+        public TraitsModel(ICoreLogic coreLogic, IConfiguration configuration, ITraitService traitService, IMajorService majorService) 
+            : base(coreLogic, configuration, HeroGenStage.Traits, majorService)
         {
             _traitService = traitService;
         }

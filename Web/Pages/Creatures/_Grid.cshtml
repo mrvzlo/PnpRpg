@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Html
+@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.CreatureViewModel>
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x).RenderedAs(Render).Titled("");
+}).Css("table table-specific").Pageable(pager => { pager.RowsPerPage = 5; }))
+
+@{
+    IHtmlContent Render(CreatureViewModel x) => PartialHelper.Body(
+        @<text>@{await Html.RenderPartialAsync("_Details", x);}</text>
+        );
+}

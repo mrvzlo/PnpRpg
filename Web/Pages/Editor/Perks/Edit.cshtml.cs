@@ -15,7 +15,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Perks
         private readonly ICoreLogic _coreLogic;
         private readonly IBranchService _branchService;
 
-        public EditModel(IPerkService perkService, ICoreLogic coreLogic, IBranchService branchService)
+        public EditModel(IPerkService perkService, ICoreLogic coreLogic, IBranchService branchService, IMajorService majorService) : base(majorService)
         {
             _perkService = perkService;
             _coreLogic = coreLogic;

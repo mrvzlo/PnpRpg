@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class NewsEditModel
+    public class NewsEditModel : IBaseEditModel
     {
         public int Id { get; set; }
         public string Title { get; set; }

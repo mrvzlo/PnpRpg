@@ -13,8 +13,8 @@ namespace Pnprpg.WebCore.Pages.HeroGen
 
         private readonly IBranchService _branchService;
 
-        public BranchModel(ICoreLogic coreLogic, IConfiguration configuration, IBranchService branchService) 
-            : base(coreLogic, configuration, HeroGenStage.Branch)
+        public BranchModel(ICoreLogic coreLogic, IConfiguration configuration, IBranchService branchService, IMajorService majorService) 
+            : base(coreLogic, configuration, HeroGenStage.Branch, majorService)
         {
             _branchService = branchService;
         }

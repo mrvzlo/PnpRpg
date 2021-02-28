@@ -3,7 +3,7 @@ using Pnprpg.DomainService.Entities;
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IBaseRepository<T> where T : BaseEntity<int>
+    public interface IBaseRepository<T> where T : BaseEntity
     {
         IQueryable<T> Get(int id);
         IQueryable<T> GetRandom();

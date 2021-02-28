@@ -1,6 +1,6 @@
 ﻿namespace Pnprpg.DomainService.Entities
 {
-    public class RaceAbility : BaseEntity<int>
+    public class RaceAbility : BaseSettingPart
     {
         public int RaceId { get; set; }
         public int AbilityId { get; set; }

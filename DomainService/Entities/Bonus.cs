@@ -5,7 +5,7 @@ using Pnprpg.DomainService.Enums;
 namespace Pnprpg.DomainService.Entities
 {
     [Table("Bonuses")]
-    public class Bonus : BaseEntity<int>
+    public class Bonus : BaseSettingPart
     {
         public string Name { get; set; }
         public string Icon { get; set; }

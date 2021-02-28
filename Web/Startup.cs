@@ -1,4 +1,3 @@
-using System.Linq;
 using LightInject;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Pnprpg.Infrastructure;
 using Pnprpg.IoC;
-using Pnprpg.WebCore.Helpers;
 
 namespace Pnprpg.WebCore
 {
@@ -30,7 +28,7 @@ namespace Pnprpg.WebCore
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
-
+            
             services.AddDbContextPool<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
 

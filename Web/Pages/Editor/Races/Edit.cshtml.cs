@@ -18,7 +18,8 @@ namespace Pnprpg.WebCore.Pages.Editor.Races
         private readonly IAbilityService _abilityService;
         private readonly IBonusService _bonusService;
 
-        public EditModel(IRaceService raceService, ICoreLogic coreLogic, IAbilityService abilityService, IBonusService bonusService)
+        public EditModel(IRaceService raceService, ICoreLogic coreLogic, IAbilityService abilityService, 
+            IBonusService bonusService, IMajorService majorService) : base(majorService)
         {
             _raceService = raceService;
             _coreLogic = coreLogic;

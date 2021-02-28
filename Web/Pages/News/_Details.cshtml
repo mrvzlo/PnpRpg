@@ -4,9 +4,9 @@
 
 <div class="card smallForSmall news">
     <div class="card-header d-sm-flex justify-content-between px-4 py-3">
-        <div class="order-sm-last">@Model.Date.ToString("D", new CultureInfo("ru"))</div>
-        <div class="h4 m-0">@Model.Title</div>
-        <div class="fas fa-circle text-muted py-2"></div>
+        <div class="fas fa-circle text-muted py-sm-1"></div>
+        <div class="">@Model.Date.ToString("D", new CultureInfo("ru"))</div>
+        <div class="order-sm-first h4 m-0">@Model.Title</div>
     </div>
     <div class="card-body text-left px-3">
         @Html.Raw(Model.Content)

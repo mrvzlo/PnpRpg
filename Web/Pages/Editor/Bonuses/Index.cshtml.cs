@@ -9,7 +9,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Bonuses
     {
         private readonly IBonusService _bonusService;
 
-        public IndexModel(IBonusService bonusService)
+        public IndexModel(IBonusService bonusService, IMajorService majorService) : base(majorService)
         {
             _bonusService = bonusService;
         }

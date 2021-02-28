@@ -16,7 +16,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Bonuses
         private readonly IBonusService _bonusService;
         private readonly ICoreLogic _coreLogic;
 
-        public EditModel(IBonusService bonusService, ICoreLogic coreLogic)
+        public EditModel(IBonusService bonusService, ICoreLogic coreLogic, IMajorService majorService) : base(majorService)
         {
             _bonusService = bonusService;
             _coreLogic = coreLogic;

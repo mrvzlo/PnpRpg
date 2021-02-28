@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class MagicSchool : BaseEntity<int>
+    public class MagicSchool : BaseEntity
     {
         public string Description { get; set; }
         public string Name { get; set; }

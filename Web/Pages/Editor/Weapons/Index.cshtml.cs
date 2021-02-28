@@ -8,7 +8,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Weapons
     {
         private readonly IWeaponService _weaponService;
 
-        public IndexModel(IWeaponService weaponService)
+        public IndexModel(IWeaponService weaponService, IMajorService majorService) : base(majorService)
         {
             _weaponService = weaponService;
         }

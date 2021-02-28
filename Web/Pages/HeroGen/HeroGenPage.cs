@@ -8,7 +8,7 @@ using Pnprpg.WebCore.Helpers;
 
 namespace Pnprpg.WebCore.Pages.HeroGen
 {
-    public class HeroGenPage : BasePage
+    public class HeroGenPage : MajorPage
     {
         public bool IsPartial { get; set; }
         public StatusResult Status { get; set; }
@@ -18,7 +18,7 @@ namespace Pnprpg.WebCore.Pages.HeroGen
         protected readonly ICoreLogic CoreLogic;
         protected readonly IConfiguration Configuration;
 
-        public HeroGenPage(ICoreLogic coreLogic, IConfiguration configuration, HeroGenStage stage)
+        public HeroGenPage(ICoreLogic coreLogic, IConfiguration configuration, HeroGenStage stage, IMajorService majorService) : base(majorService)
         {
             CoreLogic = coreLogic;
             Configuration = configuration;

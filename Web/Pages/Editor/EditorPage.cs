@@ -1,10 +1,14 @@
 ﻿using Pnprpg.DomainService.Enums;
+using Pnprpg.DomainService.IServices;
 using Pnprpg.WebCore.Helpers;
 
 namespace Pnprpg.WebCore.Pages.Editor
 {
     [CustomAuthorize(UserRole.Editor)]
-    public class EditorPage : BasePage
+    public class EditorPage : MajorPage
     {
+        public EditorPage(IMajorService majorService) : base(majorService)
+        {
+        }
     }
 }

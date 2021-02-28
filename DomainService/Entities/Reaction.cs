@@ -1,6 +1,6 @@
 ﻿namespace Pnprpg.DomainService.Entities
 {
-    public class Reaction : BaseEntity<int>
+    public class Reaction : BaseEntity
     {
         public int Reagent { get; set; }
         public int Process { get; set; }

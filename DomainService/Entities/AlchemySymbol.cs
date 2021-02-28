@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class AlchemySymbol : BaseEntity<int>
+    public class AlchemySymbol : BaseEntity
     {
         public string Symbol { get; set; }
         public string Name { get; set; }

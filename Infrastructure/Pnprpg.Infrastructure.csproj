@@ -172,7 +172,9 @@
     <Compile Include="Repositories\EffectRepository.cs" />
     <Compile Include="Repositories\BranchRepository.cs" />
     <Compile Include="Repositories\MagicSchoolRepository.cs" />
+    <Compile Include="Repositories\MajorRepository.cs" />
     <Compile Include="Repositories\NewsRepository.cs" />
+    <Compile Include="Repositories\CreatureRepository.cs" />
     <Compile Include="Repositories\TraitRepository.cs" />
     <Compile Include="Repositories\SkillRepository.cs" />
     <Compile Include="Repositories\RaceRepository.cs" />

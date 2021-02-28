@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class TraitEffect : BaseEntity<int>
+    public class TraitEffect : BaseSettingPart
     {
         public int Value { get; set; }
         public EffectTarget TargetType { get; set; }

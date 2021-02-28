@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Html
+@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.CreatureViewModel>
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Group).Titled("Тип");
+    columns.Add(x => x.Level).Titled("Уровень");
+    columns.Add(x => x).RenderedAs(Actions).Css("no-wrap");
+}).Empty("No data found").Css("table table-responsive text-left"))
+
+@{
+    IHtmlContent Actions(CreatureViewModel x) => PartialHelper.Body(
+        @<text>
+            <a asp-page="@SitePages.EditorCreaturesEdit" asp-route-id="@x.Id" class="btn btn-info fas fa-pen"></a>
+            <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+                    data-value="@x.Id" data-text="Существо @x.Name будет удалено"></button>
+         </text>
+        );
+}

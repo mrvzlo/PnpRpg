@@ -13,6 +13,9 @@
 		public static string AdminUsersEdit => @"/Admin/Users/Edit";
 		public static string Alchemy_Result => @"Alchemy/_Result";
 		public static string AlchemyIndex => @"/Alchemy/Index";
+		public static string Creatures_Details => @"Creatures/_Details";
+		public static string Creatures_Grid => @"Creatures/_Grid";
+		public static string CreaturesIndex => @"/Creatures/Index";
 		public static string DonationIndex => @"/Donation/Index";
 		public static string EditorBonuses_Grid => @"Editor/Bonuses/_Grid";
 		public static string EditorBonusesEdit => @"/Editor/Bonuses/Edit";
@@ -20,6 +23,9 @@
 		public static string EditorBranches_Grid => @"Editor/Branches/_Grid";
 		public static string EditorBranchesEdit => @"/Editor/Branches/Edit";
 		public static string EditorBranchesIndex => @"/Editor/Branches/Index";
+		public static string EditorCreatures_Grid => @"Editor/Creatures/_Grid";
+		public static string EditorCreaturesEdit => @"/Editor/Creatures/Edit";
+		public static string EditorCreaturesIndex => @"/Editor/Creatures/Index";
 		public static string EditorPerks_Grid => @"Editor/Perks/_Grid";
 		public static string EditorPerksEdit => @"/Editor/Perks/Edit";
 		public static string EditorPerksIndex => @"/Editor/Perks/Index";
@@ -72,6 +78,15 @@
 		public static string SharedNavigation_Editor => @"Shared/Navigation/_Editor";
 		public static string SharedNavigation_Top => @"Shared/Navigation/_Top";
 		public static string SharedPdfBook => @"/Shared/Pdf/Book";
+		public static string SharedPdfBookPartsAbilities => @"/Shared/Pdf/BookParts/Abilities";
+		public static string SharedPdfBookPartsAlchemy => @"/Shared/Pdf/BookParts/Alchemy";
+		public static string SharedPdfBookPartsBranchPages => @"/Shared/Pdf/BookParts/BranchPages";
+		public static string SharedPdfBookPartsFightPages => @"/Shared/Pdf/BookParts/FightPages";
+		public static string SharedPdfBookPartsMagicPages => @"/Shared/Pdf/BookParts/MagicPages";
+		public static string SharedPdfBookPartsRacePages => @"/Shared/Pdf/BookParts/RacePages";
+		public static string SharedPdfBookPartsSkills => @"/Shared/Pdf/BookParts/Skills";
+		public static string SharedPdfBookPartsTitlePages => @"/Shared/Pdf/BookParts/TitlePages";
+		public static string SharedPdfBookPartsTraits => @"/Shared/Pdf/BookParts/Traits";
 		public static string SharedPdfHeroSheet => @"/Shared/Pdf/HeroSheet";
 		public static string SharedPdfMagicSheet => @"/Shared/Pdf/MagicSheet";
 		public static string SheetsIndex => @"/Sheets/Index";

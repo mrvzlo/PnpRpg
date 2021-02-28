@@ -8,7 +8,8 @@ namespace Pnprpg.WebCore.Pages.HeroGen
 {
     public class IndexModel : HeroGenPage
     {
-        public IndexModel(ICoreLogic coreLogic, IConfiguration configuration) : base(coreLogic, configuration, 0)
+        public IndexModel(ICoreLogic coreLogic, IConfiguration configuration, IMajorService majorService) 
+            : base(coreLogic, configuration, 0, majorService)
         {
         }
 

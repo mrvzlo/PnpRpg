@@ -8,7 +8,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Perks
     {
         private readonly IPerkService _perkService;
 
-        public IndexModel(IPerkService perkService)
+        public IndexModel(IPerkService perkService, IMajorService majorService) : base(majorService)
         {
             _perkService = perkService;
         }

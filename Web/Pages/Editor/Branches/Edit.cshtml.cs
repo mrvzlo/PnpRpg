@@ -16,7 +16,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Branches
         private readonly IBranchService _branchService;
         private readonly IBonusService _bonusService;
 
-        public EditModel(IBonusService bonusService, ICoreLogic coreLogic, IBranchService branchService)
+        public EditModel(IBonusService bonusService, ICoreLogic coreLogic, IBranchService branchService, IMajorService majorService) : base(majorService)
         {
             _bonusService = bonusService;
             _coreLogic = coreLogic;

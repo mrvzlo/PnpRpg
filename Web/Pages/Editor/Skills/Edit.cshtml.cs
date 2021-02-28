@@ -20,7 +20,8 @@ namespace Pnprpg.WebCore.Pages.Editor.Skills
         private readonly ISkillService _skillService;
         private readonly ICoreLogic _coreLogic;
 
-        public EditModel(IBranchService branchService, IAbilityService abilityService, ICoreLogic coreLogic, ISkillService skillService)
+        public EditModel(IBranchService branchService, IAbilityService abilityService, ICoreLogic coreLogic, 
+            ISkillService skillService, IMajorService majorService) : base(majorService)
         {
             _branchService = branchService;
             _abilityService = abilityService;

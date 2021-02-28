@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class AppUser : BaseEntity<int>
+    public class AppUser : BaseEntity
     {
         public UserRole Role { get; set; }
         public string Username { get; set; }

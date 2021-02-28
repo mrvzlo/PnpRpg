@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class Room : BaseEntity<int>
+    public class Room : BaseEntity
     {
         public string Name { get; set; }
         public DateTime Date { get; set; }

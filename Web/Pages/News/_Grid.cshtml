@@ -10,6 +10,6 @@
 
 @{
     IHtmlContent Render(NewsViewModel x) => PartialHelper.Body(
-    @<text>@{await Html.RenderPartialAsync("_Details", x);}</text>
+    @<div class="mb-4">@{await Html.RenderPartialAsync("_Details", x);}</div>
     );
 }

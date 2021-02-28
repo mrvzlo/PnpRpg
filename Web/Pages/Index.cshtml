@@ -9,18 +9,20 @@
 <div class="display-6 m-3 my-5">Table Adventures Generation System @Model.Version</div>
 @{
     await Html.RenderPartialAsync("Home/Card",
-        new CardModel {Icon = "mask", Url = SitePages.HeroGenIndex, Name = "Создать персонажа"});
+        new CardModel { Icon = "mask", Url = SitePages.HeroGenIndex, Name = "Создать персонажа" });
     await Html.RenderPartialAsync("Home/Card",
-        new CardModel {Icon = "book", Url = SitePages.SharedPdfBook, Name = "Книга игрока", Blank = true});
+        new CardModel { Icon = "book", Url = SitePages.SharedPdfBook, Name = "Книга игрока", Blank = true });
     await Html.RenderPartialAsync("Home/Card",
-        new CardModel {Icon = "id-card", Url = SitePages.SheetsIndex, Name = "Листы персонажа" });
+        new CardModel { Icon = "id-card", Url = SitePages.SheetsIndex, Name = "Листы персонажа" });
 }
 
 <div class="my-3"></div>
 
-@{
-    await Html.RenderPartialAsync(SitePages.News_Details, Model.LatestNews);
-}
+<div class="mx-2">
+    @{
+        await Html.RenderPartialAsync(SitePages.News_Details, Model.LatestNews);
+    }
+</div>
 
 <div class="py-3">
     <a asp-page="@SitePages.NewsIndex" class="link-info">К другим новостям</a>

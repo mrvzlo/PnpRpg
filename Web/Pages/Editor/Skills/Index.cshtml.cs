@@ -8,7 +8,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Skills
     {
         private readonly ISkillService _skillService;
 
-        public IndexModel(ISkillService skillService)
+        public IndexModel(ISkillService skillService, IMajorService majorService) : base(majorService)
         {
             _skillService = skillService;
         }

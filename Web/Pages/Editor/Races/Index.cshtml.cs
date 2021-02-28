@@ -8,7 +8,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Races
     {
         private readonly IRaceService _raceService;
 
-        public IndexModel(IRaceService raceService)
+        public IndexModel(IRaceService raceService, IMajorService majorService) : base(majorService)
         {
             _raceService = raceService;
         }

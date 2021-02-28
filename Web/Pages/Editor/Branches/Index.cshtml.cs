@@ -8,7 +8,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Branches
     {
         private readonly IBranchService _branchService;
 
-        public IndexModel(IBranchService branchService)
+        public IndexModel(IBranchService branchService, IMajorService majorService) : base(majorService)
         {
             _branchService = branchService;
         }

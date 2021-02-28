@@ -11,8 +11,8 @@ namespace Pnprpg.WebCore.Pages.HeroGen
         public AbilitiesModel Abilities { get; set; }
 
         private readonly IAbilityService _abilityService;
-        public AbilitiesModel(ICoreLogic coreLogic, IConfiguration configuration, IAbilityService abilityService)
-            : base(coreLogic, configuration, HeroGenStage.Abilities)
+        public AbilitiesModel(ICoreLogic coreLogic, IConfiguration configuration, IAbilityService abilityService, IMajorService majorService)
+            : base(coreLogic, configuration, HeroGenStage.Abilities, majorService)
         {
             _abilityService = abilityService;
         }

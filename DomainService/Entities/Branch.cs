@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.Entities
 {
-    public class Branch : BaseEntity<int>
+    public class Branch : BaseSettingPart
     {
         public string Name { get; set; }
         public string Color { get; set; }

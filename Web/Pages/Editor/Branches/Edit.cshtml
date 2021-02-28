@@ -8,6 +8,7 @@
 <form class="col-12 mx-auto" method="post">
     @Html.ValidationSummary(true)
     @Html.HiddenFor(x => x.Input.Id)
+    @Html.AntiForgeryToken()
     <div class="row">
         <label class="col-3 col-form-label text-left">Название</label>
         <div class="col-12">

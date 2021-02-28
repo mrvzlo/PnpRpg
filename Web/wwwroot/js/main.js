@@ -12,9 +12,9 @@
         $('.carousel').carousel({
             interval: 0
         });
-        toggleLoading();
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
+        toggleLoading();
         initMvcGrids();
         updateColorPicker();
     }

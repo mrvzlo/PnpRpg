@@ -13,8 +13,8 @@ namespace Pnprpg.WebCore.Pages.HeroGen
 
         private readonly IRaceService _raceService;
 
-        public RaceModel(ICoreLogic coreLogic, IConfiguration configuration, IRaceService raceService) 
-            : base(coreLogic, configuration, HeroGenStage.Race)
+        public RaceModel(ICoreLogic coreLogic, IConfiguration configuration, IRaceService raceService, IMajorService majorService) 
+            : base(coreLogic, configuration, HeroGenStage.Race, majorService)
         {
             _raceService = raceService;
         }

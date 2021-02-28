@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightBalancer", "FightBalan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pnprpg.WebCore", "Web\Pnprpg.WebCore.csproj", "{C47D1873-7A4C-46FD-BFC7-A6F133169425}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{18EC2F31-762C-4BFA-A04E-B41122AF3102}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,12 @@ Global
 		{C47D1873-7A4C-46FD-BFC7-A6F133169425}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C47D1873-7A4C-46FD-BFC7-A6F133169425}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C47D1873-7A4C-46FD-BFC7-A6F133169425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18EC2F31-762C-4BFA-A04E-B41122AF3102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18EC2F31-762C-4BFA-A04E-B41122AF3102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18EC2F31-762C-4BFA-A04E-B41122AF3102}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{18EC2F31-762C-4BFA-A04E-B41122AF3102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18EC2F31-762C-4BFA-A04E-B41122AF3102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18EC2F31-762C-4BFA-A04E-B41122AF3102}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{2BB5DE17-87EA-4C8E-9100-E19E498A7668} = {BA042CC5-44FC-4E77-AF73-A04DC7AE497E}
 		{8DFDD566-DFB2-424E-90A5-959856A89269} = {40483271-7B86-41B1-98D1-1F59FCD31A97}
 		{C47D1873-7A4C-46FD-BFC7-A6F133169425} = {72537406-8919-4983-9BB6-09B8E71FAAF3}
+		{18EC2F31-762C-4BFA-A04E-B41122AF3102} = {BA042CC5-44FC-4E77-AF73-A04DC7AE497E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {03FCEBD1-19DB-4A0F-B1F1-CC1C064B8B62}

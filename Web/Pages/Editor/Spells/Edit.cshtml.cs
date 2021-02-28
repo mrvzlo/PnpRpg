@@ -14,7 +14,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Spells
         private readonly IMagicService _magicService;
         private readonly ICoreLogic _coreLogic;
 
-        public EditModel(IMagicService magicService, ICoreLogic coreLogic)
+        public EditModel(IMagicService magicService, ICoreLogic coreLogic, IMajorService majorService) : base(majorService)
         {
             _magicService = magicService;
             _coreLogic = coreLogic;

@@ -12,7 +12,7 @@ namespace Pnprpg.WebCore.Pages.Editor.Spells
         public List<MagicSchoolModel> Schools { get; set; }
         public int? Filtered { get; set; }
 
-        public IndexModel(IMagicService magicService)
+        public IndexModel(IMagicService magicService, IMajorService majorService) : base(majorService)
         {
             _magicService = magicService;
         }

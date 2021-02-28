@@ -18,7 +18,8 @@ namespace Pnprpg.WebCore.Pages.Editor.Weapons
         private readonly IBonusService _bonusService;
         private readonly ISkillService _skillService;
 
-        public EditModel(IWeaponService weaponService, IBonusService bonusService, ISkillService skillService, ICoreLogic coreLogic)
+        public EditModel(IWeaponService weaponService, IBonusService bonusService, ISkillService skillService, 
+            ICoreLogic coreLogic, IMajorService majorService) : base(majorService)
         {
             _weaponService = weaponService;
             _bonusService = bonusService;
