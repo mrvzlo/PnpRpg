@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
 using Pnprpg.DomainService.Entities;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.Domain.Profiles
@@ -11,23 +12,19 @@ namespace Pnprpg.Domain.Profiles
         {
             CreateMap<Branch, BranchShortModel>();
             CreateMap<Branch, BranchViewModel>()
-                .ForMember(dest => dest.Bonuses, opts =>
-                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); });
+                .ForMember(dest => dest.Bonuses, o => o.MapFrom(from => from.Bonuses.Select(x => x.Bonus)));
             CreateMap<Branch, BranchEditModel>()
-                .ForMember(dest => dest.Bonuses, opts =>
-                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
+                .ForMember(dest => dest.Bonuses, o => o.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)));
 
             CreateMap<Race, RaceViewModel>()
-                .ForMember(dest => dest.Bonuses, opts =>
-                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus)); })
-                .ForMember(dest => dest.Modifiers, opts => { opts.MapFrom(from => from.Abilities); });
+                .ForMember(dest => dest.Bonuses, o => o.MapFrom(from => from.Bonuses.Select(x => x.Bonus)))
+                .ForMember(dest => dest.Modifiers, o => o.MapFrom(from => from.Abilities));
             CreateMap<Race, RaceEditModel>()
-                .ForMember(dest => dest.Bonuses, opts =>
-                    { opts.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)); });
+                .ForMember(dest => dest.Bonuses, o => o.MapFrom(from => from.Bonuses.Select(x => x.Bonus.Id)));
 
             CreateMap<Bonus, BonusViewModel>()
-                .ForMember(dest => dest.Usages, opts =>
-                    { opts.MapFrom(from => from.Races.Count + from.Branches.Count + from.Weapons.Count); });
+                .ForMember(dest => dest.Usages, o => 
+                    o.MapFrom(from => from.Races.Count + from.Branches.Count + from.Weapons.Count));
             CreateMap<Bonus, BonusEditModel>();
 
             CreateMap<Ability, AbilityModel>();
@@ -35,9 +32,9 @@ namespace Pnprpg.Domain.Profiles
             CreateMap<Ability, AbilityAssignModel>();
 
             CreateMap<RaceAbility, AbilityAssignModel>()
-                .ForMember(dest => dest.Id, opts => { opts.MapFrom(from => from.AbilityId);});
+                .ForMember(dest => dest.Id, o => o.MapFrom(from => from.AbilityId));
             CreateMap<RaceAbility, AbilityModifier>()
-                .ForMember(dest => dest.Modifier, opts => { opts.MapFrom(from => from.Value);});
+                .ForMember(dest => dest.Modifier, o => o.MapFrom(from => from.Value));
 
             CreateMap<Trait, TraitModel>();
 

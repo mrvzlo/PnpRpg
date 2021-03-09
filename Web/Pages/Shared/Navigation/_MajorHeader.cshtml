@@ -1,0 +1,46 @@
+﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.WebCore.Helpers
+@{
+    var major = Url.ActionContext.HttpContext.GetMajor();
+}
+<button class="navbar-toggler order-md-1 order-last" type="button" data-toggle="collapse" data-target="#mainNavBar"
+        aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars text-white"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="mainNavBar">
+    <ul class="navbar-nav ml-auto">
+        @if (major != MajorType.Common)
+        {
+            <li class="nav-item active mx-2 dropdown dont-hide">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    Персонаж
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="nav-link" href="@Url.CustomPage(SitePages.MajorHeroGenIndex)">Создать нового</a>
+                    <a class="nav-link" href="@Url.CustomPage(SitePages.MajorSheetsIndex)">Листы персонажа</a>
+                </div>
+            </li>
+            <li class="nav-item active mx-2 dropdown dont-hide">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    Правила
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="nav-link" href="@Url.CustomPage(SitePages.SharedPdfBook)" target="_blank">Книга правил</a>
+                    @if (major == MajorType.Fantasy)
+                    {
+                        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorAlchemyIndex)">Алхимия</a>
+                        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorMagicIndex)">Школы магии</a>
+                    }
+                    <a class="nav-link" href="@Url.CustomPage(SitePages.MajorPerksIndex)">Способности</a>
+                    <a class="nav-link" href="@Url.CustomPage(SitePages.MajorWeaponryIndex)">Оружейная</a>
+                    <a class="nav-link" href="@Url.CustomPage(SitePages.MajorCreaturesIndex)">Бестиарий</a>
+                </div>
+            </li>
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            await Html.RenderPartialAsync("Navigation/_AuthedHeader");
+        }
+    </ul>
+</div>

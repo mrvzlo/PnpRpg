@@ -1,4 +1,6 @@
-﻿namespace Pnprpg.DomainService.Entities
+﻿using Pnprpg.DomainService.Enums;
+
+namespace Pnprpg.DomainService.Entities
 {
     public class BaseSettingPart : BaseEntity
     {

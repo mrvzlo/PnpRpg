@@ -1,0 +1,19 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@using Pnprpg.WebCore.Pages.Home
+@model IndexModel
+@{
+    ViewData["HideTitle"] = true;
+}
+
+<div class="display-6 m-3 my-5">
+    TAGS @Model.Name
+</div>
+@{
+    await Html.RenderPartialAsync("Home/Card",
+        new CardModel { Icon = "mask", Url = Url.CustomPage(SitePages.MajorHeroGenIndex), Name = "Создать персонажа" });
+    await Html.RenderPartialAsync("Home/Card",
+        new CardModel { Icon = "book", Url = Url.CustomPage(SitePages.SharedPdfBook), Name = "Книга игрока", Blank = true });
+    await Html.RenderPartialAsync("Home/Card",
+        new CardModel { Icon = "id-card", Url = Url.CustomPage(SitePages.MajorSheetsIndex), Name = "Листы персонажа" });
+}

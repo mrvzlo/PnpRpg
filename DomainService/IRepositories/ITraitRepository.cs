@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface ITraitRepository : IBaseRepository<Trait>
+    public interface ITraitRepository : IBaseSettingPartRepository<Trait>
     {
     }
 }

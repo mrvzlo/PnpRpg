@@ -5070,7 +5070,8 @@ progress {
 .container-sm,
 .container-md,
 .container-lg,
-.container-xl {
+.container-xl,
+.container-xxl {
   --bs-gutter-x: 1.5rem;
   width: 100%;
   padding-right: calc(var(--bs-gutter-x) / 2);
@@ -5092,7 +5093,11 @@ progress {
 
 @media (min-width: 1200px) {
   .container, .container-sm, .container-md, .container-lg, .container-xl {
-    max-width: 1000px; } }
+    max-width: 1140px; } }
+
+@media (min-width: 1400px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    max-width: 1320px; } }
 
 .row {
   --bs-gutter-x: 1.5rem;
@@ -7498,7 +7503,8 @@ textarea.form-control-lg {
   .navbar > .container-sm,
   .navbar > .container-md,
   .navbar > .container-lg,
-  .navbar > .container-xl {
+  .navbar > .container-xl,
+  .navbar > .container-xxl {
     display: flex;
     flex-wrap: inherit;
     align-items: center;
@@ -8030,7 +8036,7 @@ textarea.form-control-lg {
 
 .badge {
   display: inline-block;
-  padding: 0.35em 0.65em;
+  padding: 0.25em 0.25em;
   font-size: 0.75em;
   font-weight: 700;
   line-height: 1;
@@ -11950,6 +11956,27 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
+body {
+  --color: #425; }
+  body .navbar-collapse, body .dropdown-menu, body nav {
+    background-color: var(--color); }
+  body .navbar-nav .dropdown-menu {
+    background-color: #fff;
+    border-color: var(--color); }
+    body .navbar-nav .dropdown-menu::before {
+      opacity: .85;
+      z-index: -1;
+      background-color: var(--color);
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+  body .dropdown-menu a:active, body .dropdown-menu a:focus, body .dropdown-menu a:hover {
+    background-color: var(--color);
+    color: #fff; }
+
 .bg-primary {
   color: #fff; }
 
@@ -12006,8 +12033,8 @@ a {
   font-size: 100%;
   min-width: 20px; }
 
-.fw-40 {
-  width: 40px; }
+.fw-2-chars {
+  width: 32px; }
 
 .mw-160 {
   min-width: 160px; }
@@ -12030,6 +12057,12 @@ form .row {
 
 .field-validation-error, .validation-summary-errors {
   color: #a22; }
+
+.trumbowyg-box {
+  margin: 0; }
+
+.trumbowyg-editor {
+  padding: .5rem; }
 
 td {
   vertical-align: middle !important; }
@@ -12086,7 +12119,7 @@ td {
   border: none; }
 
 .news {
-  background-color: antiquewhite;
+  background-color: #fdf6ed;
   border-radius: .5rem; }
   .news .card-header {
     border-top-left-radius: .5rem;
@@ -12108,21 +12141,20 @@ td {
   margin-top: -60px !important;
   padding-top: 60px !important; }
 
-.navbar-collapse, .dropdown-menu, nav {
-  background-color: #213; }
-
 nav {
   height: 60px; }
-
-.flex-1 {
-  flex: 1; }
+  nav .fas, nav .fab {
+    font-size: 1.5rem; }
 
 .navbar-nav .nav-link {
   padding: .5rem; }
 
-.navbar-nav .dropdown-menu {
-  border-color: #314;
-  background-color: #314; }
+.navbar-toggler, .navbar-toggler:focus {
+  border: 0;
+  box-shadow: none; }
+
+.navbar-brand {
+  margin: 0 .7rem; }
 
 .back {
   filter: hue-rotate(40deg);
@@ -12149,9 +12181,6 @@ footer {
   background-color: #425; }
   .card-footer:hover a {
     color: white; }
-
-.dropdown-menu a:active, .dropdown-menu a:focus, .dropdown-menu a:hover {
-  background-color: #425; }
 
 .dropdown-light a {
   color: black;
@@ -12217,5 +12246,5 @@ footer {
 body {
   font-family: 'Roboto Slab', serif; }
 
-.h1:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), h1:not(.fas):not(.fab):not(.fa):not(.far), .h1:not(.fas):not(.fab):not(.fa):not(.far), h2:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), h3:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), h4:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), h5:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), h6:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), .beauty:not(.fas):not(.fab):not(.fa):not(.far) {
+.h1:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), h1:not(.fas):not(.fab):not(.fa):not(.far), .h1:not(.fas):not(.fab):not(.fa):not(.far), h2:not(.fas):not(.fab):not(.fa):not(.far), .h2:not(.fas):not(.fab):not(.fa):not(.far), h3:not(.fas):not(.fab):not(.fa):not(.far), .h3:not(.fas):not(.fab):not(.fa):not(.far), h4:not(.fas):not(.fab):not(.fa):not(.far), .h4:not(.fas):not(.fab):not(.fa):not(.far), h5:not(.fas):not(.fab):not(.fa):not(.far), .h5:not(.fas):not(.fab):not(.fa):not(.far), h6:not(.fas):not(.fab):not(.fa):not(.far), .h6:not(.fas):not(.fab):not(.fa):not(.far), .beauty:not(.fas):not(.fab):not(.fa):not(.far), .display-6:not(.fas):not(.fab):not(.fa):not(.far) {
   font-family: 'Balsamiq Sans'; }

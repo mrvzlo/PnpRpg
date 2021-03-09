@@ -1,0 +1,16 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Листы персонажа";
+}
+
+<div>
+    <a class="btn btn-info mw-260 mt-3" href="@Url.CustomPage(SitePages.SharedPdfHeroSheet)" target="_blank">
+        Основной лист персонажа
+    </a>
+    <br />
+    <a class="btn btn-info mw-260 mt-3" href="@Url.CustomPage(SitePages.SharedPdfMagicSheet)" target="_blank">
+        Лист заклинаний
+    </a>
+</div>

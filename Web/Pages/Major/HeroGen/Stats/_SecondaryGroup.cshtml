@@ -1,0 +1,27 @@
+﻿@using Pnprpg.DomainService.Enums
+@model Pnprpg.DomainService.Models.HeroModel
+@{
+    // ReSharper disable Mvc.PartialViewNotResolved
+
+    var list = new[]
+    {
+        new SecondaryDetails(GetColor(AbilityType.Endurance), "Здоровье", Model.MaxHp()),
+        new SecondaryDetails(GetColor(AbilityType.Intelligence), "Запас маны", Model.MaxMp()),
+        new SecondaryDetails(GetColor(AbilityType.Endurance), "Запас сил", Model.MaxAp()),
+        new SecondaryDetails(GetColor(AbilityType.Intelligence), "Восприятие", Model.Perception()),
+        new SecondaryDetails(GetColor(AbilityType.Strength), "Вместимость", Model.MaxCarry()),
+        new SecondaryDetails(GetColor(AbilityType.Strength), "Урон", Model.BaseDmg()),
+        new SecondaryDetails(GetColor(AbilityType.Endurance), "Защита", Model.BaseArmor()),
+        new SecondaryDetails("828", "Харизма", Model.Charisma),
+    };
+
+    foreach (var details in list)
+    {
+        await Html.RenderPartialAsync("Stats/SecondaryDetails", details);
+    }
+
+    string GetColor(AbilityType ability)
+    {
+        return Model.Abilities.Get((int)ability).Color;
+    }
+}

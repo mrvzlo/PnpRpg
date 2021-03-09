@@ -1,0 +1,13 @@
+﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.WebCore.Helpers
+@{
+    var major = Url.ActionContext.HttpContext.GetMajor();
+}
+@if (User.IsInRole("Admin"))
+{
+    await Html.RenderPartialAsync("Navigation/_AdminHeader");
+}
+@if ((User.IsInRole("Admin") || User.IsInRole("Editor")) && major != MajorType.Common)
+{
+    await Html.RenderPartialAsync("Navigation/_EditorHeader");
+}

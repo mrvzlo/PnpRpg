@@ -1,0 +1,59 @@
+﻿@page
+@using Pnprpg.DomainService.Enums
+@using Pnprpg.WebCore.Helpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Способности";
+    var branches = Model.Perks.Select(x => x.Branch).GroupBy(x => x.Id).Select(x => x.FirstOrDefault()).ToList();
+}
+@if (AccessHelper.UserInRole(User, UserRole.Editor))
+{
+    <div class="col-12">
+        <a class="btn btn-warning float-right" href="@Url.CustomPage(SitePages.MajorEditorPerksIndex)">Редактировать</a>
+    </div>
+}
+<div class="nav nav-tabs col-12 my-sm-2 px-2 px-sm-3 justify-content-center">
+    @foreach (var branch in branches)
+    {
+        <a class="btn btn-primary m-1 mw-160 text-dark col-md-3" data-toggle="tab" href="#group_@branch.Id" 
+           style="background-color: #@branch.Color">
+            @branch.Name
+        </a>
+    }
+</div>
+<div class="tab-content text-left">
+    @foreach (var branch in branches)
+    {
+        <div class="tab-pane fade col-lg-10 mx-auto" id="group_@branch.Id">
+            <div class="row">
+                @foreach (var perk in Model.Perks.Where(x => x.Branch.Id == branch.Id).OrderBy(x => x.Level))
+                {
+                    <div class="card rounded-0 col-lg-6">
+                        <div class="card-header rounded-0">
+                            <div class="badge bg-dark big-badge">@perk.Level</div>
+                            @perk.Name
+                            @if (User.IsInRole(UserRole.Editor.ToString()) || User.IsInRole(UserRole.Admin.ToString()))
+                            {
+                                <div class="float-right">
+                                    <a href="@Url.CustomPage(SitePages.MajorEditorPerksEdit, new{perk.Id})" class="link-info">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                        <div class="card-body px-2">
+                            @if (perk.Max > 1)
+                            {
+                                @:Количество улучшений:
+                                <div class="badge bg-warning big-badge">@perk.Max</div>
+                                <br />
+                            }
+                            @perk.Description
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+<div class="col-md-3 col-sm-1 col-12 order-first order-sm-2"></div>

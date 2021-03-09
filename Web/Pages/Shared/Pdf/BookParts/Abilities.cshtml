@@ -1,4 +1,5 @@
-﻿@model List<Pnprpg.DomainService.Models.AbilityDescriptionModel>
+﻿@using Pnprpg.DomainService.Helpers
+@model List<Pnprpg.DomainService.Models.AbilityDescriptionModel>
 
 <h5>Атрибуты</h5>
 
@@ -16,7 +17,7 @@
     @foreach (var stat in Model)
     {
         <tr>
-            <td>@stat.Symbol - @stat.Name</td>
+            <td>@stat.Symbol.Description() - @stat.Name</td>
             <td>@stat.Description</td>
             <td>@stat.Influence</td>
         </tr>

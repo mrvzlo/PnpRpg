@@ -1,0 +1,11 @@
+﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.DomainService.Helpers
+@model List<Pnprpg.DomainService.Models.MajorFullModel>
+<nav class="navbar navbar-dark">
+    <div class="navbar-nav mx-auto flex-row">
+        @foreach (var major in Model)
+        {
+            <a class="nav-link p-2" href="/@(((MajorType)major.Id).Description())">@major.Name</a>
+        }
+    </div>
+</nav>

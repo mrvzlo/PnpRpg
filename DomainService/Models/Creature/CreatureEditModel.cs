@@ -1,17 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class CreatureEditModel : IBaseEditModel
+    public class CreatureEditModel : BaseSettingPartEditModel
     {
-        public int Id { get; set; }
-        [Required]
+        [Required, DisplayName("Название")]
         public string Name { get; set; }
-        [Required]
+        [Required, DisplayName("Уровень")]
         public int Level { get; set; }
-        [Required]
+        [Required, DisplayName("Группа")]
         public string Group { get; set; }
-        [Required]
+        [Required, DisplayName("Описание")]
         public string Description { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿@using Pnprpg.DomainService.Helpers
+﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.DomainService.Helpers
 @model List<Pnprpg.DomainService.Models.SkillViewModel>
 <h5>Навыки</h5>
 <p>
@@ -18,7 +19,7 @@
         {
             <tr>
                 <td>@skill.Name</td>
-                <td>@AbilityInfo(skill.Ability.Symbol, skill.Difficulty)</td>
+                <td>@AbilityInfo(skill.Ability.Type, skill.Difficulty)</td>
                 <td>@skill.BranchName</td>
                 <td>@skill.Type.Description()</td>
             </tr>
@@ -27,8 +28,8 @@
 </div>
 <div class="break"></div>
 @{
-    string AbilityInfo(string symbol, int difficulty)
+    string AbilityInfo(AbilityType symbol, int difficulty)
     {
-        return difficulty == 0 ? $"{symbol}" : $"{symbol}-{difficulty}";
+        return $"{symbol.Description()}{(difficulty == 0 ? "" : "-")}{difficulty}";
     }
 }

@@ -1,0 +1,12 @@
+﻿@using Pnprpg.WebCore.Helpers
+<li class="nav-item active mx-2 dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+        Админ
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right">
+        <a class="nav-link" href="@Url.CustomPage(SitePages.AdminUsersEdit)">Настройка ролей</a>
+        <a class="nav-link" href="@Url.CustomPage(SitePages.AdminDeleteBook)">Обновить книгу</a>
+        <a class="nav-link" href="@Url.CustomPage(SitePages.AdminNewsEdit)">Добавить новость</a>
+    </div>
+</li>

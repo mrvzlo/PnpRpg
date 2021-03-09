@@ -1,0 +1,24 @@
+﻿@using Pnprpg.DomainService.Enums
+@using Pnprpg.WebCore.Helpers
+@{
+    var major = Url.ActionContext.HttpContext.GetMajor();
+}
+<li class="nav-item active mx-2 dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+        Редактор
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right">
+        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorRacesIndex)">Расы</a>
+        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorBranchesIndex)">Классы</a>
+        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorBonusesIndex)">Бонусы</a>
+        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorSkillsIndex)">Навыки</a>
+        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorPerksIndex)">Способности</a>
+        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorWeaponsIndex)">Оружие</a>
+        @if (major == MajorType.Fantasy)
+        {
+            <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorSpellsIndex)">Заклинания</a>
+        }
+        <a class="nav-link" href="@Url.CustomPage(SitePages.MajorEditorCreaturesIndex)">Бестиарий</a>
+    </div>
+</li>

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
@@ -18,15 +17,15 @@ namespace Pnprpg.Domain.Services
             _skillRepository = skillRepository;
         }
         
-        public IQueryable<SkillViewModel> GetAll(int? filter = null)
+        public IQueryable<SkillViewModel> GetAll(MajorType major, int? filter = null)
         {
-            var query = _skillRepository.Select().ProjectTo<SkillViewModel>(MapperConfig);
+            var query = _skillRepository.Select(major).ProjectTo<SkillViewModel>(MapperConfig);
             return filter == null ? query : query.Where(x => (int) x.Type == filter);
         }
 
-        public IQueryable<SkillViewModel> SelectSkills(SkillType? type, int ? branchId = null)
+        public IQueryable<SkillViewModel> SelectSkills(MajorType major, SkillType? type, int ? branchId = null)
         {
-            var skills = GetAll((int?)type);
+            var skills = GetAll(major, (int?)type);
             if (branchId != null)
                 skills = skills.Where(x => x.BranchId == branchId);
             return skills;
@@ -34,24 +33,15 @@ namespace Pnprpg.Domain.Services
 
         public HeroSkillGroup GetHeroSkillGroup(HeroModel hero)
         {
-            var skills = GetAll().ToList();
+            var skills = GetAll(hero.Major).ToList();
             var skillGroup = new HeroSkillGroup(hero) {List = skills};
-            if (hero == null) 
-                return skillGroup;
-
             foreach (var skill in skillGroup.List)
                 skill.Level = hero.Skills.List.SingleOrDefault(x => x.Id == skill.Id)
                     ?.Level ?? 0;
 
             return skillGroup;
         }
-
-        private SkillViewModel GetSkillById(int id)
-        {
-            var skill = _skillRepository.Get(id).First();
-            return Mapper.Map<SkillViewModel>(skill);
-        }
-
+        
         public SkillEditModel GetForEdit(int? id)
         {
             if (id == null)
@@ -60,24 +50,8 @@ namespace Pnprpg.Domain.Services
             return model ?? new SkillEditModel();
         }
 
-        public int Save(SkillEditModel model)
-        {
-            var skill = new Skill
-            {
-                Id = model.Id,
-                Difficulty = model.Difficulty,
-                AbilityId = model.AbilityId,
-                BranchId = model.BranchId,
-                Type = model.Type,
-                Name = model.Name
-            };
+        public int Save(SkillEditModel model) => MappingSave(_skillRepository, model);
 
-            return _skillRepository.InsertOrUpdate(skill);
-        }
-
-        public void Delete(int id)
-        {
-            _skillRepository.Delete(id);
-        }
+        public void Delete(int id) => _skillRepository.Delete(id);
     }
 }

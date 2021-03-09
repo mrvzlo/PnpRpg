@@ -86,8 +86,8 @@
     <Compile Include="Profiles\SelectableProfile.cs" />
     <Compile Include="Profiles\WeaponProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Services\AlchemyService.cs" />
+    <Compile Include="Services\UserAccess\AccountService.cs" />
+    <Compile Include="Services\DataAccess\AlchemyService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\MajorService.cs" />
     <Compile Include="Services\NewsService.cs" />

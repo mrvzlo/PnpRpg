@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Pnprpg.DomainService.Entities;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -19,14 +19,14 @@ namespace Pnprpg.Domain.Services
             _perkRepository = perkRepository;
         }
 
-        public IQueryable<PerkViewModel> GetAll(int? filter = null)
+        public IQueryable<PerkViewModel> GetAll(MajorType major, int? filter = null)
         {
-            var query = _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig);
+            var query = _perkRepository.Select(major).ProjectTo<PerkViewModel>(MapperConfig);
             return filter is null ? query : query.Where(x => x.BranchId == filter);
         }
-        public IQueryable<PerkViewModel> GetAllSimplified()
+        public IQueryable<PerkViewModel> GetAllSimplified(MajorType major)
         {
-            return _perkRepository.Select().ProjectTo<PerkViewModel>(MapperConfig).AsEnumerable().SelectMany(GetPerkRanks).AsQueryable();
+            return _perkRepository.Select(major).ProjectTo<PerkViewModel>(MapperConfig).AsEnumerable().SelectMany(GetPerkRanks).AsQueryable();
         }
 
         public PerkEditModel GetForEdit(int? id)
@@ -37,25 +37,9 @@ namespace Pnprpg.Domain.Services
             return model ?? new PerkEditModel();
         }
 
-        public int Save(PerkEditModel model)
-        {
-            var perk = new Perk
-            {
-                Id = model.Id,
-                Description = model.Description,
-                Name = model.Name,
-                BranchId = model.BranchId,
-                Level = model.Level,
-                Max = model.Max
-            };
+        public int Save(PerkEditModel model) => MappingSave(_perkRepository, model);
 
-            return _perkRepository.InsertOrUpdate(perk);
-        }
-
-        public void Delete(int id)
-        {
-            _perkRepository.Delete(id);
-        }
+        public void Delete(int id) => _perkRepository.Delete(id);
 
         public List<PerkViewModel> GetPerkRanks(PerkViewModel perk)
         {

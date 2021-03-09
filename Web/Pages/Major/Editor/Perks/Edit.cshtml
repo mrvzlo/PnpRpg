@@ -1,0 +1,22 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model EditModel
+@{
+    ViewData["Title"] = Model.Input.Id == 0 ? "Новая способность" : Model.Input.Name;
+    ViewData["UrlBack"] = Url.CustomPage(SitePages.MajorEditorPerksIndex);
+}
+
+<form class="col-md-6 col-12 mx-auto" method="post">
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.Input.Id)
+    @Html.AntiForgeryToken()
+    <div class="row">
+        @Html.EditorFor(x => x.Input.Name)
+        @Html.EditorFor(x => x.Input.Level, new { blockClass = "col-md-3" })
+        @Html.EditorFor(x => x.Input.Max, new { blockClass = "col-md-3" })
+        @Html.EditorFor(x => x.Input.BranchId, "Dropdown", new { list = Model.Branches, blockClass = "col-md-6" })
+        @Html.EditorFor(x => x.Input.Description, "Description")
+    </div>
+    <hr id="hr" />
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>

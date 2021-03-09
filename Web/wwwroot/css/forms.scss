@@ -51,8 +51,8 @@ a {
     min-width: 20px;
 }
 
-.fw-40{
-    width: 40px;
+.fw-2-chars {
+    width: 32px;
 }
 
 .mw-160{
@@ -84,4 +84,12 @@ form{
 
 .field-validation-error, .validation-summary-errors {
     color: $danger;
+}
+
+.trumbowyg-box{
+    margin: 0;
+}
+
+.trumbowyg-editor{
+    padding: .5rem;
 }

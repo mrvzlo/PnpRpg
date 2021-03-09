@@ -28,25 +28,13 @@ namespace Pnprpg.Domain.Services
 
         public void Delete(int id) => _bonusRepository.Delete(id);
 
-        public IQueryable<BonusViewModel> GetAll(int? filter = null)
+        public IQueryable<BonusViewModel> GetAll(MajorType major, int? filter = null)
         {
-            var query = _bonusRepository.Select().ProjectTo<BonusViewModel>(MapperConfig);
+            var query = _bonusRepository.Select(major).ProjectTo<BonusViewModel>(MapperConfig);
             return filter is null ? query : query.Where(x => (int)x.Type == filter);
         }
 
-        public int Save(BonusEditModel model)
-        {
-            var bonus = new Bonus
-            {
-                Id = model.Id,
-                Description = model.Description,
-                Type = model.Type,
-                Name = model.Name,
-                Icon = model.Icon
-            };
-
-            return _bonusRepository.InsertOrUpdate(bonus);
-        }
+        public int Save(BonusEditModel model) => MappingSave(_bonusRepository, model);
 
         public void BatchSave(IQueryable<BaseBonusJoin> list, int parentId, BonusType parentType)
         {

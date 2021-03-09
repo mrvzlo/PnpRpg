@@ -1,0 +1,16 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Редактор бестиария";
+}
+
+<div class="col-12 mb-3">
+    <a class="btn btn-success" href="@Url.CustomPage(SitePages.MajorEditorCreaturesEdit)">Добавить новый</a>
+</div>
+
+<div class="mvc-grid" data-source-url="@Url.CustomPage(SitePages.MajorEditorCreaturesIndex, "Grid")"></div>
+
+<form method="post" id="deleteForm" action="@Url.CustomPage(SitePages.MajorEditorCreaturesIndex, "Delete")" asp-antiforgery="true">
+    @Html.Hidden("ModelId")
+</form>

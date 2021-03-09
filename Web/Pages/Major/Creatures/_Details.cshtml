@@ -1,0 +1,12 @@
+﻿@model Pnprpg.DomainService.Models.CreatureViewModel
+
+<div class="card smallForSmall">
+    <div class="card-header row m-0 justify-content-between px-4 py-3 h4">
+        <div class="col-md-5 col-8 text-left">@Model.Name</div>
+        <div class="col-md-2 col-4 text-md-center text-right text-danger">@Model.Level</div>
+        <div class="col-md-5 col-12 text-md-right text-left">@Model.Group</div>
+    </div>
+    <div class="card-body text-left px-3">
+        @Model.Description
+    </div>
+</div>

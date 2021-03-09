@@ -1,0 +1,26 @@
+@using Microsoft.AspNetCore.Html
+@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@model IQueryable<Pnprpg.DomainService.Models.SpellViewModel>
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x.Effect).RenderedAs(x => Html.Raw(x.Damage > 0 ? string.Format(x.Effect, x.Damage) : x.Effect)).Titled("Эффект").Css("w-50");
+    columns.Add(x => x.Level).Titled("Ур. школы").Css("no-wrap");
+    columns.Add(x => x.Cost).Titled("Цена");
+    columns.Add(x => x).RenderedAs(Actions).Css("no-wrap");
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 12;
+}).Css("table table-responsive"))
+
+@{
+    IHtmlContent Actions(SpellViewModel x) => PartialHelper.Body(
+    @<text>
+        <a href="@Url.CustomPage(SitePages.MajorEditorSpellsEdit, new{x.Id})" class="btn btn-info fas fa-pen"></a>
+        <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+                data-value="@x.Id" data-text="Заклинание @x.Name будет удалено"></button>
+    </text>
+    );
+}

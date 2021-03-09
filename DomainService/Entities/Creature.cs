@@ -1,6 +1,6 @@
 ﻿namespace Pnprpg.DomainService.Entities
 {
-    public class Creature : BaseEntity
+    public class Creature : BaseSettingPart
     {
         public string Name { get; set; }
         public int Level { get; set; }

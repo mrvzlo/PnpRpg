@@ -1,0 +1,14 @@
+﻿@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@{
+    var blockClass = ViewData["blockClass"];
+    var fieldClass = ViewData["fieldClass"];
+    var list = (List<Selectable>)ViewData["list"];
+}
+<div class="@blockClass col-12">
+    <div class="text-left p-1">
+        @Html.DisplayNameFor(x => x)
+    </div>          
+    @Html.DropDownListFor(x => x, SelectableHelper.GetSelectList(list), new { @class = $"form-select {fieldClass}" })
+    @Html.ValidationMessageFor(x => x)
+</div>

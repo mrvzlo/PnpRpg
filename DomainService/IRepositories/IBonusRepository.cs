@@ -4,7 +4,7 @@ using Pnprpg.DomainService.Enums;
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IBonusRepository : IBaseRepository<Bonus>
+    public interface IBonusRepository : IBaseSettingPartRepository<Bonus>
     {
         void ClearBonuses(int parentId, BonusType type);
         void BatchInsertBonuses(IQueryable<BaseBonusJoin> bonuses);

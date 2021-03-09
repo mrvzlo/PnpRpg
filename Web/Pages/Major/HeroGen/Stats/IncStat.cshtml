@@ -1,0 +1,16 @@
+﻿@model IncStatModel
+@{
+    var canChange = Model.Ability.FitsLimits(Model.Value) && Model.Remaining - Model.Value >= 0;
+
+    var onlyLgClass = Model.OnlyLg ? "d-lg-block d-none" : "";
+
+    string GetColor(bool can) => can ? "btn-success" : "btn-secondary";
+}
+<button type="button" class="btn @GetColor(canChange) @onlyLgClass add-params" @(canChange ? "" : "disabled") 
+        form="abilityIncForm" data-target="@($"#params_{Model.Ability.Type}_{Model.Value}")">
+    @(Model.Value > 0 ? $"+{Model.Value}" : $"{Model.Value}")
+</button>
+<div id="@($"params_{Model.Ability.Type}_{Model.Value}")">
+    <input type="hidden" value="@Model.Value" name="value" />
+    <input type="hidden" value="@Model.Ability.Type" name="abilityType" />
+</div>

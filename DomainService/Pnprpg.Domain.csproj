@@ -93,7 +93,9 @@
     <Compile Include="Helpers\Int32Extension.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="IRepositories\IAbilityRepository.cs" />
+    <Compile Include="IRepositories\IRaceAbilityRepository.cs" />
     <Compile Include="IRepositories\IAlchemySymbolRepository.cs" />
+    <Compile Include="IRepositories\IBaseSettingPartRepository.cs" />
     <Compile Include="IRepositories\IBaseRepository.cs" />
     <Compile Include="IRepositories\IBonusRepository.cs" />
     <Compile Include="IRepositories\IDonationRepository.cs" />
@@ -120,7 +122,6 @@
     <Compile Include="IServices\IMajorService.cs" />
     <Compile Include="IServices\INewsService.cs" />
     <Compile Include="IServices\ICoreLogic.cs" />
-    <Compile Include="IServices\Base\IViewService.cs" />
     <Compile Include="IServices\Base\IEditService.cs" />
     <Compile Include="IServices\IBranchService.cs" />
     <Compile Include="IServices\IDonationService.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Models\Abilities\AbilityModel.cs" />
     <Compile Include="Models\Abilities\AbilityModifier.cs" />
     <Compile Include="Models\Alchemy\ReactionModel.cs" />
+    <Compile Include="Models\Base\BaseSettingPartEditModel.cs" />
     <Compile Include="Models\Base\IBaseViewModel.cs" />
     <Compile Include="Models\Bonus\BonusEditModel.cs" />
     <Compile Include="Models\Branch\BranchEditModel.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Models\Donation\DonationViewModel.cs" />
     <Compile Include="Models\Magic\SpellEditModel.cs" />
     <Compile Include="Models\Major\MajorFullModel.cs" />
+    <Compile Include="Models\Major\MajorSettings.cs" />
     <Compile Include="Models\Major\MajorShortModel.cs" />
     <Compile Include="Models\News\NewsViewModel.cs" />
     <Compile Include="Models\News\NewsEditModel.cs" />
@@ -182,7 +185,6 @@
     <Compile Include="Entities\AlchemySymbol.cs" />
     <Compile Include="Entities\Trait.cs" />
     <Compile Include="Entities\Weapon.cs" />
-    <Compile Include="Enums\ChaosLevel.cs" />
     <Compile Include="Enums\EffectTarget.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Helpers\Constants.cs" />

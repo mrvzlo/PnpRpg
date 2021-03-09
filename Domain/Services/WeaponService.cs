@@ -20,9 +20,9 @@ namespace Pnprpg.Domain.Services
             _bonusService = bonusService;
         }
 
-        public IQueryable<WeaponViewModel> GetAll(int? filter = null)
+        public IQueryable<WeaponViewModel> GetAll(MajorType major, int? filter = null)
         {
-            var query = _weaponRepository.Select().ProjectTo<WeaponViewModel>(MapperConfig);
+            var query = _weaponRepository.Select(major).ProjectTo<WeaponViewModel>(MapperConfig);
             return filter is null ? query : query.Where(x => x.Skill.Id == filter);
         }
 
@@ -36,26 +36,16 @@ namespace Pnprpg.Domain.Services
 
         public int Save(WeaponEditModel model)
         {
-            var weapon = new Weapon
-            {
-                Id = model.Id,
-                Level = model.Level,
-                Name = model.Name,
-                SkillId = model.SkillId,
-                Weight = model.Weight
-            };
-
-            weapon.Id = _weaponRepository.InsertOrUpdate(weapon);
+            var id = MappingSave(_weaponRepository, model);
 
             var bonuses = model.Bonuses?.Select(x => new WeaponBonus
             {
-                WeaponId = weapon.Id,
+                WeaponId = id,
                 BonusId = x
             }).AsQueryable();
 
-            _bonusService.BatchSave(bonuses, weapon.Id, BonusType.Weapon);
-
-            return weapon.Id;
+            _bonusService.BatchSave(bonuses, id, BonusType.Weapon);
+            return id;
         }
 
         public void Delete(int id)

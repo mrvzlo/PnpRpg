@@ -12,5 +12,6 @@
         public const int MaxTraitCount = 2;
         public const int MaxSkillLevel = 5;
         public const int SecondBranchLevel = 5;
+        public const string Major = "major";
     }
 }

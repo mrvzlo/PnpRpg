@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IPerkRepository : IBaseRepository<Perk>
+    public interface IPerkRepository : IBaseSettingPartRepository<Perk>
     {
     }
 }

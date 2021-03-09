@@ -1,0 +1,48 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model AbilitiesModel
+@{
+    ViewData["Title"] = "Создание персонажа";
+    if (Model.IsPartial) { Layout = null; }
+    await Html.RenderPartialAsync(SitePages.Shared_Status, Model.Status);
+    await Html.RenderPartialAsync(SitePages.MajorHeroGen_Stage, (Model.CurrentStage, Model.Hero.MaxStage));
+    var remaining = Model.Hero.Abilities.FreePoints();
+}
+<div id="status" class="w-100"></div>
+
+@foreach (var ability in Model.Hero.Abilities.List)
+{
+    <div class="col-md-3 col-6">
+        <div class="row border">
+            @{ await Html.RenderPartialAsync("Stats/PrimaryDetails", ability);}
+            <div class="col-12 my-2">
+                <div class="btn-group">
+                    @{
+                        var modifiers = new[] {-3, -1, 1, 3};
+                        foreach (var mod in modifiers)
+                        {
+                            await Html.RenderPartialAsync("Stats/IncStat", new IncStatModel { Ability = ability, Remaining = remaining, Value = mod, 
+                                OnlyLg = Math.Abs(mod) > 1});
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@{ await Html.RenderPartialAsync("Stats/_SecondaryGroup", Model.Hero);}
+
+<div class="col-lg-4 col-md-6 col-12">
+    <form id="abilityIncForm" method="post" action="@Url.CustomPage(SitePages.MajorHeroGenAbilities)" asp-antiforgery="true"
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-complete="AjaxJs.end" data-ajax-update="#main">
+        @Html.Hidden("abilityType")
+        @Html.Hidden("value")
+    </form>
+    <form id="saveForm" method="post" action="@Url.CustomPage(SitePages.MajorHeroGenAbilities, "Save" )" asp-antiforgery="true"
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-complete="AjaxJs.end" data-ajax-update="#main"></form>
+    <div class="alert alert-info my-3 py-2">Cвободных очков: @remaining</div>
+    <button form="saveForm" class="btn @(remaining == 0 ? "btn-success" : "btn-secondary") mw-160" @(remaining == 0 ? "" : "disabled")>
+        Сохранить
+    </button>
+</div>

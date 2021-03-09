@@ -3,8 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Pnprpg.DomainService.Helpers;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.WebCore.Enums;
@@ -47,9 +46,9 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
 
         }
 
-        public async Task<FileResult> OnGet()
+        public async Task<FileResult> OnGet(MajorType major)
         {
-            Setup();
+            Setup(major);
             Converter.Margins = new PageMargins
             {
                 Top = 20,
@@ -59,16 +58,19 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
             return await LoadPdf(Converter, SitePages.SharedPdfBook, FileType.Book, this);
         }
 
-        private void Setup()
+        private void Setup(MajorType major)
         {
             var url = HttpContext.Request.GetDisplayUrl();
             IsLocal = url.Contains("localhost");
             RootPath = url.Remove(url.IndexOf("Shared"));
-            Abilities = _abilityService.GetAll<AbilityDescriptionModel>().ToList();
-            Races = _raceService.GetAll().ToList();
-            Branches = _branchService.GetAllWithPerks();
-            Traits = _traitService.GetAll().ToList();
-            Skills = _skillService.GetAll().ToList();
+            Abilities = _abilityService.GetAll<AbilityDescriptionModel>(major).ToList();
+            Races = _raceService.GetAll(major).ToList();
+            Branches = _branchService.GetAllWithPerks(major);
+            Traits = _traitService.GetAll(major).ToList();
+            Skills = _skillService.GetAll(major).ToList();
+            if (major != MajorType.Fantasy) 
+                return;
+
             MagicSchools = _magicService.GetAllSchools().ToList();
             Alchemy = _alchemyService.GetSummary();
         }

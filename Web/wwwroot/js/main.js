@@ -3,6 +3,7 @@
     var settings = {};
 
     function init(trumbowygIcons) {
+        $('#loading').hide();
         $.trumbowyg.svgPath = trumbowygIcons;
         updateScripts();
         $('.html-editor').trumbowyg();
@@ -14,13 +15,8 @@
         });
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
-        toggleLoading();
         initMvcGrids();
         updateColorPicker();
-    }
-
-    function toggleLoading() {
-        $('#loading').toggle();
     }
 
     function initMvcGrids() {
@@ -39,7 +35,6 @@
 
     return {
         init: init,
-        toggleLoading: toggleLoading,
         initMvcGrids: initMvcGrids,
         updateScripts: updateScripts,
         updateColorPicker: updateColorPicker

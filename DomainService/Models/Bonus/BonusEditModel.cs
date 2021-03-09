@@ -1,15 +1,18 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Web.Mvc;
 using Pnprpg.DomainService.Enums;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class BonusEditModel : IBaseEditModel
+    public class BonusEditModel : BaseSettingPartEditModel
     {
-        public int Id { get; set; }
+        [DisplayName("Название")]
         public string Name { get; set; }
-        public string Icon { get; set; }
         [AllowHtml]
+        [DisplayName("Описание")]
         public string Description { get; set; }
+        [DisplayName("Тип")]
         public BonusType Type { get; set; }
     }
 }

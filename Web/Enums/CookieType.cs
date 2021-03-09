@@ -2,6 +2,6 @@
 {
     public enum CookieType
     {
-        Hero
+        Hero, Major
     }
 }

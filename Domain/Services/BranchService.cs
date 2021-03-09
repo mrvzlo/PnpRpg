@@ -23,10 +23,10 @@ namespace Pnprpg.Domain.Services
             _perkService = perkService;
         }
 
-        public IQueryable<BranchViewModel> GetAll(int? filter = null) =>
-            _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig);
+        public IQueryable<BranchViewModel> GetAll(MajorType major) =>
+            _branchRepository.Select(major).ProjectTo<BranchViewModel>(MapperConfig);
 
-        public List<BranchViewModel> GetAllWithPerks()
+        public List<BranchViewModel> GetAllWithPerks(MajorType major)
         {
             var branches = _branchRepository.Select().ProjectTo<BranchViewModel>(MapperConfig).ToList();
             foreach (var branch in branches)
@@ -37,8 +37,7 @@ namespace Pnprpg.Domain.Services
 
         public BranchViewModel Get(int id)
         {
-            var race = _branchRepository.Get(id).ProjectTo<BranchViewModel>(MapperConfig).First();
-            return race;
+            return _branchRepository.Get(id).ProjectTo<BranchViewModel>(MapperConfig).FirstOrDefault();
         }
 
         public BranchEditModel GetForEdit(int? id)
@@ -57,16 +56,7 @@ namespace Pnprpg.Domain.Services
 
         public int Save(BranchEditModel model)
         {
-            var branch = new Branch
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Color = model.Color,
-                Description = model.Description,
-                ShortDescription = model.ShortDescription
-            };
-
-            branch.Id = _branchRepository.InsertOrUpdate(branch);
+            var id = MappingSave(_branchRepository, model);
 
             var bonuses = model.Bonuses?.Select(x => new BranchBonus
             {
@@ -74,9 +64,9 @@ namespace Pnprpg.Domain.Services
                 BonusId = x
             }).AsQueryable();
 
-            _bonusService.BatchSave(bonuses, branch.Id, BonusType.Branch);
+            _bonusService.BatchSave(bonuses, id, BonusType.Branch);
 
-            return branch.Id;
+            return id;
         }
 
         public ServiceResponse<HeroModel> Assign(HeroModel hero, int branchId, int pos)

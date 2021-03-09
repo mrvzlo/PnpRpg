@@ -5,7 +5,7 @@ namespace Pnprpg.Infrastructure.Repositories
 {
     public class MajorRepository : BaseRepository<Major>, IMajorRepository
     {
-        protected MajorRepository(AppDbContext context) : base(context)
+        public MajorRepository(AppDbContext context) : base(context)
         {
         }
     }

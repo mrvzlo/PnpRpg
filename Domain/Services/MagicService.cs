@@ -54,7 +54,6 @@ namespace Pnprpg.Domain.Services
                 MagicSchoolId = model.MagicSchoolId,
                 Level = model.Level,
                 Cost = model.Cost,
-                Damage = model.Damage,
                 Effect = model.Effect,
                 Name = model.Name
             };

@@ -1,0 +1,69 @@
+﻿@page
+@using Pnprpg.DomainService.Enums
+@using Pnprpg.DomainService.Helpers
+@using Pnprpg.WebCore.Helpers
+@model TraitsModel
+@{
+    ViewData["Title"] = "Создание персонажа";
+    if (Model.IsPartial) { Layout = null; }
+    await Html.RenderPartialAsync(SitePages.Shared_Status, Model.Status);
+    await Html.RenderPartialAsync(SitePages.MajorHeroGen_Stage, (Model.CurrentStage, Model.Hero.MaxStage));
+}
+<div class="h4 col-12">Выберите до @Constants.MaxTraitCount особенностей</div>
+<div id="status" class="w-100"></div>
+@foreach (var trait in Model.Traits.List)
+{
+    <div class="col-12 col-md-6 col-lg-4 p-0">
+        <div class="card m-1">
+            <div class="card-header font-weight-bold">
+                @trait.Name
+                @if (Model.Traits.IsAssignable(trait))
+                {
+                    <button class="btn link-success fas fa-plus-circle stretched-link p-0 align-top add-params" type="submit" 
+                            form="traitPickForm" data-target="#params_@trait.Id">
+                    </button>
+                    <div id="params_@trait.Id">
+                        <input name="id" value="@trait.Id" type="hidden" />
+                    </div>
+                }
+                else if (trait.IsAssigned())
+                {
+                    <div class="text-primary fas fa-check-circle"></div>
+                }
+            </div>
+            <div class="card-body">
+                @foreach (var effect in trait.Effects)
+                {
+                    var span = "<span class='badge alert-{0}'>{1}</span>";
+                    span = effect.Type switch
+                    {
+                        EffectType.Positive => string.Format(span, "success", $"+{effect.Value}"),
+                        EffectType.Negative => string.Format(span, "danger", effect.Value),
+                        _ => string.Format(span, "info", effect.Value)
+                    };
+                    <div>
+                        @Html.Raw(effect.ToString(span))
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+<div class="col-12">
+    <form method="post" action="@Url.CustomPage(SitePages.MajorHeroGenTraits)" id="traitPickForm" asp-antiforgery="true"
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-complete="AjaxJs.end" data-ajax-update="#main">
+        @Html.Hidden("id")
+    </form>
+    <form method="post" action="@Url.CustomPage(SitePages.MajorHeroGenTraits, "Reset")" id="resetForm" asp-antiforgery="true"
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-complete="AjaxJs.end" data-ajax-update="#main">
+    </form>
+    <form method="post" action="@Url.CustomPage(SitePages.MajorHeroGenTraits, "Save")" id="saveForm" asp-antiforgery="true"
+          data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-complete="AjaxJs.end" data-ajax-update="#main">
+    </form>
+    <button class="btn btn-success mw-260 m-1" type="submit" form="saveForm">
+        <i class="fas fa-check mr-2"></i>Сохранить
+    </button>
+    <button class="btn btn-info mw-260 m-1" type="submit" form="resetForm">
+        <i class="fas fa-sync-alt mr-2"></i>Перераспределить
+    </button>
+</div>

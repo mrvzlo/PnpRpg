@@ -1,0 +1,12 @@
+﻿@model string
+@{
+    var blockClass = ViewData["blockClass"];
+    var fieldClass = ViewData["fieldClass"];
+}
+<div class="text-left @blockClass col-12">
+    <div class="p-1">
+        @Html.DisplayNameFor(x => x)
+    </div>
+    @Html.TextAreaFor(x => x, new { @class = $"form-control {fieldClass}" })
+    @Html.ValidationMessageFor(x => x)
+</div>

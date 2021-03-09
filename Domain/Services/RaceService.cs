@@ -26,8 +26,8 @@ namespace Pnprpg.Domain.Services
             _abilityService = abilityService;
         }
 
-        public IQueryable<RaceViewModel> GetAll(int? filter = null) =>
-            _raceRepository.Select().ProjectTo<RaceViewModel>(MapperConfig);
+        public IQueryable<RaceViewModel> GetAll(MajorType major) =>
+            _raceRepository.Select(major).ProjectTo<RaceViewModel>(MapperConfig);
 
         public RaceEditModel GetForEdit(int? id)
         {
@@ -46,7 +46,8 @@ namespace Pnprpg.Domain.Services
 
             var oldRace = hero.Race != null ? GetRace(hero.Race.Id) : null;
 
-            if (!hero.ApplyModifiers(GetRaceChangeEffects(oldRace, newRace)))
+            var applied = hero.ApplyModifiers(GetRaceChangeEffects(oldRace, newRace));
+            if (!applied)
                 return response.AddError(GenerationError.AbilitiesError.Description());
 
             hero.Race = newRace;
@@ -67,7 +68,8 @@ namespace Pnprpg.Domain.Services
             {
                 Id = model.Id,
                 Name = model.Name,
-                Description = model.Description
+                Description = model.Description,
+                MajorId = (int)model.MajorId
             };
 
             race.Id = _raceRepository.InsertOrUpdate(race);

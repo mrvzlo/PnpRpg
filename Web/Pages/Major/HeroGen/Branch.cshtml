@@ -1,0 +1,80 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model BranchModel
+@{
+    ViewData["Title"] = "Создание персонажа";
+    if (Model.IsPartial) { Layout = null; }
+    await Html.RenderPartialAsync(SitePages.Shared_Status, Model.Status);
+    await Html.RenderPartialAsync(SitePages.MajorHeroGen_Stage, (Model.CurrentStage, Model.Hero.MaxStage));
+}
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle mw-160" type="button" data-toggle="dropdown">Выберите класс&nbsp;</button>
+    <div class="dropdown-menu dropdown-light">
+        @foreach (var branch in Model.Branches)
+        {
+            <a class="dropdown-item" data-toggle="collapse" href="#branchDesc_@branch.Id">
+                @branch.Name
+            </a>
+        }
+    </div>
+</div>
+
+<div class="accordion">
+    @foreach (var branch in Model.Branches)
+    {
+        <div class="collapse py-2" id="branchDesc_@branch.Id" data-parent=".accordion">
+            <h4>@branch.Name</h4>
+            <div class="text-left">
+                @Html.Raw(branch.Description)
+                @foreach (var bonus in branch.Bonuses)
+                {
+                    <div class="text-left">
+                        <b>@bonus.Name:</b>
+                        <div>@Html.Raw(bonus.Description)</div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <b>Способности</b>
+                    <table class="mx-auto">
+                        @foreach (var perk in branch.Perks.OrderBy(x => x.Level))
+                        {
+                            <tr class="text-left">
+                                <td>
+                                    <div class="btn-dark btn-sm circle py-0 px-2 mt-1 border-0 font-weight-bold font-monospace">@perk.Level</div>
+                                </td>
+                                <td class="px-2">@perk.Name</td>
+                                <td class="pt-1">
+                                    <a tabindex="0" class="link-info" data-trigger="focus"
+                                       data-placement="top" data-toggle="popover" role="button" data-content="@Html.Raw(perk.Description)">
+                                        <i class="fas fa-question-circle h5"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="col-md-6 col-12">
+                    <b>Навыки</b>
+                    <div>
+                        @foreach (var skill in branch.Skills)
+                        {<div style="color: #@skill.Ability.Color">@skill.Name</div>}
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-success my-2 mw-160 add-params" form="branchPickForm" data-target="#params_@branch.Id">
+                Выбрать
+            </button>
+            <div id="params_@branch.Id">
+                <input type="hidden" value="@branch.Id" name="id" />
+            </div>
+        </div>
+    }
+</div>
+
+<form id="branchPickForm" method="post" action="@Url.CustomPage(SitePages.MajorHeroGenBranch)" asp-antiforgery="true"
+      data-ajax="true" data-ajax-begin="AjaxJs.begin" data-ajax-complete="AjaxJs.end" data-ajax-update="#main">
+    @Html.Hidden("id")
+</form>

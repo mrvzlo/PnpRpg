@@ -13,19 +13,21 @@ namespace Pnprpg.Domain.Services
 {
     public class AbilityService : BaseService, IAbilityService
     {
+        private readonly IRaceAbilityRepository _raceAbilityRepository;
         private readonly IAbilityRepository _abilityRepository;
 
-        public AbilityService(IMapper mapper, IAbilityRepository abilityRepository) : base(mapper)
+        public AbilityService(IMapper mapper, IRaceAbilityRepository raceAbilityRepository, IAbilityRepository abilityRepository) : base(mapper)
         {
+            _raceAbilityRepository = raceAbilityRepository;
             _abilityRepository = abilityRepository;
         }
         
-        public IQueryable<T> GetAll<T>() => _abilityRepository.Select().ProjectTo<T>(MapperConfig);
+        public IQueryable<T> GetAll<T>(MajorType major) => _abilityRepository.Select(major).ProjectTo<T>(MapperConfig);
 
-        public ServiceResponse<HeroModel> UpgradeAbility(HeroModel hero, int ability, int value)
+        public ServiceResponse<HeroModel> UpgradeAbility(HeroModel hero, AbilityType abilityType, int value)
         {
             var response = new ServiceResponse<HeroModel>();
-            var success = hero.Abilities.Update(ability, value);
+            var success = hero.Abilities.Update(abilityType, value);
             if (!success)
                 response = response.AddError(GenerationError.AbilitiesError.Description());
             response.Object = hero;
@@ -34,16 +36,16 @@ namespace Pnprpg.Domain.Services
 
         public void BatchSave(IQueryable<RaceAbility> list, int parentId)
         {
-            _abilityRepository.ClearRaceAbilities(parentId);
+            _raceAbilityRepository.ClearRaceAbilities(parentId);
             if (list == null || !list.Any())
                 return;
 
-            _abilityRepository.InsertRaceAbilities(list);
+            _raceAbilityRepository.InsertRaceAbilities(list);
         }
 
         public void BatchClear(int parentId)
         {
-            _abilityRepository.ClearRaceAbilities(parentId);
+            _raceAbilityRepository.ClearRaceAbilities(parentId);
         }
     }
 }

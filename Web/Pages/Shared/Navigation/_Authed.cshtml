@@ -1,8 +1,0 @@
-﻿@if (User.IsInRole("Admin"))
-{
-    await Html.RenderPartialAsync("Navigation/_Admin");
-}
-@if (User.IsInRole("Admin") || User.IsInRole("Editor"))
-{
-    await Html.RenderPartialAsync("Navigation/_Editor");
-}

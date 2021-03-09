@@ -1,0 +1,8 @@
+﻿@page
+@using Pnprpg.WebCore.Helpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Бестиарий";
+}
+
+<div class="mvc-grid" data-source-url="@Url.CustomPage(SitePages.MajorCreaturesIndex, "Grid")"></div>

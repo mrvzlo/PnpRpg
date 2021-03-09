@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
+using Pnprpg.WebCore.Pages.Major;
 using Rocket.PdfGenerator;
 
 namespace Pnprpg.WebCore.Pages.Shared.Pdf
@@ -48,6 +49,6 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
             return generator.GeneratePdf(viewAsString);
         }
 
-        private string Path(FileType src) => $"wwwroot/{src}.pdf";
+        private string Path(FileType src) => $"wwwroot/pdf/{src}.pdf";
     }
 }

@@ -33,7 +33,7 @@
 {
     <div style="@Pos(1 + i * 11, 5, 10, 15)">
         <div class="text-center">
-            <div class="">@pageModel.Hero.Abilities.List[i].Name (@pageModel.Hero.Abilities.List[i].Symbol)</div>
+            <div class="">@pageModel.Hero.Abilities.List[i].Name (@pageModel.Hero.Abilities.List[i].Type)</div>
             <div class="circle">
                 @if (final)
                 {
@@ -107,7 +107,7 @@
                 level -= skill.Difficulty;
                 var lvlStr = level < 0 ? level.ToString() : level == 0 ? "" : $"+{level}";
             }
-            @($"({skill.Ability.Symbol}{lvlStr})")
+            @($"({skill.Ability.Type}{lvlStr})")
         </span>
         <br />
     }

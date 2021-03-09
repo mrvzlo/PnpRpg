@@ -2,6 +2,7 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
+using Pnprpg.DomainService.Enums;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
@@ -17,10 +18,9 @@ namespace Pnprpg.Domain.Services
             _creatureRepository = creatureRepository;
         }
 
-        public IQueryable<CreatureViewModel> GetAll(int? filter = null)
+        public IQueryable<CreatureViewModel> GetAll(MajorType major, int? filter = null)
         {
-            var query = _creatureRepository.Select().ProjectTo<CreatureViewModel>(MapperConfig);
-            return query;
+            return _creatureRepository.Select(major).ProjectTo<CreatureViewModel>(MapperConfig);
         }
         
         public CreatureEditModel GetForEdit(int? id)
@@ -31,23 +31,8 @@ namespace Pnprpg.Domain.Services
             return model ?? new CreatureEditModel();
         }
 
-        public int Save(CreatureEditModel model)
-        {
-            var entity = new Creature
-            {
-                Id = model.Id,
-                Description = model.Description,
-                Name = model.Name,
-                Group = model.Group,
-                Level = model.Level
-            };
+        public int Save(CreatureEditModel model) => MappingSave(_creatureRepository, model);
 
-            return _creatureRepository.InsertOrUpdate(entity);
-        }
-
-        public void Delete(int id)
-        {
-            _creatureRepository.Delete(id);
-        }
+        public void Delete(int id) => _creatureRepository.Delete(id);
     }
 }

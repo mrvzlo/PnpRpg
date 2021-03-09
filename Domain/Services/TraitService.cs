@@ -19,12 +19,12 @@ namespace Pnprpg.Domain.Services
             _traitRepository = traitRepository;
         }
 
-        public IQueryable<TraitModel> GetAll() =>
-            _traitRepository.Select().ProjectTo<TraitModel>(MapperConfig);
+        public IQueryable<TraitModel> GetAll(MajorType major) =>
+            _traitRepository.Select(major).ProjectTo<TraitModel>(MapperConfig);
 
         public TraitGroup GetForHero(HeroModel hero)
         {
-            var list = GetAll().ToList();
+            var list = GetAll(hero.Major).ToList();
             foreach (var trait in list.Where(trait => hero.Traits.List.Any(x => x.Id == trait.Id)))
                 trait.Level++;
             return new TraitGroup { List = list };

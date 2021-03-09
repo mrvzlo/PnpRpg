@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using Pnprpg.WebCore.Enums
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,22 +12,35 @@
     <meta property="og:image" content="/favicon.ico">
     <link rel="stylesheet" href="/css/main.min.css" />
 </head>
-<body class="d-flex flex-column min-vh-100">
-    @await Html.PartialAsync("Navigation/_Top")
+<body class="d-flex flex-column min-vh-100" style="--color: @Context.Items["Color"]">
+    @await Html.PartialAsync("Navigation/_CommonHeader")
     <div class="back d-xl-block d-none"></div>
     <div class="back d-xl-block d-none right"></div>
-    <div class="container p-default bg-white flex-1">
-        @if ((bool?) ViewData["HideTitle"] != true)
+    <div class="container p-default bg-white flex-grow-1 mb-5">
+        @if ((bool?)ViewData["HideTitle"] != true)
         {
-            <h3 class="text-center my-3">@ViewData["Title"]</h3>
+            <div class="my-3">
+                @if (!string.IsNullOrEmpty((string)ViewData["UrlBack"]))
+                {
+                    <div class="position-absolute ml-5">
+                        <a href="@ViewData["UrlBack"]" class="btn-info btn btn-sm">
+                            <i class="fas fa-arrow-alt-circle-left"></i>
+                        </a>
+                    </div>
+                }
+                <h3 class="text-center">
+                    @ViewData["Title"]
+                </h3>
+            </div>
         }
         <div id="main" class="row justify-content-center text-center pb-5 mx-0">
             @RenderBody()
         </div>
     </div>
     <div class="fixed-bottom">
-        <div id="loading">@await Html.PartialAsync("_Loading")</div>
+        @await Component.InvokeAsync("Footer")
     </div>
+    <div id="loading">@await Html.PartialAsync("_Loading")</div>
     @await Html.PartialAsync("_Scripts")
     @await RenderSectionAsync("scripts", false)
 </body>

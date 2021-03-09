@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface ICreatureRepository: IBaseRepository<Creature>
+    public interface ICreatureRepository: IBaseSettingPartRepository<Creature>
     {
     }
 }

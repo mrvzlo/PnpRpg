@@ -1,18 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Pnprpg.DomainService.Models
 {
     public class SpellEditModel : IBaseEditModel
     {
         public int Id { get; set; }
+        [DisplayName("Школа магии")]
         public int MagicSchoolId { get; set; }
+        [DisplayName("Уровень заклинания")]
         public int Level { get; set; }
-        public int Damage { get; set; }
-        [Required]
+        [Required, DisplayName("Название")]
         public string Name { get; set; }
-        [Required]
+        [Required, DisplayName("Цена")]
         public string Cost { get; set; }
-        [Required]
+        [Required, DisplayName("Эффект")]
         public string Effect { get; set; }
     }
 }

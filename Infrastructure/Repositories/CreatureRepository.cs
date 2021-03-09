@@ -3,7 +3,7 @@ using Pnprpg.DomainService.IRepositories;
 
 namespace Pnprpg.Infrastructure.Repositories
 {
-    public class CreatureRepository : BaseRepository<Creature>, ICreatureRepository
+    public class CreatureRepository : BaseSettingPartRepository<Creature>, ICreatureRepository
     {
         public CreatureRepository(AppDbContext dbContext) : base(dbContext) { }
     }

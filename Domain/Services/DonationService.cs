@@ -18,7 +18,7 @@ namespace Pnprpg.Domain.Services
             _donationRepository = donationRepository;
         }
 
-        public IQueryable<DonationViewModel> GetAll(int? filter = null) => 
+        public IQueryable<DonationViewModel> GetAll() => 
             _donationRepository.Select().ProjectTo<DonationViewModel>(MapperConfig);
 
         public IQueryable<DonationEditModel> GetEditModels() => _donationRepository.Select().ProjectTo<DonationEditModel>(MapperConfig);

@@ -1,10 +1,16 @@
-﻿namespace Pnprpg.DomainService.Enums
+﻿using System.ComponentModel;
+
+namespace Pnprpg.DomainService.Enums
 {
-    public enum AbilityKey
+    public enum AbilityType
     {
-        S = 1,
-        E = 2,
-        A = 3,
-        I = 4
+        [Description("S")]
+        Strength = 1,
+        [Description("E")]
+        Endurance = 2,
+        [Description("A")]
+        Agility = 3,
+        [Description("I")]
+        Intelligence = 4
     }
 }

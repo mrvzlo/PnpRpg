@@ -4,10 +4,11 @@ using Pnprpg.DomainService.Models;
 
 namespace Pnprpg.DomainService.IServices
 {
-    public interface ISkillService : IViewService<SkillViewModel>, IEditService<SkillEditModel>
+    public interface ISkillService : IEditService<SkillEditModel>
     {
-        IQueryable<SkillViewModel> SelectSkills(SkillType? type, int? branchId = null);
+        IQueryable<SkillViewModel> SelectSkills(MajorType major, SkillType? type, int? branchId = null);
         HeroSkillGroup GetHeroSkillGroup(HeroModel hero);
         int Save(SkillEditModel viewModel);
+        IQueryable<SkillViewModel> GetAll(MajorType major, int? filter = null);
     }
 }

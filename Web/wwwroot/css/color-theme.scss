@@ -1,0 +1,31 @@
+﻿body {
+    --color: #425;
+
+    .navbar-collapse, .dropdown-menu, nav {
+        background-color: var(--color);
+    }
+
+    .navbar-nav .dropdown-menu {
+        background-color: #fff;
+        border-color: var(--color);
+
+        &::before {
+            opacity: .85;
+            z-index: -1;
+            background-color: var(--color);
+            content: ' ';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    .dropdown-menu {
+        a:active, a:focus, a:hover {
+            background-color: var(--color);
+            color: #fff;
+        }
+    }
+}

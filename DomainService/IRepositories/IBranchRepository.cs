@@ -2,7 +2,7 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IBranchRepository : IBaseRepository<Branch>
+    public interface IBranchRepository : IBaseSettingPartRepository<Branch>
     {
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Pnprpg.Infrastructure;
 using Pnprpg.IoC;
+using Pnprpg.WebCore.Middleware;
 
 namespace Pnprpg.WebCore
 {
@@ -39,6 +41,7 @@ namespace Pnprpg.WebCore
                     o.AccessDeniedPath = new PathString(SitePages.ErrorsNotFound);
                 });
 
+            services.Configure<RouteOptions>(opt => opt.LowercaseUrls = true);
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }
@@ -59,12 +62,13 @@ namespace Pnprpg.WebCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseMiddleware<MajorsMiddleware>();
             app.UseRouting();
 
             app.UseAuthorization();
             app.UseAuthentication();
 
-            app.UseEndpoints(endpoints => endpoints.MapRazorPages());
+            app.UseEndpoints(endpoints => endpoints.MapRazorPages()); 
         }
 
         public void ConfigureContainer(IServiceContainer container)

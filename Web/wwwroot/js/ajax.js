@@ -19,6 +19,7 @@
         $('#' + field).val(btn.data('value'));
         if (confirm(btn.data('text')))
             $('#' + form).submit();
+        console.log($('#' + form));
     }
 
     function cloneBtn() {
@@ -57,7 +58,8 @@
     function addParams() {
         var caller = $(this);
         var form = $(`#${caller.attr('form')}`);
-        caller.children('input').each(function () {
+        var target = $(caller.data('target'));
+        target.children('input').each(function () {
             $(`#${this.name}`).val(this.value);
         });
         form.submit();

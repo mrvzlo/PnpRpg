@@ -1,19 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Pnprpg.DomainService.Enums;
 
 namespace Pnprpg.DomainService.Models
 {
-    public class PerkEditModel : IBaseEditModel
+    public class PerkEditModel : BaseSettingPartEditModel
     {
-        public int Id { get; set; }
-        [Required]
+        [Required, DisplayName("Уровень")]
         public int Level { get; set; }
-        [Required]
+        [Required, DisplayName("Название")]
         public string Name { get; set; }
-        [Required]
+        [Required, DisplayName("Описание")]
         public string Description { get; set; }
-        [Required]
+        [Required, DisplayName("Класс")]
         public int BranchId { get; set; }
-        [Required]
+        [Required, DisplayName("Ранги")]
         public int Max { get; set; }
 
         public PerkEditModel()

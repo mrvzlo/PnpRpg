@@ -8,6 +8,7 @@ namespace Pnprpg.DomainService.Models
     public class HeroModel
     {
         public int Level { get; set; }
+        public MajorType Major { get; set; }
         public string Name { get; set; }
         public string Player { get; set; }
         public HeroAbilityGroup Abilities { get; set; }
@@ -22,10 +23,11 @@ namespace Pnprpg.DomainService.Models
 
         public HeroModel() { }
 
-        public HeroModel(Company chaos)
+        public HeroModel(MajorType major)
         {
             Name = "";
             Level = 1;
+            Major = major;
             Charisma = 10;
             Abilities = new HeroAbilityGroup();
             Skills = new HeroSkillGroup(this);
@@ -33,20 +35,24 @@ namespace Pnprpg.DomainService.Models
             Branches = new BranchGroup();
         }
 
-        public int BaseArmor() => (GetAbilityLevel(AbilityKey.E) + 5) / 10;
-        public int BaseDmg() => (GetAbilityLevel(AbilityKey.S) + 5) / 10;
-        public int MaxHp() => GetAbilityLevel(AbilityKey.E) + Level / 2 + 3;
-        public int MaxMp() => Math.Max(GetAbilityLevel(AbilityKey.I) + Level - 4, 0);
-        public int MaxCarry() => GetAbilityLevel(AbilityKey.S) * GetAbilityLevel(AbilityKey.S) / 10;
-        public int MaxAp() => GetAbilityLevel(AbilityKey.E) / 2 + Level * 2;
-        public int Perception() => Math.Max(GetAbilityLevel(AbilityKey.I) + Level - 5, 0);
+        public int BaseArmor() => (GetAbilityLevel(AbilityType.Endurance) + 5) / 10;
+        public int BaseDmg() => (GetAbilityLevel(AbilityType.Strength) + 5) / 10;
+        public int MaxHp() => GetAbilityLevel(AbilityType.Endurance) + Level / 2 + 3;
+        public int MaxMp() => Math.Max(GetAbilityLevel(AbilityType.Intelligence) + Level - 4, 0);
+        public int MaxCarry() => GetAbilityLevel(AbilityType.Strength) * GetAbilityLevel(AbilityType.Strength) / 10;
+        public int MaxAp() => GetAbilityLevel(AbilityType.Endurance) / 2 + Level * 2;
+        public int Perception() => Math.Max(GetAbilityLevel(AbilityType.Intelligence) + Level - 5, 0);
 
-        private int GetAbilityLevel(AbilityKey id) => Abilities.Get((int)id).Level;
+        private int GetAbilityLevel(AbilityType id) => Abilities.Get((int)id).Level;
 
         public bool ApplyEffectList(List<TraitEffectDescModel> list, bool manual) => list.All(x => ApplyEffect(x, manual));
 
-        public bool ApplyModifiers(List<AbilityModifier> list) =>
-            list.All(x => Abilities.Update(x.Ability.Id, x.Modifier, false));
+        public bool ApplyModifiers(List<AbilityModifier> list)
+        {
+            var grouped = list.GroupBy(x => x.Ability.Type).Select(x => (x.Key, x.Sum(mod => mod.Modifier)));
+            var updates = grouped.Select(x => Abilities.Update(x.Key, x.Item2, false)).ToList();
+            return updates.All(success => success);
+        }
 
         public void SetStatus(HeroGenStage stage)
         {

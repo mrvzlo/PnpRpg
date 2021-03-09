@@ -10,8 +10,8 @@
 
         public Selectable(dynamic value, dynamic text)
         {
-            Text = text.ToString();
-            Value = value.ToString();
+            Text = text?.ToString();
+            Value = value?.ToString();
         }
     }
 }

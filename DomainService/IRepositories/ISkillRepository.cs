@@ -2,5 +2,5 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface ISkillRepository : IBaseRepository<Skill> { }
+    public interface ISkillRepository : IBaseSettingPartRepository<Skill> { }
 }

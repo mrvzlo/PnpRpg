@@ -10,6 +10,7 @@ namespace Pnprpg.Domain.Profiles
         {
             CreateMap<Major, MajorShortModel>();
             CreateMap<Major, MajorFullModel>();
+            CreateMap<Major, MajorSettings>();
         }
     }
 }

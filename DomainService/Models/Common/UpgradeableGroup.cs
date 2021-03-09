@@ -6,9 +6,9 @@ namespace Pnprpg.DomainService.Models
 {
     public class UpgradeableGroup<T> where T : Upgradeable
     {
-        public List<T> List;
+        public List<T> List { get; set; }
 
-        public int Limit;
+        public int Limit { get; set; }
 
         public UpgradeableGroup() => Reset();
 
@@ -29,12 +29,10 @@ namespace Pnprpg.DomainService.Models
         public bool Update(int id, int modifier = 1, bool manual = true)
         {
             var target = List.SingleOrDefault(x => x.Id == id);
-            if (target == null)
-                return false;
-            return Update(target, modifier, manual);
+            return target != null && Update(target, modifier, manual);
         }
 
-        public bool Update(T target, int modifier = 1, bool manual = true)
+        public bool Update(T target, int modifier = 1, bool manual = true, bool removeIfZero = true)
         {
             if (manual && !FitsLimit(target, modifier))
                 return false;
@@ -44,7 +42,7 @@ namespace Pnprpg.DomainService.Models
 
             target = List.Single(x => x.Id == target.Id);
             var result = target.Update(modifier, manual);
-            if (result && target.Level == 0)
+            if (removeIfZero && result && target.Level == 0)
                 List.Remove(target);
             
             return result;

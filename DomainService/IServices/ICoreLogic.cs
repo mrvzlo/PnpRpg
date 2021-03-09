@@ -8,11 +8,11 @@ namespace Pnprpg.DomainService.IServices
 {
     public interface ICoreLogic
     {
-        HeroModel CreateHero(Company chaos);
-        string EncodeHero(HeroModel hero, string version);
-        HeroModel DecodeHero(string data, string version);
+        HeroModel CreateHero(MajorType major);
+        string EncodeHero(HeroModel hero, MajorType major);
+        HeroModel DecodeHero(string data, MajorType major);
         HeroModel GetFullHeroInfo(HeroModel hero);
-        List<Selectable> ToSelectableList(IQueryable<object> list, string selected = null);
-        List<Selectable> ToSelectableList(IEnumerable<Enum> query, string selected = null);
+        List<Selectable> ToSelectableList(IQueryable<object> list, string selected = null, bool addDefault = false);
+        List<Selectable> ToSelectableList(IEnumerable<Enum> query, string selected = null, bool addDefault = false);
     }
 }

@@ -2,5 +2,5 @@
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IWeaponRepository : IBaseRepository<Weapon> { }
+    public interface IWeaponRepository : IBaseSettingPartRepository<Weapon> { }
 }

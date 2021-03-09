@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using Pnprpg.DomainService.Entities;
+﻿using Pnprpg.DomainService.Entities;
 
 namespace Pnprpg.DomainService.IRepositories
 {
-    public interface IAbilityRepository : IBaseRepository<Ability>
+    public interface IAbilityRepository : IBaseSettingPartRepository<Ability>
     {
-        void ClearRaceAbilities(int parentId);
-        void InsertRaceAbilities(IQueryable<RaceAbility> abilities);
     }
 }
