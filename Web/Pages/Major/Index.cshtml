@@ -13,7 +13,7 @@
     await Html.RenderPartialAsync("Home/Card",
         new CardModel { Icon = "mask", Url = Url.CustomPage(SitePages.MajorHeroGenIndex), Name = "Создать персонажа" });
     await Html.RenderPartialAsync("Home/Card",
-        new CardModel { Icon = "book", Url = Url.CustomPage(SitePages.MajorPdfBook), Name = "Книга игрока", Blank = true });
+        new CardModel { Icon = "book", Url = Url.CustomPage(SitePages.SharedMajorBook), Name = "Книга игрока", Blank = true });
     await Html.RenderPartialAsync("Home/Card",
         new CardModel { Icon = "id-card", Url = Url.CustomPage(SitePages.MajorSheetsIndex), Name = "Листы персонажа" });
 }

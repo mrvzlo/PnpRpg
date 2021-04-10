@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -22,9 +23,9 @@ namespace Pnprpg.WebCore.Helpers
         private readonly IRazorViewEngine _viewEngine;
         private readonly ITempDataProvider _tempDataProvider;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IRazorPageActivator _activator;
+        private readonly IRazorPageActivator _activator; 
 
-        public PageRenderer(IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider, IRazorPageActivator activator)
+        public PageRenderer(IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider, IRazorPageActivator activator, IHostingEnvironment hostingEnvironment)
         {
             _viewEngine = viewEngine;
             _tempDataProvider = tempDataProvider;

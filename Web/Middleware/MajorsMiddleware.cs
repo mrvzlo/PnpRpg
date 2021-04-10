@@ -33,7 +33,7 @@ namespace Pnprpg.WebCore.Middleware
         private void AddMajorPrefix(HttpContext context)
         {
             var major = GetMajorFromUrl(context.Request.Path);
-            if (major == MajorType.Common) 
+            if (major == MajorType.Common)
                 return;
 
             context.Request.Path = context.Request.Path.Value.ToLower().Replace(major.Description(), Constants.Major);
@@ -44,8 +44,11 @@ namespace Pnprpg.WebCore.Middleware
 
         private MajorType GetMajorFromUrl(string src)
         {
-            var firstArea = src.Trim('/').Split('/').First();
-            return string.IsNullOrEmpty(firstArea) ? MajorType.Common : GetMajorFromDesc(firstArea);
+            var path = src.Trim('/').Split('/');
+            var major = path.First().Equals("shared", StringComparison.OrdinalIgnoreCase)
+                ? path.Skip(1).FirstOrDefault()
+                : path.First();
+            return string.IsNullOrEmpty(major) ? MajorType.Common : GetMajorFromDesc(major);
         }
 
         private MajorType GetMajorFromDesc(string src)

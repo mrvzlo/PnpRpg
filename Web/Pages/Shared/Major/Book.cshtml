@@ -1,0 +1,24 @@
+﻿@page
+@model BookModel
+@{
+    Layout = "_LayoutIntro";
+    var pageModel = (BookModel)ViewBag.Model;
+}
+<link rel="stylesheet" href="@pageModel.RootPath/css/book.css" />
+<style>
+    @if (pageModel.IsLocal)
+    {
+        @:body {font-family: 'Roboto Slab', serif;} .h, h1, h2, h3, h4, h5, h6 {font-family: 'Balsamiq Sans';}
+    }
+</style>
+@{
+    await Html.RenderPartialAsync("Major/BookParts/TitlePages");
+    await Html.RenderPartialAsync("Major/BookParts/RacePages", pageModel.Races);
+    await Html.RenderPartialAsync("Major/BookParts/BranchPages", pageModel.Branches);
+    await Html.RenderPartialAsync("Major/BookParts/Abilities", pageModel.Abilities);
+    await Html.RenderPartialAsync("Major/BookParts/Traits", pageModel.Traits);
+    await Html.RenderPartialAsync("Major/BookParts/Skills", pageModel.Skills);
+    await Html.RenderPartialAsync("Major/BookParts/MagicPages", pageModel.MagicSchools);
+    await Html.RenderPartialAsync("Major/BookParts/Alchemy", pageModel.Alchemy);
+    await Html.RenderPartialAsync("Major/BookParts/FightPages");
+}

@@ -5,9 +5,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
+using Pnprpg.WebCore.Pages.Major;
 using Rocket.PdfGenerator;
 
-namespace Pnprpg.WebCore.Pages.Major.Pdf
+namespace Pnprpg.WebCore.Pages.Shared.Major
 {
     public class PdfPage : MajorPage
     {
@@ -22,7 +23,7 @@ namespace Pnprpg.WebCore.Pages.Major.Pdf
 
         protected async Task<FileResult> LoadPdf(HtmlToPdfConverter generator, string pageName, FileType fileType, PageModel model, bool rewrite = false)
         {
-            //pageName = $"{pageName}";
+            pageName = pageName.Replace("/Shared/", "");
             await CheckPdf(generator, pageName, fileType, model, rewrite);
             var file = new FileStream(Path(fileType), FileMode.Open, FileAccess.Read);
             return File(file, "application/pdf");

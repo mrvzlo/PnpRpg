@@ -4,7 +4,7 @@ using Pnprpg.DomainService.IServices;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
 
-namespace Pnprpg.WebCore.Pages.Major.Pdf
+namespace Pnprpg.WebCore.Pages.Shared.Major
 {
     public class MagicSheetModel : PdfPage
     {
@@ -15,7 +15,7 @@ namespace Pnprpg.WebCore.Pages.Major.Pdf
         public async Task<FileResult> OnGet()
         {
             ViewData["Title"] = "Ëèñò çàêëèíàíèé";
-            return await LoadPdf(Converter, SitePages.MajorPdfMagicSheet, FileType.MagicSheet, this);
+            return await LoadPdf(Converter, SitePages.SharedMajorMagicSheet, FileType.MagicSheet, this);
         }
     }
 }

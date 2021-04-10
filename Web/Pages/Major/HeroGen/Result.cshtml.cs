@@ -24,7 +24,7 @@ namespace Pnprpg.WebCore.Pages.Major.HeroGen
             Hero.Name = name;
             SaveHeroToCookies(Hero);
             var result = CoreLogic.EncodeHero(Hero, major);
-            return CustomRedirect(SitePages.MajorPdfHeroSheet, new { cookie = true });
+            return CustomRedirect(SitePages.SharedMajorHeroSheet, new { cookie = true });
         }
     }
 }

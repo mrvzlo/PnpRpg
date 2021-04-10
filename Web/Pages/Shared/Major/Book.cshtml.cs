@@ -8,10 +8,9 @@ using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
-using Pnprpg.WebCore.Pages.Major.Pdf;
 using Rocket.PdfGenerator;
 
-namespace Pnprpg.WebCore.Pages.Shared.Pdf
+namespace Pnprpg.WebCore.Pages.Shared.Major
 {
     public class BookModel : PdfPage
     {
@@ -56,14 +55,14 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
                 Bottom = 20
             };
             Converter.PageFooterHtml = "<div style='text-align: center'><b class='page'></b></div>";
-            return await LoadPdf(Converter, SitePages.MajorPdfBook, FileType.Book, this);
+            return await LoadPdf(Converter, SitePages.SharedMajorBook, FileType.Book, this);
         }
 
         private void Setup(MajorType major)
         {
             var url = HttpContext.Request.GetDisplayUrl();
             IsLocal = url.Contains("localhost");
-            RootPath = url.Remove(url.IndexOf("Shared"));
+            RootPath = url.Remove(url.IndexOf("shared"));
             Abilities = _abilityService.GetAll<AbilityDescriptionModel>(major).ToList();
             Races = _raceService.GetAll(major).ToList();
             Branches = _branchService.GetAllWithPerks(major);

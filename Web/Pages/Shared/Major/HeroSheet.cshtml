@@ -1,6 +1,6 @@
 ﻿@page
 @using Pnprpg.DomainService.Enums
-@using Pnprpg.WebCore.Pages.Shared.Pdf
+@using Pnprpg.DomainService.Helpers
 @model HeroSheetModel
 @{
     Layout = "_LayoutIntro";
@@ -34,7 +34,7 @@
 {
     <div style="@Pos(1 + i * 11, 5, 10, 15)">
         <div class="text-center">
-            <div class="">@pageModel.Hero.Abilities.List[i].Name (@pageModel.Hero.Abilities.List[i].Type)</div>
+            <div class="">@pageModel.Hero.Abilities.List[i].Name (@pageModel.Hero.Abilities.List[i].Type.Description())</div>
             <div class="circle">
                 @if (final)
                 {
@@ -108,7 +108,7 @@
                 level -= skill.Difficulty;
                 var lvlStr = level < 0 ? level.ToString() : level == 0 ? "" : $"+{level}";
             }
-            @($"({skill.Ability.Type}{lvlStr})")
+            @($"({skill.Ability.Type.Description()}{lvlStr})")
         </span>
         <br />
     }
@@ -117,7 +117,7 @@
 <div class="text-center" style="@Pos(23, 39, 22, 54)">Способности</div>
 <div class="card" style="@Pos(23, 41, 22, 55)">
     @for (var i = 0; i < 14; i++)
-    {<br>}
+    {<div class="bg">&nbsp;</div>}
 </div>
 
 <div class="text-center" style="@Pos(46, 50, 44, 43)">Инвентарь</div>

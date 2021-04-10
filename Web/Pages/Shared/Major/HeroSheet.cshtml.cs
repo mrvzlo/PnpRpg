@@ -7,10 +7,9 @@ using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
-using Pnprpg.WebCore.Pages.Major.Pdf;
 using Rocket.PdfGenerator;
 
-namespace Pnprpg.WebCore.Pages.Shared.Pdf
+namespace Pnprpg.WebCore.Pages.Shared.Major
 {
     public class HeroSheetModel : PdfPage
     {
@@ -32,7 +31,7 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
         public async Task<FileResult> OnGet(MajorType major, bool getFromCookies = false)
         {
             var url = HttpContext.Request.GetDisplayUrl();
-            RootPath = url.Remove(url.IndexOf("Shared"));
+            RootPath = url.Remove(url.IndexOf("shared"));
             Converter.Orientation = PageOrientation.Landscape;
             if (getFromCookies)
             {
@@ -49,7 +48,7 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
             var fileType = getFromCookies ? FileType.FilledHeroSheet : FileType.BaseHeroSheet;
 
             Hero.Skills = _skillService.GetHeroSkillGroup(Hero);
-            return await LoadPdf(Converter, SitePages.MajorPdfHeroSheet, fileType, this, getFromCookies);
+            return await LoadPdf(Converter, SitePages.SharedMajorHeroSheet, fileType, this, getFromCookies);
         }
     }
 }
