@@ -11,5 +11,8 @@ namespace Pnprpg.DomainService.IServices
         ServiceResponse<HeroModel> UpgradeAbility(HeroModel hero, AbilityType abilityType, int value);
         void BatchSave(IQueryable<RaceAbility> list, int parentId);
         void BatchClear(int parentId);
+        void Delete(int id);
+        AbilityEditModel GetForEdit(int? id);
+        int Save(AbilityEditModel model);
     }
 }

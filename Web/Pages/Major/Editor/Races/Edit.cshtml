@@ -1,8 +1,10 @@
 ﻿@page
 @using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
 @model EditModel
 @{
     ViewData["Title"] = Model.Input.Id == 0 ? "Новая раса" : Model.Input.Name;
+    ViewData["UrlBack"] = Url.CustomPage(SitePages.MajorEditorRacesIndex);
 }
 
 <form class="col-12 col-lg-6 mx-auto" method="post">
@@ -11,7 +13,7 @@
     @Html.AntiForgeryToken()
     <div class="row">
         @Html.EditorFor(x => x.Input.Name)
-        @Html.EditorFor(x => x.Input.Description, "Description", new {fieldClass = "html-editor" })
+        @Html.EditorFor(x => x.Input.Description, "Description", new { fieldClass = "html-editor" })
     </div>
 
     <button type="button" class="btn btn-outline-primary clone-btn"

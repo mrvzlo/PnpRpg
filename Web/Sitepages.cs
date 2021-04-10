@@ -22,6 +22,9 @@
 		public static string MajorCreatures_Details => @"Major/Creatures/_Details";
 		public static string MajorCreatures_Grid => @"Major/Creatures/_Grid";
 		public static string MajorCreaturesIndex => @"/Major/Creatures/Index";
+		public static string MajorEditorAbilities_Grid => @"Major/Editor/Abilities/_Grid";
+		public static string MajorEditorAbilitiesEdit => @"/Major/Editor/Abilities/Edit";
+		public static string MajorEditorAbilitiesIndex => @"/Major/Editor/Abilities/Index";
 		public static string MajorEditorBonuses_Grid => @"Major/Editor/Bonuses/_Grid";
 		public static string MajorEditorBonusesEdit => @"/Major/Editor/Bonuses/Edit";
 		public static string MajorEditorBonusesIndex => @"/Major/Editor/Bonuses/Index";
@@ -63,6 +66,18 @@
 		public static string MajorIndex => @"/Major/Index";
 		public static string MajorMagic_Random => @"Major/Magic/_Random";
 		public static string MajorMagicIndex => @"/Major/Magic/Index";
+		public static string MajorPdfBook => @"/Major/Pdf/Book";
+		public static string MajorPdfBookPartsAbilities => @"/Major/Pdf/BookParts/Abilities";
+		public static string MajorPdfBookPartsAlchemy => @"/Major/Pdf/BookParts/Alchemy";
+		public static string MajorPdfBookPartsBranchPages => @"/Major/Pdf/BookParts/BranchPages";
+		public static string MajorPdfBookPartsFightPages => @"/Major/Pdf/BookParts/FightPages";
+		public static string MajorPdfBookPartsMagicPages => @"/Major/Pdf/BookParts/MagicPages";
+		public static string MajorPdfBookPartsRacePages => @"/Major/Pdf/BookParts/RacePages";
+		public static string MajorPdfBookPartsSkills => @"/Major/Pdf/BookParts/Skills";
+		public static string MajorPdfBookPartsTitlePages => @"/Major/Pdf/BookParts/TitlePages";
+		public static string MajorPdfBookPartsTraits => @"/Major/Pdf/BookParts/Traits";
+		public static string MajorPdfHeroSheet => @"/Major/Pdf/HeroSheet";
+		public static string MajorPdfMagicSheet => @"/Major/Pdf/MagicSheet";
 		public static string MajorPerksIndex => @"/Major/Perks/Index";
 		public static string MajorSheetsIndex => @"/Major/Sheets/Index";
 		public static string MajorWeaponryIndex => @"/Major/Weaponry/Index";
@@ -75,24 +90,17 @@
 		public static string Shared_Redirect => @"Shared/_Redirect";
 		public static string Shared_Scripts => @"Shared/_Scripts";
 		public static string Shared_Status => @"Shared/_Status";
+		public static string SharedEditorTemplatesDescription => @"/Shared/EditorTemplates/Description";
+		public static string SharedEditorTemplatesDropdown => @"/Shared/EditorTemplates/Dropdown";
+		public static string SharedEditorTemplatesInt32 => @"/Shared/EditorTemplates/Int32";
+		public static string SharedEditorTemplatesString => @"/Shared/EditorTemplates/String";
 		public static string SharedMvcGrid_Grid => @"Shared/MvcGrid/_Grid";
 		public static string SharedMvcGrid_Pager => @"Shared/MvcGrid/_Pager";
-		public static string SharedNavigation_Admin => @"Shared/Navigation/_Admin";
-		public static string SharedNavigation_Authed => @"Shared/Navigation/_Authed";
-		public static string SharedNavigation_Editor => @"Shared/Navigation/_Editor";
-		public static string SharedNavigation_Top => @"Shared/Navigation/_Top";
-		public static string SharedPdfBook => @"/Shared/Pdf/Book";
-		public static string SharedPdfBookPartsAbilities => @"/Shared/Pdf/BookParts/Abilities";
-		public static string SharedPdfBookPartsAlchemy => @"/Shared/Pdf/BookParts/Alchemy";
-		public static string SharedPdfBookPartsBranchPages => @"/Shared/Pdf/BookParts/BranchPages";
-		public static string SharedPdfBookPartsFightPages => @"/Shared/Pdf/BookParts/FightPages";
-		public static string SharedPdfBookPartsMagicPages => @"/Shared/Pdf/BookParts/MagicPages";
-		public static string SharedPdfBookPartsRacePages => @"/Shared/Pdf/BookParts/RacePages";
-		public static string SharedPdfBookPartsSkills => @"/Shared/Pdf/BookParts/Skills";
-		public static string SharedPdfBookPartsTitlePages => @"/Shared/Pdf/BookParts/TitlePages";
-		public static string SharedPdfBookPartsTraits => @"/Shared/Pdf/BookParts/Traits";
-		public static string SharedPdfHeroSheet => @"/Shared/Pdf/HeroSheet";
-		public static string SharedPdfMagicSheet => @"/Shared/Pdf/MagicSheet";
+		public static string SharedNavigation_AdminHeader => @"Shared/Navigation/_AdminHeader";
+		public static string SharedNavigation_AuthedHeader => @"Shared/Navigation/_AuthedHeader";
+		public static string SharedNavigation_CommonHeader => @"Shared/Navigation/_CommonHeader";
+		public static string SharedNavigation_EditorHeader => @"Shared/Navigation/_EditorHeader";
+		public static string SharedNavigation_MajorHeader => @"Shared/Navigation/_MajorHeader";
 
 	}
 }

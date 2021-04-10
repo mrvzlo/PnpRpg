@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Html
+@using NonFactors.Mvc.Grid
+@using Pnprpg.DomainService.Helpers
+@using Pnprpg.DomainService.Models
+@using Pnprpg.WebCore.Helpers
+@model IQueryable<AbilityDescriptionModel>
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(x => x.Name).Titled("Название");
+    columns.Add(x => x).RenderedAs(Type).Titled("Символ");
+    columns.Add(x => x.Description).Titled("Описание").Css("w-50");
+    columns.Add(x => x).RenderedAs(Actions).Css("no-wrap");
+}).Empty("No data found").Pageable(pager =>
+{
+    pager.RowsPerPage = 12;
+}).Css("table table-responsive"))
+@{
+    IHtmlContent Type(AbilityDescriptionModel x) => PartialHelper.Body(
+        @<div style="background-color: #@x.Color" class="p-2 rounded text-white">@x.Type.Description()</div>);
+
+    IHtmlContent Actions(AbilityDescriptionModel x) => PartialHelper.Body(
+        @<text>
+            <a href="@Url.CustomPage(SitePages.MajorEditorAbilitiesEdit, new{x.Id})" class="btn btn-info fas fa-pen"></a>
+            <button class="btn confirm-btn btn-danger fas fa-trash" data-form="deleteForm" data-field="ModelId"
+                    data-value="@x.Id" data-text="Атрибут @x.Name будет удалён"></button>
+         </text>);
+}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Pnprpg.DomainService.Entities;
 using Pnprpg.DomainService.IRepositories;
 using Pnprpg.DomainService.Models;
@@ -9,11 +10,11 @@ namespace Pnprpg.Domain.Services
 {
     public class BaseService
     {
-        protected IMapper Mapper;
+        protected readonly IMapper Mapper;
 
         protected IConfigurationProvider MapperConfig => Mapper.ConfigurationProvider;
 
-        public BaseService(IMapper mapper)
+        protected BaseService(IMapper mapper)
         {
             Mapper = mapper;
         }
@@ -21,8 +22,7 @@ namespace Pnprpg.Domain.Services
         protected int MappingSave<T>(IBaseRepository<T> repository, IBaseEditModel model)
             where T : BaseEntity
         {
-            var entity = repository.Get(model.Id).FirstOrDefault();
-            entity ??= (T)Activator.CreateInstance(typeof(T));
+            var entity = repository.Get(model.Id).FirstOrDefault() ?? GetDefault<T>();
 
             var modelType = model.GetType();
             var entityType = typeof(T);
@@ -38,5 +38,7 @@ namespace Pnprpg.Domain.Services
 
             return repository.InsertOrUpdate(entity);
         }
+
+        private T GetDefault<T>() => (T)Activator.CreateInstance(typeof(T));
     }
 }

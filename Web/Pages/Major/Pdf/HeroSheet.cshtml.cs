@@ -7,6 +7,7 @@ using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
+using Pnprpg.WebCore.Pages.Major.Pdf;
 using Rocket.PdfGenerator;
 
 namespace Pnprpg.WebCore.Pages.Shared.Pdf
@@ -48,7 +49,7 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
             var fileType = getFromCookies ? FileType.FilledHeroSheet : FileType.BaseHeroSheet;
 
             Hero.Skills = _skillService.GetHeroSkillGroup(Hero);
-            return await LoadPdf(Converter, SitePages.SharedPdfHeroSheet, fileType, this, getFromCookies);
+            return await LoadPdf(Converter, SitePages.MajorPdfHeroSheet, fileType, this, getFromCookies);
         }
     }
 }

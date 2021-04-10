@@ -30,6 +30,7 @@ namespace Pnprpg.Domain.Profiles
             CreateMap<Ability, AbilityModel>();
             CreateMap<Ability, AbilityDescriptionModel>();
             CreateMap<Ability, AbilityAssignModel>();
+            CreateMap<Ability, AbilityEditModel>();
 
             CreateMap<RaceAbility, AbilityAssignModel>()
                 .ForMember(dest => dest.Id, o => o.MapFrom(from => from.AbilityId));

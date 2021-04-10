@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,43 +22,43 @@ namespace Pnprpg.WebCore.Helpers
         private readonly IRazorViewEngine _viewEngine;
         private readonly ITempDataProvider _tempDataProvider;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IRazorPageActivator _activator;
 
-        public PageRenderer(IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
+        public PageRenderer(IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider, IRazorPageActivator activator)
         {
             _viewEngine = viewEngine;
             _tempDataProvider = tempDataProvider;
             _serviceProvider = serviceProvider;
+            _activator = activator;
         }
 
         public async Task<string> RenderPartialToStringAsync<TModel>(string partialName, TModel model)
         {
             var actionContext = GetActionContext();
-            var partial = FindView(actionContext, partialName);
+            var page = FindPage(actionContext, partialName);
             await using var output = new StringWriter();
-            var viewContext = new ViewContext(actionContext, partial,
-                new ViewDataDictionary<TModel>(new EmptyModelMetadataProvider(), new ModelStateDictionary())
-                {
-                    Model = model
-                },
-                new TempDataDictionary(actionContext.HttpContext, _tempDataProvider),
-                output, new HtmlHelperOptions()
-            ) {ViewData = {["Model"] = model}};
 
-            await partial.RenderAsync(viewContext);
+            var view = GetView(page);
+            var viewData = GetViewData(model);
+            var tempData = new TempDataDictionary(actionContext.HttpContext, _tempDataProvider);
+            var viewContext = new ViewContext(actionContext, view, viewData, tempData, output, new HtmlHelperOptions())
+            { ViewData = { ["Model"] = model } };
+
+            await view.RenderAsync(viewContext);
             return output.ToString();
         }
 
-        private IView FindView(ActionContext actionContext, string partialName)
+        private IRazorPage FindPage(ActionContext actionContext, string partialName)
         {
-            var getPartialResult = _viewEngine.GetView(null, partialName, false);
-            if (getPartialResult.Success)
+            var getPartialResult = _viewEngine.GetPage(null, partialName);
+            if (getPartialResult.Page != null)
             {
-                return getPartialResult.View;
+                return getPartialResult.Page;
             }
-            var findPartialResult = _viewEngine.FindView(actionContext, partialName, false);
-            if (findPartialResult.Success)
+            var findPartialResult = _viewEngine.FindPage(actionContext, partialName);
+            if (findPartialResult.Page != null)
             {
-                return findPartialResult.View;
+                return findPartialResult.Page;
             }
             var searchedLocations = getPartialResult.SearchedLocations.Concat(findPartialResult.SearchedLocations);
             var errorMessage = string.Join(
@@ -63,13 +66,25 @@ namespace Pnprpg.WebCore.Helpers
                 new[] { $"Unable to find partial '{partialName}'. The following locations were searched:" }.Concat(searchedLocations)); ;
             throw new InvalidOperationException(errorMessage);
         }
+
         private ActionContext GetActionContext()
         {
-            var httpContext = new DefaultHttpContext
-            {
-                RequestServices = _serviceProvider
-            };
+            var httpContext = new DefaultHttpContext { RequestServices = _serviceProvider };
             return new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
+        }
+
+        private RazorView GetView(IRazorPage page)
+        {
+            var startPages = new List<IRazorPage>();
+            var diagnostic = new DiagnosticListener(nameof(PageRenderer));
+            return new RazorView(_viewEngine, _activator, startPages, page, HtmlEncoder.Default, diagnostic);
+        }
+
+        private ViewDataDictionary GetViewData<TModel>(TModel model)
+        {
+            var provider = new EmptyModelMetadataProvider();
+            var state = new ModelStateDictionary();
+            return new ViewDataDictionary<TModel>(provider, state) { Model = model };
         }
     }
 }

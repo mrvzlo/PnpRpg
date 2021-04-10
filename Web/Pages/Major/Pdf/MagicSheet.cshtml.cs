@@ -1,10 +1,10 @@
-using System.Threading.Tasks;
+п»їusing System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Pnprpg.DomainService.IServices;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
 
-namespace Pnprpg.WebCore.Pages.Shared.Pdf
+namespace Pnprpg.WebCore.Pages.Major.Pdf
 {
     public class MagicSheetModel : PdfPage
     {
@@ -14,8 +14,8 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
 
         public async Task<FileResult> OnGet()
         {
-            ViewData["Title"] = "Лист заклинаний";
-            return await LoadPdf(Converter, SitePages.SharedPdfMagicSheet, FileType.MagicSheet, this);
+            ViewData["Title"] = "Г‹ГЁГ±ГІ Г§Г ГЄГ«ГЁГ­Г Г­ГЁГ©";
+            return await LoadPdf(Converter, SitePages.MajorPdfMagicSheet, FileType.MagicSheet, this);
         }
     }
 }

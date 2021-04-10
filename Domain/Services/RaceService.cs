@@ -64,22 +64,14 @@ namespace Pnprpg.Domain.Services
 
         public int Save(RaceEditModel model)
         {
-            var race = new Race
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Description = model.Description,
-                MajorId = (int)model.MajorId
-            };
-
-            race.Id = _raceRepository.InsertOrUpdate(race);
+            var id = MappingSave(_raceRepository, model);
 
             var bonuses = model.Bonuses?.Select(x => new RaceBonus
             {
                 RaceId = model.Id,
                 BonusId = x
             }).AsQueryable();
-            _bonusService.BatchSave(bonuses, race.Id, BonusType.Race);
+            _bonusService.BatchSave(bonuses, id, BonusType.Race);
 
             var abilities = model.Abilities?.Select(x => new RaceAbility()
             {
@@ -87,9 +79,9 @@ namespace Pnprpg.Domain.Services
                 AbilityId = x.Id,
                 Value = x.Value
             }).AsQueryable();
-            _abilityService.BatchSave(abilities, race.Id);
+            _abilityService.BatchSave(abilities, id);
 
-            return race.Id;
+            return id;
         }
         
         private RaceViewModel GetRace(int id)

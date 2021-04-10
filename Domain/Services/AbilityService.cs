@@ -47,5 +47,17 @@ namespace Pnprpg.Domain.Services
         {
             _raceAbilityRepository.ClearRaceAbilities(parentId);
         }
+
+        public void Delete(int id) => _abilityRepository.Delete(id);
+
+        public AbilityEditModel GetForEdit(int? id)
+        {
+            if (id == null)
+                return new AbilityEditModel();
+            var model = _abilityRepository.Get(id.Value).ProjectTo<AbilityEditModel>(MapperConfig).FirstOrDefault();
+            return model ?? new AbilityEditModel();
+        }
+
+        public int Save(AbilityEditModel model) => MappingSave(_abilityRepository, model);
     }
 }

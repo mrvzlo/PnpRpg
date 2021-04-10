@@ -12,29 +12,10 @@
     @Html.HiddenFor(x => x.Input.Id)
     @Html.AntiForgeryToken()
     <div class="row">
-        <label class="col-3 col-form-label text-left">Уровень</label>
-        <div class="col">
-            @Html.TextBoxFor(x => x.Input.Level, new { type = "number", @class = "form-control" })
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-3 col-form-label text-left">Вес</label>
-        <div class="col">
-            @Html.TextBoxFor(x => x.Input.Weight, new { type = "number", @class = "form-control" })
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-3 col-form-label text-left">Название</label>
-        <div class="col">
-            @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.Input.Name)
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-3 col-form-label text-left">Навык</label>
-        <div class="col">
-            @Html.DropDownListFor(x => x.Input.SkillId, SelectableHelper.GetSelectList(Model.Skills), new { @class = "form-select" })
-        </div>
+        @Html.EditorFor(x => x.Input.Level, new { blockClass = "col-md-6" })
+        @Html.EditorFor(x => x.Input.Weight, new { blockClass = "col-md-6" })
+        @Html.EditorFor(x => x.Input.Name, new { blockClass = "col-md-6" })
+        @Html.EditorFor(x => x.Input.SkillId, "Dropdown", new { blockClass = "col-md-6", list = Model.Skills })
     </div>
 
     @if (Model.Bonuses.Any())

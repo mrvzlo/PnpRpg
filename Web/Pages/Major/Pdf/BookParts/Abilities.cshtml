@@ -17,7 +17,7 @@
     @foreach (var stat in Model)
     {
         <tr>
-            <td>@stat.Symbol.Description() - @stat.Name</td>
+            <td>@stat.Type.Description() - @stat.Name</td>
             <td>@stat.Description</td>
             <td>@stat.Influence</td>
         </tr>

@@ -131,6 +131,7 @@
     <Compile Include="IServices\IWeaponService.cs" />
     <Compile Include="IServices\IPerkService.cs" />
     <Compile Include="Models\Abilities\AbilityAssignModel.cs" />
+    <Compile Include="Models\Abilities\AbilityEditModel.cs" />
     <Compile Include="Models\Abilities\AbilityDescriptionModel.cs" />
     <Compile Include="Models\Abilities\AbilityModel.cs" />
     <Compile Include="Models\Abilities\AbilityModifier.cs" />

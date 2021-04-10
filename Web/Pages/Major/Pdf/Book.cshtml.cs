@@ -8,6 +8,7 @@ using Pnprpg.DomainService.IServices;
 using Pnprpg.DomainService.Models;
 using Pnprpg.WebCore.Enums;
 using Pnprpg.WebCore.Helpers;
+using Pnprpg.WebCore.Pages.Major.Pdf;
 using Rocket.PdfGenerator;
 
 namespace Pnprpg.WebCore.Pages.Shared.Pdf
@@ -55,7 +56,7 @@ namespace Pnprpg.WebCore.Pages.Shared.Pdf
                 Bottom = 20
             };
             Converter.PageFooterHtml = "<div style='text-align: center'><b class='page'></b></div>";
-            return await LoadPdf(Converter, SitePages.SharedPdfBook, FileType.Book, this);
+            return await LoadPdf(Converter, SitePages.MajorPdfBook, FileType.Book, this);
         }
 
         private void Setup(MajorType major)
